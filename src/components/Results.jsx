@@ -1,5 +1,7 @@
 import Strata from './Strata';
 
+const RING_CIRC = 2 * Math.PI * 52;
+
 export default function Results({
   result,
   mode,
@@ -46,9 +48,28 @@ export default function Results({
 
   return (
     <div className="results">
-      <div className="card center result-hero">
+      <div className={`card center result-hero ${pass ? 'is-pass' : 'is-fail'}`}>
         <div className="eyebrow">Resultado de la sesion</div>
-        <div className={`score-big ${pass ? 'pass' : 'fail'}`}>{pct}%</div>
+        <div
+          className="ring-wrap score-ring"
+          role="img"
+          aria-label={`Resultado ${pct}%`}
+        >
+          <svg viewBox="0 0 120 120" className="ring">
+            <circle className="ring-track" cx="60" cy="60" r="52" />
+            {pct > 0 && (
+              <circle
+                className={`ring-value ${pass ? 'pass' : 'fail'}`}
+                cx="60"
+                cy="60"
+                r="52"
+                strokeDasharray={`${(pct / 100) * RING_CIRC} ${RING_CIRC}`}
+                transform="rotate(-90 60 60)"
+              />
+            )}
+          </svg>
+          <div className={`score-big ${pass ? 'pass' : 'fail'}`}>{pct}%</div>
+        </div>
         <p className="verdict">
           {result.ok} de {total} correctas
           {unanswered > 0 && ` (${unanswered} sin responder, cuentan como fallo)`}

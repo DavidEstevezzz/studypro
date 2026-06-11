@@ -121,13 +121,18 @@ function PracticeSession({
 
   return (
     <div className="session">
-      <div className="session-bar">
-        <span className="progress">
-          Pregunta {idx + 1} de {pool.length}
-        </span>
-        <span className="progress">
-          Acierto: <b>{ok}/{answers.length}</b>
-        </span>
+      <div className="session-top">
+        <div className="session-bar">
+          <span className="progress">
+            Pregunta {idx + 1} de {pool.length}
+          </span>
+          <span className="progress">
+            Acierto: <b>{ok}/{answers.length}</b>
+          </span>
+        </div>
+        <div className="session-track" aria-hidden="true">
+          <i style={{ width: `${(answers.length / pool.length) * 100}%` }} />
+        </div>
       </div>
 
       <QuestionCard
@@ -251,17 +256,22 @@ function ExamSession({
 
   return (
     <div className="session">
-      <div className="session-bar">
-        <span className="progress">
-          Pregunta {idx + 1} de {pool.length} · {answeredCount} respondidas
-        </span>
-        <Timer secondsLeft={secondsLeft} />
-        <span
-          className={`pace ${paceDiff < 0 ? 'behind' : 'ahead'}`}
-          title="Respondidas frente al ritmo necesario para acabar a tiempo"
-        >
-          Ritmo {paceDiff >= 0 ? `+${paceDiff}` : paceDiff}
-        </span>
+      <div className="session-top">
+        <div className="session-bar">
+          <span className="progress">
+            Pregunta {idx + 1} de {pool.length} · {answeredCount} respondidas
+          </span>
+          <Timer secondsLeft={secondsLeft} />
+          <span
+            className={`pace ${paceDiff < 0 ? 'behind' : 'ahead'}`}
+            title="Respondidas frente al ritmo necesario para acabar a tiempo"
+          >
+            Ritmo {paceDiff >= 0 ? `+${paceDiff}` : paceDiff}
+          </span>
+        </div>
+        <div className="session-track" aria-hidden="true">
+          <i style={{ width: `${(answeredCount / pool.length) * 100}%` }} />
+        </div>
       </div>
 
       <QuestionCard

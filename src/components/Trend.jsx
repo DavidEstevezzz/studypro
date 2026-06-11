@@ -21,7 +21,7 @@ export default function Trend({ sessions, passThreshold }) {
   const PAD_TOP = 8;
   const plotH = H - PAD_TOP;
   const gap = 4;
-  const barW = (W - gap * (data.length - 1)) / data.length;
+  const barW = Math.min(40, (W - gap * (data.length - 1)) / data.length);
   const yFor = (pct) => PAD_TOP + plotH * (1 - pct / 100);
 
   return (
@@ -32,6 +32,16 @@ export default function Trend({ sessions, passThreshold }) {
         role="img"
         aria-label="Evolucion del acierto por sesion"
       >
+        {[25, 50, 100].map((g) => (
+          <line
+            key={g}
+            className="trend-grid"
+            x1="0"
+            x2={W}
+            y1={yFor(g)}
+            y2={yFor(g)}
+          />
+        ))}
         <line
           className="trend-threshold"
           x1="0"
@@ -48,7 +58,7 @@ export default function Trend({ sessions, passThreshold }) {
             x={i * (barW + gap)}
             y={yFor(s.pct)}
             width={barW}
-            height={Math.max(2, plotH * (s.pct / 100))}
+            height={Math.max(3, plotH * (s.pct / 100))}
             rx="2"
           >
             <title>

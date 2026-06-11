@@ -13,6 +13,7 @@ import { buildPool, domainsOf, applyAnswer, toggleMarked } from './lib/quiz';
 import Home from './components/Home';
 import Session from './components/Session';
 import Results from './components/Results';
+import Icon from './components/Icon';
 
 export default function App() {
   const { catalog, error: catErr } = useCatalog();
@@ -157,7 +158,7 @@ export default function App() {
     );
 
   return (
-    <Shell>
+    <Shell cert={cert}>
       {view === 'home' && (
         <Home
           catalog={catalog}
@@ -204,9 +205,20 @@ export default function App() {
   );
 }
 
-function Shell({ children }) {
+function Shell({ cert, children }) {
   return (
     <div className="wrap">
+      <header className="topbar">
+        <div className="brand">
+          <span className="brand-mark">
+            <Icon name="flake" size={20} />
+          </span>
+          <span className="brand-name">
+            Study<b>Pro</b>
+          </span>
+        </div>
+        {cert && <span className="topbar-cert">{cert.name}</span>}
+      </header>
       {children}
       <footer className="foot-note">
         StudyPro · banco de práctica con explicaciones. No afiliado a los
