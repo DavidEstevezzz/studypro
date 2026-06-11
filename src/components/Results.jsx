@@ -8,11 +8,14 @@ export default function Results({
   domStat,
   onHome,
   onReview,
+  onMarked,
   hasWrong,
+  hasMarked,
 }) {
   const done = result.answers.length;
   const pct = done ? Math.round((result.ok / done) * 100) : 0;
   const pass = pct >= cert.passThreshold;
+  const wrongAnswers = result.answers.filter((a) => !a.ok);
 
   const byDom = {};
   result.answers.forEach((a) => {
@@ -24,16 +27,16 @@ export default function Results({
   const verdict =
     mode === 'exam'
       ? pass
-        ? 'Aprobarías. Mantén este nivel en varios simulacros antes del examen real.'
+        ? 'Aprobarias. Manten este nivel en varios simulacros antes del examen real.'
         : 'Por debajo del umbral. Repasa los dominios flojos y vuelve a intentarlo.'
       : pass
-        ? 'Buen nivel en esta sesión.'
+        ? 'Buen nivel en esta sesion.'
         : 'Sigue practicando este bloque.';
 
   return (
     <div className="results">
       <div className="card center result-hero">
-        <div className="eyebrow">Resultado de la sesión</div>
+        <div className="eyebrow">Resultado de la sesion</div>
         <div className={`score-big ${pass ? 'pass' : 'fail'}`}>{pct}%</div>
         <p className="verdict">
           {result.ok} de {done} correctas. {verdict}
@@ -56,6 +59,24 @@ export default function Results({
       </div>
 
       <div className="card">
+        <div className="section-head">
+          <div>
+            <div className="eyebrow mb">Revision guiada</div>
+            <h2>
+              {wrongAnswers.length
+                ? `${wrongAnswers.length} preguntas para mirar con calma`
+                : 'Sesion limpia'}
+            </h2>
+          </div>
+        </div>
+        <div className="review-list">
+          {result.answers.map((answer, index) => (
+            <ReviewItem key={`${answer.id}-${index}`} answer={answer} />
+          ))}
+        </div>
+      </div>
+
+      <div className="card">
         <div className="eyebrow mb">Tu dominio global (acumulado)</div>
         <Strata domains={domains} domStat={domStat} />
       </div>
@@ -66,10 +87,52 @@ export default function Results({
         </button>
         {hasWrong && (
           <button className="btn btn-ghost" onClick={onReview}>
-            Repasar los fallos
+            Test de errores
+          </button>
+        )}
+        {hasMarked && (
+          <button className="btn btn-ghost" onClick={onMarked}>
+            Repasar marcadas
           </button>
         )}
       </div>
     </div>
+  );
+}
+
+function ReviewItem({ answer }) {
+  const pickedText = answer.picked?.length
+    ? answer.picked
+        .map((i) => `${String.fromCharCode(65 + i)}. ${answer.options[i]}`)
+        .join(' / ')
+    : 'Sin responder';
+  const correctText = answer.correct
+    .map((i) => `${String.fromCharCode(65 + i)}. ${answer.options[i]}`)
+    .join(' / ');
+  const ref = answer.ref ? answer.ref.split(',')[0].trim() : null;
+
+  return (
+    <details className={`review-item ${answer.ok ? 'ok' : 'miss'}`}>
+      <summary>
+        <span className="review-status">{answer.ok ? 'OK' : 'Fallo'}</span>
+        <span>{answer.question}</span>
+      </summary>
+      <div className="review-body">
+        <div className="review-line">
+          <b>Tu respuesta</b>
+          <span>{pickedText}</span>
+        </div>
+        <div className="review-line">
+          <b>Correcta</b>
+          <span>{correctText}</span>
+        </div>
+        <p>{answer.explanation || 'Sin explicacion'}</p>
+        {ref && (
+          <a className="ref" href={ref} target="_blank" rel="noopener noreferrer">
+            Documentacion oficial →
+          </a>
+        )}
+      </div>
+    </details>
   );
 }

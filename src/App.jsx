@@ -5,10 +5,11 @@ import {
   saveProgress,
   resetProgress,
   emptyProgress,
+  normalizeProgress,
   exportAll,
   importAll,
 } from './lib/storage';
-import { buildPool, domainsOf, applyAnswer } from './lib/quiz';
+import { buildPool, domainsOf, applyAnswer, toggleMarked } from './lib/quiz';
 import Home from './components/Home';
 import Session from './components/Session';
 import Results from './components/Results';
@@ -34,8 +35,9 @@ export default function App() {
 
   useEffect(() => {
     if (!cert || !questions) return;
-    const saved = loadProgress(cert.id);
-    setProgress(saved ?? emptyProgress(domains));
+    const saved = normalizeProgress(loadProgress(cert.id), domains);
+    setProgress(saved);
+    saveProgress(cert.id, saved);
     setView('home');
   }, [cert, questions]); // eslint-disable-line react-hooks/exhaustive-deps
 
@@ -45,21 +47,42 @@ export default function App() {
   }
 
   function start(mode, opts = {}) {
+    const sessionId = `${mode}-${Date.now()}`;
     const pool = buildPool(mode, questions, {
       ...opts,
+      progress,
       wrongIds: progress.wrongIds,
+      markedIds: progress.markedIds,
     });
     if (!pool.length) return;
-    setSession({ mode, pool });
+    setSession({ id: sessionId, mode, pool, startedAt: Date.now() });
     setView('session');
   }
 
   function record(question, ok) {
-    persist(applyAnswer(progress, question, ok));
+    persist(applyAnswer(progress, question, ok, { sessionId: session.id }));
+  }
+
+  function markQuestion(questionId) {
+    persist(toggleMarked(progress, questionId));
   }
 
   function finish(res) {
-    setResult({ ...res, mode: session.mode });
+    const finishedAt = Date.now();
+    const nextSession = {
+      id: session.id,
+      mode: session.mode,
+      startedAt: session.startedAt,
+      finishedAt,
+      total: res.answers.length,
+      ok: res.ok,
+    };
+    const nextProgress = {
+      ...progress,
+      sessions: [nextSession, ...(progress.sessions ?? [])].slice(0, 50),
+    };
+    persist(nextProgress);
+    setResult({ ...res, mode: session.mode, sessionId: session.id });
     setView('results');
   }
 
@@ -87,8 +110,8 @@ export default function App() {
     reader.onload = () => {
       try {
         importAll(reader.result);
-        const saved = loadProgress(cert.id);
-        setProgress(saved ?? emptyProgress(domains));
+        const saved = normalizeProgress(loadProgress(cert.id), domains);
+        setProgress(saved);
         alert('Progreso importado correctamente.');
       } catch {
         alert('No se pudo importar: archivo no válido.');
@@ -138,9 +161,11 @@ export default function App() {
       {view === 'session' && (
         <Session
           pool={session.pool}
+          progress={progress}
           timed={session.mode === 'exam'}
           examSeconds={cert.examMinutes * 60}
           onRecord={record}
+          onMark={markQuestion}
           onFinish={finish}
         />
       )}
@@ -150,10 +175,14 @@ export default function App() {
           mode={result.mode}
           cert={cert}
           domains={domains}
+          questions={questions}
+          progress={progress}
           domStat={progress.domStat}
           hasWrong={progress.wrongIds.length > 0}
+          hasMarked={progress.markedIds.length > 0}
           onHome={() => setView('home')}
           onReview={() => start('wrong')}
+          onMarked={() => start('marked')}
         />
       )}
     </Shell>

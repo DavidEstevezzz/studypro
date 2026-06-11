@@ -1,5 +1,4 @@
-// Persistencia local del progreso, separada por certificación.
-// No requiere backend: cada usuario guarda su avance en su propio navegador.
+// Local progress, scoped by certification. No backend required.
 
 const KEY = (certId) => `studypro:${certId}`;
 
@@ -33,7 +32,38 @@ export function resetProgress(certId) {
 export function emptyProgress(domains) {
   const domStat = {};
   domains.forEach((d) => (domStat[d] = { seen: 0, ok: 0 }));
-  return { domStat, wrongIds: [], sessions: [] };
+  return {
+    version: 2,
+    domStat,
+    wrongIds: [],
+    markedIds: [],
+    byQuestion: {},
+    sessions: [],
+  };
+}
+
+export function normalizeProgress(progress, domains) {
+  const base = emptyProgress(domains);
+  if (!progress || typeof progress !== 'object') return base;
+
+  const domStat = { ...base.domStat };
+  Object.entries(progress.domStat ?? {}).forEach(([domain, stat]) => {
+    domStat[domain] = {
+      seen: Number(stat?.seen ?? 0),
+      ok: Number(stat?.ok ?? 0),
+    };
+  });
+
+  return {
+    ...base,
+    ...progress,
+    version: 2,
+    domStat,
+    wrongIds: uniqueIds(progress.wrongIds),
+    markedIds: uniqueIds(progress.markedIds),
+    byQuestion: progress.byQuestion ?? {},
+    sessions: Array.isArray(progress.sessions) ? progress.sessions : [],
+  };
 }
 
 export function exportAll() {
@@ -49,4 +79,9 @@ export function importAll(jsonString) {
   const parsed = JSON.parse(jsonString);
   if (parsed.app !== 'studypro') throw new Error('Archivo no reconocido');
   Object.entries(parsed.data).forEach(([k, v]) => localStorage.setItem(k, v));
+}
+
+function uniqueIds(ids) {
+  if (!Array.isArray(ids)) return [];
+  return [...new Set(ids.map(Number).filter(Number.isFinite))];
 }

@@ -1,9 +1,19 @@
 import { useState, useEffect } from 'react';
+import { getQuestionStats, isMarked } from '../lib/quiz';
 
-export default function QuestionCard({ question, onAnswered, onNext, isLast }) {
+export default function QuestionCard({
+  question,
+  progress,
+  onAnswered,
+  onMark,
+  onNext,
+  isLast,
+}) {
   const [picked, setPicked] = useState([]);
   const [checked, setChecked] = useState(false);
   const multi = question.n > 1;
+  const marked = progress ? isMarked(progress, question.i) : false;
+  const stats = progress ? getQuestionStats(progress, question.i) : null;
 
   useEffect(() => {
     setPicked([]);
@@ -31,7 +41,7 @@ export default function QuestionCard({ question, onAnswered, onNext, isLast }) {
       correct.length === picked.length &&
       correct.every((c) => picked.includes(c));
     setChecked(true);
-    onAnswered(ok);
+    onAnswered(ok, picked);
   }
 
   const lvl = question.lvl;
@@ -51,13 +61,27 @@ export default function QuestionCard({ question, onAnswered, onNext, isLast }) {
             </span>
           )}
         </span>
+        <button
+          className={`mark-btn ${marked ? 'on' : ''}`}
+          onClick={() => onMark(question.i)}
+          type="button"
+        >
+          {marked ? 'Marcada' : 'Marcar duda'}
+        </button>
       </div>
+
+      {stats && (
+        <div className="qhistory">
+          Vista {stats.seen} veces · {stats.ok}/{stats.seen} aciertos · racha{' '}
+          {stats.streak}
+        </div>
+      )}
 
       <p className="qtext">{question.q}</p>
       {multi && (
         <p className="hint">
           Selecciona {question.n}
-          {question.p ? ' (respuestas muy parecidas, fíjate bien)' : ''}
+          {question.p ? ' (respuestas muy parecidas, fijate bien)' : ''}
         </p>
       )}
 
@@ -86,10 +110,10 @@ export default function QuestionCard({ question, onAnswered, onNext, isLast }) {
             <span>{correctText}</span>
           </div>
           <div className="expl">
-            {question.e || '(sin explicación)'}
+            {question.e || '(sin explicacion)'}
             {ref && (
               <a className="ref" href={ref} target="_blank" rel="noopener noreferrer">
-                Documentación oficial →
+                Documentacion oficial →
               </a>
             )}
           </div>

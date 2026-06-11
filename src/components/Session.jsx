@@ -2,7 +2,15 @@ import { useState, useCallback } from 'react';
 import QuestionCard from './QuestionCard';
 import Timer from './Timer';
 
-export default function Session({ pool, timed, examSeconds, onRecord, onFinish }) {
+export default function Session({
+  pool,
+  progress,
+  timed,
+  examSeconds,
+  onRecord,
+  onMark,
+  onFinish,
+}) {
   const [idx, setIdx] = useState(0);
   const [ok, setOk] = useState(0);
   const [answers, setAnswers] = useState([]);
@@ -11,9 +19,20 @@ export default function Session({ pool, timed, examSeconds, onRecord, onFinish }
   const q = pool[idx];
 
   const handleAnswered = useCallback(
-    (correct) => {
+    (correct, picked) => {
+      const entry = {
+        id: q.i,
+        d: q.d,
+        ok: correct,
+        picked,
+        correct: q.c,
+        question: q.q,
+        options: q.o,
+        explanation: q.e,
+        ref: q.r,
+      };
       setOk((v) => v + (correct ? 1 : 0));
-      setAnswers((a) => [...a, { id: q.i, d: q.d, ok: correct }]);
+      setAnswers((a) => [...a, entry]);
       onRecord(q, correct);
     },
     [q, onRecord]
@@ -21,7 +40,7 @@ export default function Session({ pool, timed, examSeconds, onRecord, onFinish }
 
   function next() {
     if (idx === pool.length - 1) {
-      onFinish({ answers: [...answers], ok });
+      onFinish({ answers, ok });
     } else {
       setIdx((i) => i + 1);
     }
@@ -30,7 +49,7 @@ export default function Session({ pool, timed, examSeconds, onRecord, onFinish }
   const handleExpire = useCallback(() => {
     if (!expired) {
       setExpired(true);
-      onFinish({ answers: [...answers], ok });
+      onFinish({ answers, ok });
     }
   }, [expired, answers, ok, onFinish]);
 
@@ -48,12 +67,17 @@ export default function Session({ pool, timed, examSeconds, onRecord, onFinish }
 
       <QuestionCard
         question={q}
+        progress={progress}
         onAnswered={handleAnswered}
+        onMark={onMark}
         onNext={next}
         isLast={idx === pool.length - 1}
       />
 
-      <button className="btn btn-ghost end-btn" onClick={() => onFinish({ answers, ok })}>
+      <button
+        className="btn btn-ghost end-btn"
+        onClick={() => onFinish({ answers, ok })}
+      >
         Terminar ahora
       </button>
     </div>
