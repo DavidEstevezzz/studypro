@@ -30,14 +30,12 @@ export function resetProgress(certId) {
   }
 }
 
-// Estructura inicial del progreso de una certificación.
 export function emptyProgress(domains) {
   const domStat = {};
   domains.forEach((d) => (domStat[d] = { seen: 0, ok: 0 }));
   return { domStat, wrongIds: [], sessions: [] };
 }
 
-// --- Export / Import: copia de seguridad independiente del navegador ---
 export function exportAll() {
   const dump = {};
   for (let i = 0; i < localStorage.length; i++) {

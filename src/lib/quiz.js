@@ -13,7 +13,6 @@ export function domainsOf(questions) {
   return [...new Set(questions.map((q) => q.d))];
 }
 
-// Construye el pool de preguntas para un modo dado.
 export function buildPool(mode, questions, opts = {}) {
   switch (mode) {
     case 'exam':
@@ -34,7 +33,6 @@ export function buildPool(mode, questions, opts = {}) {
   }
 }
 
-// ¿Es correcta la selección frente a la respuesta esperada?
 export function isCorrect(question, picked) {
   const correct = question.c;
   return (
@@ -43,7 +41,6 @@ export function isCorrect(question, picked) {
   );
 }
 
-// Aplica el resultado de una respuesta al estado de progreso (inmutable).
 export function applyAnswer(progress, question, ok) {
   const domStat = { ...progress.domStat };
   const d = question.d;
@@ -59,8 +56,8 @@ export function applyAnswer(progress, question, ok) {
 }
 
 export function overall(progress) {
-  let seen = 0,
-    ok = 0;
+  let seen = 0;
+  let ok = 0;
   Object.values(progress.domStat).forEach((s) => {
     seen += s.seen;
     ok += s.ok;

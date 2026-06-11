@@ -98,14 +98,26 @@ export default function App() {
     e.target.value = '';
   }
 
-  if (catErr) return <Shell><p className="note">{catErr}</p></Shell>;
+  if (catErr)
+    return (
+      <Shell>
+        <p className="note">{catErr}</p>
+      </Shell>
+    );
+
+  if (qErr)
+    return (
+      <Shell>
+        <p className="note">{qErr}</p>
+      </Shell>
+    );
+
   if (!catalog || !cert || !questions || !progress)
     return (
       <Shell>
-        <p className="note">Cargando banco de preguntas…</p>
+        <p className="note">Cargando banco de preguntas...</p>
       </Shell>
     );
-  if (qErr) return <Shell><p className="note">{qErr}</p></Shell>;
 
   return (
     <Shell>

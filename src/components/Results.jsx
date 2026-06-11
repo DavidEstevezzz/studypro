@@ -14,7 +14,6 @@ export default function Results({
   const pct = done ? Math.round((result.ok / done) * 100) : 0;
   const pass = pct >= cert.passThreshold;
 
-  // Desglose por dominio en esta sesión
   const byDom = {};
   result.answers.forEach((a) => {
     byDom[a.d] = byDom[a.d] || { s: 0, o: 0 };
@@ -28,12 +27,12 @@ export default function Results({
         ? 'Aprobarías. Mantén este nivel en varios simulacros antes del examen real.'
         : 'Por debajo del umbral. Repasa los dominios flojos y vuelve a intentarlo.'
       : pass
-      ? 'Buen nivel en esta sesión.'
-      : 'Sigue practicando este bloque.';
+        ? 'Buen nivel en esta sesión.'
+        : 'Sigue practicando este bloque.';
 
   return (
     <div className="results">
-      <div className="card center">
+      <div className="card center result-hero">
         <div className="eyebrow">Resultado de la sesión</div>
         <div className={`score-big ${pass ? 'pass' : 'fail'}`}>{pct}%</div>
         <p className="verdict">

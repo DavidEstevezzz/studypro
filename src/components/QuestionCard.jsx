@@ -17,8 +17,8 @@ export default function QuestionCard({ question, onAnswered, onNext, isLast }) {
         p.includes(i)
           ? p.filter((x) => x !== i)
           : p.length < question.n
-          ? [...p, i]
-          : p
+            ? [...p, i]
+            : p
       );
     } else {
       setPicked([i]);
@@ -38,7 +38,7 @@ export default function QuestionCard({ question, onAnswered, onNext, isLast }) {
   const ref = question.r ? question.r.split(',')[0].trim() : null;
 
   return (
-    <div className="card">
+    <div className="card question-card">
       <div className="qmeta">
         <span>
           <span className="dom-tag">{question.d}</span>{' '}
