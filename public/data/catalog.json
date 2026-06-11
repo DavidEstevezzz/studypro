@@ -1,0 +1,13 @@
+[
+  {
+    "id": "snowpro-core",
+    "name": "SnowPro Core (COF-C03)",
+    "provider": "Snowflake",
+    "file": "snowpro-core.json",
+    "passThreshold": 75,
+    "examQuestions": 100,
+    "examMinutes": 115,
+    "accent": "#5cc8ff",
+    "blurb": "Certificación fundacional del Snowflake AI Data Cloud."
+  }
+]
