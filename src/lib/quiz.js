@@ -9,28 +9,54 @@ export function shuffle(arr) {
   return a;
 }
 
+export function shuffleChoices(question) {
+  const correct = new Set(question.c);
+  const choices = shuffle(
+    question.o.map((text, originalIndex) => ({
+      text,
+      originalIndex,
+    }))
+  );
+
+  return {
+    ...question,
+    o: choices.map((choice) => choice.text),
+    c: choices.flatMap((choice, index) =>
+      correct.has(choice.originalIndex) ? [index] : []
+    ),
+  };
+}
+
 export function domainsOf(questions) {
   return [...new Set(questions.map((q) => q.d))];
 }
 
 export function buildPool(mode, questions, opts = {}) {
+  let pool;
+
   switch (mode) {
     case 'exam':
-      return shuffle(questions).slice(0, opts.count ?? 100);
+      pool = shuffle(questions).slice(0, opts.count ?? 100);
+      break;
     case 'quick':
-      return shuffle(questions).slice(0, opts.count ?? 25);
+      pool = shuffle(questions).slice(0, opts.count ?? 25);
+      break;
     case 'wrong': {
       const set = new Set(opts.wrongIds ?? []);
-      return shuffle(questions.filter((q) => set.has(q.i)));
+      pool = shuffle(questions.filter((q) => set.has(q.i)));
+      break;
     }
     case 'domain':
-      return shuffle(questions.filter((q) => q.d === opts.domain)).slice(
+      pool = shuffle(questions.filter((q) => q.d === opts.domain)).slice(
         0,
         opts.count ?? 30
       );
+      break;
     default:
-      return shuffle(questions).slice(0, 25);
+      pool = shuffle(questions).slice(0, 25);
   }
+
+  return pool.map(shuffleChoices);
 }
 
 export function isCorrect(question, picked) {

@@ -36,6 +36,9 @@ export default function QuestionCard({ question, onAnswered, onNext, isLast }) {
 
   const lvl = question.lvl;
   const ref = question.r ? question.r.split(',')[0].trim() : null;
+  const correctText = question.c
+    .map((i) => `${String.fromCharCode(65 + i)}. ${question.o[i]}`)
+    .join(' / ');
 
   return (
     <div className="card question-card">
@@ -77,14 +80,20 @@ export default function QuestionCard({ question, onAnswered, onNext, isLast }) {
       </div>
 
       {checked && (
-        <div className="expl">
-          {question.e || '(sin explicación)'}
-          {ref && (
-            <a className="ref" href={ref} target="_blank" rel="noopener noreferrer">
-              Documentación oficial →
-            </a>
-          )}
-        </div>
+        <>
+          <div className="answer-summary">
+            <b>Respuesta correcta</b>
+            <span>{correctText}</span>
+          </div>
+          <div className="expl">
+            {question.e || '(sin explicación)'}
+            {ref && (
+              <a className="ref" href={ref} target="_blank" rel="noopener noreferrer">
+                Documentación oficial →
+              </a>
+            )}
+          </div>
+        </>
       )}
 
       <div className="card-foot">

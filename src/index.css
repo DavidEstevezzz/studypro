@@ -609,6 +609,23 @@ select {
   font-weight: 700;
 }
 
+.answer-summary {
+  display: grid;
+  gap: 6px;
+  margin-top: 18px;
+  border: 1px solid #78d4b8;
+  border-radius: 8px;
+  background: var(--mint-soft);
+  padding: 12px 14px;
+  color: #174b3b;
+  font-size: 14px;
+}
+
+.answer-summary b {
+  font-size: 12px;
+  text-transform: uppercase;
+}
+
 .expl {
   margin-top: 18px;
   border-left: 4px solid var(--snow);
