@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import Strata from './Strata';
-import { REVIEW_PASSES_REQUIRED, overall } from '../lib/quiz';
+import Trend from './Trend';
+import { REVIEW_PASSES_REQUIRED, examReadiness, overall } from '../lib/quiz';
 
 export default function Home({
   catalog,
@@ -35,6 +36,8 @@ export default function Home({
   const masteredPct = totalQuestions
     ? Math.min(100, Math.round((masteredN / totalQuestions) * 100))
     : 0;
+  const sessions = progress.sessions ?? [];
+  const exams = examReadiness(sessions, cert.passThreshold);
   const weakDomains = domains.filter((d) => {
     const st = progress.domStat[d];
     if (!st?.seen) return false;
@@ -122,6 +125,28 @@ export default function Home({
         </div>
       </section>
 
+      {sessions.length > 0 && (
+        <div className="card">
+          <div className="section-head">
+            <div>
+              <div className="eyebrow mb">Tendencia</div>
+              <h2>Tus ultimas sesiones</h2>
+            </div>
+            <span className={`threshold ${exams.ready ? 'ready' : ''}`}>
+              {exams.ready
+                ? 'Listo: 3 simulacros seguidos aprobados'
+                : `Simulacros aprobados: ${exams.recentPassed}/3 recientes`}
+            </span>
+          </div>
+          <Trend sessions={sessions} passThreshold={cert.passThreshold} />
+          <p className="note">
+            La señal fiable para reservar examen: 3 simulacros seguidos por
+            encima del {cert.passThreshold}%.
+            {exams.examCount === 0 && ' Aun no has hecho ningun simulacro.'}
+          </p>
+        </div>
+      )}
+
       <div className="card progress-card">
         <div className="section-head">
           <div>
@@ -159,7 +184,8 @@ export default function Home({
             <span className="mode-icon">100</span>
             <b>Simulacro · {cert.examQuestions} preg</b>
             <small>
-              {cert.examMinutes} min cronometrados, como el examen real.
+              {cert.examMinutes} min, dominios ponderados como el examen real,
+              sin feedback hasta corregir.
             </small>
           </button>
           <button className="mode" onClick={() => onStart('quick')}>

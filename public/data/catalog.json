@@ -7,6 +7,14 @@
     "passThreshold": 75,
     "examQuestions": 100,
     "examMinutes": 115,
+    "domainWeights": {
+      "Arquitectura y Data Cloud": 24,
+      "Gestion de cuenta y Gobernanza": 18,
+      "Rendimiento, Consultas y Transformacion": 30,
+      "Carga, Descarga y Conectividad": 12,
+      "Colaboracion y Proteccion de datos": 12,
+      "Novedades C03 (Cortex/Iceberg/Git)": 4
+    },
     "accent": "#5cc8ff",
     "blurb": "Certificación fundacional del Snowflake AI Data Cloud."
   }

@@ -51,6 +51,7 @@ export default function App() {
     const pool = buildPool(mode, questions, {
       ...opts,
       progress,
+      weights: cert.domainWeights,
       wrongIds: progress.wrongIds,
       markedIds: progress.markedIds,
     });
@@ -69,17 +70,30 @@ export default function App() {
 
   function finish(res) {
     const finishedAt = Date.now();
+
+    // En modo examen no se registra nada durante la sesión (no hay
+    // feedback); se vuelca todo al progreso aquí, al corregir.
+    let base = progress;
+    if (session.mode === 'exam') {
+      res.answers.forEach((a) => {
+        base = applyAnswer(base, { i: a.id, d: a.d }, a.ok, {
+          sessionId: session.id,
+        });
+      });
+    }
+
     const nextSession = {
       id: session.id,
       mode: session.mode,
       startedAt: session.startedAt,
       finishedAt,
-      total: res.answers.length,
+      total: res.total ?? res.answers.length,
       ok: res.ok,
+      durationMs: res.durationMs,
     };
     const nextProgress = {
-      ...progress,
-      sessions: [nextSession, ...(progress.sessions ?? [])].slice(0, 50),
+      ...base,
+      sessions: [nextSession, ...(base.sessions ?? [])].slice(0, 50),
     };
     persist(nextProgress);
     setResult({ ...res, mode: session.mode, sessionId: session.id });
@@ -160,9 +174,10 @@ export default function App() {
       )}
       {view === 'session' && (
         <Session
+          key={session.id}
           pool={session.pool}
           progress={progress}
-          timed={session.mode === 'exam'}
+          mode={session.mode}
           examSeconds={cert.examMinutes * 60}
           onRecord={record}
           onMark={markQuestion}

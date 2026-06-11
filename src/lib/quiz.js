@@ -2,6 +2,10 @@ export const REVIEW_PASSES_REQUIRED = 2;
 
 const DAY = 24 * 60 * 60 * 1000;
 
+// Escalera de repaso espaciado: días hasta la próxima revisión según
+// el número de aciertos consecutivos registrados (nivel SRS).
+const SRS_INTERVALS = [1, 3, 7, 14, 30];
+
 export function shuffle(arr) {
   const a = [...arr];
   for (let i = a.length - 1; i > 0; i--) {
@@ -40,7 +44,7 @@ export function buildPool(mode, questions, opts = {}) {
 
   switch (mode) {
     case 'exam':
-      pool = shuffle(questions).slice(0, opts.count ?? 100);
+      pool = buildExamPool(questions, opts.weights, opts.count ?? 100);
       break;
     case 'quick':
       pool = shuffle(questions).slice(0, opts.count ?? 25);
@@ -69,6 +73,54 @@ export function buildPool(mode, questions, opts = {}) {
   }
 
   return pool.map(shuffleChoices);
+}
+
+// Simulacro estratificado: reparte las preguntas según el peso oficial
+// de cada dominio en el examen (método del mayor resto), no según el
+// tamaño del banco. Si un dominio no da para su cuota, se rellena con
+// preguntas de otros dominios.
+export function buildExamPool(questions, weights, count) {
+  if (!weights) return shuffle(questions).slice(0, count);
+
+  const byDomain = {};
+  questions.forEach((q) => {
+    (byDomain[q.d] ??= []).push(q);
+  });
+
+  const domains = Object.keys(byDomain);
+  const totalWeight = domains.reduce((s, d) => s + (weights[d] ?? 0), 0);
+  if (!totalWeight) return shuffle(questions).slice(0, count);
+
+  const quotas = domains.map((d) => {
+    const exact = (count * (weights[d] ?? 0)) / totalWeight;
+    return { d, base: Math.floor(exact), rest: exact - Math.floor(exact) };
+  });
+  let assigned = quotas.reduce((s, q) => s + q.base, 0);
+  quotas
+    .sort((a, b) => b.rest - a.rest)
+    .forEach((q) => {
+      if (assigned < count) {
+        q.base += 1;
+        assigned += 1;
+      }
+    });
+
+  const pool = [];
+  quotas.forEach(({ d, base }) => {
+    pool.push(...shuffle(byDomain[d]).slice(0, base));
+  });
+
+  if (pool.length < count) {
+    const used = new Set(pool.map((q) => q.i));
+    pool.push(
+      ...shuffle(questions.filter((q) => !used.has(q.i))).slice(
+        0,
+        count - pool.length
+      )
+    );
+  }
+
+  return shuffle(pool);
 }
 
 export function isCorrect(question, picked) {
@@ -113,6 +165,19 @@ export function applyAnswer(progress, question, ok, opts = {}) {
     reviewPasses.push(sessionId);
   }
 
+  const wrongIds = [...(progress.wrongIds ?? [])];
+  const idx = wrongIds.indexOf(question.i);
+  if (!ok && idx < 0) wrongIds.push(question.i);
+  if (ok && idx >= 0 && reviewPasses.length >= REVIEW_PASSES_REQUIRED) {
+    wrongIds.splice(idx, 1);
+  }
+
+  const streak = ok ? prev.streak + 1 : 0;
+  // Repaso espaciado: cada acierto sube un nivel y aleja la próxima
+  // revisión; un fallo resetea el nivel y la deja pendiente ya.
+  const srsLevel = ok ? Math.min((prev.srsLevel ?? 0) + 1, SRS_INTERVALS.length) : 0;
+  const due = ok ? now + SRS_INTERVALS[srsLevel - 1] * DAY : now;
+
   byQuestion[id] = {
     ...prev,
     id: question.i,
@@ -120,21 +185,18 @@ export function applyAnswer(progress, question, ok, opts = {}) {
     seen: prev.seen + 1,
     ok: prev.ok + (ok ? 1 : 0),
     wrong: prev.wrong + (ok ? 0 : 1),
-    streak: ok ? prev.streak + 1 : 0,
+    streak,
     lastSeen: now,
     lastSessionId: sessionId,
     lastOk: ok ? now : prev.lastOk,
     lastWrong: ok ? prev.lastWrong : now,
     reviewPasses,
-    mastered: ok && prev.streak + 1 >= 3 && reviewPasses.length === 0,
+    srsLevel,
+    due,
+    // Dominada: racha de 3 y fuera de la lista de errores. Una pregunta
+    // recuperada del test de errores también puede llegar a dominarse.
+    mastered: ok && streak >= 3 && !wrongIds.includes(question.i),
   };
-
-  let wrongIds = [...(progress.wrongIds ?? [])];
-  const idx = wrongIds.indexOf(question.i);
-  if (!ok && idx < 0) wrongIds.push(question.i);
-  if (ok && idx >= 0 && reviewPasses.length >= REVIEW_PASSES_REQUIRED) {
-    wrongIds.splice(idx, 1);
-  }
 
   return { ...progress, domStat, byQuestion, wrongIds };
 }
@@ -156,6 +218,20 @@ export function overall(progress) {
     ok += s.ok;
   });
   return { seen, ok, pct: seen ? Math.round((ok / seen) * 100) : 0 };
+}
+
+// Señal de "listo": los 3 simulacros más recientes por encima del umbral.
+export function examReadiness(sessions, passThreshold) {
+  const exams = sessions.filter((s) => s.mode === 'exam' && s.total);
+  const recent = exams.slice(0, 3);
+  const passed = recent.filter(
+    (s) => Math.round((s.ok / s.total) * 100) >= passThreshold
+  ).length;
+  return {
+    examCount: exams.length,
+    recentPassed: passed,
+    ready: exams.length >= 3 && passed === 3,
+  };
 }
 
 export function getQuestionStats(progress, questionId) {
@@ -185,7 +261,11 @@ function buildSmartPool(questions, progress, count) {
     if (!st?.seen) score += 45;
     if (domainPct !== null && domainPct < 75) score += 35;
     if (st?.seen && st.streak < 2) score += 25;
-    if (daysSinceSeen > 14) score += 22;
+    // Repaso espaciado: prioriza lo vencido, aparta lo que aún no toca.
+    if (st?.due) {
+      if (st.due <= now) score += 60;
+      else score -= 50;
+    } else if (daysSinceSeen > 14) score += 22;
     else if (daysSinceSeen > 7) score += 12;
     if (q.p) score += 8;
     if (q.lvl === 'core') score += 5;
