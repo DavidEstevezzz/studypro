@@ -1,5 +1,7 @@
 import Strata from './Strata';
 
+const RING_CIRC = 2 * Math.PI * 52;
+
 export default function Results({
   result,
   mode,
@@ -12,10 +14,21 @@ export default function Results({
   hasWrong,
   hasMarked,
 }) {
-  const done = result.answers.length;
-  const pct = done ? Math.round((result.ok / done) * 100) : 0;
+  const total = result.total ?? result.answers.length;
+  const pct = total ? Math.round((result.ok / total) * 100) : 0;
   const pass = pct >= cert.passThreshold;
   const wrongAnswers = result.answers.filter((a) => !a.ok);
+  const unanswered = result.answers.filter((a) => !a.picked?.length).length;
+
+  const minutes = result.durationMs
+    ? Math.max(1, Math.round(result.durationMs / 60000))
+    : null;
+  const timedAnswers = result.answers.filter((a) => a.seconds > 0);
+  const avgSeconds = timedAnswers.length
+    ? Math.round(
+        timedAnswers.reduce((s, a) => s + a.seconds, 0) / timedAnswers.length
+      )
+    : null;
 
   const byDom = {};
   result.answers.forEach((a) => {
@@ -35,12 +48,43 @@ export default function Results({
 
   return (
     <div className="results">
-      <div className="card center result-hero">
+      <div className={`card center result-hero ${pass ? 'is-pass' : 'is-fail'}`}>
         <div className="eyebrow">Resultado de la sesion</div>
-        <div className={`score-big ${pass ? 'pass' : 'fail'}`}>{pct}%</div>
+        <div
+          className="ring-wrap score-ring"
+          role="img"
+          aria-label={`Resultado ${pct}%`}
+        >
+          <svg viewBox="0 0 120 120" className="ring">
+            <circle className="ring-track" cx="60" cy="60" r="52" />
+            {pct > 0 && (
+              <circle
+                className={`ring-value ${pass ? 'pass' : 'fail'}`}
+                cx="60"
+                cy="60"
+                r="52"
+                strokeDasharray={`${(pct / 100) * RING_CIRC} ${RING_CIRC}`}
+                transform="rotate(-90 60 60)"
+              />
+            )}
+          </svg>
+          <div className={`score-big ${pass ? 'pass' : 'fail'}`}>{pct}%</div>
+        </div>
         <p className="verdict">
-          {result.ok} de {done} correctas. {verdict}
+          {result.ok} de {total} correctas
+          {unanswered > 0 && ` (${unanswered} sin responder, cuentan como fallo)`}
+          . {verdict}
         </p>
+        {(minutes !== null || avgSeconds !== null) && (
+          <p className="time-note">
+            {minutes !== null && `${minutes} min en total`}
+            {minutes !== null && avgSeconds !== null && ' · '}
+            {avgSeconds !== null && `${avgSeconds} s por pregunta de media`}
+            {mode === 'exam' &&
+              avgSeconds !== null &&
+              ` (el examen real da ~${Math.round((cert.examMinutes * 60) / cert.examQuestions)} s)`}
+          </p>
+        )}
       </div>
 
       <div className="card">
@@ -114,8 +158,15 @@ function ReviewItem({ answer }) {
   return (
     <details className={`review-item ${answer.ok ? 'ok' : 'miss'}`}>
       <summary>
-        <span className="review-status">{answer.ok ? 'OK' : 'Fallo'}</span>
-        <span>{answer.question}</span>
+        <span className="review-status">
+          {answer.ok ? 'OK' : answer.picked?.length ? 'Fallo' : 'En blanco'}
+        </span>
+        <span>
+          {answer.question}
+          {answer.seconds > 0 && (
+            <small className="review-time"> · {Math.round(answer.seconds)} s</small>
+          )}
+        </span>
       </summary>
       <div className="review-body">
         <div className="review-line">

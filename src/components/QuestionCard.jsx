@@ -1,6 +1,9 @@
 import { useState, useEffect } from 'react';
 import { getQuestionStats, isMarked } from '../lib/quiz';
 
+// Dos variantes: práctica (comprobar + explicación inmediata) y examen
+// (exam=true): solo seleccionas; la selección vive en Session para poder
+// navegar entre preguntas, y no hay feedback hasta corregir al final.
 export default function QuestionCard({
   question,
   progress,
@@ -8,31 +11,37 @@ export default function QuestionCard({
   onMark,
   onNext,
   isLast,
+  exam = false,
+  examPicked,
+  onPick,
 }) {
-  const [picked, setPicked] = useState([]);
+  const [localPicked, setLocalPicked] = useState([]);
   const [checked, setChecked] = useState(false);
   const multi = question.n > 1;
   const marked = progress ? isMarked(progress, question.i) : false;
-  const stats = progress ? getQuestionStats(progress, question.i) : null;
+  const stats = progress && !exam ? getQuestionStats(progress, question.i) : null;
+
+  const picked = exam ? (examPicked ?? []) : localPicked;
 
   useEffect(() => {
-    setPicked([]);
+    setLocalPicked([]);
     setChecked(false);
   }, [question]);
 
   function toggle(i) {
     if (checked) return;
+    let next;
     if (multi) {
-      setPicked((p) =>
-        p.includes(i)
-          ? p.filter((x) => x !== i)
-          : p.length < question.n
-            ? [...p, i]
-            : p
-      );
+      next = picked.includes(i)
+        ? picked.filter((x) => x !== i)
+        : picked.length < question.n
+          ? [...picked, i]
+          : picked;
     } else {
-      setPicked([i]);
+      next = [i];
     }
+    if (exam) onPick(next);
+    else setLocalPicked(next);
   }
 
   function check() {
@@ -55,7 +64,7 @@ export default function QuestionCard({
       <div className="qmeta">
         <span>
           <span className="dom-tag">{question.d}</span>{' '}
-          {lvl && (
+          {lvl && !exam && (
             <span className={`lvl lvl-${lvl}`}>
               {lvl === 'core' ? 'core · cae seguro' : 'extra · bueno saberlo'}
             </span>
@@ -81,7 +90,7 @@ export default function QuestionCard({
       {multi && (
         <p className="hint">
           Selecciona {question.n}
-          {question.p ? ' (respuestas muy parecidas, fijate bien)' : ''}
+          {question.p && !exam ? ' (respuestas muy parecidas, fijate bien)' : ''}
         </p>
       )}
 
@@ -120,21 +129,23 @@ export default function QuestionCard({
         </>
       )}
 
-      <div className="card-foot">
-        {!checked ? (
-          <button
-            className="btn btn-ghost"
-            disabled={picked.length === 0}
-            onClick={check}
-          >
-            Comprobar
-          </button>
-        ) : (
-          <button className="btn btn-primary" onClick={onNext}>
-            {isLast ? 'Terminar' : 'Siguiente'}
-          </button>
-        )}
-      </div>
+      {!exam && (
+        <div className="card-foot">
+          {!checked ? (
+            <button
+              className="btn btn-ghost"
+              disabled={picked.length === 0}
+              onClick={check}
+            >
+              Comprobar
+            </button>
+          ) : (
+            <button className="btn btn-primary" onClick={onNext}>
+              {isLast ? 'Terminar' : 'Siguiente'}
+            </button>
+          )}
+        </div>
+      )}
     </div>
   );
 }

@@ -1,6 +1,10 @@
 import { useEffect, useState } from 'react';
 import Strata from './Strata';
-import { REVIEW_PASSES_REQUIRED, overall } from '../lib/quiz';
+import Trend from './Trend';
+import Icon from './Icon';
+import { REVIEW_PASSES_REQUIRED, examReadiness, overall } from '../lib/quiz';
+
+const RING_CIRC = 2 * Math.PI * 52;
 
 export default function Home({
   catalog,
@@ -35,6 +39,8 @@ export default function Home({
   const masteredPct = totalQuestions
     ? Math.min(100, Math.round((masteredN / totalQuestions) * 100))
     : 0;
+  const sessions = progress.sessions ?? [];
+  const exams = examReadiness(sessions, cert.passThreshold);
   const weakDomains = domains.filter((d) => {
     const st = progress.domStat[d];
     if (!st?.seen) return false;
@@ -73,13 +79,32 @@ export default function Home({
 
         <div className="readiness-card">
           <span>Preparacion</span>
-          <strong>{readiness}%</strong>
           <div
-            className="readiness-meter"
-            style={{ '--value': `${readiness}%` }}
-            aria-hidden="true"
+            className="ring-wrap"
+            role="img"
+            aria-label={`Preparacion ${readiness}%`}
           >
-            <i />
+            <svg viewBox="0 0 120 120" className="ring">
+              <defs>
+                <linearGradient id="ringGrad" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0" stopColor="#73e6bf" />
+                  <stop offset="1" stopColor="#8edfff" />
+                </linearGradient>
+              </defs>
+              <circle className="ring-track" cx="60" cy="60" r="52" />
+              {readiness > 0 && (
+                <circle
+                  className="ring-value"
+                  cx="60"
+                  cy="60"
+                  r="52"
+                  stroke="url(#ringGrad)"
+                  strokeDasharray={`${(readiness / 100) * RING_CIRC} ${RING_CIRC}`}
+                  transform="rotate(-90 60 60)"
+                />
+              )}
+            </svg>
+            <strong>{readiness}%</strong>
           </div>
           <small>
             {ov.seen
@@ -91,36 +116,76 @@ export default function Home({
 
       <section className="metric-grid" aria-label="Resumen de progreso">
         <div className="metric-card">
-          <span>Banco</span>
+          <div className="metric-head">
+            <span>Banco</span>
+            <Icon name="database" />
+          </div>
           <strong>{totalQuestions}</strong>
           <small>preguntas</small>
         </div>
         <div className="metric-card">
-          <span>Vistas</span>
+          <div className="metric-head">
+            <span>Vistas</span>
+            <Icon name="eye" />
+          </div>
           <strong>{practicedPct}%</strong>
           <small>{uniqueSeen} unicas</small>
         </div>
         <div className={`metric-card ${wrongN ? 'attention' : ''}`}>
-          <span>Errores activos</span>
+          <div className="metric-head">
+            <span>Errores activos</span>
+            <Icon name="alert" />
+          </div>
           <strong>{wrongN}</strong>
           <small>{REVIEW_PASSES_REQUIRED} aciertos para liberar</small>
         </div>
         <div className={`metric-card ${markedN ? 'attention' : ''}`}>
-          <span>Marcadas</span>
+          <div className="metric-head">
+            <span>Marcadas</span>
+            <Icon name="bookmark" />
+          </div>
           <strong>{markedN}</strong>
           <small>dudas personales</small>
         </div>
         <div className={`metric-card ${weakDomains ? 'warning' : ''}`}>
-          <span>Dominios flojos</span>
+          <div className="metric-head">
+            <span>Dominios flojos</span>
+            <Icon name="grid" />
+          </div>
           <strong>{weakDomains}</strong>
           <small>por debajo de {cert.passThreshold}%</small>
         </div>
         <div className="metric-card">
-          <span>Dominadas</span>
+          <div className="metric-head">
+            <span>Dominadas</span>
+            <Icon name="check" />
+          </div>
           <strong>{masteredN}</strong>
           <small>racha de 3 aciertos</small>
         </div>
       </section>
+
+      {sessions.length > 0 && (
+        <div className="card">
+          <div className="section-head">
+            <div>
+              <div className="eyebrow mb">Tendencia</div>
+              <h2>Tus ultimas sesiones</h2>
+            </div>
+            <span className={`threshold ${exams.ready ? 'ready' : ''}`}>
+              {exams.ready
+                ? 'Listo: 3 simulacros seguidos aprobados'
+                : `Simulacros aprobados: ${exams.recentPassed}/3 recientes`}
+            </span>
+          </div>
+          <Trend sessions={sessions} passThreshold={cert.passThreshold} />
+          <p className="note">
+            La señal fiable para reservar examen: 3 simulacros seguidos por
+            encima del {cert.passThreshold}%.
+            {exams.examCount === 0 && ' Aun no has hecho ningun simulacro.'}
+          </p>
+        </div>
+      )}
 
       <div className="card progress-card">
         <div className="section-head">
@@ -151,19 +216,26 @@ export default function Home({
         </div>
         <div className="modes">
           <button className="mode smart-mode" onClick={() => onStart('smart')}>
-            <span className="mode-icon">★</span>
+            <span className="mode-icon">
+              <Icon name="star" />
+            </span>
             <b>Plan de hoy · 30 preg</b>
             <small>Mezcla errores, dudas, dominios flojos y preguntas nuevas.</small>
           </button>
           <button className="mode" onClick={() => onStart('exam')}>
-            <span className="mode-icon">100</span>
+            <span className="mode-icon">
+              <Icon name="clock" />
+            </span>
             <b>Simulacro · {cert.examQuestions} preg</b>
             <small>
-              {cert.examMinutes} min cronometrados, como el examen real.
+              {cert.examMinutes} min, dominios ponderados como el examen real,
+              sin feedback hasta corregir.
             </small>
           </button>
           <button className="mode" onClick={() => onStart('quick')}>
-            <span className="mode-icon">25</span>
+            <span className="mode-icon">
+              <Icon name="zap" />
+            </span>
             <b>Sesion rapida · 25 preg</b>
             <small>Sin cronometro. Feedback tras cada respuesta.</small>
           </button>
@@ -172,7 +244,9 @@ export default function Home({
             onClick={() => (wrongN ? onStart('wrong') : null)}
             disabled={!wrongN}
           >
-            <span className="mode-icon">!</span>
+            <span className="mode-icon">
+              <Icon name="alert" />
+            </span>
             <b>Test de errores</b>
             <small>
               {wrongN
@@ -185,7 +259,9 @@ export default function Home({
             onClick={() => (markedN ? onStart('marked') : null)}
             disabled={!markedN}
           >
-            <span className="mode-icon">?</span>
+            <span className="mode-icon">
+              <Icon name="bookmark" />
+            </span>
             <b>Marcadas / dudosas</b>
             <small>
               {markedN
@@ -194,7 +270,9 @@ export default function Home({
             </small>
           </button>
           <button className="mode" onClick={() => setShowDom((s) => !s)}>
-            <span className="mode-icon">D</span>
+            <span className="mode-icon">
+              <Icon name="layers" />
+            </span>
             <b>Por dominio</b>
             <small>Enfocate en un area concreta del temario.</small>
           </button>
