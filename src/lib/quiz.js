@@ -22,6 +22,10 @@ export function shuffleChoices(question) {
 
   return {
     ...question,
+    // n debe coincidir siempre con el nº real de correctas: si el dato
+    // viniera mal, una pregunta multirespuesta se volvería de respuesta
+    // única y se daría por buena acertando solo una.
+    n: Math.max(question.c.length, 1),
     originalChoices: question.o,
     originalCorrect: question.c,
     o: choices.map((choice) => choice.text),
