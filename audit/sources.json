@@ -1153,5 +1153,166 @@
     "status": 200,
     "sha256": "8793e54406dc845ce703c35b52f2f75e00878e2a4a04f068176d35b4e0267e2b",
     "title": "SnowSQL (CLI client)"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/developer-guide/udf-stored-procedure-naming-conventions",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "b860bca7047c689a56d33bebfea60cc51a6886498c830f23cde508394768a920",
+    "title": "Naming and overloading procedures and UDFs"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/sql-reference/ddl-database",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "fd8c064764fb269764abcccdffe813e45ae1ac595c857a8bdf94d57faf2dfeb5",
+    "title": "Database, schema, & share DDL"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/sql-reference/functions-window-syntax",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "d5848d21b359a9c3e7b8c1454c1c5f86ad8c592dee9b2f37a14369b815596d96",
+    "title": "Window function syntax and usage"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/sql-reference/functions/build_stage_file_url",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "6ac181d50ee7a74b39148b9594357c6d3560f704c451457021e1a4c773e4923a",
+    "title": "BUILD_STAGE_FILE_URL"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/sql-reference/functions/get_presigned_url",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "498dfa17df9dfc01008d63f73d9dd949684ac6b61b9c65725f973e58053a3f0c",
+    "title": "GET_PRESIGNED_URL"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/sql-reference/functions/typeof",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "ec63e6042c10a4dd86ce481d53cb1c3212b5acdcc4645afe277f9e65ff857ccb",
+    "title": "TYPEOF"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/sql-reference/operators-query",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "a2011b7826b6c0a038c52b886d77cc9a0744f502172f2e6fc26f2aed02546aa7",
+    "title": "Set operators"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/sql-reference/sql/alter-file-format",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "aaa812a1b6f0a6c7fc136095c8f2318dc874ba33e5559c8c863504eb9c40783b",
+    "title": "ALTER FILE FORMAT"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/sql-reference/sql/grant-privilege-share",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "b85b253519f2eaaf715fed2bd9047314fb02316ef00b352239db787c971ada3c",
+    "title": "GRANT *<privilege>* ... TO SHARE"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/user-guide/access-history",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "50c636c5a05fc8fff0baff7b3b2237033f64ab9cd62dc9580618dda57026f161",
+    "title": "Access History"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/user-guide/classify-intro",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "b00b11c6184b6ec594773e632c90e591968d953ce5658dc33b45d33d2150edcc",
+    "title": "Introduction to sensitive data classification"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/user-guide/client-redirect",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "8411e4740a1478f6e8b5313b66c6ab696e1c50df96115f290fbd14be0d9578a2",
+    "title": "Redirecting client connections"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/user-guide/data-exchange-marketplace-privileges",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "e0eab0b349e1f3907e52c01ae7764335077d0ce176c1c577d228ca52b92b051c",
+    "title": "Grant privileges to other roles"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/user-guide/data-load-prepare",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "230e6ca8357789e939572c9c260578695fce2c01a59da5915eb4299a62e6f625",
+    "title": "Preparing to load data"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/user-guide/data-sharing-provider",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "6d32941b3c70fa25235580c4098034a63d8851b0400a08b133fee91eba87de43",
+    "title": "Create and configure shares"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/user-guide/key-pair-auth",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "e3d8c75a83b28940fc0f6d50f29863767a529042bee930ba2fa5de93c0ceb417",
+    "title": "Key-pair authentication and key-pair rotation"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/user-guide/object-tagging/introduction",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "be455788dc6d800b148729c7ebb2eaadd32036aefc7f79a9fdec4df9e86f4f3c",
+    "title": "Introduction to object tagging"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/user-guide/scim-intro",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "c6dfee4ab324b9d2097e36c69605408639ee815ebd4add798891d0514b5e5a0c",
+    "title": "Snowflake SCIM support"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/user-guide/security-access-control-privileges",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "21e9095c98ca3675d33db3600d05ad29353d531b5304a9cfa88cdf8cff3efcf6",
+    "title": "Access control privileges"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/user-guide/semistructured-considerations",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "f6e167897e6df984c1b37c540b42d546ce6970ad80999884fc6b5000445903c6",
+    "title": "Considerations for semi-structured data stored in VARIANT"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/user-guide/tag-based-masking-policies",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "7830a75711abd2990725adaf32dcda06335bb8f51deb433e7f1be49202622b0b",
+    "title": "Tag-based masking policies"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/user-guide/ui-snowsight-gs",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "a03fc378453090632af67c1f4550a194e8460073626bd0fd9f67c13cc77ca629",
+    "title": "Getting started with Snowsight"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/user-guide/unstructured-data-sharing",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "7add65a93d41b37df1008350f05c1a2b8f723f9d5c49fbd6710cb0eeec60c397",
+    "title": "Share unstructured data with a secure view"
   }
 ]

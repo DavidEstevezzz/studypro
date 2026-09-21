@@ -1,0 +1,795 @@
+[
+  {
+    "i": 653,
+    "objective": "1.6",
+    "r": "https://docs.snowflake.com/en/developer-guide/snowpark/index",
+    "e": "Snowpark provides libraries for Java, Python and Scala, so a UDF created through the Snowpark API is written in the library language, such as Python. JavaScript and SQL are handler languages for UDFs created with SQL CREATE FUNCTION, not Snowpark library languages, and Swift is not supported.",
+    "decision": "conservar_revisada",
+    "reason": "Enunciado, alternativas y clave contrastados; explicación actualizada."
+  },
+  {
+    "i": 655,
+    "objective": "4.4",
+    "r": "https://docs.snowflake.com/en/sql-reference/operators-query",
+    "e": "INTERSECT returns the rows produced by the first query that are also produced by the second, without duplicates. MINUS (EXCEPT) returns rows found only in the first query and UNION combines both results. MERGE is a DML statement, not a set operator.",
+    "decision": "conservar_revisada",
+    "reason": "Enunciado, alternativas y clave contrastados; explicación actualizada."
+  },
+  {
+    "i": 657,
+    "objective": "3.1",
+    "r": "https://docs.snowflake.com/en/sql-reference/functions/build_stage_file_url",
+    "e": "BUILD_STAGE_FILE_URL takes a stage name and a relative path and returns a permanent Snowflake file URL; using it still requires authentication and stage privileges. GET_ABSOLUTE_PATH and GET_RELATIVE_PATH return paths, and GET_STAGE_LOCATION returns the URL of the stage itself.",
+    "decision": "conservar_revisada",
+    "reason": "Enunciado, alternativas y clave contrastados; explicación actualizada."
+  },
+  {
+    "i": 663,
+    "objective": "2.2",
+    "r": "https://docs.snowflake.com/en/sql-reference/account-usage/access_history",
+    "e": "The ACCESS_HISTORY Account Usage view covers the last 365 days (1 year) of access history, with a latency of up to three hours. Access History requires Enterprise Edition or higher. The shorter periods offered are not the retention of this view.",
+    "decision": "conservar_revisada",
+    "reason": "Enunciado, alternativas y clave contrastados; explicación actualizada."
+  },
+  {
+    "i": 665,
+    "objective": "3.1",
+    "r": "https://docs.snowflake.com/en/user-guide/data-load-prepare",
+    "e": "When file format options are specified in several places, the COPY INTO <table> statement takes precedence, then the stage definition, then the table definition. File format options are not cumulative across these levels, and the session is not one of the places where they are defined.",
+    "decision": "conservar_revisada",
+    "reason": "Enunciado, alternativas y clave contrastados; explicación actualizada."
+  },
+  {
+    "i": 669,
+    "objective": "2.1",
+    "r": "https://docs.snowflake.com/en/user-guide/network-policies",
+    "e": "Only one network policy can be activated for an account at a time, and only one for each user; activating another one replaces the current association. Policies can also be activated for security integrations, and the most specific one (security integration, then user, then account) takes precedence.",
+    "decision": "conservar_revisada",
+    "reason": "Enunciado, alternativas y clave contrastados; explicación actualizada."
+  },
+  {
+    "i": 670,
+    "objective": "2.2",
+    "r": "https://docs.snowflake.com/en/user-guide/tag-based-masking-policies",
+    "e": "A tag can have one masking policy for each data type, for example one for STRING and another for NUMBER. While a masking policy is assigned to a tag, neither the tag nor the policy can be dropped.",
+    "decision": "conservar_revisada",
+    "reason": "Enunciado, alternativas y clave contrastados; explicación actualizada."
+  },
+  {
+    "i": 678,
+    "objective": "1.1",
+    "r": "https://docs.snowflake.com/en/user-guide/intro-key-concepts",
+    "e": "When data is loaded into a standard Snowflake table, Snowflake reorganizes it into its internal optimized, compressed, columnar format and stores it in cloud storage. The stored representation is not the raw input, a zip archive chosen by the user or a generic binary dump.",
+    "decision": "conservar_revisada",
+    "reason": "Enunciado, alternativas y clave contrastados; explicación actualizada."
+  },
+  {
+    "i": 682,
+    "objective": "1.3",
+    "r": "https://docs.snowflake.com/en/sql-reference/ddl-database",
+    "e": "A database and a schema together form a namespace. If no current database and schema are set for the session, object names must be qualified. Accounts, tables and warehouses are not part of this pair.",
+    "decision": "conservar_revisada",
+    "reason": "Enunciado, alternativas y clave contrastados; explicación actualizada."
+  },
+  {
+    "i": 685,
+    "objective": "3.1",
+    "r": "https://docs.snowflake.com/en/user-guide/data-load-transform",
+    "e": "A COPY transformation can reorder columns, omit columns and cast values through a SELECT over the staged file. Aggregation and GROUP BY are not supported, and ORDER BY, LIMIT, FETCH and TOP cannot be used in that SELECT, so the load cannot keep only the first few rows.",
+    "decision": "conservar_revisada",
+    "reason": "Enunciado, alternativas y clave contrastados; explicación actualizada."
+  },
+  {
+    "i": 688,
+    "objective": "2.3",
+    "r": "https://docs.snowflake.com/en/user-guide/resource-monitors",
+    "e": "A resource monitor monitors either the whole account (only one account-level monitor is allowed) or a specific set of individual warehouses. Resource monitors are not assigned to databases, schemas or the organization, and they do not control serverless features.",
+    "decision": "conservar_revisada",
+    "reason": "Enunciado, alternativas y clave contrastados; explicación actualizada."
+  },
+  {
+    "i": 692,
+    "objective": "4.1",
+    "r": "https://docs.snowflake.com/en/user-guide/performance-query-warehouse-memory",
+    "e": "Spilling means that intermediate results that do not fit in warehouse memory are written to local disk and, if necessary, to remote storage, which degrades performance. Pruning skips micro-partitions, an exploding join produces far more rows than it consumes and queuing is waiting for warehouse resources.",
+    "decision": "conservar_revisada",
+    "reason": "Enunciado, alternativas y clave contrastados; explicación actualizada."
+  },
+  {
+    "i": 693,
+    "objective": "5.2",
+    "r": "https://docs.snowflake.com/en/user-guide/data-sharing-intro",
+    "e": "A provider can add another account in the same region, including another account of the same company, to a share. The consumer creates a read-only database from the share and no data is copied. Cloning works within one account, reader accounts serve consumers without their own account and a subscription that publishes data to another account is not a Snowflake mechanism. If a writable copy is needed, the consumer can copy the shared data into its own tables.",
+    "decision": "conservar_revisada",
+    "reason": "Enunciado, alternativas y clave contrastados; explicación actualizada."
+  },
+  {
+    "i": 695,
+    "objective": "4.4",
+    "r": "https://docs.snowflake.com/en/user-guide/semistructured-considerations",
+    "e": "For better pruning and lower storage, Snowflake recommends flattening semi-structured data into typed relational columns when it contains dates or timestamps stored as strings, numbers inside strings, or arrays. Such values stay as strings inside a VARIANT, which can make queries slower. STRIP_NULL_VALUES or views over staged files do not solve this.",
+    "decision": "conservar_revisada",
+    "reason": "Enunciado, alternativas y clave contrastados; explicación actualizada."
+  },
+  {
+    "i": 696,
+    "objective": "1.3",
+    "r": "https://docs.snowflake.com/en/developer-guide/udf-stored-procedure-naming-conventions",
+    "e": "Overloading means that several functions or procedures in the same schema share a name but have different signatures: a different number of arguments, different argument types, or both. Identical signatures cannot coexist, and different names are not overloading.",
+    "decision": "conservar_revisada",
+    "reason": "Enunciado, alternativas y clave contrastados; explicación actualizada."
+  },
+  {
+    "i": 702,
+    "objective": "4.4",
+    "r": "https://docs.snowflake.com/en/user-guide/semistructured-considerations",
+    "e": "Semi-structured data supports two kinds of NULL: SQL NULL, meaning a missing or unknown value, and JSON null (VARIANT null), which is stored so that an explicit JSON null can be distinguished from SQL NULL. Avro, ORC and Parquet are file formats, not NULL types.",
+    "decision": "conservar_revisada",
+    "reason": "Enunciado, alternativas y clave contrastados; explicación actualizada."
+  },
+  {
+    "i": 713,
+    "objective": "5.1",
+    "r": "https://docs.snowflake.com/en/user-guide/client-redirect",
+    "e": "Client Redirect uses the URL of a connection object so that client connections can be redirected to an account in a different region without changing application settings. It supports business continuity and disaster recovery together with account replication and requires Business Critical Edition or higher. It does not replicate data by itself.",
+    "decision": "conservar_revisada",
+    "reason": "Enunciado, alternativas y clave contrastados; explicación actualizada."
+  },
+  {
+    "i": 714,
+    "objective": "2.2",
+    "r": "https://docs.snowflake.com/en/user-guide/classify-intro",
+    "e": "Sensitive data classification automatically discovers sensitive data, such as names or national identifiers, and helps apply tags and masking policies. It requires Enterprise Edition or higher. Masking and row access policies protect data but do not find it, and external functions call remote services.",
+    "decision": "conservar_revisada",
+    "reason": "Enunciado, alternativas y clave contrastados; explicación actualizada."
+  },
+  {
+    "i": 715,
+    "objective": "2.2",
+    "r": "https://docs.snowflake.com/en/user-guide/object-tagging/introduction",
+    "e": "Tags are schema-level objects whose string values are assigned to objects such as tables, columns and warehouses. Querying tag assignments helps monitor sensitive data and resource usage and supports auditing and compliance. Comments are unstructured text, row access policies filter rows and internal tokenization is not a Snowflake feature.",
+    "decision": "conservar_revisada",
+    "reason": "Enunciado, alternativas y clave contrastados; explicación actualizada."
+  },
+  {
+    "i": 717,
+    "objective": "2.1",
+    "r": "https://docs.snowflake.com/en/user-guide/scim-intro",
+    "e": "With SCIM, an identity provider can provision and manage Snowflake users and groups, which Snowflake represents as roles. Network policies, session policies and integrations are configured in Snowflake, not through the SCIM API.",
+    "decision": "conservar_revisada",
+    "reason": "Enunciado, alternativas y clave contrastados; explicación actualizada."
+  },
+  {
+    "i": 719,
+    "objective": "3.1",
+    "r": "https://docs.snowflake.com/en/user-guide/data-load-considerations-load",
+    "e": "Of the three ways to identify staged files (a list of files, a path or prefix, and a pattern), a discrete FILES list is generally the fastest. FILES accepts at most 1,000 files, and pattern matching is generally the slowest. Snowpipe REST calls are used for continuous ingestion, not to select files for COPY.",
+    "decision": "conservar_revisada",
+    "reason": "Enunciado, alternativas y clave contrastados; explicación actualizada."
+  },
+  {
+    "i": 738,
+    "objective": "2.2",
+    "r": "https://docs.snowflake.com/en/user-guide/access-history",
+    "e": "ACCESS_HISTORY supports compliance auditing by recording which user read or wrote which objects and when. It does not record client IP addresses, which are available in LOGIN_HISTORY. COPY_HISTORY covers loads, QUERY_HISTORY covers query execution and ROW_ACCESS_POLICIES lists policies.",
+    "decision": "conservar_revisada",
+    "reason": "Enunciado, alternativas y clave contrastados; explicación actualizada."
+  },
+  {
+    "i": 741,
+    "objective": "1.5",
+    "r": "https://docs.snowflake.com/en/user-guide/tables-clustering-micropartitions",
+    "e": "A Snowflake table is a logical structure; its rows are physically stored in micro-partitions that Snowflake creates and manages automatically in cloud storage. Clustering keys are optional and useful only for some very large tables, and tables are owned by roles, not by users.",
+    "decision": "conservar_revisada",
+    "reason": "Enunciado, alternativas y clave contrastados; explicación actualizada."
+  },
+  {
+    "i": 743,
+    "objective": "3.3",
+    "r": "https://docs.snowflake.com/en/sql-reference/sql/put",
+    "e": "PUT uploads local files to an internal stage from clients that support it, such as SnowSQL and the Snowflake Connector for Python. It cannot be run from Snowsight worksheets, the SQL API does not support PUT or GET and SnowCD only diagnoses network connectivity.",
+    "decision": "conservar_revisada",
+    "reason": "Enunciado, alternativas y clave contrastados; explicación actualizada."
+  },
+  {
+    "i": 744,
+    "objective": "3.1",
+    "r": "https://docs.snowflake.com/en/user-guide/data-load-dirtables",
+    "e": "A directory table is an implicit object layered on an internal or external stage, not a separate database object, and it stores file-level metadata about the staged files. Temporary and transient tables are ordinary table types, and a materialized view is not layered on a stage.",
+    "decision": "conservar_revisada",
+    "reason": "Enunciado, alternativas y clave contrastados; explicación actualizada."
+  },
+  {
+    "i": 754,
+    "objective": "5.2",
+    "r": "https://docs.snowflake.com/en/user-guide/data-sharing-provider",
+    "e": "Creating shares and adding consumer accounts requires ACCOUNTADMIN or a role granted the global CREATE SHARE privilege; managing a share also requires its OWNERSHIP. By default ACCOUNTADMIN has this ability, while SYSADMIN, SECURITYADMIN and USERADMIN need those privileges to be granted.",
+    "decision": "conservar_revisada",
+    "reason": "Enunciado, alternativas y clave contrastados; explicación actualizada."
+  },
+  {
+    "i": 755,
+    "objective": "4.4",
+    "r": "https://docs.snowflake.com/en/sql-reference/functions/typeof",
+    "e": "TYPEOF returns the type of the value stored in a VARIANT, such as INTEGER, VARCHAR, OBJECT or ARRAY. IS_ARRAY only tests for one type and returns a Boolean, CHECK_JSON validates JSON text and IS_JSON is not a Snowflake function.",
+    "decision": "conservar_revisada",
+    "reason": "Enunciado, alternativas y clave contrastados; explicación actualizada."
+  },
+  {
+    "i": 757,
+    "objective": "3.1",
+    "r": "https://docs.snowflake.com/en/user-guide/data-load-dirtables",
+    "e": "A directory table stores file-level metadata about the files in a stage and can be added when the stage is created or later with ALTER STAGE. It is an implicit object on the stage rather than a separate database object, it is supported by both internal and external stages and it does not store copies of the files.",
+    "decision": "conservar_revisada",
+    "reason": "Enunciado, alternativas y clave contrastados; explicación actualizada."
+  },
+  {
+    "i": 764,
+    "objective": "4.4",
+    "r": "https://docs.snowflake.com/en/sql-reference/functions-window-syntax",
+    "e": "The OVER clause can contain PARTITION BY and ORDER BY, and some functions also accept a window frame. GROUP BY, LIMIT and UNION ALL belong to the surrounding query, not to the OVER clause.",
+    "decision": "conservar_revisada",
+    "reason": "Enunciado, alternativas y clave contrastados; explicación actualizada."
+  },
+  {
+    "i": 766,
+    "objective": "2.1",
+    "r": "https://docs.snowflake.com/en/user-guide/security-access-control-privileges",
+    "e": "The stored procedure privileges are USAGE, which allows calling the procedure, and OWNERSHIP, which grants full control and is required to alter it. MODIFY, MONITOR and OPERATE apply to other object types, such as warehouses.",
+    "decision": "conservar_revisada",
+    "reason": "Enunciado, alternativas y clave contrastados; explicación actualizada."
+  },
+  {
+    "i": 770,
+    "objective": "1.4",
+    "r": "https://docs.snowflake.com/en/sql-reference/sql/alter-warehouse",
+    "e": "Setting AUTO_SUSPEND to 0 or NULL means the warehouse never suspends automatically and keeps consuming credits while it runs. Snowflake does not recommend it unless the workload needs a continuously running warehouse. Automatic resumption is controlled separately by AUTO_RESUME.",
+    "decision": "conservar_revisada",
+    "reason": "Enunciado, alternativas y clave contrastados; explicación actualizada."
+  },
+  {
+    "i": 775,
+    "objective": "5.3",
+    "r": "https://docs.snowflake.com/en/user-guide/data-exchange-marketplace-privileges",
+    "e": "By default, ACCOUNTADMIN in the Data Exchange administrator account can add or remove members and approve or deny listing and provider profile requests; it can delegate these tasks by granting IMPORTED PRIVILEGES on the exchange. Deleting categories and transferring ownership of listings or provider profiles are not among these tasks.",
+    "decision": "conservar_revisada",
+    "reason": "Enunciado, alternativas y clave contrastados; explicación actualizada."
+  },
+  {
+    "i": 778,
+    "objective": "3.1",
+    "r": "https://docs.snowflake.com/en/user-guide/data-load-considerations-prepare",
+    "e": "The number of data files processed in parallel is determined by the compute resources of the warehouse. Parallel load operations cannot exceed the number of files, and Snowflake recommends files of roughly 100-250 MB compressed so that per-file overhead stays small.",
+    "decision": "conservar_revisada",
+    "reason": "Enunciado, alternativas y clave contrastados; explicación actualizada."
+  },
+  {
+    "i": 785,
+    "objective": "2.2",
+    "r": "https://docs.snowflake.com/en/user-guide/access-history",
+    "e": "Access history gives a unified picture of what data was accessed and when, and of how accessed data moved from source objects to target objects in write operations, which supports lineage. Masking policies, row access policies and sensitive data classification are separate governance features.",
+    "decision": "conservar_revisada",
+    "reason": "Enunciado, alternativas y clave contrastados; explicación actualizada."
+  },
+  {
+    "i": 788,
+    "objective": "2.1",
+    "r": "https://docs.snowflake.com/en/user-guide/key-pair-auth",
+    "e": "Key-pair authentication is supported by clients such as Snowflake CLI, SnowSQL and the Snowflake Connector for Python. Snowsight uses browser-based sign-in methods, SnowCD only tests connectivity and Snowflake Marketplace is not a client application.",
+    "decision": "conservar_revisada",
+    "reason": "Enunciado, alternativas y clave contrastados; explicación actualizada."
+  },
+  {
+    "i": 791,
+    "objective": "2.3",
+    "r": "https://docs.snowflake.com/en/user-guide/cost-understanding-data-storage",
+    "e": "Fail-safe storage costs apply to historical data from permanent tables. Transient and temporary tables have no Fail-safe, staged files incur ordinary stage storage costs without Fail-safe, and external tables reference files kept in external cloud storage.",
+    "decision": "conservar_revisada",
+    "reason": "Enunciado, alternativas y clave contrastados; explicación actualizada."
+  },
+  {
+    "i": 792,
+    "objective": "4.1",
+    "r": "https://docs.snowflake.com/en/user-guide/tables-clustering-micropartitions",
+    "e": "Snowflake uses micro-partition metadata to prune micro-partitions that cannot contain matching rows, limiting the data a query scans. Standard Snowflake tables do not rely on user-created B-tree indexes, and MapReduce is not how Snowflake selects micro-partitions.",
+    "decision": "conservar_revisada",
+    "reason": "Enunciado, alternativas y clave contrastados; explicación actualizada."
+  },
+  {
+    "i": 797,
+    "objective": "5.2",
+    "r": "https://docs.snowflake.com/en/user-guide/data-sharing-reader-create",
+    "e": "A reader account lets a consumer without its own Snowflake account query data shared by the provider that created it. Its users cannot perform DML such as loading, inserting or updating data. A reader account consumes data only from its provider, cannot reshare data, and the provider pays for the compute it uses.",
+    "decision": "conservar_revisada",
+    "reason": "Enunciado, alternativas y clave contrastados; explicación actualizada."
+  },
+  {
+    "i": 800,
+    "objective": "3.1",
+    "r": "https://docs.snowflake.com/en/sql-reference/sql/copy-into-location",
+    "e": "COPY INTO <location> unloads table or query results into a named internal stage (or a table or user stage), a named external stage or an external cloud storage location. It cannot write directly to a client directory or network share; files in an internal stage are downloaded afterwards with GET. The Snowpipe REST endpoints are for loading.",
+    "decision": "conservar_revisada",
+    "reason": "Enunciado, alternativas y clave contrastados; explicación actualizada."
+  },
+  {
+    "i": 803,
+    "objective": "3.1",
+    "r": "https://docs.snowflake.com/en/sql-reference/sql/alter-file-format",
+    "e": "ALTER FILE FORMAT can rename a file format, change the options for its type and change its comment. Other changes, such as changing TYPE from CSV to JSON, require recreating it, for example with CREATE OR REPLACE FILE FORMAT. SWAP TYPE and REPLACE FILE FORMAT are not valid commands.",
+    "decision": "conservar_revisada",
+    "reason": "Enunciado, alternativas y clave contrastados; explicación actualizada."
+  },
+  {
+    "i": 805,
+    "objective": "3.1",
+    "r": "https://docs.snowflake.com/en/sql-reference/functions/get_presigned_url",
+    "e": "GET_PRESIGNED_URL accepts an optional expiration_time in seconds (3600 by default), and anyone holding the URL can access the file until its access token expires. Some storage configurations impose a lower maximum. Access is not indefinite and does not depend on the result cache or Time Travel retention.",
+    "decision": "conservar_revisada",
+    "reason": "Enunciado, alternativas y clave contrastados; explicación actualizada."
+  },
+  {
+    "i": 806,
+    "objective": "3.2",
+    "r": "https://docs.snowflake.com/en/user-guide/data-load-snowpipe-intro",
+    "e": "Snowpipe detects new staged files through cloud messaging (event notifications for automated loading) or through calls to its REST endpoints with a list of files. Error notifications report failures, and email integrations or Snowsight actions do not trigger loads.",
+    "decision": "conservar_revisada",
+    "reason": "Enunciado, alternativas y clave contrastados; explicación actualizada."
+  },
+  {
+    "i": 809,
+    "objective": "4.1",
+    "r": "https://docs.snowflake.com/en/user-guide/ui-snowsight-activity",
+    "e": "Query Profile helps identify exploding joins, where a join produces far more rows than it consumes, and UNION used where UNION ALL would suffice, shown as an extra Aggregate operator above UnionAll. It also reveals spilling and inefficient pruning. The other listed issues are not among the documented problems.",
+    "decision": "conservar_revisada",
+    "reason": "Enunciado, alternativas y clave contrastados; explicación actualizada."
+  },
+  {
+    "i": 814,
+    "objective": "3.1",
+    "r": "https://docs.snowflake.com/en/user-guide/data-load-local-file-system-create-stage",
+    "e": "By default, each user and table is allocated an internal stage: the user stage (@~) and the table stage (@%table). Named internal stages must be created explicitly, and files are staged only when a command such as PUT uploads them. Apache Iceberg tables do not support table stages.",
+    "decision": "conservar_revisada",
+    "reason": "Enunciado, alternativas y clave contrastados; explicación actualizada."
+  },
+  {
+    "i": 690,
+    "objective": "4.1",
+    "r": "https://docs.snowflake.com/en/user-guide/ui-snowsight-activity",
+    "q": "A user selects an executed query in Snowsight Query History to open its Query Details. Which information is available there?",
+    "o": [
+      "The duration of the query",
+      "The external source system that originally produced the queried data",
+      "Whether each queried column was originally loaded from JSON or CSV files",
+      "The full text of every masking policy evaluated by the query"
+    ],
+    "c": [
+      0
+    ],
+    "n": 1,
+    "e": "Query Details show the status, start and end times, warehouse size, duration, query ID, query tag, client driver and session ID; the warehouse and user appear above the tab. They do not record the external origin or input file format of the data, nor the body of masking policies. The original mixed up Query Details with the Query Profile tab.",
+    "decision": "corregir",
+    "reason": "El original confundía la sección de detalles con Query Profile y usaba como distractor el rol, dato que la documentación no sitúa en Query Details; reformulado sobre la información documentada."
+  },
+  {
+    "i": 703,
+    "objective": "1.5",
+    "r": "https://docs.snowflake.com/en/user-guide/tables-temp-transient",
+    "q": "What are characteristics of transient tables in Snowflake? (Choose two.)",
+    "o": [
+      "Transient tables have a Fail-safe period of 7 days.",
+      "Transient tables are dropped automatically when the session that created them ends.",
+      "Transient tables persist until they are explicitly dropped.",
+      "Transient tables can be altered to make them permanent tables.",
+      "Transient tables have Time Travel retention periods of 0 or 1 day."
+    ],
+    "c": [
+      2,
+      4
+    ],
+    "n": 2,
+    "e": "Transient tables persist until explicitly dropped, keep Time Travel for 0 or 1 day (1 by default) and have no Fail-safe. After creation they cannot be converted to another table type. Being dropped when the session ends describes temporary tables.",
+    "decision": "corregir",
+    "reason": "Sustituido el distractor sobre clonar tablas transitorias como permanentes: la documentación vigente no enuncia esa regla para tablas estándar. Claves conservadas."
+  },
+  {
+    "i": 729,
+    "objective": "3.1",
+    "r": "https://docs.snowflake.com/en/sql-reference/sql/copy-into-location",
+    "q": "Which statement unloads all rows of table my_table into files in the named internal stage my_stage?",
+    "o": [
+      "COPY INTO @my_stage FROM my_table;",
+      "COPY INTO my_table FROM @my_stage;",
+      "COPY FROM my_table INTO @my_stage;",
+      "PUT my_table @my_stage;"
+    ],
+    "c": [
+      0
+    ],
+    "n": 1,
+    "e": "Unloading uses COPY INTO <location> FROM <table or query>, so the stage follows INTO. Reversing the order loads staged files into the table, COPY FROM ... INTO is not valid syntax and PUT uploads local files rather than table rows. Files unloaded to an internal stage can then be downloaded with GET.",
+    "decision": "corregir",
+    "reason": "Sustituida una pseudosintaxis (COPY INTO @STAGE FROM TABLE) por sentencias reales; la nota del original advertía que era una versión inventada."
+  },
+  {
+    "i": 746,
+    "objective": "1.5",
+    "r": "https://docs.snowflake.com/en/user-guide/views-materialized",
+    "q": "What is a characteristic of the maintenance of a materialized view?",
+    "o": [
+      "Materialized views cannot be refreshed automatically.",
+      "An additional set of scripts is needed to refresh data in materialized views.",
+      "Snowflake maintains it automatically with a background service that uses Snowflake-provided compute resources.",
+      "A materialized view can be set up with the auto-refresh feature using the SQL SET command."
+    ],
+    "c": [
+      2
+    ],
+    "n": 1,
+    "e": "Snowflake maintains materialized views automatically and transparently: a background service updates them after base-table changes, using compute resources provided by Snowflake. This maintenance consumes credits and the stored results add storage. Users do not write refresh scripts or configure a SET-based auto-refresh.",
+    "decision": "corregir",
+    "reason": "Precisada la clave: el mantenimiento lo hace un servicio en segundo plano con cómputo de Snowflake, no un warehouse del usuario."
+  },
+  {
+    "i": 749,
+    "objective": "1.5",
+    "r": "https://docs.snowflake.com/en/user-guide/views-materialized",
+    "q": "A query reads a materialized view before its background maintenance has applied recent DML on the base table. What does Snowflake return?",
+    "o": [
+      "Current results, using up-to-date parts of the materialized view and newer base-table data as needed",
+      "Stale results until a user manually refreshes the materialized view",
+      "An error until the background maintenance completes",
+      "Only the rows that existed when the materialized view was created"
+    ],
+    "c": [
+      0
+    ],
+    "n": 1,
+    "e": "Data accessed through a materialized view is always current, regardless of the DML performed on the base table. If a query runs before the view is up to date, Snowflake either updates the view or combines its up-to-date portions with newer data from the base table. No manual refresh is needed and the query does not fail.",
+    "decision": "corregir",
+    "reason": "La clave original (una sola tabla, sin joins) repetía la pregunta 212; reformulada sobre la vigencia de los datos, que el original trataba en un distractor."
+  },
+  {
+    "i": 753,
+    "objective": "1.5",
+    "r": "https://docs.snowflake.com/en/user-guide/tables-clustering-micropartitions",
+    "q": "Which two items does Snowflake document among the metadata it stores about the rows in each micro-partition? (Choose two.)",
+    "o": [
+      "A B-tree index entry for every row in the micro-partition",
+      "The range of values for each partition in the micro-partition",
+      "The range of values for each of the rows in the micro-partition",
+      "The range of values for each of the columns in the micro-partition",
+      "The number of distinct values for each column in the micro-partition"
+    ],
+    "c": [
+      3,
+      4
+    ],
+    "n": 2,
+    "e": "Snowflake stores metadata about all rows in a micro-partition, including the range of values for each column and the number of distinct values, plus additional properties used for optimization. This metadata enables pruning. Snowflake does not build a B-tree entry for every row, and value ranges are kept per column, not per row.",
+    "decision": "corregir",
+    "reason": "Sustituido un distractor que podía ser verdadero (recuento de valores, posible propiedad adicional de los metadatos) por otro claramente falso."
+  },
+  {
+    "i": 756,
+    "objective": "5.1",
+    "r": "https://docs.snowflake.com/en/user-guide/data-time-travel",
+    "q": "Which operation can be performed using Time Travel?",
+    "o": [
+      "Querying a transient table as it existed 30 days ago",
+      "Extending a permanent table's retention period from 90 to 100 days",
+      "Creating a clone of an entire permanent table as it existed at a specific point in the past",
+      "Disabling Time Travel for a specific object by setting DATA_RETENTION_TIME_IN_DAYS to NULL"
+    ],
+    "c": [
+      2
+    ],
+    "n": 1,
+    "e": "Within the retention period, Time Travel can query historical data, restore dropped objects and clone tables, schemas and databases at or before a point in the past. Transient tables keep history for at most 1 day and permanent objects for at most 90 days. Time Travel is deactivated for an object by setting DATA_RETENTION_TIME_IN_DAYS to 0.",
+    "decision": "corregir",
+    "reason": "Sustituido el distractor sobre restaurar tablas eliminadas de un share, ambiguo porque Time Travel sí restaura tablas eliminadas. Clave conservada."
+  },
+  {
+    "i": 762,
+    "objective": "4.1",
+    "r": "https://docs.snowflake.com/en/sql-reference/parameters",
+    "q": "Which warehouse parameters cancel SQL statements after a time limit, either while they wait in the queue or while they run? (Choose two.)",
+    "o": [
+      "MAX_CONCURRENCY_LEVEL",
+      "DATA_RETENTION_TIME_IN_DAYS",
+      "MIN_DATA_RETENTION_TIME_IN_DAYS",
+      "STATEMENT_TIMEOUT_IN_SECONDS",
+      "STATEMENT_QUEUED_TIMEOUT_IN_SECONDS"
+    ],
+    "c": [
+      3,
+      4
+    ],
+    "n": 2,
+    "e": "STATEMENT_QUEUED_TIMEOUT_IN_SECONDS cancels a statement that stays queued too long, and STATEMENT_TIMEOUT_IN_SECONDS cancels a running statement that exceeds its limit; both can be set for a warehouse and in the session hierarchy. MAX_CONCURRENCY_LEVEL is also a warehouse parameter related to concurrency, but it sets a concurrency level rather than a timeout. The retention parameters concern Time Travel.",
+    "decision": "corregir",
+    "reason": "MAX_CONCURRENCY_LEVEL también es un parámetro de objeto (warehouse) que controla la concurrencia: el original tenía tres respuestas plausibles. Acotado a los límites de tiempo."
+  },
+  {
+    "i": 781,
+    "objective": "5.2",
+    "r": "https://docs.snowflake.com/en/sql-reference/sql/grant-privilege-share",
+    "q": "A provider creates a share without setting SECURE_OBJECTS_ONLY = FALSE. Granting SELECT on which object to this share returns an error?",
+    "o": [
+      "A table",
+      "A secure view",
+      "A standard (non-secure) view",
+      "A secure materialized view"
+    ],
+    "c": [
+      2
+    ],
+    "n": 1,
+    "e": "By default, SELECT on views can be granted to a share only for secure views, so adding a standard view returns an error. A share created or altered with SECURE_OBJECTS_ONLY = FALSE can include non-secure views, although secure views remain the recommended way to protect shared data. Tables and secure materialized views can be shared.",
+    "decision": "corregir",
+    "reason": "La documentación vigente permite compartir vistas no seguras si el share usa SECURE_OBJECTS_ONLY = FALSE; se acota el escenario al comportamiento por defecto."
+  },
+  {
+    "i": 782,
+    "objective": "2.1",
+    "r": "https://docs.snowflake.com/en/user-guide/ui-snowsight-gs",
+    "q": "In Snowsight, what determines which databases, tables and other objects a user can see and which actions the user can perform on them?",
+    "o": [
+      "The primary role together with any activated secondary roles",
+      "Only the masking policies assigned to table columns",
+      "Only column-level security settings",
+      "Whether the user is enrolled in multi-factor authentication (MFA)"
+    ],
+    "c": [
+      0
+    ],
+    "n": 1,
+    "e": "The primary role and any activated secondary roles determine the Snowsight pages, objects and actions available to a user; creating objects depends on the primary role. Masking and other column-level policies change the values returned, not which objects are visible, and MFA strengthens authentication.",
+    "decision": "corregir",
+    "reason": "La documentación actual atribuye la visibilidad al rol primario junto con los roles secundarios activados, no solo al «rol activo»."
+  },
+  {
+    "i": 796,
+    "objective": "5.2",
+    "r": "https://docs.snowflake.com/en/user-guide/unstructured-data-sharing",
+    "q": "A provider shares unstructured files with consumers through a secure view. Which Snowflake URL types can the view return so that consumers can access the files? (Choose two.)",
+    "o": [
+      "Scoped URL",
+      "File URL",
+      "Cloud storage URL",
+      "Pre-signed URL"
+    ],
+    "c": [
+      0,
+      3
+    ],
+    "n": 2,
+    "e": "A shared secure view can return scoped URLs (BUILD_SCOPED_FILE_URL) or pre-signed URLs (GET_PRESIGNED_URL). Scoped URLs are more secure, while pre-signed URLs work without authentication until they expire. Consumers cannot use file URLs from a shared secure view, and provider cloud storage paths do not grant access. The original \"HTTPS URL\" alternative was removed because a pre-signed URL is itself an HTTPS URL.",
+    "decision": "corregir",
+    "reason": "Eliminado el distractor «HTTPS URL», ambiguo porque una URL prefirmada es una URL HTTPS; la explicación original estaba en español y sin justificación."
+  },
+  {
+    "i": 658,
+    "decision": "archivar",
+    "reason": "Repite la identificación del search optimization service para búsquedas selectivas, ya contrastada en IDs 144, 221, 414 y 3043."
+  },
+  {
+    "i": 659,
+    "decision": "archivar",
+    "reason": "SnowSQL es un cliente heredado que no figura en la guía COF-C03, y la clave es ambigua: los archivos snowsql.cnf también son ubicaciones de configuración documentadas."
+  },
+  {
+    "i": 673,
+    "decision": "archivar",
+    "reason": "Repite ARRAY y VARIANT como tipos para datos semiestructurados, ya contrastado en ID 623."
+  },
+  {
+    "i": 675,
+    "decision": "archivar",
+    "reason": "Memoriza páginas del antiguo área Activity de Snowsight, que hoy figura como Monitoring; mismo criterio que ID 476."
+  },
+  {
+    "i": 676,
+    "decision": "archivar",
+    "reason": "Repite cuándo evitar la suspensión automática (carga estable y sin latencia de reanudación), ya contrastado en ID 76."
+  },
+  {
+    "i": 677,
+    "decision": "archivar",
+    "reason": "Depende del antiguo área Activity de Snowsight (hoy Monitoring); el análisis de consultas ya se evalúa con preguntas funcionales de Query History y Query Profile."
+  },
+  {
+    "i": 679,
+    "decision": "archivar",
+    "reason": "Repite seguridad y gestión de metadatos como servicios de cloud services, ya contrastado en IDs 152 y 215."
+  },
+  {
+    "i": 683,
+    "decision": "archivar",
+    "reason": "Repite el derrame a almacenamiento local o remoto como señal de falta de memoria, ya contrastado en IDs 143, 282 y 413."
+  },
+  {
+    "i": 687,
+    "decision": "archivar",
+    "reason": "Repite los motivos para usar vistas seguras (proteger datos sensibles y ocultar la definición), ya contrastados en ID 586."
+  },
+  {
+    "i": 689,
+    "decision": "archivar",
+    "reason": "Depende del antiguo área Activity de Snowsight (hoy Monitoring) y de qué vistas ofrece la interfaz, que cambian con el tiempo; mismo criterio que ID 476."
+  },
+  {
+    "i": 699,
+    "decision": "archivar",
+    "reason": "Duplica ID 657 con un distractor ambiguo: BUILD_SCOPED_FILE_URL también genera una URL de Snowflake a partir del stage y la ruta relativa."
+  },
+  {
+    "i": 700,
+    "decision": "archivar",
+    "reason": "Repite OBJECT_CONSTRUCT para descargar datos relacionales como JSON, ya contrastado en ID 517 (mismo criterio que ID 554)."
+  },
+  {
+    "i": 701,
+    "decision": "archivar",
+    "reason": "Repite la URL prefirmada como acceso sin autenticación, ya contrastada en ID 388."
+  },
+  {
+    "i": 705,
+    "decision": "archivar",
+    "reason": "Repite las claves de clustering para tablas muy grandes (IDs 1, 186 y 305) y admite otra respuesta plausible: las vistas materializadas también pueden acelerar consultas."
+  },
+  {
+    "i": 706,
+    "decision": "archivar",
+    "reason": "Repite la capa de cómputo a la que pertenecen los warehouses, ya contrastada en ID 424."
+  },
+  {
+    "i": 710,
+    "decision": "archivar",
+    "reason": "Repite Time Travel como acceso a datos históricos (ID 136); además, «mantenimiento de datos históricos» también podría atribuirse a Fail-safe."
+  },
+  {
+    "i": 712,
+    "decision": "archivar",
+    "reason": "Repite los warehouses multiclúster para resolver concurrencia, ya contrastados en IDs 201, 597 y 614."
+  },
+  {
+    "i": 721,
+    "decision": "archivar",
+    "reason": "Repite GET_PRESIGNED_URL para acceder a archivos sin cuenta de Snowflake, ya contrastado en ID 500."
+  },
+  {
+    "i": 723,
+    "decision": "archivar",
+    "reason": "Clave imprecisa: con SECURE_OBJECTS_ONLY = FALSE un share puede incluir vistas no seguras. La regla por defecto se reformula en ID 781 y el resto de afirmaciones ya se evalúa en IDs 228 y 379."
+  },
+  {
+    "i": 726,
+    "decision": "archivar",
+    "reason": "Repite la limitación de las vistas materializadas a una sola tabla sin joins, ya contrastada en ID 212."
+  },
+  {
+    "i": 727,
+    "decision": "archivar",
+    "reason": "Repite la URL prefirmada como acceso sin autenticación, ya contrastada en ID 388."
+  },
+  {
+    "i": 731,
+    "decision": "archivar",
+    "reason": "Repite COPY INTO para descargar filas de una tabla a un stage, ya contrastado en ID 584 y en la sintaxis corregida del ID 729."
+  },
+  {
+    "i": 732,
+    "decision": "archivar",
+    "reason": "Repite COPY INTO para descargar datos de una tabla o consulta a un stage, ya contrastado en ID 584."
+  },
+  {
+    "i": 739,
+    "decision": "archivar",
+    "reason": "Repite FORCE = TRUE para volver a cargar archivos ya cargados, ya contrastado en ID 587."
+  },
+  {
+    "i": 740,
+    "decision": "archivar",
+    "reason": "Repite la pérdida de acceso al recrear objetos compartidos sin volver a concederlos al share, ya contrastada en ID 520."
+  },
+  {
+    "i": 742,
+    "decision": "archivar",
+    "reason": "Trivia sobre tipos de gráficos de Snowsight, una interfaz cambiante; mismo criterio que ID 442."
+  },
+  {
+    "i": 752,
+    "decision": "archivar",
+    "reason": "Repite el uso de ACCESS_HISTORY para analizar el uso de tablas, ya contrastado en IDs 474 y 589."
+  },
+  {
+    "i": 759,
+    "decision": "archivar",
+    "reason": "Repite la lista de servicios de cloud services (IDs 152, 163, 215 y 381); además, el distractor de enmascaramiento dinámico es discutible porque cloud services incluye el control de acceso."
+  },
+  {
+    "i": 763,
+    "decision": "archivar",
+    "reason": "Duplica ID 753 y su distractor «Null values» no es claramente falso: la documentación menciona propiedades adicionales de los metadatos sin enumerarlas."
+  },
+  {
+    "i": 765,
+    "decision": "archivar",
+    "reason": "Repite la tabla de directorio como almacén de metadatos de los archivos del stage, ya contrastada en ID 369 y en los IDs 744 y 757 de esta tanda."
+  },
+  {
+    "i": 769,
+    "decision": "archivar",
+    "reason": "Repite LIST sobre un stage con nombre, ya contrastado en ID 279."
+  },
+  {
+    "i": 771,
+    "decision": "archivar",
+    "reason": "Repite ARRAY y VARIANT como tipos para datos semiestructurados, ya contrastado en ID 623."
+  },
+  {
+    "i": 774,
+    "decision": "archivar",
+    "reason": "Repite la diferencia entre Notify & Suspend y Notify & Suspend Immediately, ya contrastada en IDs 298 y 1049."
+  },
+  {
+    "i": 779,
+    "decision": "archivar",
+    "reason": "Repite el escalado vertical del warehouse para una consulta compleja, ya contrastado en IDs 17 y 137."
+  },
+  {
+    "i": 786,
+    "decision": "archivar",
+    "reason": "La recomendación citada ya no figura en la documentación vigente (el ecosistema remite a la web de partners) y la conexión mediante drivers estándar ya se evalúa en IDs 34, 3061 y 3062."
+  },
+  {
+    "i": 790,
+    "decision": "archivar",
+    "reason": "Repite STRIP_OUTER_ARRAY para cargar cada elemento en una fila, ya contrastado en ID 335."
+  },
+  {
+    "i": 794,
+    "decision": "archivar",
+    "reason": "Repite quién puede conceder privilegios en un esquema de acceso gestionado, ya contrastado en IDs 564 y 3063."
+  },
+  {
+    "i": 795,
+    "decision": "archivar",
+    "reason": "Repite las recomendaciones ante el derrame de memoria (ID 600) e incluye un distractor plausible: leer solo las columnas necesarias también puede reducir memoria."
+  },
+  {
+    "i": 799,
+    "decision": "archivar",
+    "reason": "Repite autenticación y análisis/optimización de consultas como servicios de cloud services, ya contrastado en ID 381."
+  },
+  {
+    "i": 801,
+    "decision": "archivar",
+    "reason": "Depende del antiguo área Activity de Snowsight (hoy Monitoring); Query History y Query Profile ya se evalúan con preguntas funcionales."
+  },
+  {
+    "i": 802,
+    "decision": "archivar",
+    "reason": "Memoriza la ubicación de opciones del menú de usuario de Snowsight; mismo criterio que ID 476."
+  },
+  {
+    "i": 804,
+    "decision": "archivar",
+    "reason": "Trivia de interfaz: el límite de descarga de 100 MB no figura en la documentación vigente y compartir worksheets ya se evalúa en ID 204."
+  },
+  {
+    "i": 808,
+    "decision": "archivar",
+    "reason": "Repite External Tokenization como característica de seguridad a nivel de columna, ya contrastada en IDs 156 y 577."
+  },
+  {
+    "i": 810,
+    "decision": "archivar",
+    "reason": "Repite la ausencia de Fail-safe en tablas temporales y transitorias, ya contrastada en ID 164."
+  },
+  {
+    "i": 812,
+    "decision": "archivar",
+    "reason": "Repite las características de las tablas de directorio con datos no estructurados, ya contrastadas en ID 369 y en el ID 757 de esta tanda."
+  }
+]

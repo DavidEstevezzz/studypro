@@ -6,6 +6,7 @@ import { additions } from './new-questions.mjs';
 import { batch100 } from './review-batch-100.mjs';
 import { batch200 } from './review-batch-200.mjs';
 import { batch300 } from './review-batch-300.mjs';
+import { batch400 } from './review-batch-400.mjs';
 
 const root = new URL('../', import.meta.url);
 const path = (p) => new URL(p, root);
@@ -121,6 +122,7 @@ for (const [batch, idsFile, revision] of [
   [batch100, 'audit/next-100-ids.json', 'cof-c03-2026-09-21-batch100'],
   [batch200, 'audit/batch-200-ids.json', 'cof-c03-2026-09-21-batch200'],
   [batch300, 'audit/batch-300-ids.json', 'cof-c03-2026-09-21-batch300'],
+  [batch400, 'audit/batch-400-ids.json', 'cof-c03-2026-09-21-batch400'],
 ]) {
 const batchIds = JSON.parse(readFileSync(path(idsFile)));
 if (batch.length !== 100 || new Set(batch.map(q => q.i)).size !== 100 ||
@@ -129,13 +131,16 @@ for (const item of batch) {
   const q = byId.get(item.i);
   if (!q || q.review.status !== 'pending') throw new Error(`Batch ID was not pending: ${item.i}`);
   const { decision, reason, ...fields } = item;
+  // Only conservar_revisada and corregir mark a question as verified; anything unknown stops the build.
   if (decision === 'archivar') {
     q.review = { ...q.review, status: 'archived', reviewedAt: REVIEW_DATE, reason };
-  } else {
+  } else if (decision === 'mantener_pendiente' || decision === 'apartar') {
+    q.review = { ...q.review, status: decision === 'apartar' ? 'quarantine' : 'pending', reviewedAt: REVIEW_DATE, reason };
+  } else if (decision === 'conservar_revisada' || decision === 'corregir') {
     Object.assign(q, fields, { d: domains[item.objective[0]], topic: objectives[item.objective],
       review: { status: 'verified', reviewedAt: REVIEW_DATE, method: 'editorial-documentation', reason } });
     if (decision === 'corregir') q.contentRevision = revision;
-  }
+  } else throw new Error(`Unknown batch decision for ${item.i}: ${decision}`);
   records.set(q.i, { id: q.i, decision, reason, originalDomain: before.get(q.i).d });
 }
 }
@@ -156,6 +161,7 @@ json('public/data/snowpro-core.json',bank);
 json('audit/batch-100-decisions.json', batch100);
 json('audit/batch-200-decisions.json', batch200);
 json('audit/batch-300-decisions.json', batch300);
+json('audit/batch-400-decisions.json', batch400);
 json('public/data/snowpro-core-audit.json',summary);
 json('audit/review-ledger.json',ledger);
 const fields=['id','decision','status','objective','candidateObjective','mapping','originalDomain','domain','question','reason','reference','reviewedAt'];
@@ -174,7 +180,7 @@ writeFileSync(path('audit/README.md'),`# Auditoría SnowPro Core — ${REVIEW_DA
   `- Contrastadas: **${statusCounts.verified}**, incluyendo **${additions.length} originales nuevas**.\n`+
   `- Pendientes de validación documental: **${statusCounts.pending}**.\n`+
   `- Apartadas para revisión prioritaria: **${statusCounts.quarantine}**. Una sospecha no equivale a demostrar que la pregunta es falsa.\n`+
-  `- Archivadas (duplicación exacta, consejos o trivia): **${statusCounts.archived}**.\n`+
+  `- Archivadas (duplicados exactos o casi exactos, consejos, trivia o dependencia de una interfaz antigua): **${statusCounts.archived}**.\n`+
   `- Reformuladas/corregidas: **${summary.correctedIds.length}**.\n\n`+
   `El simulacro y la práctica predeterminada usan solo contrastadas. La práctica ampliada permite pendientes con aviso; nunca incluye apartadas ni archivadas. Todo el original sigue en el registro.\n\n`+
   `## Guía y pesos\n\n[Guía oficial](${GUIDE}). Pesos: 31/20/18/21/10. El 31% es arquitectura y funcionalidades, no IA sola. No se atribuyen pesos inventados a subobjetivos. Git se ubica en 3.3, IA/aplicaciones en 1.6.\n\n`+
@@ -183,6 +189,6 @@ writeFileSync(path('audit/README.md'),`# Auditoría SnowPro Core — ${REVIEW_DA
   `## Trazabilidad\n\n[Registro CSV](review-ledger.csv): decisión y motivo por pregunta. [Registro JSON](review-ledger.json): también versiones antes/después. [Resumen de la app](../public/data/snowpro-core-audit.json). Las fuentes concretas están en cada pregunta; el estado de consulta se registra en sources.json.\n\n`+
   `## Progreso y límites\n\nSe conservan los IDs. Las estadísticas se reasignan por pregunta al nuevo dominio. Las preguntas reformuladas conservan su historial, pero reinician la racha/dominio para no contar una antigua clave como aprendida. El histórico de simulacros se conserva, pero solo sesiones de la versión vigente cuentan para la señal orientativa.\n\n`+
   `750/1000 es puntuación escalada, no 75% de aciertos. La app usa 75% como objetivo interno de práctica; no predice aprobar. No se probaron consultas en una cuenta real de Snowflake.\n\n`+
-  `## Mantenimiento\n\nEditar scripts/reviewed-questions.mjs y scripts/new-questions.mjs; ejecutar npm run audit:build y npm test. No volver a ejecutar el antiguo fix-multi-answers sobre este banco. Las nuevas preguntas son material original de práctica, no preguntas de exámenes.\n`);
+  `## Mantenimiento\n\nEditar scripts/reviewed-questions.mjs, scripts/new-questions.mjs o el script de la tanda correspondiente (scripts/review-batch-*.mjs, con sus IDs congelados en audit/*-ids.json); ejecutar npm run audit (alias de audit:build) y npm test. No volver a ejecutar el antiguo fix-multi-answers sobre este banco. Las nuevas preguntas son material original de práctica, no preguntas de exámenes.\n`);
 console.log(JSON.stringify({original:original.length,total:bank.length,...statusCounts,corrected:summary.correctedIds.length,added:additions.length,
   domains:Object.values(domains).map(d=>[d,bank.filter(q=>q.d===d&&q.review.status==='verified').length])},null,2));
