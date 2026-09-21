@@ -16,7 +16,7 @@ export default function Results({
 }) {
   const total = result.total ?? result.answers.length;
   const pct = total ? Math.round((result.ok / total) * 100) : 0;
-  const pass = pct >= cert.passThreshold;
+  const pass = total > 0 && (result.ok / total) * 100 >= cert.passThreshold;
   const wrongAnswers = result.answers.filter((a) => !a.ok);
   const unanswered = result.answers.filter((a) => !a.picked?.length).length;
 
@@ -40,8 +40,8 @@ export default function Results({
   const verdict =
     mode === 'exam'
       ? pass
-        ? 'Aprobarias. Manten este nivel en varios simulacros antes del examen real.'
-        : 'Por debajo del umbral. Repasa los dominios flojos y vuelve a intentarlo.'
+        ? 'Objetivo interno de práctica alcanzado. No equivale a aprobar el examen oficial.'
+        : 'Por debajo del objetivo de práctica. Repasa las áreas con más errores.'
       : pass
         ? 'Buen nivel en esta sesion.'
         : 'Sigue practicando este bloque.';
@@ -75,6 +75,7 @@ export default function Results({
           {unanswered > 0 && ` (${unanswered} sin responder, cuentan como fallo)`}
           . {verdict}
         </p>
+        {mode === 'exam' && <p className="note">Snowflake utiliza puntuación escalada: 750/1000 no equivale necesariamente al 75% de aciertos. Repetir preguntas puede aumentar este resultado sin medir aprendizaje nuevo.</p>}
         {(minutes !== null || avgSeconds !== null) && (
           <p className="time-note">
             {minutes !== null && `${minutes} min en total`}

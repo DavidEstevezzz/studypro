@@ -33,7 +33,7 @@ export function emptyProgress(domains) {
   const domStat = {};
   domains.forEach((d) => (domStat[d] = { seen: 0, ok: 0 }));
   return {
-    version: 2,
+    version: 3,
     domStat,
     wrongIds: [],
     markedIds: [],
@@ -42,9 +42,9 @@ export function emptyProgress(domains) {
   };
 }
 
-export function normalizeProgress(progress, domains) {
+export function normalizeProgress(progress, domains, questions = [], bankVersion) {
   const base = emptyProgress(domains);
-  if (!progress || typeof progress !== 'object') return base;
+  if (!progress || typeof progress !== 'object') return { ...base, bankVersion };
 
   const domStat = { ...base.domStat };
   Object.entries(progress.domStat ?? {}).forEach(([domain, stat]) => {
@@ -54,16 +54,48 @@ export function normalizeProgress(progress, domains) {
     };
   });
 
-  return {
+  const normalized = {
     ...base,
     ...progress,
-    version: 2,
+    version: 3,
     domStat,
     wrongIds: uniqueIds(progress.wrongIds),
     markedIds: uniqueIds(progress.markedIds),
     byQuestion: progress.byQuestion ?? {},
     sessions: Array.isArray(progress.sessions) ? progress.sessions : [],
   };
+  if (!bankVersion || !questions.length || progress.bankVersion === bankVersion) return normalized;
+
+  // Preserve legacy summaries and all question histories, even for withdrawn IDs.
+  const byQuestion = structuredClone(normalized.byQuestion);
+  const questionMap = new Map(questions.map((q) => [String(q.i), q]));
+  const migratedDomStat = { ...base.domStat };
+  for (const [id, stat] of Object.entries(byQuestion)) {
+    const question = questionMap.get(id);
+    if (!question) continue;
+    stat.domain = question.d;
+    const domain = migratedDomStat[question.d] ?? { seen: 0, ok: 0 };
+    migratedDomStat[question.d] = {
+      seen: domain.seen + Number(stat.seen ?? 0),
+      ok: domain.ok + Number(stat.ok ?? 0),
+    };
+    if (question.contentRevision && stat.contentRevision !== question.contentRevision) {
+      stat.previousMastery = { streak: stat.streak, mastered: stat.mastered, srsLevel: stat.srsLevel };
+      Object.assign(stat, { streak: 0, mastered: false, srsLevel: 0, due: 0, reviewPasses: [], contentRevision: question.contentRevision });
+    }
+  }
+  return { ...normalized, version: 3, bankVersion, byQuestion, domStat: migratedDomStat,
+    legacyDomStat: normalized.legacyDomStat ?? normalized.domStat };
+}
+
+export function backupBeforeMigration(certId, progress, bankVersion) {
+  if (!progress || !bankVersion || progress.bankVersion === bankVersion) return;
+  const key = `studypro:backup:${certId}:${bankVersion}`;
+  try {
+    if (!localStorage.getItem(key)) localStorage.setItem(key, JSON.stringify(progress));
+  } catch {
+    // In-memory migration also retains old summaries and question histories.
+  }
 }
 
 export function exportAll() {

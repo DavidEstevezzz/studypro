@@ -1,0 +1,1157 @@
+[
+  {
+    "url": "https://docs.snowflake.com/en/collaboration/collaboration-listings-about",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "162d1c6bcc27f2cd813ce603d1611eec7fd43335f03dc41ff4db2a755d694141",
+    "title": "About listings"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/developer-guide/git/git-operations",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "af071aecacd08617c05a7586311c234f0c59e1fc2d75b3b0ebed83fb6409a790",
+    "title": "Working with Git repositories"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/developer-guide/git/git-overview",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "25877423c4eea32b45aa1c62a424134883207a6c93937ca0b5c8e52ac8a5aa36",
+    "title": "Using a Git repository in Snowflake"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/developer-guide/native-apps/native-apps-about",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "51c4ae8d3ab09dd5a69b0ce52b92ba1d29b2a19b809ddedd07ce4080709875e1",
+    "title": "About the %naf%"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/developer-guide/snowflake-cli/index",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "fd4aaab7d25f55b86cdc10a04697e8e7e2fe12b01247e75957ae13d2887ac056",
+    "title": "%sf-cli%"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/developer-guide/snowflake-ml/overview",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "f128ca18ae793e28df3cbd467e5c96d1234c0396937e28f679272be457780cf9",
+    "title": "Snowflake ML: End-to-End Agentic ML"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/developer-guide/snowpark/index",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "9a612d5fcf5fe5419fbc40342f65618797c838635f70a047e059f1afa5b824bb",
+    "title": "Snowpark API"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/developer-guide/streamlit/about-streamlit",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "c45061d1673f2c69bd651c54bdad8d3653adc837a5fef46a523ba0fa151d5ec2",
+    "title": "About %sis%"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/sql-reference/account-usage/access_history",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "2c71445a8dd010db1f4172d59bce4f1cab9503cc39c13dcb9ba2326371e8ccc3",
+    "title": "ACCESS_HISTORY view"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/sql-reference/account-usage/login_history",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "b19d76c63a809f5e213eda094eee2c508c57cd166ce19fd3198c5581f6bce12b",
+    "title": "LOGIN_HISTORY view"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/sql-reference/account-usage/metering_history",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "e7b512d65b0952d5b69831f649e7f464f504ed4c3ac9f769ed5331d49c639e61",
+    "title": "METERING_HISTORY view"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/sql-reference/account-usage/query_attribution_history",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "2fe530641a77d22a1759ea30901d4e6af8ea982c821621a7ab03b168862f0485",
+    "title": "QUERY_ATTRIBUTION_HISTORY view"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/sql-reference/account-usage/table_storage_metrics",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "25b353730c00aecfdec8944bc30e4f0ab7efd536ee0b2d89b5675c0af8c052f6",
+    "title": "TABLE_STORAGE_METRICS view"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/sql-reference/constructs/sample",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "89195485f3e7b1da91d889353c23f14d35484694d2c54774478feac4a710573b",
+    "title": "SAMPLE / TABLESAMPLE"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/sql-reference/data-types-semistructured",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "354fefb657b3ed083830ad6f74d14d30f3a13d6fdb303829e38f44904d49af99",
+    "title": "Semi-structured data types"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/sql-reference/functions/flatten",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "9126493447ded675c7e2f913f38a160fb43823db1b243f2466cfecf5ef975d29",
+    "title": "FLATTEN"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/sql-reference/functions/last_query_id",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "0be496327f461e6501efabe05f675e16a19b96e09ed7c8af25701e594577d726",
+    "title": "LAST_QUERY_ID"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/sql-reference/functions/parse_json",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "3c2d604dd3ec420c4601df56409ef99da31a22eb7b7c6f541b4415e4832adcc0",
+    "title": "PARSE_JSON"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/sql-reference/functions/split_to_table",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "c7bcb13500b8b966f9a91018875b17ac57ba7a01cf16803f89a2022bdeeb8d10",
+    "title": "SPLIT_TO_TABLE"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/sql-reference/functions/validate",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "fb698695bfdfd779eadddce95ac35a50e3e2fca3ce04321353976490eaeec372",
+    "title": "VALIDATE"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/sql-reference/parameters",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "7301b11f86083c821bae657e1d295e36d3a21d8e83b6bf9b6179ca6a51189a08",
+    "title": "Parameters"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/sql-reference/sql/copy-into-location",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "b66d380ee8108ca1109a14de71d25bd8df47b0883b40bf425926e0bc21a011ee",
+    "title": "COPY INTO *\\<location\\>*"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/sql-reference/sql/copy-into-table",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "b9ef80e66c2e442ee8693b7b85699d413e57123ffecdec0a119c640c2a12f3db",
+    "title": "COPY INTO *\\<table\\>*"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/sql-reference/sql/create-file-format",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "bb4524af64b0cbf915137d3a548aedf434034e52c6cd1879be98523cc16e0e20",
+    "title": "CREATE FILE FORMAT"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/sql-reference/sql/create-masking-policy",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "3c349d22702fd7066dee3d0ff49cca4c2e4aa860070397003737b50a19a29479",
+    "title": "CREATE MASKING POLICY"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/sql-reference/sql/create-role",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "1f5d768d62cca70f433535082f3e4e890bd76d5a343e4165aad240f32d668ce0",
+    "title": "CREATE ROLE"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/sql-reference/sql/create-stage",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "d6525966746dc37c9893a67096b28c791795ecba6d8ab709de3e4bbb30b239d1",
+    "title": "CREATE STAGE"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/sql-reference/sql/create-storage-integration",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "51e48f0a518f21a40a2b38b91953606a54a6b727d83192d362c36eae28f3068a",
+    "title": "CREATE STORAGE INTEGRATION"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/sql-reference/sql/create-view",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "4c25ba4d346975c28f642dc4b40ec1da981cea929694582d24475980b7cd383b",
+    "title": "CREATE VIEW"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/sql-reference/sql/create-warehouse",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "fc51d0ac6d7c3529799a4c6d6f01b43c4bf578f4903c008da72ff3b80df4eb23",
+    "title": "CREATE WAREHOUSE"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/sql-reference/sql/drop-stage",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "b9c7977bef75940116f93c44066911479ccd65b43b0b17af3282119df78d276b",
+    "title": "DROP STAGE"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/sql-reference/sql/execute-immediate-from",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "0e575a232ff9eec3813860650bc1482b09de89edd6ebe06ab4a059b6635dfd75",
+    "title": "EXECUTE IMMEDIATE FROM"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/sql-reference/sql/get",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "fce35df5756d485a5b92a6d5392d5001c128a752880e69a4ffe12c8c7627c740",
+    "title": "GET"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/sql-reference/sql/grant-privilege",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "034d2d42d26c12db3b0dbbb65a74135ceadf59a989ca444ed39bbe91130ceb0c",
+    "title": "GRANT *\\<privileges\\>* ... TO ROLE"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/sql-reference/sql/list",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "e8035550527669ae3f809f9d7d06ea6e694a8d9b82a377ba47bb2fa405c3a65c",
+    "title": "LIST"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/sql-reference/sql/put",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "0e52545b4193ff8102a625f07b7f593fed4a1c982ccde33a488a2215bda7da40",
+    "title": "PUT"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/sql-reference/sql/remove",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "379c83fb39312248844bc2d03259a1e0f61acf8b014d2cf859718bd8c8de64af",
+    "title": "REMOVE"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/sql-reference/sql/show-grants",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "29527f45320ffce1ff01817e594ad6cd438da6ce3d5139e9a3e737b91d6fac02",
+    "title": "SHOW GRANTS"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/sql-reference/sql/undrop-table",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "0b2472e91a5e3b764d15312657973c0771f6cca6a19e1efbbe4930591315322e",
+    "title": "UNDROP TABLE"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/sql-reference/sql/use-database",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "e63f50075e23088e3f8fa907ffa7e0171ab269f6408e463d3af51884bf28db04",
+    "title": "USE DATABASE"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/sql-reference/sql/use-warehouse",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "72d68ed0729581fa4d5cddb02052b66f02c64c93ad25c612bcef9cbeba157699",
+    "title": "USE WAREHOUSE"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/user-guide/admin-security-fed-auth-overview",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "c4689ee2d6698ad2fe04361fc6cc4d86cc8047c5b816f3f75f69fb2a00ce72cc",
+    "title": "Overview of federated authentication and SSO"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/user-guide/alerts",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "4ab779b5da32e4ade96b02c4192410267fbc82a709e090b7a0bdba487b4f9835",
+    "title": "Setting up alerts based on data in Snowflake"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/user-guide/authentication-policies",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "62172a02e2dd4846d46601c1adb49454cfcc29d27398fa2c4983043d774afdb9",
+    "title": "Authentication policies"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/user-guide/cleanrooms/introduction",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "ad86f9b34236ca0ed7048f5c960025412a2b31c39a566dd2d3948ccde7186cb4",
+    "title": "About %samooha-clean-room-plural%"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/user-guide/data-failsafe",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "fba2f5b06b4784add5d9090ea7b020adec6598d95a14e530a11fd0ad71f17df2",
+    "title": "Understanding and viewing Fail-safe"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/user-guide/data-load-local-file-system-create-stage",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "98d78b28776dd5d54109c58fd89ed3eec323f05656082719b5943bdad7c23fed",
+    "title": "Choosing an internal stage for local files"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/user-guide/data-load-snowpipe-auto",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "9dee6f2e0f275ce52529cbff98968b50e4407d1d23408380c7099f2acde48079",
+    "title": "Automate continuous data loading with cloud messaging"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/user-guide/data-load-snowpipe-billing",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "33f8dfe44ae9454291bc55dd3b56e8f750196605a64ecaaa076d856408a2fbce",
+    "title": "Snowpipe costs"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/user-guide/data-load-transform",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "707c3dcc8827216eeaa1f2ada9c064436d7be8820286679f627a10e5d78a1b14",
+    "title": "Transform data during a load"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/user-guide/data-sharing-intro",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "a6a7e714ab7032adb4174d86fdc79909014dd6929b8b6c43b2fc6e25d56fbb84",
+    "title": "About Secure Data Sharing"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/user-guide/data-sharing-reader-create",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "ecf87ec3ecbebff7c62a2be2178bb1e3a0417116eb2cafc126e4e54ce5129f6e",
+    "title": "Manage reader accounts"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/user-guide/data-time-travel",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "41f23803ed4e5cc02a89bdc5375e542ca24ae1461cb68650c0f4192ce0ce288e",
+    "title": "Understanding & using Time Travel"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/user-guide/databases",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "121348ae1a36fe0b9359fa66921aedcd8e9776eb62cd457c1bd541a166e53790",
+    "title": "Databases, Tables & Views"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/user-guide/diff-privacy/differential-privacy-admin-privacy-policies",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "06b885cf91df856dec6f35dcb087ab5240b30e2f45133a4bee49e96f6e197708",
+    "title": "Using privacy policies for differential privacy"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/user-guide/dynamic-tables/cloning",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "bcccb07366d72c1bf9cae21e0054de5dc58e53c58297d93e743dc12050c7ec22",
+    "title": "Clone dynamic tables"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/user-guide/dynamic-tables/overview",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "931fe2cc98a86640582979bd4a0c7ddc2a9e563ca3bccf41de669056886b896a",
+    "title": "Dynamic tables"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/user-guide/dynamic-tables/target-lag",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "17f9312bd29932cd5dae4e8cd245a497e0c7a36d4c60e018135b64677c45da65",
+    "title": "Set the target lag for a dynamic table"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/user-guide/functions-window-using",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "7a89d7217b98a5ce1b9c36cf5fa74796fd4fdb199a11885f8d39f2fe801aaad7",
+    "title": "Analyzing data with window functions"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/user-guide/intro-key-concepts",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "0373f4414cb7a6ef1b9401e9a992243f2b5707dfd4617fe84ee1ba6ceead9483",
+    "title": "Snowflake key concepts and architecture"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/user-guide/network-policies",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "41b94fae620846e597ed3bd070a9de0ac69f492a24950dd0220b97edebe23c06",
+    "title": "Controlling network traffic with network policies"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/user-guide/notifications/about-notifications",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "8c44502627953abd51b1d2183e8977c929c0986c889e3d058813a6ba169b4a45",
+    "title": "Notifications in Snowflake"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/user-guide/object-clone",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "02bfb8253041d6e142d049e56a6464af77123dc5143f43129b7a459e6349b86d",
+    "title": "Cloning considerations"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/user-guide/organizations",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "13ea9cf79103d22cc4523d5b45a0e4f0f9d032070558042939ea1c768ac8b818",
+    "title": "Introduction to organizations"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/user-guide/performance-query-warehouse-cache",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "6c6872716367d2ae171249e334004c8d5b40d53a1cd7344c4d21300ff505fe19",
+    "title": "Optimizing the warehouse cache"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/user-guide/performance-query-warehouse-memory",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "35aa101be25311ee97d4e1aded436bb5f1e5d16432de75c1db47a8ea4ad38d07",
+    "title": "Queries too large to fit in memory"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/user-guide/query-acceleration-service",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "28debbdfb0f689e1c31e03058a8282317c5574009bf388fa6602fdf6aa7431be",
+    "title": "Using the Query Acceleration Service (QAS)"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/user-guide/query-insights",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "a3edc8b6386302280ad1b34ecb2d7c5afd95491ba737bff45841d5ac97206e47",
+    "title": "Using query insights to improve performance"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/user-guide/querying-persisted-results",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "87cf8a3518c2d9bd3daa24b65b4a7e15e127acaf024b01bf9388c6320bba5c0a",
+    "title": "Using Persisted Query Results"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/user-guide/querying-semistructured",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "a4f741e9078266e3ad0c84f16b32f743a8808bb0546614752fb43a2716708167",
+    "title": "Querying Semi-structured Data"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/user-guide/resource-monitors",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "433bb35845e20091dffccbad19baab0b6c7e5a7fa5b5fd1bbd35daba0d6f846e",
+    "title": "Working with resource monitors"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/user-guide/search-optimization-service",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "c8cb2319134ac549bc199c1b76cd7d7151bd27ebc3e427198cfba83bcc2b9492",
+    "title": "Search optimization service"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/user-guide/security-access-control-configure",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "8ddb58cebbc5849949a7c645d2fe175d3d18f2e1e53bb3467da1fbc4cbffd9e1",
+    "title": "Configuring access control"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/user-guide/security-access-control-overview",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "8745602ce8f5d9bed3b8b766e6854889783461764ec5b3d49e24de62b2e81d41",
+    "title": "Overview of Access Control"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/user-guide/security-column-ddm-intro",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "e673a312b489324e9327aaec9e07e968a0cec985d92a2b9a592de85bd098aee9",
+    "title": "Understanding Dynamic Data Masking"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/user-guide/security-mfa",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "b148acbec3c2967d4b1258a966c09494c9de9fce9fdc8cc88402b4da4ac61837",
+    "title": "Multi-factor authentication (MFA)"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/user-guide/security-mfa-rollout",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "adbccb7b561993910b792613069eb1faf1025144344d7de63e30e60b4db018a4",
+    "title": "Planning for the deprecation of single-factor password sign-ins"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-analyst",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "0d12444fca1de128e502038ef64a69549e505ba3a2ae51edd86c538a33ecb492",
+    "title": "%cortex-analyst%"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-search/cortex-search-overview",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "1aa9ec10501b1d46a3858dae025af95752ba891d8fac6b171ea9cd86b6d91a9a",
+    "title": "Cortex Search"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/user-guide/snowpipe-streaming/data-load-snowpipe-streaming-overview",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "10a8c0a0450fcfbb2503d0895956bf01d75467794414980448e8e29e85a0b3c0",
+    "title": "Snowpipe Streaming"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/user-guide/streams-intro",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "f6988c9fca7181017d6e03d068ab3d26f101f3101ebddd35f60ecada95f8568d",
+    "title": "Introduction to streams"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/user-guide/tables-clustering-keys",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "0ab7a716ac18d9f1644245823ffa2fbcf3681663d9ed461857650f67744b54b8",
+    "title": "Clustering Keys & Clustered Tables"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/user-guide/tables-clustering-micropartitions",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "614204d85905382a76245b8ae36730c6373452ba2066a5a7eaf9da577e674fac",
+    "title": "Micro-partitions & Data Clustering"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/user-guide/tables-iceberg",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "b7dc1f98254575c6126004334b69a8d6aeda2bdbae46ec3e61ddd8dbf1bb8ac2",
+    "title": "%iceberg-tm% tables"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/user-guide/tables-temp-transient",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "525b8d1542594053acacc8aac1927032063a6ae7672adfb874f0e1750b25eecb",
+    "title": "Working with Temporary and Transient Tables"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/user-guide/tasks-intro",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "08fa339446a8ab57f362a059bc0ac1507917a9e6ba3a1a502dc9a2beee76ecb4",
+    "title": "Introduction to tasks"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/user-guide/trust-center/overview",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "5d2294997ed77256792fd241460427d7304f3daba66c62b60e4a89f709f88d79",
+    "title": "Trust Center"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/user-guide/ui-snowsight-activity",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "66f1289653ee49283d354faa3ab702926e83444ef4d1cb9047e17bfc0353fb69",
+    "title": "Monitor query activity with Query History"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/user-guide/ui-snowsight-lineage",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "9259b6f31f0c77c70f9d65a8cd88792de2e022ceffaee5cd696b2a5163ac10bc",
+    "title": "Data Lineage"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/user-guide/ui-snowsight/notebooks",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "389ba51f0ed5e575578b9d0f4eaaedb123152c442497cd17dc1e0bee93ba4924",
+    "title": "About Legacy Snowflake Notebooks"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/user-guide/vscode-ext",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "3819d36e17b9ed28762c71db32fd4a28bd31d416164e63626e5a6baaf762f09e",
+    "title": "%sf-vscext%"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/user-guide/warehouses-considerations",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "e5ea83522103fa5ae9e037cf7689d08b455bc74f9ec68ec5d8dacc3de2e47ab5",
+    "title": "Warehouse considerations"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/user-guide/warehouses-gen2",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "58ade60f9d9b51ba27c0ecb85ce765515a3eb655e2cdd68e0bd2fc0074e4ba32",
+    "title": "Snowflake generation 2 standard warehouses"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/user-guide/warehouses-multicluster",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "b6cdc378c1790beff11cf67052da47c486f6e2a22c940c2d954e4a0333301631",
+    "title": "Multi-cluster warehouses"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/user-guide/warehouses-tasks",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "64d559f83c4c9aacde1795a9279999b122ae656330dc4e9d60a0f5133a86babe",
+    "title": "Working with warehouses"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/developer-guide/python-connector/python-connector",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "2a248a6dcd6fe1f5e067ba0c95c1c69facdc5dbb8fb9be5c9c2e69717b673d32",
+    "title": "Snowflake Connector for Python"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/developer-guide/jdbc/jdbc",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "f47a7abe63efa3932cfa922a69784d8a9b4d597cc92e6f251401cb7892eed50c",
+    "title": "JDBC Driver"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/user-guide/intro-editions",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "acf45a35ba997c9a4e4c28209e2c71c366659908a77eb2f2946151e26de22f35",
+    "title": "Snowflake editions"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/sql-reference/sql/drop-role",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "d7482ab2ceeb7875b1cf50039403896363653fbd78b793c716df43c6750ec185",
+    "title": "DROP ROLE"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/user-guide/data-load-snowpipe-intro",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "619d5d339f8e476bfdb6424421057940aa6c15076947f61938c43d923db77923",
+    "title": "Snowpipe"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/sql-reference/sql/create-pipe",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "8adeba8957c7d4e357b4464206a957a6636e364b4cfeca6773f1f380fe8a450f",
+    "title": "CREATE PIPE"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/user-guide/data-load-considerations-load",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "ff57b77ee03f108a0cabe00226e82002dc15b8f12a7b66f29dfe6801e084a7ba",
+    "title": "Loading data"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/user-guide/data-unload-overview",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "4b9e4be6ca07caa84cec9469874922d3ced4e12fe20d1b6dcab4627a01963876",
+    "title": "Overview of data unloading"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/user-guide/security-column-ext-token-intro",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "84bdc05f8aecfb56d67e2a27373997279d24ee90d3ec742404c3a4e5cd95a39c",
+    "title": "Understanding External Tokenization"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/sql-reference/sql/explain",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "d15f8f53c89f117435ffa83f8b0fadc7c4e5679525d25bd5c21145c389099ea5",
+    "title": "EXPLAIN"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/user-guide/ui-snowsight-worksheets",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "5a0ecd90ecd151a04a4f99a386909b10cede1702a5a0196a57ea65393030fca6",
+    "title": "Work with worksheets in Snowsight"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/developer-guide/stored-procedure/stored-procedures-rights",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "8a8c6f2c89d4f50b142849384b621bf9836b2d7312b02a69e3f137a31bf4bb5b",
+    "title": "Understanding caller's rights and owner's rights stored procedures"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/sql-reference/account-usage/stage_storage_usage_history",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "f1f0439bd280e2533a4dc3f180e40319302a68f7166e51a6b5fdee2ec3a99732",
+    "title": "STAGE_STORAGE_USAGE_HISTORY view"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/sql-reference/sql/alter-pipe",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "8c551ffade52f25f59b6b68f6028fb3a31c79d29dfdefd46eaab1a4ee286282e",
+    "title": "ALTER PIPE"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/sql-reference/sql/merge",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "a068310882d79c73a8d21b513a5f1949ead86d73ecc1d30c496171f6b95e8491",
+    "title": "MERGE"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/user-guide/cost-understanding-data-storage",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "9c6d431fbec7529753533a8e28e200578ac852c46cec4f6f41500cc0de08f4c5",
+    "title": "Understanding storage cost"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/user-guide/data-load-considerations-prepare",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "2455f543a3ef9c618fa8cbd05d18442cf633becce2f1ed86c4132353af532b8b",
+    "title": "Preparing your data files"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/user-guide/data-load-overview",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "28666a482d1c7dfd370912aaf0f5b67dddc19995f9c1dc98ac36cf8d6dfead06",
+    "title": "Overview of data loading"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/user-guide/data-load-snowpipe-manage",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "99778d8e0bb95a3a4e8616ae942bca59030c48c4da21a5f6a13f4888ac17373e",
+    "title": "Managing Snowpipe"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/user-guide/intro-cloud-platforms",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "29397a52b8b7a318f8ba2fbe086640fee0b001d07dc02bf9e8060c9a2e5bafb7",
+    "title": "Supported cloud platforms"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/user-guide/querying-stage",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "067793314bd44688b2994a6a5210207031c9486270b6cb4da65642c54ce452fa",
+    "title": "Query data in staged files"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/user-guide/views-materialized",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "e32d15a51d5783818fd42f4287d72e152ad33aed5bd6e2b8d075e7bd889291ba",
+    "title": "Working with Materialized Views"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/user-guide/security-row-intro",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "6892982c763b9de2d037cd703fa600bd8c94c3f923fc167bbb16c20f08dcb391",
+    "title": "Understanding row access policies"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/sql-reference/sql/alter-table",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "7e4e578899868618c9584ad5677c775a3c1cc2b91996898a53a3126d6ac6073a",
+    "title": "ALTER TABLE"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/user-guide/tables-auto-reclustering",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "b9b3284a63b58db0300cdf32cb8bceae9e803cb578d521aaae2bbdea152be6d8",
+    "title": "Automatic Clustering"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/sql-reference/data-types-geospatial",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "e68ebca18e11668d85fe3d1c4b3d325c736a20375c41f936a23428f82bc02c1d",
+    "title": "Geospatial data types"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/sql-reference/functions/current_client",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "2d8a3cfccb19cd3bbec27363efb75cabc3548c2aa27120a5d1a5d99c9d9358e6",
+    "title": "CURRENT_CLIENT"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/sql-reference/session-variables",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "87c7abfdb8e33c49eb8b0eee64301bfc8a27b078a7cd8b7ba9326043994deb42",
+    "title": "SQL variables"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/sql-reference/functions/get_ddl",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "d0f7daefc1934d9639f61df12bbb83188a35863d52508dbb17958a8c57f906d4",
+    "title": "GET_DDL"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/user-guide/data-exchange",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "f0dbb574eb687f731a65d6391ba8a2d07c0130d25b6e8c78e28bf584667ff2fe",
+    "title": "About Data Exchange"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/user-guide/cost-understanding-data-transfer",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "a7dce1db3e40b779e545d404989e4b738c6bb37681705bb076d7f41992f455bc",
+    "title": "Understanding data transfer cost"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/sql-reference/info-schema/views",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "b330270e6e54c044ee562ccea395c8475ec291d0db316b6663652861502c9474",
+    "title": "VIEWS view"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/sql-reference/sql/alter-warehouse",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "7e350fca278f7a9761e988ee368e8464e1d8bf3cefd919fda54ad7daf5dbd9fe",
+    "title": "ALTER WAREHOUSE"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/user-guide/unstructured-intro",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "4a5bc40e60c190336558ef0489bdd72d6787dc7d953ee36a4f5cb2203898dc5e",
+    "title": "Introduction to unstructured data"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/sql-reference/account-usage/query_history",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "4776c246bae401dcff96f5ba90253abdc2eedb97c68a3fd0a2b56553c2d61991",
+    "title": "QUERY_HISTORY view"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/user-guide/snowcd",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "1612f6fba048e4ae04fea0a190225e0b14969eadc3191563d5360ac4437aa2fb",
+    "title": "SnowCD (Connectivity Diagnostic Tool)"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/developer-guide/udf/udf-overview",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "a4abac0ad4a231357ad4209d261fe8fcd15e57c62951589ab42ecfffbecfe454",
+    "title": "User-defined functions overview"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/developer-guide/snowflake-scripting/blocks",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "dc479204ad5078845fc1940cfb7d6cab2203f996f852ed36b893c0c84110c0f6",
+    "title": "Understanding blocks in Snowflake Scripting"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/sql-reference/functions/warehouse_metering_history",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "5f9e6c17c49fa1291203f1d016144a4875c5c47f8bc1f8e2a34764d91b0f25b1",
+    "title": "WAREHOUSE_METERING_HISTORY"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/sql-reference/account-usage/masking_policies",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "232e131e82a027f879dafdbd84c2f696f58309b2d8fdcb5fa68538de79ff8f16",
+    "title": "MASKING_POLICIES view"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/sql-reference/account-usage/policy_references",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "45cbf0df9cdf7adf34201272cafe59d7a7aaaf80e2a9efb6401d90902dd88acf",
+    "title": "POLICY_REFERENCES view"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/user-guide/account-replication-intro",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "c6cdd750988f5a7844c3817e513477c33a54bbd8ed7df7e60f05b9ab6d80db0e",
+    "title": "Introduction to replication and failover across multiple accounts"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/sql-reference/external-functions-introduction",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "4d9c01cbfac7f6245d7daf284c6d69d2ae3fe1fe764892e8f728e6ba48412764",
+    "title": "Introduction to external functions"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/user-guide/data-load-dirtables",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "cbc2a7323d387660a34ab76cccb112c4211c7010ef85f3cf08581872e4d0d296",
+    "title": "Directory tables"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/user-guide/account-replication-considerations",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "300e2d15192deb8d58451a1db30fd661905e4baa73c7ba78f76856668b894e5a",
+    "title": "Replication considerations"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/sql-reference/account-usage/warehouse_metering_history",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "34c26d873b7da852a03d36e9e14a21d3991592a76ed02018e3cf845988af127d",
+    "title": "WAREHOUSE_METERING_HISTORY view"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/sql-reference/sql/create-clone",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "7075f867d18dd329de590b475ebeb8aa1e20f32a44fc45151a808b3cabf5ea58",
+    "title": "CREATE object CLONE"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/user-guide/security-encryption-manage",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "4d15c1fbe88e6e5138bc149445fcd118d7ce87fdbb915d7953c00105ce0713af",
+    "title": "Understanding Encryption Key Management in Snowflake"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/user-guide/querying-sequences",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "ddda08a072ed8cddee3416e9ba9a1e1b0a88dbd1982d5858ab3f0dc7f98eb50f",
+    "title": "Using Sequences"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/sql-reference/sql/create-procedure",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "4ddf5a50552a8fe11cdaae482996b239971fb0c4fced7717bf6d3628ec4fbbe4",
+    "title": "CREATE PROCEDURE"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/user-guide/querying-approximate-cardinality",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "fd217769f2828e73c8f112a5b68d4c64e2a70f6fed68f4ef1be3e2b92c9c6556",
+    "title": "Estimating the Number of Distinct Values"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/sql-reference/sql/alter-tag",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "05bf0a069ff40ae639a1a3ca838c33d9c72c2f6382075c1488eaa22a6692e37e",
+    "title": "ALTER TAG"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/sql-reference/sql/drop-tag",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "05994275e1bf39bc8218785e8208477233a0b2df257a32e2ed6a12cf133c5eb8",
+    "title": "DROP TAG"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/sql-reference/functions/rest_event_history",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "a243d47aae95c318471f4698cedd7b10ef14b22810f0cc34bd6d592efef4778e",
+    "title": "REST_EVENT_HISTORY"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/sql-reference/data-types-numeric",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "fa2bd8476962b9009f6e24e838dfde14c77542c70f6a7aff18389451d71bcf2c",
+    "title": "Numeric data types"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/user-guide/security-column-intro",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "656d0c6973d007456db0654a96b8bed274aad0d392fd95eb19a2afa719d1f381",
+    "title": "Understanding Column-level Security"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/user-guide/views-secure",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "fdc5be0fb2bc348fe634d934e0a9a41cc7f5f9739cc5ab7a50c6de934d866f55",
+    "title": "Working with Secure Views"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/user-guide/queries-hierarchical",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "d7d6b92eeb230c5f916869cf69b40e7caa8c16cd3f6d7527f62d1ac66e91c072",
+    "title": "Querying Hierarchical Data"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/sql-reference/sql/alter-share",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "5e804b17693820f3f3d4987eef0a12d8f76e7f8186ea8356468fb53d1533ad27",
+    "title": "ALTER SHARE"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/developer-guide/snowflake-scripting/loops",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "7270d76db08d6f4d1ddaa7de3cb88b6a1c346b4eb76597cdbdca20cedf2907da",
+    "title": "Working with loops"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/sql-reference/functions/system_clustering_information",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "a6b0190ef2363c35c0981e337712760e1fb598994245a8772821f9b3d3b91322",
+    "title": "SYSTEM$CLUSTERING_INFORMATION"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/sql-reference/sql/desc-network-policy",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "67fac0f648b7520d9b8d21b1bc82c88dfe523a9ff914e945bb3d6df2fb074f60",
+    "title": "DESCRIBE NETWORK POLICY"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/user-guide/data-unload-considerations",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "10d3bc3dde6610e1900dc5ce176f1e050ed4599f3fd2b87000fbbe6eed18ccf3",
+    "title": "Data unloading considerations"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/sql-reference/functions/warehouse_load_history",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "656b2d923a75ead18dde4abe4131500c83fbbcce511460769e92b39f7967922f",
+    "title": "WAREHOUSE_LOAD_HISTORY"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/sql-reference/sql/create-function",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "d9f15f3d024da444b902e4dcc980fd9ff1d9a6c454bed775f62c398dbad8c563",
+    "title": "CREATE FUNCTION"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/sql-reference/functions-file",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "8f4a2ea8e0ea58986d7831d6a26590835386bf66428644c5fdc04255b6a9b879",
+    "title": "File functions"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/sql-reference/sql/create-stream",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "2202dc876eb5ba24868073144af57e084f56aeca10c45b64c2a5e0e75d626cf6",
+    "title": "CREATE STREAM"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/user-guide/data-load-dirtables-query",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "9a4bd94f53ed6761b6b1490de4bea1db0793bc6dba92faa37fcf4295466754e0",
+    "title": "Query directory tables"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/user-guide/data-load-unstructured-rest-api",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "a288962e285fb7acdfe42cd476f17f412eac49f1ff15c34abca81bac0b94b4be",
+    "title": "REST API for unstructured data support"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/user-guide/snowsql",
+    "fetchedAt": "2026-09-21",
+    "status": 200,
+    "sha256": "8793e54406dc845ce703c35b52f2f75e00878e2a4a04f068176d35b4e0267e2b",
+    "title": "SnowSQL (CLI client)"
+  }
+]

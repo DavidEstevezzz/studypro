@@ -8,6 +8,7 @@ import {
   normalizeProgress,
   exportAll,
   importAll,
+  backupBeforeMigration,
 } from './lib/storage';
 import { buildPool, domainsOf, applyAnswer, toggleMarked } from './lib/quiz';
 import Home from './components/Home';
@@ -24,19 +25,27 @@ export default function App() {
   const [progress, setProgress] = useState(null);
   const [session, setSession] = useState(null);
   const [result, setResult] = useState(null);
+  const [includePending, setIncludePending] = useState(false);
+  const [sessionError, setSessionError] = useState(null);
+
+  const studyQuestions = useMemo(() => questions?.filter((q) => !q.review ||
+    q.review.status === 'verified' || (includePending && q.review.status === 'pending')) ?? [],
+  [questions, includePending]);
 
   useEffect(() => {
     if (catalog && !cert) setCert(catalog[0]);
   }, [catalog, cert]);
 
   const domains = useMemo(
-    () => (questions ? domainsOf(questions) : []),
-    [questions]
+    () => cert?.domainWeights ? Object.keys(cert.domainWeights) : domainsOf(studyQuestions),
+    [cert, studyQuestions]
   );
 
   useEffect(() => {
     if (!cert || !questions) return;
-    const saved = normalizeProgress(loadProgress(cert.id), domains);
+    const original = loadProgress(cert.id);
+    backupBeforeMigration(cert.id, original, cert.bankVersion);
+    const saved = normalizeProgress(original, domains, questions, cert.bankVersion);
     setProgress(saved);
     saveProgress(cert.id, saved);
     setView('home');
@@ -49,14 +58,18 @@ export default function App() {
 
   function start(mode, opts = {}) {
     const sessionId = `${mode}-${Date.now()}`;
-    const pool = buildPool(mode, questions, {
+    let pool;
+    setSessionError(null);
+    try { pool = buildPool(mode, questions, {
+      count: mode === 'exam' ? cert.examQuestions : undefined,
       ...opts,
+      includePending,
       progress,
       weights: cert.domainWeights,
       wrongIds: progress.wrongIds,
       markedIds: progress.markedIds,
-    });
-    if (!pool.length) return;
+    }); } catch (error) { setSessionError(error.message); return; }
+    if (!pool.length) { setSessionError('No hay preguntas disponibles para este modo y selección.'); return; }
     setSession({ id: sessionId, mode, pool, startedAt: Date.now() });
     setView('session');
   }
@@ -77,7 +90,7 @@ export default function App() {
     let base = progress;
     if (session.mode === 'exam') {
       res.answers.forEach((a) => {
-        base = applyAnswer(base, { i: a.id, d: a.d }, a.ok, {
+        base = applyAnswer(base, session.pool.find(q => q.i === a.id) ?? { i: a.id, d: a.d }, a.ok, {
           sessionId: session.id,
         });
       });
@@ -91,6 +104,7 @@ export default function App() {
       total: res.total ?? res.answers.length,
       ok: res.ok,
       durationMs: res.durationMs,
+      bankVersion: cert.bankVersion,
     };
     const nextProgress = {
       ...base,
@@ -104,7 +118,7 @@ export default function App() {
   function doReset() {
     if (!confirm('¿Borrar todo el progreso de esta certificación?')) return;
     resetProgress(cert.id);
-    setProgress(emptyProgress(domains));
+    setProgress({ ...emptyProgress(domains), bankVersion: cert.bankVersion });
     setView('home');
   }
 
@@ -125,7 +139,10 @@ export default function App() {
     reader.onload = () => {
       try {
         importAll(reader.result);
-        const saved = normalizeProgress(loadProgress(cert.id), domains);
+        const imported = loadProgress(cert.id);
+        backupBeforeMigration(cert.id, imported, cert.bankVersion);
+        const saved = normalizeProgress(imported, domains, questions, cert.bankVersion);
+        saveProgress(cert.id, saved);
         setProgress(saved);
         alert('Progreso importado correctamente.');
       } catch {
@@ -164,7 +181,11 @@ export default function App() {
           catalog={catalog}
           cert={cert}
           onSelectCert={setCert}
-          questions={questions}
+          questions={studyQuestions}
+          allQuestions={questions}
+          includePending={includePending}
+          onIncludePending={setIncludePending}
+          sessionError={sessionError}
           domains={domains}
           progress={progress}
           onStart={start}

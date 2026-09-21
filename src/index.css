@@ -1333,3 +1333,8 @@ select {
     transition: none !important;
   }
 }
+.audit-choice { display: flex; align-items: center; gap: .65rem; margin: 1rem 0; cursor: pointer; }
+.audit-choice input { width: 1.15rem; height: 1.15rem; flex: 0 0 auto; }
+.audit-table-wrap { overflow-x: auto; }
+.audit-table { width: 100%; border-collapse: collapse; margin-top: 1rem; }
+.audit-table th, .audit-table td { padding: .7rem .5rem; text-align: left; border-bottom: 1px solid rgba(128,128,128,.25); }

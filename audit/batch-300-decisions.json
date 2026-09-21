@@ -1,0 +1,1215 @@
+[
+  {
+    "i": 458,
+    "objective": "4.4",
+    "r": "https://docs.snowflake.com/en/sql-reference/data-types-semistructured",
+    "e": "VARIANT and GEOGRAPHY are valid Snowflake SQL types. JSON is an input format rather than a dedicated type named JSON; BLOB and CLOB are not Snowflake SQL type names.",
+    "decision": "conservar_revisada",
+    "reason": "Enunciado, alternativas y clave contrastados; explicación actualizada."
+  },
+  {
+    "i": 463,
+    "objective": "1.5",
+    "r": "https://docs.snowflake.com/en/user-guide/tables-clustering-micropartitions",
+    "e": "Snowflake automatically creates micro-partitions. Within them, data is organized and compressed by column; the service chooses suitable compression. There is no requirement to issue PARTITION BY or to specify GZIP for every stored column.",
+    "decision": "conservar_revisada",
+    "reason": "Enunciado, alternativas y clave contrastados; explicación actualizada."
+  },
+  {
+    "i": 598,
+    "objective": "1.5",
+    "r": "https://docs.snowflake.com/en/user-guide/tables-clustering-micropartitions",
+    "e": "Snowflake automatically creates micro-partitions. Within them, data is organized and compressed by column; the service chooses suitable compression. There is no requirement to issue PARTITION BY or to specify GZIP for every stored column.",
+    "decision": "conservar_revisada",
+    "reason": "Enunciado, alternativas y clave contrastados; explicación actualizada."
+  },
+  {
+    "i": 465,
+    "objective": "2.3",
+    "r": "https://docs.snowflake.com/en/user-guide/resource-monitors",
+    "e": "MONITOR permits viewing a resource monitor and MODIFY permits changing its properties, subject to the relevant role grants. These are the object privileges, not generic ALTER or DROP privileges.",
+    "decision": "conservar_revisada",
+    "reason": "Enunciado, alternativas y clave contrastados; explicación actualizada."
+  },
+  {
+    "i": 469,
+    "objective": "3.1",
+    "r": "https://docs.snowflake.com/en/sql-reference/sql/create-file-format",
+    "e": "ORC and XML are supported semi-structured input formats among these choices. CSV is supported delimited text, while EDI and HTML are not corresponding built-in semi-structured COPY file formats.",
+    "decision": "conservar_revisada",
+    "reason": "Enunciado, alternativas y clave contrastados; explicación actualizada."
+  },
+  {
+    "i": 477,
+    "objective": "1.2",
+    "r": "https://docs.snowflake.com/en/user-guide/snowsql",
+    "e": "SnowSQL is the command-line SQL client built on the Python connector. It is distinct from Snowsight, the SQL language itself and Snowpark. Snowflake CLI is a separate newer command-line tool with broader developer workflows.",
+    "decision": "conservar_revisada",
+    "reason": "Enunciado, alternativas y clave contrastados; explicación actualizada."
+  },
+  {
+    "i": 482,
+    "objective": "2.3",
+    "r": "https://docs.snowflake.com/en/user-guide/warehouses-considerations",
+    "e": "Provisioning user-managed warehouse compute incurs a minimum 60-second billing period, followed by per-second billing. Suspending after 30 seconds therefore does not reduce this start to a 30-second charge.",
+    "decision": "conservar_revisada",
+    "reason": "Enunciado, alternativas y clave contrastados; explicación actualizada."
+  },
+  {
+    "i": 483,
+    "objective": "1.3",
+    "r": "https://docs.snowflake.com/en/developer-guide/stored-procedure/stored-procedures-rights",
+    "e": "A caller-rights procedure runs with caller privileges and can access the caller session context, including session variables. Owner-rights execution has different context restrictions and can delegate privileges. STRICT controls null-input handling, not session-variable access.",
+    "decision": "conservar_revisada",
+    "reason": "Enunciado, alternativas y clave contrastados; explicación actualizada."
+  },
+  {
+    "i": 652,
+    "objective": "1.3",
+    "r": "https://docs.snowflake.com/en/developer-guide/stored-procedure/stored-procedures-rights",
+    "e": "A caller-rights procedure runs with caller privileges and can access the caller session context, including session variables. Owner-rights execution has different context restrictions and can delegate privileges. STRICT controls null-input handling, not session-variable access.",
+    "decision": "conservar_revisada",
+    "reason": "Enunciado, alternativas y clave contrastados; explicación actualizada."
+  },
+  {
+    "i": 485,
+    "objective": "4.4",
+    "r": "https://docs.snowflake.com/en/user-guide/querying-approximate-cardinality",
+    "e": "HyperLogLog estimates distinct cardinality efficiently for large datasets when approximation is acceptable. It does not provide an exact distinct count; hashing with MD5 alone is not a cardinality estimator.",
+    "decision": "conservar_revisada",
+    "reason": "Enunciado, alternativas y clave contrastados; explicación actualizada."
+  },
+  {
+    "i": 486,
+    "objective": "2.2",
+    "r": "https://docs.snowflake.com/en/sql-reference/sql/alter-tag",
+    "e": "ALTER TAG modifies tag properties and DROP TAG removes a tag. Privileges are granted on tags to roles or users as supported, not to a tag as a security principal. DESCRIBE TAG is not the corresponding documented tag-management statement.",
+    "decision": "conservar_revisada",
+    "reason": "Enunciado, alternativas y clave contrastados; explicación actualizada."
+  },
+  {
+    "i": 491,
+    "objective": "3.1",
+    "r": "https://docs.snowflake.com/en/sql-reference/sql/copy-into-table",
+    "e": "COPY INTO mytable FROM @my_int_stage loads staged files into the table. PURGE_MODE and VALIDATION are not the named options shown; VALIDATION_MODE checks files rather than loading rows.",
+    "decision": "conservar_revisada",
+    "reason": "Enunciado, alternativas y clave contrastados; explicación actualizada."
+  },
+  {
+    "i": 496,
+    "objective": "2.3",
+    "r": "https://docs.snowflake.com/en/user-guide/warehouses-tasks",
+    "e": "MONITOR on the warehouse allows monitoring its activity and load. MODIFY changes properties, OPERATE controls operation and USAGE allows warehouse use; they are not substitutes for the stated monitoring privilege.",
+    "decision": "conservar_revisada",
+    "reason": "Enunciado, alternativas y clave contrastados; explicación actualizada."
+  },
+  {
+    "i": 510,
+    "objective": "3.1",
+    "r": "https://docs.snowflake.com/en/user-guide/data-load-considerations-load",
+    "e": "PATTERN applies a regular expression to staged file paths and can be slow over a very large file set. Narrow prefixes or explicit file lists can reduce work. File format remains necessary for parsing and VALIDATION_MODE changes the purpose of the operation.",
+    "decision": "conservar_revisada",
+    "reason": "Enunciado, alternativas y clave contrastados; explicación actualizada."
+  },
+  {
+    "i": 513,
+    "objective": "3.1",
+    "r": "https://docs.snowflake.com/en/user-guide/data-load-dirtables-query",
+    "e": "SELECT * FROM DIRECTORY(@stage_name) reads enabled directory metadata. Columns include RELATIVE_PATH, LAST_MODIFIED and FILE_URL. FILE_URL is a Snowflake file URL, not automatically a pre-signed or scoped URL. LIST and METADATA$FILENAME do not provide the same directory-table result.",
+    "decision": "conservar_revisada",
+    "reason": "Enunciado, alternativas y clave contrastados; explicación actualizada."
+  },
+  {
+    "i": 569,
+    "objective": "3.1",
+    "r": "https://docs.snowflake.com/en/user-guide/data-load-dirtables-query",
+    "e": "SELECT * FROM DIRECTORY(@stage_name) reads enabled directory metadata. Columns include RELATIVE_PATH, LAST_MODIFIED and FILE_URL. FILE_URL is a Snowflake file URL, not automatically a pre-signed or scoped URL. LIST and METADATA$FILENAME do not provide the same directory-table result.",
+    "decision": "conservar_revisada",
+    "reason": "Enunciado, alternativas y clave contrastados; explicación actualizada."
+  },
+  {
+    "i": 585,
+    "objective": "3.1",
+    "r": "https://docs.snowflake.com/en/user-guide/data-load-dirtables-query",
+    "e": "SELECT * FROM DIRECTORY(@stage_name) reads enabled directory metadata. Columns include RELATIVE_PATH, LAST_MODIFIED and FILE_URL. FILE_URL is a Snowflake file URL, not automatically a pre-signed or scoped URL. LIST and METADATA$FILENAME do not provide the same directory-table result.",
+    "decision": "conservar_revisada",
+    "reason": "Enunciado, alternativas y clave contrastados; explicación actualizada."
+  },
+  {
+    "i": 631,
+    "objective": "3.1",
+    "r": "https://docs.snowflake.com/en/user-guide/data-load-dirtables-query",
+    "e": "SELECT * FROM DIRECTORY(@stage_name) reads enabled directory metadata. Columns include RELATIVE_PATH, LAST_MODIFIED and FILE_URL. FILE_URL is a Snowflake file URL, not automatically a pre-signed or scoped URL. LIST and METADATA$FILENAME do not provide the same directory-table result.",
+    "decision": "conservar_revisada",
+    "reason": "Enunciado, alternativas y clave contrastados; explicación actualizada."
+  },
+  {
+    "i": 649,
+    "objective": "3.1",
+    "r": "https://docs.snowflake.com/en/user-guide/data-load-dirtables-query",
+    "e": "SELECT * FROM DIRECTORY(@stage_name) reads enabled directory metadata. Columns include RELATIVE_PATH, LAST_MODIFIED and FILE_URL. FILE_URL is a Snowflake file URL, not automatically a pre-signed or scoped URL. LIST and METADATA$FILENAME do not provide the same directory-table result.",
+    "decision": "conservar_revisada",
+    "reason": "Enunciado, alternativas y clave contrastados; explicación actualizada."
+  },
+  {
+    "i": 517,
+    "objective": "3.1",
+    "r": "https://docs.snowflake.com/en/user-guide/data-unload-considerations",
+    "e": "OBJECT_CONSTRUCT can turn relational columns into an OBJECT value for a JSON unload SELECT. PARSE_JSON parses existing JSON text; it does not construct a full object from arbitrary relational columns. BUILD_STAGE_FILE_URL constructs a URL, not JSON data.",
+    "decision": "conservar_revisada",
+    "reason": "Enunciado, alternativas y clave contrastados; explicación actualizada."
+  },
+  {
+    "i": 521,
+    "objective": "2.1",
+    "r": "https://docs.snowflake.com/en/sql-reference/functions/rest_event_history",
+    "e": "REST_EVENT_HISTORY returns SCIM REST API request history for a specified interval. ACCESS_HISTORY concerns data/object access, QUERY_HISTORY concerns SQL execution and LOAD_HISTORY concerns data loading.",
+    "decision": "conservar_revisada",
+    "reason": "Enunciado, alternativas y clave contrastados; explicación actualizada."
+  },
+  {
+    "i": 541,
+    "objective": "2.1",
+    "r": "https://docs.snowflake.com/en/user-guide/security-mfa",
+    "e": "With supported MFA token caching configured, a cached token is valid for up to four hours. It may become invalid sooner under documented conditions. This is not an unconditional four-hour session lifetime or permission to bypass the authentication policy.",
+    "decision": "conservar_revisada",
+    "reason": "Enunciado, alternativas y clave contrastados; explicación actualizada."
+  },
+  {
+    "i": 552,
+    "objective": "4.4",
+    "r": "https://docs.snowflake.com/en/sql-reference/data-types-numeric",
+    "e": "DOUBLE, DOUBLE PRECISION and REAL are synonyms of FLOAT. DECIMAL, NUMBER and NUMERIC are fixed-point numeric types. FLOAT synonyms do not make binary floating-point arithmetic exact for decimal values.",
+    "decision": "conservar_revisada",
+    "reason": "Enunciado, alternativas y clave contrastados; explicación actualizada."
+  },
+  {
+    "i": 556,
+    "objective": "3.1",
+    "r": "https://docs.snowflake.com/en/sql-reference/sql/create-file-format",
+    "e": "For JSON input, STRIP_OUTER_ARRAY=TRUE removes the top-level array wrapper so its elements can load as separate rows. STRIP_OUTER_ELEMENT pertains to XML, and byte-order-mark handling is unrelated to array expansion.",
+    "decision": "conservar_revisada",
+    "reason": "Enunciado, alternativas y clave contrastados; explicación actualizada."
+  },
+  {
+    "i": 562,
+    "objective": "2.1",
+    "r": "https://docs.snowflake.com/en/user-guide/security-access-control-overview",
+    "e": "Roles can receive and lose object privileges and can be granted to other roles to form a hierarchy. System-defined roles cannot be dropped, and Snowflake-provided grants to those roles cannot be revoked like ordinary custom grants.",
+    "decision": "conservar_revisada",
+    "reason": "Enunciado, alternativas y clave contrastados; explicación actualizada."
+  },
+  {
+    "i": 564,
+    "objective": "2.1",
+    "r": "https://docs.snowflake.com/en/user-guide/security-access-control-overview",
+    "e": "Managed access schemas centralize grant decisions with the schema owner or a role holding MANAGE GRANTS. They do not require identical grants on every object or mandatory masking/row policies, and do not automatically audit every operation.",
+    "decision": "conservar_revisada",
+    "reason": "Enunciado, alternativas y clave contrastados; explicación actualizada."
+  },
+  {
+    "i": 567,
+    "objective": "2.1",
+    "r": "https://docs.snowflake.com/en/sql-reference/sql/grant-privilege",
+    "e": "MANAGE GRANTS is a global account privilege. It permits grant management according to Snowflake rules; it is not granted separately on a table, schema or database.",
+    "decision": "conservar_revisada",
+    "reason": "Enunciado, alternativas y clave contrastados; explicación actualizada."
+  },
+  {
+    "i": 577,
+    "objective": "2.2",
+    "r": "https://docs.snowflake.com/en/user-guide/security-column-intro",
+    "e": "Dynamic Data Masking and External Tokenization are column-level security features. Row access policies filter rows, key-pair authentication authenticates users and continuous data protection concerns recovery.",
+    "decision": "conservar_revisada",
+    "reason": "Enunciado, alternativas y clave contrastados; explicación actualizada."
+  },
+  {
+    "i": 578,
+    "objective": "1.3",
+    "r": "https://docs.snowflake.com/en/developer-guide/udf/udf-overview",
+    "e": "JavaScript and Python are supported native UDF handler languages among the offered choices. SQL, Java and Scala are supported too, but are not listed. External-function remote services are a separate execution mechanism.",
+    "decision": "conservar_revisada",
+    "reason": "Enunciado, alternativas y clave contrastados; explicación actualizada."
+  },
+  {
+    "i": 581,
+    "objective": "1.1",
+    "r": "https://docs.snowflake.com/en/user-guide/intro-editions",
+    "e": "Virtual Private Snowflake is the edition described as offering the highest level of isolation/security for the strictest organizational requirements. This positioning does not mean lower editions lack encryption or access control.",
+    "decision": "conservar_revisada",
+    "reason": "Enunciado, alternativas y clave contrastados; explicación actualizada."
+  },
+  {
+    "i": 584,
+    "objective": "3.1",
+    "r": "https://docs.snowflake.com/en/sql-reference/sql/copy-into-location",
+    "e": "COPY INTO a location unloads table/query data to an internal or external stage or a supported cloud location. By default it permits multiple files for parallel processing. GET downloads internal-stage files to a client; PUT uploads local files. A local intermediate transfer is not required to unload to cloud storage.",
+    "decision": "conservar_revisada",
+    "reason": "Enunciado, alternativas y clave contrastados; explicación actualizada."
+  },
+  {
+    "i": 634,
+    "objective": "3.1",
+    "r": "https://docs.snowflake.com/en/sql-reference/sql/copy-into-location",
+    "e": "COPY INTO a location unloads table/query data to an internal or external stage or a supported cloud location. By default it permits multiple files for parallel processing. GET downloads internal-stage files to a client; PUT uploads local files. A local intermediate transfer is not required to unload to cloud storage.",
+    "decision": "conservar_revisada",
+    "reason": "Enunciado, alternativas y clave contrastados; explicación actualizada."
+  },
+  {
+    "i": 644,
+    "objective": "3.1",
+    "r": "https://docs.snowflake.com/en/sql-reference/sql/copy-into-location",
+    "e": "COPY INTO a location unloads table/query data to an internal or external stage or a supported cloud location. By default it permits multiple files for parallel processing. GET downloads internal-stage files to a client; PUT uploads local files. A local intermediate transfer is not required to unload to cloud storage.",
+    "decision": "conservar_revisada",
+    "reason": "Enunciado, alternativas y clave contrastados; explicación actualizada."
+  },
+  {
+    "i": 587,
+    "objective": "3.1",
+    "r": "https://docs.snowflake.com/en/sql-reference/sql/copy-into-table",
+    "e": "FORCE=TRUE reloads eligible source files regardless of recorded load status and can duplicate data. LOAD_UNCERTAIN_FILES targets files whose load status is uncertain rather than overriding all deduplication history.",
+    "decision": "conservar_revisada",
+    "reason": "Enunciado, alternativas y clave contrastados; explicación actualizada."
+  },
+  {
+    "i": 591,
+    "objective": "2.2",
+    "r": "https://docs.snowflake.com/en/sql-reference/account-usage/access_history",
+    "e": "ACCESS_HISTORY records supported query/object access information, including the executing user and accessed objects. It is not a file-load log, active-role listing or inventory of grants. It has edition, latency and coverage limitations.",
+    "decision": "conservar_revisada",
+    "reason": "Enunciado, alternativas y clave contrastados; explicación actualizada."
+  },
+  {
+    "i": 593,
+    "objective": "5.2",
+    "r": "https://docs.snowflake.com/en/user-guide/data-sharing-intro",
+    "e": "Eligible secure UDFs can be shared directly. Tasks, pipes and stored procedures are not directly distributed as such through a secure share; Native Apps offer a distinct application-packaging mechanism.",
+    "decision": "conservar_revisada",
+    "reason": "Enunciado, alternativas y clave contrastados; explicación actualizada."
+  },
+  {
+    "i": 606,
+    "objective": "5.1",
+    "r": "https://docs.snowflake.com/en/user-guide/tables-temp-transient",
+    "e": "Transient tables have no Fail-safe, including on Enterprise and higher editions. Their Time Travel retention remains limited to zero or one day, so reconstructability and recovery needs matter when choosing them.",
+    "decision": "conservar_revisada",
+    "reason": "Enunciado, alternativas y clave contrastados; explicación actualizada."
+  },
+  {
+    "i": 609,
+    "objective": "1.1",
+    "r": "https://docs.snowflake.com/en/user-guide/intro-key-concepts",
+    "e": "Snowflake combines shared persistent storage with independent compute clusters, blending shared-disk and shared-nothing concepts. Its database storage representation is optimized, compressed and columnar, not row-based. Warehouses process queries against shared data.",
+    "decision": "conservar_revisada",
+    "reason": "Enunciado, alternativas y clave contrastados; explicación actualizada."
+  },
+  {
+    "i": 651,
+    "objective": "1.1",
+    "r": "https://docs.snowflake.com/en/user-guide/intro-key-concepts",
+    "e": "Snowflake combines shared persistent storage with independent compute clusters, blending shared-disk and shared-nothing concepts. Its database storage representation is optimized, compressed and columnar, not row-based. Warehouses process queries against shared data.",
+    "decision": "conservar_revisada",
+    "reason": "Enunciado, alternativas y clave contrastados; explicación actualizada."
+  },
+  {
+    "i": 610,
+    "objective": "4.4",
+    "r": "https://docs.snowflake.com/en/sql-reference/constructs/sample",
+    "e": "SAMPLE selects a random subset of table rows according to the selected method and parameters. GENERATOR produces rows, PIVOT reshapes data and LATERAL relates a table expression to preceding rows.",
+    "decision": "conservar_revisada",
+    "reason": "Enunciado, alternativas y clave contrastados; explicación actualizada."
+  },
+  {
+    "i": 612,
+    "objective": "3.2",
+    "r": "https://docs.snowflake.com/en/user-guide/streams-intro",
+    "e": "A stream tracks an offset over source change-tracking metadata and exposes change data for downstream consumption. It is not a separate copy of the entire table or an ingestion pipe; tasks can process the changes on a schedule or trigger.",
+    "decision": "conservar_revisada",
+    "reason": "Enunciado, alternativas y clave contrastados; explicación actualizada."
+  },
+  {
+    "i": 613,
+    "objective": "4.1",
+    "r": "https://docs.snowflake.com/en/user-guide/ui-snowsight-activity",
+    "e": "Query Profile exposes Total invocations for external functions. Counts can reflect row batches and retries rather than simply the number of function mentions in SQL. Partitions scanned and ordinary network/storage bytes are not specific to external functions.",
+    "decision": "conservar_revisada",
+    "reason": "Enunciado, alternativas y clave contrastados; explicación actualizada."
+  },
+  {
+    "i": 619,
+    "objective": "1.4",
+    "r": "https://docs.snowflake.com/en/user-guide/warehouses-multicluster",
+    "e": "Auto-scale uses different minimum and maximum cluster counts. Maximized mode sets them equal. Standard and Economy are scaling policies, not these operating modes.",
+    "decision": "conservar_revisada",
+    "reason": "Enunciado, alternativas y clave contrastados; explicación actualizada."
+  },
+  {
+    "i": 620,
+    "objective": "4.4",
+    "r": "https://docs.snowflake.com/en/developer-guide/snowflake-scripting/loops",
+    "e": "REPEAT tests its condition after the loop body and stops when it becomes true, so the body runs at least once. WHILE tests before executing the body; LOOP requires explicit exit control.",
+    "decision": "conservar_revisada",
+    "reason": "Enunciado, alternativas y clave contrastados; explicación actualizada."
+  },
+  {
+    "i": 621,
+    "objective": "1.4",
+    "r": "https://docs.snowflake.com/en/sql-reference/sql/alter-warehouse",
+    "e": "For resizing, WAIT_FOR_COMPLETION=TRUE makes ALTER WAREHOUSE wait for the size change to finish before returning. Naming the property without setting it TRUE is insufficient; scaling policy and resource-monitor settings do not provide this synchronization.",
+    "decision": "conservar_revisada",
+    "reason": "Enunciado, alternativas y clave contrastados; explicación actualizada."
+  },
+  {
+    "i": 623,
+    "objective": "4.4",
+    "r": "https://docs.snowflake.com/en/sql-reference/data-types-semistructured",
+    "e": "VARIANT, OBJECT and ARRAY are Snowflake semi-structured container types. VARIANT is a flexible choice when incoming shapes and later operations are not yet known. JSON, ORC and Parquet are formats, while VARCHAR/STRING store text rather than the native typed hierarchy.",
+    "decision": "conservar_revisada",
+    "reason": "Enunciado, alternativas y clave contrastados; explicación actualizada."
+  },
+  {
+    "i": 630,
+    "objective": "4.4",
+    "r": "https://docs.snowflake.com/en/sql-reference/data-types-semistructured",
+    "e": "VARIANT, OBJECT and ARRAY are Snowflake semi-structured container types. VARIANT is a flexible choice when incoming shapes and later operations are not yet known. JSON, ORC and Parquet are formats, while VARCHAR/STRING store text rather than the native typed hierarchy.",
+    "decision": "conservar_revisada",
+    "reason": "Enunciado, alternativas y clave contrastados; explicación actualizada."
+  },
+  {
+    "i": 640,
+    "objective": "4.4",
+    "r": "https://docs.snowflake.com/en/sql-reference/data-types-semistructured",
+    "e": "VARIANT, OBJECT and ARRAY are Snowflake semi-structured container types. VARIANT is a flexible choice when incoming shapes and later operations are not yet known. JSON, ORC and Parquet are formats, while VARCHAR/STRING store text rather than the native typed hierarchy.",
+    "decision": "conservar_revisada",
+    "reason": "Enunciado, alternativas y clave contrastados; explicación actualizada."
+  },
+  {
+    "i": 624,
+    "objective": "5.1",
+    "r": "https://docs.snowflake.com/en/user-guide/data-failsafe",
+    "e": "Eligible historical data from permanent tables has a non-configurable seven-day Fail-safe period after Time Travel. Recovery is managed by Snowflake; it is not a seven-day extension available through ordinary Time Travel SQL.",
+    "decision": "conservar_revisada",
+    "reason": "Enunciado, alternativas y clave contrastados; explicación actualizada."
+  },
+  {
+    "i": 625,
+    "objective": "1.5",
+    "r": "https://docs.snowflake.com/en/sql-reference/functions/system_clustering_information",
+    "e": "average_overlaps measures the average number of overlapping micro-partitions for each micro-partition with respect to the clustering expressions. It is not physical co-location, cloning or Time Travel retention.",
+    "decision": "conservar_revisada",
+    "reason": "Enunciado, alternativas y clave contrastados; explicación actualizada."
+  },
+  {
+    "i": 632,
+    "objective": "3.3",
+    "r": "https://docs.snowflake.com/en/user-guide/snowcd",
+    "e": "SnowCD diagnoses connectivity to endpoints needed by Snowflake. Snowpark provides programming APIs, Snowsight is the UI and SnowSQL is a SQL client rather than the dedicated connectivity diagnostic tool.",
+    "decision": "conservar_revisada",
+    "reason": "Enunciado, alternativas y clave contrastados; explicación actualizada."
+  },
+  {
+    "i": 635,
+    "objective": "2.1",
+    "r": "https://docs.snowflake.com/en/sql-reference/sql/desc-network-policy",
+    "e": "DESCRIBE NETWORK POLICY shows policy properties, including allowed/blocked lists. SHOW NETWORK POLICIES lists policies; ALTER and CREATE modify or create them rather than describe the configuration.",
+    "decision": "conservar_revisada",
+    "reason": "Enunciado, alternativas y clave contrastados; explicación actualizada."
+  },
+  {
+    "i": 636,
+    "objective": "3.1",
+    "r": "https://docs.snowflake.com/en/sql-reference/functions-file",
+    "e": "GET_PRESIGNED_URL and BUILD_SCOPED_FILE_URL are documented as non-deterministic. They generate temporary access URLs; path conversion and stable stage-file URL functions do not have that same classification.",
+    "decision": "conservar_revisada",
+    "reason": "Enunciado, alternativas y clave contrastados; explicación actualizada."
+  },
+  {
+    "i": 639,
+    "objective": "3.1",
+    "r": "https://docs.snowflake.com/en/user-guide/data-unload-considerations",
+    "e": "Parquet unloads floating-point columns as DOUBLE by default. The documentation distinguishes this from precision truncation when exporting FLOAT values to CSV/JSON. This preserves the available floating-point representation; it does not recover precision already lost before the unload. ORC is not an unload format.",
+    "decision": "conservar_revisada",
+    "reason": "Enunciado, alternativas y clave contrastados; explicación actualizada."
+  },
+  {
+    "i": 643,
+    "objective": "3.2",
+    "r": "https://docs.snowflake.com/en/sql-reference/sql/create-stream",
+    "e": "Streams on external tables use insert-only change tracking. They track newly added files/rows rather than providing the full update/delete semantics of a standard stream on a native table.",
+    "decision": "conservar_revisada",
+    "reason": "Enunciado, alternativas y clave contrastados; explicación actualizada."
+  },
+  {
+    "i": 646,
+    "objective": "1.3",
+    "r": "https://docs.snowflake.com/en/sql-reference/sql/create-function",
+    "e": "A table function declares RETURNS TABLE with its output columns and types. ROW_NUMBER is a function name, not the return-clause marker, and TABULAR/VALUES are not the required keyword.",
+    "decision": "conservar_revisada",
+    "reason": "Enunciado, alternativas y clave contrastados; explicación actualizada."
+  },
+  {
+    "i": 452,
+    "objective": "5.2",
+    "r": "https://docs.snowflake.com/en/user-guide/data-sharing-reader-create",
+    "q": "A provider wants to let a supplier query shared data without purchasing its own Snowflake account. Which approach is designed for this?",
+    "o": [
+      "Create and manage a reader account for the supplier",
+      "Assume the supplier can query a share without any account context",
+      "Require the supplier to modify the provider source tables",
+      "Use a resource monitor as the data-sharing object"
+    ],
+    "c": [
+      0
+    ],
+    "n": 1,
+    "e": "A provider-managed reader account enables consumption without a separate Snowflake customer agreement for that consumer. The provider pays its compute charges. The original mixed this decision with cross-region delivery mechanisms and an ambiguous two-answer requirement.",
+    "decision": "corregir",
+    "reason": "Reformulado para corregir alcance, ambigüedad o datos desactualizados; respuesta contrastada."
+  },
+  {
+    "i": 453,
+    "objective": "5.2",
+    "r": "https://docs.snowflake.com/en/user-guide/data-sharing-intro",
+    "q": "For a direct secure share, what determines which provider objects the consumer can query?",
+    "o": [
+      "The consumer automatically sees every future provider object",
+      "The consumer becomes owner of the provider database",
+      "The provider explicitly exposes supported objects through share grants",
+      "Every provider object becomes visible after any one table is shared"
+    ],
+    "c": [
+      2
+    ],
+    "n": 1,
+    "e": "Share privileges expose selected supported objects; sharing one table does not open the full source database. Cross-region/cloud delivery and edition restrictions are separate questions, so the original broad alternatives were removed.",
+    "decision": "corregir",
+    "reason": "Reformulado para corregir alcance, ambigüedad o datos desactualizados; respuesta contrastada."
+  },
+  {
+    "i": 455,
+    "objective": "2.1",
+    "r": "https://docs.snowflake.com/en/user-guide/security-access-control-overview",
+    "q": "Under role-based access control, which entity receives SELECT on a table and is then assigned to users?",
+    "o": [
+      "A file format",
+      "A role",
+      "A warehouse size",
+      "A schema name used as an identity"
+    ],
+    "c": [
+      1
+    ],
+    "n": 1,
+    "e": "RBAC grants privileges to roles assigned to users. Current Snowflake also supports user-based access control with direct user grants under its documented conditions; the original unrestricted question incorrectly implied roles were the only possible grantee.",
+    "decision": "corregir",
+    "reason": "Reformulado para corregir alcance, ambigüedad o datos desactualizados; respuesta contrastada."
+  },
+  {
+    "i": 457,
+    "objective": "1.4",
+    "r": "https://docs.snowflake.com/en/user-guide/warehouses-multicluster",
+    "q": "An auto-scaling multi-cluster warehouse is at its configured maximum, and otherwise healthy independent queries are queuing. Which change can allow more clusters to serve this workload?",
+    "o": [
+      "Lower only the queue timeout",
+      "Lower only AUTO_SUSPEND",
+      "Increase a nonexistent MAX_CONCURRENCY_LIMIT setting",
+      "Increase MAX_CLUSTER_COUNT within supported limits"
+    ],
+    "c": [
+      3
+    ],
+    "n": 1,
+    "e": "A higher maximum permits scale-out if the scaling policy and workload call for it. This requires an eligible edition and multi-cluster configuration; it is not a universal fix for every slow query.",
+    "decision": "corregir",
+    "reason": "Reformulado para corregir alcance, ambigüedad o datos desactualizados; respuesta contrastada."
+  },
+  {
+    "i": 460,
+    "objective": "2.2",
+    "r": "https://docs.snowflake.com/en/user-guide/security-encryption-manage",
+    "q": "When does Snowflake automatically rotate active keys in its Snowflake-managed encryption-key hierarchy?",
+    "o": [
+      "When they are more than 30 days old",
+      "Only after 60 days",
+      "Only when a customer opens a support case",
+      "Only after 365 days"
+    ],
+    "c": [
+      0
+    ],
+    "n": 1,
+    "e": "The documented rotation threshold for this managed hierarchy is more than 30 days. Rotation retires old keys for new encryption while retaining necessary decryption access; periodic rekeying of older data is a separate mechanism. This is not a rule for every customer-managed authentication key.",
+    "decision": "corregir",
+    "reason": "Reformulado para corregir alcance, ambigüedad o datos desactualizados; respuesta contrastada."
+  },
+  {
+    "i": 478,
+    "objective": "1.3",
+    "r": "https://docs.snowflake.com/en/user-guide/querying-sequences",
+    "q": "A sequence is referenced with NEXTVAL in SELECT and INSERT statements. Which assumption is safe?",
+    "o": [
+      "Only INSERT consumes sequence values",
+      "Repeated SELECT references always return the last inserted value",
+      "NEXTVAL requests sequence values, and gap-free numbering is not guaranteed",
+      "Every sequence defaults to a guarantee of contiguous ordered values"
+    ],
+    "c": [
+      2
+    ],
+    "n": 1,
+    "e": "NEXTVAL is evaluated when referenced, including SELECT expressions. Snowflake does not guarantee gap-free values, and ORDER/NOORDER affects ordering. The original demanded a fixed numeric output without stating the required ordering/concurrency assumptions.",
+    "decision": "corregir",
+    "reason": "Reformulado para corregir alcance, ambigüedad o datos desactualizados; respuesta contrastada."
+  },
+  {
+    "i": 481,
+    "objective": "3.2",
+    "r": "https://docs.snowflake.com/en/user-guide/streams-intro",
+    "q": "Which parameter limits how far Snowflake may extend table retention to help protect unconsumed stream changes from staleness?",
+    "o": [
+      "MAX_DATA_EXTENSION_TIME_IN_DAYS",
+      "MIN_DATA_RETENSION_TIME_IN_DAYS",
+      "LOCK_TIMEOUT",
+      "STALE_AFTER"
+    ],
+    "c": [
+      0
+    ],
+    "n": 1,
+    "e": "MAX_DATA_EXTENSION_TIME_IN_DAYS bounds the automatic extension. It does not prevent staleness indefinitely: consume streams within the effective retention window and monitor STALE_AFTER. The other retention option is misspelled and is not this parameter.",
+    "decision": "corregir",
+    "reason": "Reformulado para corregir alcance, ambigüedad o datos desactualizados; respuesta contrastada."
+  },
+  {
+    "i": 484,
+    "objective": "1.3",
+    "r": "https://docs.snowflake.com/en/sql-reference/sql/create-procedure",
+    "q": "Which delimiters can enclose an inline JavaScript procedure body in CREATE PROCEDURE SQL? (Choose two.)",
+    "o": [
+      "Double-quoted SQL identifiers",
+      "Single-quoted string literals",
+      "Double forward slashes",
+      "A pair of backslashes",
+      "Dollar-quoted string literals using $$"
+    ],
+    "c": [
+      1,
+      4
+    ],
+    "n": 2,
+    "e": "The SQL statement can quote the handler body with single quotes or $$. These delimit the SQL string containing JavaScript; they are not JavaScript comment syntax. Dollar quoting reduces the need to escape quotes inside the body.",
+    "decision": "corregir",
+    "reason": "Reformulado para corregir alcance, ambigüedad o datos desactualizados; respuesta contrastada."
+  },
+  {
+    "i": 487,
+    "objective": "5.2",
+    "r": "https://docs.snowflake.com/en/user-guide/data-sharing-intro",
+    "q": "Which listed objects can a provider expose as directly queryable data in a secure share? (Choose two.)",
+    "o": [
+      "A non-secure standard view",
+      "An eligible table",
+      "A stored procedure",
+      "A task",
+      "A secure view"
+    ],
+    "c": [
+      1,
+      4
+    ],
+    "n": 2,
+    "e": "Eligible tables and secure views can be shared directly. The original generic views alternative overlapped secure views. Application logic distribution through Native Apps is a separate mechanism.",
+    "decision": "corregir",
+    "reason": "Reformulado para corregir alcance, ambigüedad o datos desactualizados; respuesta contrastada."
+  },
+  {
+    "i": 500,
+    "objective": "3.1",
+    "r": "https://docs.snowflake.com/en/user-guide/unstructured-intro",
+    "q": "Which function generates a temporary URL whose holder can retrieve the file without a separate Snowflake login?",
+    "o": [
+      "GET_RELATIVE_PATH",
+      "GET_PRESIGNED_URL",
+      "BUILD_STAGE_FILE_URL",
+      "BUILD_SCOPED_FILE_URL"
+    ],
+    "c": [
+      1
+    ],
+    "n": 1,
+    "e": "GET_PRESIGNED_URL creates a bearer-style temporary link. Generating it requires appropriate privileges, and possession of the URL supplies access authorization; saying that the entire workflow needs no authentication or authorization was misleading.",
+    "decision": "corregir",
+    "reason": "Reformulado para corregir alcance, ambigüedad o datos desactualizados; respuesta contrastada."
+  },
+  {
+    "i": 503,
+    "objective": "3.1",
+    "r": "https://docs.snowflake.com/en/user-guide/unstructured-intro",
+    "q": "How can a client retrieve a staged unstructured file using a URL?",
+    "o": [
+      "Use the file as a SQL identifier with no access checks",
+      "Generate or obtain the appropriate file URL and satisfy its access requirements",
+      "Expect every SELECT result to download staged files automatically",
+      "Use a resource monitor to turn a PDF into SQL rows"
+    ],
+    "c": [
+      1
+    ],
+    "n": 1,
+    "e": "Snowflake supports stage-file, scoped and pre-signed URLs with different access rules. GET can also download from internal stages, but it is a SQL command rather than the SQL function described in the original distractor.",
+    "decision": "corregir",
+    "reason": "Reformulado para corregir alcance, ambigüedad o datos desactualizados; respuesta contrastada."
+  },
+  {
+    "i": 504,
+    "objective": "5.1",
+    "r": "https://docs.snowflake.com/en/sql-reference/sql/create-clone",
+    "q": "Which clause requests copying explicit privileges other than OWNERSHIP when cloning a table?",
+    "o": [
+      "COPY GRANTS in CREATE TABLE ... CLONE",
+      "A standalone COPY GRANTS statement with no CREATE",
+      "ALTER TABLE ... COPY ALL OWNERS",
+      "COPY OWNERSHIP=TRUE"
+    ],
+    "c": [
+      0
+    ],
+    "n": 1,
+    "e": "COPY GRANTS is a clause, not a separate command. OWNERSHIP is not copied, and future-grant behavior must be considered separately, so the resulting grants should not be described as unconditionally identical.",
+    "decision": "corregir",
+    "reason": "Reformulado para corregir alcance, ambigüedad o datos desactualizados; respuesta contrastada."
+  },
+  {
+    "i": 520,
+    "objective": "5.2",
+    "r": "https://docs.snowflake.com/en/user-guide/data-sharing-intro",
+    "q": "A provider drops a shared table and recreates it as a new object without restoring SELECT to the share. What can happen?",
+    "o": [
+      "The consumer automatically owns the new table",
+      "The consumer automatically bypasses grants for 24 hours",
+      "The replacement table is unavailable to the consumer until the required share grant is restored",
+      "The consumer must set Time Travel to zero"
+    ],
+    "c": [
+      2
+    ],
+    "n": 1,
+    "e": "Shares depend on granted object access. Dropping and recreating an object can require reapplying grants; a familiar name alone does not preserve the former object authorization.",
+    "decision": "corregir",
+    "reason": "Reformulado para corregir alcance, ambigüedad o datos desactualizados; respuesta contrastada."
+  },
+  {
+    "i": 540,
+    "objective": "4.2",
+    "r": "https://docs.snowflake.com/en/user-guide/views-materialized",
+    "q": "A supported expensive expression over a slowly changing base table is repeatedly queried. Which feature can precompute and maintain the result to reduce repeated computation?",
+    "o": [
+      "Only adding a clustering key",
+      "Only adding a search access path",
+      "A suitable materialized view",
+      "Increasing Time Travel retention"
+    ],
+    "c": [
+      2
+    ],
+    "n": 1,
+    "e": "A materialized view can store a supported precomputed result, with storage and refresh costs. Search optimization helps selective access, but does not itself precompute arbitrary expensive expressions. The original mixed selectivity with computation without clarifying the bottleneck.",
+    "decision": "corregir",
+    "reason": "Reformulado para corregir alcance, ambigüedad o datos desactualizados; respuesta contrastada."
+  },
+  {
+    "i": 547,
+    "objective": "4.4",
+    "r": "https://docs.snowflake.com/en/sql-reference/constructs/sample",
+    "q": "How does BERNOULLI sampling select data?",
+    "o": [
+      "It considers each row for random inclusion with the specified probability",
+      "It always selects exactly 10 percent of rows",
+      "It randomly selects storage blocks instead of individual rows",
+      "It always returns exactly 1000 rows"
+    ],
+    "c": [
+      0
+    ],
+    "n": 1,
+    "e": "BERNOULLI/ROW sampling works at row granularity. The sample need not contain every row or an exact percentage count; SYSTEM/BLOCK sampling uses blocks.",
+    "decision": "corregir",
+    "reason": "Reformulado para corregir alcance, ambigüedad o datos desactualizados; respuesta contrastada."
+  },
+  {
+    "i": 555,
+    "objective": "1.5",
+    "r": "https://docs.snowflake.com/en/user-guide/tables-temp-transient",
+    "q": "Reconstructable intermediate data must remain available across sessions but does not need Fail-safe. Which native table type fits?",
+    "o": [
+      "Permanent",
+      "Transient",
+      "Temporary",
+      "An external table automatically storing data in Snowflake"
+    ],
+    "c": [
+      1
+    ],
+    "n": 1,
+    "e": "Transient tables persist across sessions without Fail-safe. Temporary tables are session-scoped, and external tables reference externally stored data. Explicit cross-session persistence resolves the original ambiguity between transient and temporary.",
+    "decision": "corregir",
+    "reason": "Reformulado para corregir alcance, ambigüedad o datos desactualizados; respuesta contrastada."
+  },
+  {
+    "i": 558,
+    "objective": "4.4",
+    "r": "https://docs.snowflake.com/en/sql-reference/functions/flatten",
+    "q": "Which table function expands compound values in VARIANT, OBJECT or ARRAY input into relational rows?",
+    "o": [
+      "CAST",
+      "FLATTEN",
+      "GET",
+      "PARSE_JSON"
+    ],
+    "c": [
+      1
+    ],
+    "n": 1,
+    "e": "FLATTEN emits rows for elements or fields according to its input and options. It does not blindly emit one row for every object anywhere in an arbitrary hierarchy unless the selected recursive/path settings call for that.",
+    "decision": "corregir",
+    "reason": "Reformulado para corregir alcance, ambigüedad o datos desactualizados; respuesta contrastada."
+  },
+  {
+    "i": 563,
+    "objective": "3.1",
+    "r": "https://docs.snowflake.com/en/sql-reference/sql/put",
+    "q": "Which command uploads existing local unstructured files to an internal Snowflake stage?",
+    "o": [
+      "PUT",
+      "GET",
+      "LIST",
+      "COPY INTO a table"
+    ],
+    "c": [
+      0
+    ],
+    "n": 1,
+    "e": "PUT moves local files to an internal stage. GET downloads and LIST enumerates; COPY INTO a table parses supported input into table data rather than uploading arbitrary local binaries.",
+    "decision": "corregir",
+    "reason": "Reformulado para corregir alcance, ambigüedad o datos desactualizados; respuesta contrastada."
+  },
+  {
+    "i": 570,
+    "objective": "3.1",
+    "r": "https://docs.snowflake.com/en/sql-reference/sql/create-stage",
+    "q": "For an internal stage configured with SNOWFLAKE_FULL encryption, when is client-side encryption applied to a PUT upload?",
+    "o": [
+      "Only when a warehouse starts",
+      "Only when table micro-partitions are written",
+      "Before the file leaves the client",
+      "Only after the file arrives at the stage"
+    ],
+    "c": [
+      2
+    ],
+    "n": 1,
+    "e": "SNOWFLAKE_FULL combines client-side and server-side encryption. SNOWFLAKE_SSE is server-side-only; transport encryption is separate. The original treated client-side encryption as unconditional for every internal-stage configuration.",
+    "decision": "corregir",
+    "reason": "Reformulado para corregir alcance, ambigüedad o datos desactualizados; respuesta contrastada."
+  },
+  {
+    "i": 572,
+    "objective": "2.3",
+    "r": "https://docs.snowflake.com/en/user-guide/warehouses-multicluster",
+    "q": "Holding running time, warehouse type and generation constant, which settings affect multi-cluster warehouse compute credits? (Choose two.)",
+    "o": [
+      "A user-selected local cache price",
+      "Warehouse size",
+      "Number of running clusters",
+      "Number of registered users without changing compute",
+      "Number of SQL characters submitted"
+    ],
+    "c": [
+      1,
+      2
+    ],
+    "n": 2,
+    "e": "Size and active cluster count affect compute consumption; runtime matters too and is held constant. Billing is not directly per registered user or SQL character.",
+    "decision": "corregir",
+    "reason": "Reformulado para corregir alcance, ambigüedad o datos desactualizados; respuesta contrastada."
+  },
+  {
+    "i": 573,
+    "objective": "2.1",
+    "r": "https://docs.snowflake.com/en/user-guide/network-policies",
+    "q": "A client IP appears in both ALLOWED_IP_LIST and BLOCKED_IP_LIST of the applicable network policy. What is the result?",
+    "o": [
+      "The allow entry always overrides the block",
+      "The block takes precedence and access is denied",
+      "The lists cancel and no policy applies",
+      "The warehouse size determines which list wins"
+    ],
+    "c": [
+      1
+    ],
+    "n": 1,
+    "e": "A blocked IP takes precedence when it also appears in the allowed list. This states the access result without relying on an internal evaluation-order implementation detail.",
+    "decision": "corregir",
+    "reason": "Reformulado para corregir alcance, ambigüedad o datos desactualizados; respuesta contrastada."
+  },
+  {
+    "i": 576,
+    "objective": "3.1",
+    "r": "https://docs.snowflake.com/en/sql-reference/sql/list",
+    "q": "Which statements list files in the current user stage? (Choose two.)",
+    "o": [
+      "LIST @~;",
+      "LS @~;",
+      "LS @usr;",
+      "SHOW @%;"
+    ],
+    "c": [
+      0,
+      1
+    ],
+    "n": 2,
+    "e": "LS is the abbreviated form of LIST, and @~ denotes the current user stage. Both first alternatives are valid listing commands. A named stage called usr is not automatically the current user stage.",
+    "decision": "corregir",
+    "reason": "Reformulado para corregir alcance, ambigüedad o datos desactualizados; respuesta contrastada."
+  },
+  {
+    "i": 579,
+    "objective": "4.3",
+    "r": "https://docs.snowflake.com/en/user-guide/querying-persisted-results",
+    "q": "Repeated reuse can reset a persisted query result retention window, but what is the maximum age measured from its first execution?",
+    "o": [
+      "1 day",
+      "10 days",
+      "31 days",
+      "60 days"
+    ],
+    "c": [
+      2
+    ],
+    "n": 1,
+    "e": "Reuse resets the 24-hour window up to a maximum of 31 days from the original execution. This does not guarantee all results are reusable for 31 days; query/data/access eligibility still applies.",
+    "decision": "corregir",
+    "reason": "Reformulado para corregir alcance, ambigüedad o datos desactualizados; respuesta contrastada."
+  },
+  {
+    "i": 580,
+    "objective": "4.1",
+    "r": "https://docs.snowflake.com/en/sql-reference/functions/warehouse_load_history",
+    "q": "Many short queries on one warehouse have high end-to-end latency. Monitoring shows a high queued load. Which diagnosis is supported?",
+    "o": [
+      "Concurrency contention is adding queue wait time",
+      "The data cache is necessarily corrupt",
+      "Every client driver must be obsolete",
+      "A low queue timeout makes completed SQL operators execute more slowly"
+    ],
+    "c": [
+      0
+    ],
+    "n": 1,
+    "e": "Observed queued load supports concurrency contention. User count alone would not establish the cause; elapsed time includes queue wait as well as execution.",
+    "decision": "corregir",
+    "reason": "Reformulado para corregir alcance, ambigüedad o datos desactualizados; respuesta contrastada."
+  },
+  {
+    "i": 582,
+    "objective": "4.4",
+    "r": "https://docs.snowflake.com/en/sql-reference/data-types-semistructured",
+    "q": "What is the documented upper bound for the uncompressed size of one VARIANT value, before practical reductions for internal overhead?",
+    "o": [
+      "8 MB",
+      "16 MB",
+      "32 MB",
+      "128 MB"
+    ],
+    "c": [
+      3
+    ],
+    "n": 1,
+    "e": "The current documented upper bound is 128 MB uncompressed. Actual supported values may be smaller because of overhead and the stored object shape. This is not a 128 MB compressed-file limit.",
+    "decision": "corregir",
+    "reason": "Reformulado para corregir alcance, ambigüedad o datos desactualizados; respuesta contrastada."
+  },
+  {
+    "i": 586,
+    "objective": "1.5",
+    "r": "https://docs.snowflake.com/en/user-guide/views-secure",
+    "q": "Why might a provider use a secure view for sensitive data?",
+    "o": [
+      "It automatically grants every user access",
+      "It restricts definition visibility and avoids certain optimizations that could expose underlying data",
+      "It copies all data to a special encrypted warehouse",
+      "Only secure views can ever have row access policies"
+    ],
+    "c": [
+      1
+    ],
+    "n": 1,
+    "e": "Secure views restrict visibility and some optimizations for privacy. Owners and certain privileged roles can still inspect their definitions; the original claim that all end users are unable to see them was too absolute.",
+    "decision": "corregir",
+    "reason": "Reformulado para corregir alcance, ambigüedad o datos desactualizados; respuesta contrastada."
+  },
+  {
+    "i": 589,
+    "objective": "2.2",
+    "r": "https://docs.snowflake.com/en/sql-reference/account-usage/access_history",
+    "q": "Which source can help identify tables not observed in supported access records during the available history window?",
+    "o": [
+      "ACCESS_HISTORY",
+      "Data classification alone",
+      "A masking policy alone",
+      "A tag name alone"
+    ],
+    "c": [
+      0
+    ],
+    "n": 1,
+    "e": "ACCESS_HISTORY supports usage analysis. Absence of a record is not by itself proof that an object is safe to delete: retention, supported access coverage and external business dependencies must be considered.",
+    "decision": "corregir",
+    "reason": "Reformulado para corregir alcance, ambigüedad o datos desactualizados; respuesta contrastada."
+  },
+  {
+    "i": 590,
+    "objective": "4.4",
+    "r": "https://docs.snowflake.com/en/user-guide/queries-hierarchical",
+    "q": "Which constructs can traverse a hierarchy whose depth is not known in advance? (Choose two.)",
+    "o": [
+      "CONNECT BY",
+      "LISTAGG",
+      "QUALIFY",
+      "A non-recursive GROUP BY",
+      "A recursive CTE introduced with WITH"
+    ],
+    "c": [
+      0,
+      4
+    ],
+    "n": 2,
+    "e": "CONNECT BY and recursive CTEs express recursive traversal. WITH alone does not make an ordinary CTE recursive; termination and cycle handling matter.",
+    "decision": "corregir",
+    "reason": "Reformulado para corregir alcance, ambigüedad o datos desactualizados; respuesta contrastada."
+  },
+  {
+    "i": 595,
+    "objective": "5.2",
+    "r": "https://docs.snowflake.com/en/sql-reference/sql/alter-share",
+    "q": "Which statement adds a consumer account to an existing direct share using an organization-qualified account identifier?",
+    "o": [
+      "GRANT USAGE ON SHARE my_share TO ACCOUNT myorg.consumer",
+      "GRANT SELECT ON SHARE my_share TO ACCOUNT myorg.consumer",
+      "ALTER SHARE my_share ADD ACCOUNTS = myorg.consumer",
+      "ALTER ACCOUNT myorg.consumer ADD SHARE my_share"
+    ],
+    "c": [
+      2
+    ],
+    "n": 1,
+    "e": "ALTER SHARE ... ADD ACCOUNTS adds the recipient. Object privileges must also be present in the share. The account name is illustrative; cross-region delivery and edition restrictions require their own configuration.",
+    "decision": "corregir",
+    "reason": "Reformulado para corregir alcance, ambigüedad o datos desactualizados; respuesta contrastada."
+  },
+  {
+    "i": 597,
+    "objective": "1.4",
+    "r": "https://docs.snowflake.com/en/user-guide/warehouses-multicluster",
+    "q": "On Enterprise Edition, independent queries are queuing because a warehouse has insufficient concurrency capacity. Which feature can scale out its compute?",
+    "o": [
+      "Group unrelated warehouse names into an invented cluster",
+      "Set a user-count threshold to exactly 100",
+      "Configure a multi-cluster warehouse",
+      "Assume any warehouse fails once user 101 signs in"
+    ],
+    "c": [
+      2
+    ],
+    "n": 1,
+    "e": "Multi-cluster warehouses add clusters for concurrency. There is no general 100-user threshold that determines when one must be used; measure queued load and workload requirements.",
+    "decision": "corregir",
+    "reason": "Reformulado para corregir alcance, ambigüedad o datos desactualizados; respuesta contrastada."
+  },
+  {
+    "i": 600,
+    "objective": "4.1",
+    "r": "https://docs.snowflake.com/en/user-guide/performance-query-warehouse-memory",
+    "q": "A query spills a large amount of intermediate data to local storage. Which response is reasonable?",
+    "o": [
+      "Always shrink the warehouse",
+      "Investigate memory demand, then benchmark a larger warehouse or reduce intermediate data through query changes",
+      "Assume the console timed out",
+      "Assume adding clusters gives this single query more memory"
+    ],
+    "c": [
+      1
+    ],
+    "n": 1,
+    "e": "Local spill indicates intermediate data exceeded available memory. More memory can help, but query rewrites can reduce demand too. Multi-cluster scale-out primarily helps concurrency rather than splitting one query across clusters.",
+    "decision": "corregir",
+    "reason": "Reformulado para corregir alcance, ambigüedad o datos desactualizados; respuesta contrastada."
+  },
+  {
+    "i": 603,
+    "objective": "3.1",
+    "r": "https://docs.snowflake.com/en/sql-reference/sql/get",
+    "q": "Which command downloads a file from an internal Snowflake stage to a client filesystem?",
+    "o": [
+      "PUT",
+      "INSERT",
+      "GET",
+      "COPY INTO a table"
+    ],
+    "c": [
+      2
+    ],
+    "n": 1,
+    "e": "GET downloads internal-stage files. External-stage object retrieval normally uses cloud tools or applicable file URLs; the original omitted the stage type.",
+    "decision": "corregir",
+    "reason": "Reformulado para corregir alcance, ambigüedad o datos desactualizados; respuesta contrastada."
+  },
+  {
+    "i": 614,
+    "objective": "1.4",
+    "r": "https://docs.snowflake.com/en/user-guide/warehouses-multicluster",
+    "q": "Sustained warehouse queues are caused by concurrent independent workloads. Which approaches can distribute future work over additional compute? (Choose two.)",
+    "o": [
+      "Decrease warehouse size unconditionally",
+      "Reduce the available cluster capacity",
+      "Configure eligible multi-cluster scaling to add clusters",
+      "Route part of the workload to a separate warehouse"
+    ],
+    "c": [
+      2,
+      3
+    ],
+    "n": 2,
+    "e": "Both multi-cluster scale-out and separate warehouses can address concurrency. Already queued statements do not automatically migrate to another warehouse; routing concerns new submissions or deliberate resubmission. The original incorrectly chose only one plausible approach.",
+    "decision": "corregir",
+    "reason": "Reformulado para corregir alcance, ambigüedad o datos desactualizados; respuesta contrastada."
+  },
+  {
+    "i": 622,
+    "objective": "2.1",
+    "r": "https://docs.snowflake.com/en/user-guide/security-mfa",
+    "q": "Which are user authentication mechanisms rather than data encryption or object authorization? (Choose two.)",
+    "o": [
+      "Snowflake-managed data encryption keys",
+      "SELECT grants on a table",
+      "Multi-factor authentication",
+      "Federated authentication/SSO"
+    ],
+    "c": [
+      2,
+      3
+    ],
+    "n": 2,
+    "e": "MFA strengthens identity verification; federation/SSO delegates authentication to an identity provider. Security strength depends on configuration. Grants authorize access and storage keys protect data rather than authenticate the user.",
+    "decision": "corregir",
+    "reason": "Reformulado para corregir alcance, ambigüedad o datos desactualizados; respuesta contrastada."
+  },
+  {
+    "i": 637,
+    "objective": "4.2",
+    "r": "https://docs.snowflake.com/en/user-guide/search-optimization-service",
+    "q": "Which features can improve selective access to a large standard native analytical table when justified by its workload? (Choose two.)",
+    "o": [
+      "An ordinary view alone that stores no result",
+      "An appropriate clustering key",
+      "Search optimization on supported predicates",
+      "Longer Time Travel retention",
+      "An unsupported INDEX_HINTS setting"
+    ],
+    "c": [
+      1,
+      2
+    ],
+    "n": 2,
+    "e": "Clustering can improve pruning and search optimization can accelerate selective predicates. Both require workload/cost evaluation; generic indexing is ambiguous because other Snowflake table types have different capabilities.",
+    "decision": "corregir",
+    "reason": "Reformulado para corregir alcance, ambigüedad o datos desactualizados; respuesta contrastada."
+  },
+  {
+    "i": 641,
+    "objective": "4.1",
+    "r": "https://docs.snowflake.com/en/sql-reference/functions/warehouse_load_history",
+    "q": "Which Information Schema table function provides aggregate warehouse-load measures such as AVG_QUEUED_LOAD?",
+    "o": [
+      "RESOURCE_MONITOR",
+      "ACCOUNT_USAGE.QUERY_HISTORY",
+      "WAREHOUSE_LOAD_HISTORY",
+      "WAREHOUSE_METERING_HISTORY"
+    ],
+    "c": [
+      2
+    ],
+    "n": 1,
+    "e": "WAREHOUSE_LOAD_HISTORY reports load and queuing. QUERY_HISTORY also contains useful per-query queue timings, so the original general troubleshooting question had more than one plausible answer. Metering reports credits instead.",
+    "decision": "corregir",
+    "reason": "Reformulado para corregir alcance, ambigüedad o datos desactualizados; respuesta contrastada."
+  },
+  {
+    "i": 647,
+    "objective": "1.4",
+    "r": "https://docs.snowflake.com/en/user-guide/warehouses-considerations",
+    "q": "Which operation uses warehouse compute rather than being an ordinary metadata-only operation on a standard native table?",
+    "o": [
+      "SHOW TABLES",
+      "ALTER TABLE t ADD COLUMN region VARCHAR",
+      "INSERT INTO t(id) VALUES (1)",
+      "CREATE TABLE empty_t(id NUMBER)"
+    ],
+    "c": [
+      2
+    ],
+    "n": 1,
+    "e": "The INSERT writes table data using compute. The other listed ordinary operations manage metadata. The original COUNT(*) alternative was context-dependent because some counts use metadata while others need execution.",
+    "decision": "corregir",
+    "reason": "Reformulado para corregir alcance, ambigüedad o datos desactualizados; respuesta contrastada."
+  },
+  {
+    "i": 648,
+    "objective": "3.3",
+    "r": "https://docs.snowflake.com/en/user-guide/data-load-unstructured-rest-api",
+    "q": "Which REST endpoint family retrieves a staged file using an appropriate Snowflake file URL or scoped URL?",
+    "o": [
+      "insertFiles",
+      "insertReport",
+      "GET /api/files/",
+      "loadHistoryScan"
+    ],
+    "c": [
+      2
+    ],
+    "n": 1,
+    "e": "GET /api/files/ retrieves a file; the full resource URL and required authentication/authorization must be supplied. Snowpipe insertFiles/report/history endpoints concern ingestion rather than file retrieval.",
+    "decision": "corregir",
+    "reason": "Reformulado para corregir alcance, ambigüedad o datos desactualizados; respuesta contrastada."
+  },
+  {
+    "i": 473,
+    "decision": "archivar",
+    "reason": "Repite el contraste caller/owner rights ya validado en ID 174; se conserva el original."
+  },
+  {
+    "i": 476,
+    "decision": "archivar",
+    "reason": "Memorización de la ubicación de un menú cambiante; el uso de Query History ya se evalúa con preguntas funcionales."
+  },
+  {
+    "i": 544,
+    "decision": "archivar",
+    "reason": "Repite la transferencia de ownership al eliminar un rol, ya contrastada en ID 55."
+  },
+  {
+    "i": 554,
+    "decision": "archivar",
+    "reason": "Repite OBJECT_CONSTRUCT para descarga JSON, cubierto en ID 517 de esta tanda."
+  },
+  {
+    "i": 616,
+    "decision": "archivar",
+    "reason": "Repite los 14 días de metadatos del pipe, ya acotados y contrastados en ID 200."
+  },
+  {
+    "i": 633,
+    "decision": "archivar",
+    "reason": "Repite la función de los streams, conservada en ID 612 de esta tanda."
+  }
+]

@@ -53,7 +53,6 @@ export default function QuestionCard({
     onAnswered(ok, picked);
   }
 
-  const lvl = question.lvl;
   const ref = question.r ? question.r.split(',')[0].trim() : null;
   const correctText = question.c
     .map((i) => `${String.fromCharCode(65 + i)}. ${question.o[i]}`)
@@ -64,11 +63,12 @@ export default function QuestionCard({
       <div className="qmeta">
         <span>
           <span className="dom-tag">{question.d}</span>{' '}
-          {lvl && !exam && (
-            <span className={`lvl lvl-${lvl}`}>
-              {lvl === 'core' ? 'core · cae seguro' : 'extra · bueno saberlo'}
+          {question.review && !exam && (
+            <span className={`lvl lvl-${question.review.status === 'verified' ? 'core' : 'extra'}`}>
+              {question.review.status === 'verified' ? 'Contrastada con documentación' : 'Pendiente de validación'}
             </span>
           )}
+          {!exam && <small> · #{question.i}{question.objective ? ` · objetivo ${question.objective}` : ''}</small>}
         </span>
         <button
           className={`mark-btn ${marked ? 'on' : ''}`}
@@ -87,6 +87,7 @@ export default function QuestionCard({
       )}
 
       <p className="qtext">{question.q}</p>
+      {!exam && question.review?.status === 'pending' && <p className="note">Material heredado pendiente de validación: contrasta la respuesta antes de memorizarla.</p>}
       {multi && (
         <p className="hint">
           Selecciona {question.n}
@@ -122,7 +123,7 @@ export default function QuestionCard({
             {question.e || '(sin explicacion)'}
             {ref && (
               <a className="ref" href={ref} target="_blank" rel="noopener noreferrer">
-                Documentacion oficial →
+                Fuente de referencia →
               </a>
             )}
           </div>

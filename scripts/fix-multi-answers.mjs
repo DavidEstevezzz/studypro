@@ -5,6 +5,9 @@ import { readFileSync, writeFileSync } from 'node:fs';
 
 const file = new URL('../public/data/snowpro-core.json', import.meta.url);
 const questions = JSON.parse(readFileSync(file, 'utf8'));
+if (questions.some((question) => question.review)) {
+  throw new Error('Banco auditado: edita reviewed-questions.mjs y ejecuta npm run audit:build.');
+}
 
 const fixes = {
   40: { n: 2, c: [1, 3] },

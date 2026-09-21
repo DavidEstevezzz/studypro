@@ -8,14 +8,16 @@
     "examQuestions": 100,
     "examMinutes": 115,
     "domainWeights": {
-      "Arquitectura y Data Cloud": 24,
-      "Gestion de cuenta y Gobernanza": 18,
-      "Rendimiento, Consultas y Transformacion": 30,
-      "Carga, Descarga y Conectividad": 12,
-      "Colaboracion y Proteccion de datos": 12,
-      "Novedades C03 (Cortex/Iceberg/Git)": 4
+      "Arquitectura y Data Cloud": 31,
+      "Gestion de cuenta y Gobernanza": 20,
+      "Carga, Descarga y Conectividad": 18,
+      "Rendimiento, Consultas y Transformacion": 21,
+      "Colaboracion y Proteccion de datos": 10
     },
     "accent": "#5cc8ff",
-    "blurb": "Certificación fundacional del Snowflake AI Data Cloud."
+    "blurb": "Práctica en inglés para COF-C03. Simulacros con preguntas contrastadas y cinco dominios oficiales.",
+    "bankVersion": "cof-c03-2026-09-21-batch300",
+    "auditFile": "snowpro-core-audit.json",
+    "language": "en"
   }
 ]

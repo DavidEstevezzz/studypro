@@ -70,7 +70,7 @@ export default function Trend({ sessions, passThreshold }) {
       <div className="trend-legend">
         <span><i className="trend-dot exam" /> simulacro</span>
         <span><i className="trend-dot" /> practica</span>
-        <span><i className="trend-line" /> umbral {passThreshold}%</span>
+        <span><i className="trend-line" /> objetivo de práctica {passThreshold}%</span>
       </div>
     </div>
   );

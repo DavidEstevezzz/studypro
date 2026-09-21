@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import Strata from './Strata';
 import Trend from './Trend';
 import Icon from './Icon';
+import BankAudit from './BankAudit';
 import { REVIEW_PASSES_REQUIRED, examReadiness, overall } from '../lib/quiz';
 
 const RING_CIRC = 2 * Math.PI * 52;
@@ -11,6 +12,10 @@ export default function Home({
   cert,
   onSelectCert,
   questions,
+  allQuestions,
+  includePending,
+  onIncludePending,
+  sessionError,
   domains,
   progress,
   onStart,
@@ -27,32 +32,25 @@ export default function Home({
   }, [domains]);
 
   const ov = overall(progress);
-  const wrongN = progress.wrongIds.length;
-  const markedN = progress.markedIds.length;
+  const availableIds = new Set(questions.map(q => q.i));
+  const wrongN = progress.wrongIds.filter(id => availableIds.has(id)).length;
+  const markedN = progress.markedIds.filter(id => availableIds.has(id)).length;
   const byQuestion = progress.byQuestion ?? {};
   const totalQuestions = questions.length;
-  const uniqueSeen = Object.keys(byQuestion).length;
-  const masteredN = Object.values(byQuestion).filter((q) => q.mastered).length;
+  const availableStats = Object.entries(byQuestion).filter(([id]) => availableIds.has(Number(id))).map(([,stat]) => stat);
+  const uniqueSeen = availableStats.filter(q => q.seen > 0).length;
+  const masteredN = availableStats.filter((q) => q.mastered).length;
   const practicedPct = totalQuestions
     ? Math.min(100, Math.round((uniqueSeen / totalQuestions) * 100))
     : 0;
-  const masteredPct = totalQuestions
-    ? Math.min(100, Math.round((masteredN / totalQuestions) * 100))
-    : 0;
   const sessions = progress.sessions ?? [];
-  const exams = examReadiness(sessions, cert.passThreshold);
+  const exams = examReadiness(sessions, cert.passThreshold, cert.bankVersion);
   const weakDomains = domains.filter((d) => {
     const st = progress.domStat[d];
     if (!st?.seen) return false;
     return Math.round((st.ok / st.seen) * 100) < cert.passThreshold;
   }).length;
-  const readiness = Math.max(
-    0,
-    Math.min(
-      100,
-      Math.round(ov.pct * 0.55 + practicedPct * 0.25 + masteredPct * 0.2)
-    )
-  );
+  const readiness = practicedPct;
 
   return (
     <div className="home">
@@ -78,11 +76,11 @@ export default function Home({
         </div>
 
         <div className="readiness-card">
-          <span>Preparacion</span>
+          <span>Banco practicado</span>
           <div
             className="ring-wrap"
             role="img"
-            aria-label={`Preparacion ${readiness}%`}
+            aria-label={`Banco practicado ${readiness}%`}
           >
             <svg viewBox="0 0 120 120" className="ring">
               <defs>
@@ -113,6 +111,9 @@ export default function Home({
           </small>
         </div>
       </section>
+
+      <BankAudit questions={allQuestions ?? questions} cert={cert} includePending={includePending} onIncludePending={onIncludePending} />
+      {sessionError && <p className="note" role="alert">{sessionError}</p>}
 
       <section className="metric-grid" aria-label="Resumen de progreso">
         <div className="metric-card">
@@ -174,14 +175,15 @@ export default function Home({
             </div>
             <span className={`threshold ${exams.ready ? 'ready' : ''}`}>
               {exams.ready
-                ? 'Listo: 3 simulacros seguidos aprobados'
-                : `Simulacros aprobados: ${exams.recentPassed}/3 recientes`}
+                ? 'Objetivo de práctica alcanzado en 3 simulacros'
+                : `Objetivo de práctica: ${exams.recentPassed}/3 recientes`}
             </span>
           </div>
           <Trend sessions={sessions} passThreshold={cert.passThreshold} />
           <p className="note">
-            La señal fiable para reservar examen: 3 simulacros seguidos por
-            encima del {cert.passThreshold}%.
+            Objetivo interno: {cert.passThreshold}% en 3 simulacros de la versión actual.
+            No predice el aprobado: el examen usa puntuación escalada (750/1000).
+            El historial anterior se conserva y no cuenta para esta señal.
             {exams.examCount === 0 && ' Aun no has hecho ningun simulacro.'}
           </p>
         </div>
@@ -200,8 +202,8 @@ export default function Home({
           {ov.seen
             ? `Llevas ${ov.seen} respuestas · ${ov.pct}% de acierto global. ${
                 ov.pct >= cert.passThreshold
-                  ? 'Estas en zona de aprobado.'
-                  : `Apunta a >=${cert.passThreshold}% sostenido antes de examinarte.`
+                  ? 'Has alcanzado el objetivo interno de práctica.'
+                  : `Objetivo interno de práctica: ${cert.passThreshold}%.`
               }`
             : 'Aun no has practicado. Empieza por el plan de hoy o una sesion rapida.'}
         </p>
@@ -228,7 +230,7 @@ export default function Home({
             </span>
             <b>Simulacro · {cert.examQuestions} preg</b>
             <small>
-              {cert.examMinutes} min, dominios ponderados como el examen real,
+              {cert.examMinutes} min, cinco dominios con pesos oficiales y preguntas contrastadas,
               sin feedback hasta corregir.
             </small>
           </button>

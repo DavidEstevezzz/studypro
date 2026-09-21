@@ -44,6 +44,11 @@ export function domainsOf(questions) {
 }
 
 export function buildPool(mode, questions, opts = {}) {
+  // Reviewed banks never silently mix pending material into an exam.
+  if (questions.some((q) => q.review)) {
+    questions = questions.filter((q) => q.review?.status === 'verified' ||
+      (mode !== 'exam' && opts.includePending && q.review?.status === 'pending'));
+  }
   let pool;
 
   switch (mode) {
@@ -81,9 +86,13 @@ export function buildPool(mode, questions, opts = {}) {
 
 // Simulacro estratificado: reparte las preguntas según el peso oficial
 // de cada dominio en el examen (método del mayor resto), no según el
-// tamaño del banco. Si un dominio no da para su cuota, se rellena con
-// preguntas de otros dominios.
+// tamaño del banco. Una cuota incompleta se comunica, nunca se oculta
+// rellenando con otro dominio.
 export function buildExamPool(questions, weights, count) {
+  if (!Number.isInteger(count) || count < 1) throw new Error('Número de preguntas no válido.');
+  if (questions.some((q) => q.review)) {
+    questions = questions.filter((q) => q.review?.status === 'verified');
+  }
   if (!weights) return shuffle(questions).slice(0, count);
 
   const byDomain = {};
@@ -91,7 +100,7 @@ export function buildExamPool(questions, weights, count) {
     (byDomain[q.d] ??= []).push(q);
   });
 
-  const domains = Object.keys(byDomain);
+  const domains = Object.keys(weights).filter((d) => weights[d] > 0);
   const totalWeight = domains.reduce((s, d) => s + (weights[d] ?? 0), 0);
   if (!totalWeight) return shuffle(questions).slice(0, count);
 
@@ -111,18 +120,11 @@ export function buildExamPool(questions, weights, count) {
 
   const pool = [];
   quotas.forEach(({ d, base }) => {
+    if ((byDomain[d]?.length ?? 0) < base) {
+      throw new Error(`Faltan preguntas contrastadas en ${d}: se necesitan ${base}.`);
+    }
     pool.push(...shuffle(byDomain[d]).slice(0, base));
   });
-
-  if (pool.length < count) {
-    const used = new Set(pool.map((q) => q.i));
-    pool.push(
-      ...shuffle(questions.filter((q) => !used.has(q.i))).slice(
-        0,
-        count - pool.length
-      )
-    );
-  }
 
   return shuffle(pool);
 }
@@ -184,6 +186,7 @@ export function applyAnswer(progress, question, ok, opts = {}) {
 
   byQuestion[id] = {
     ...prev,
+    contentRevision: question.contentRevision ?? prev.contentRevision,
     id: question.i,
     domain: d,
     seen: prev.seen + 1,
@@ -225,11 +228,12 @@ export function overall(progress) {
 }
 
 // Señal de "listo": los 3 simulacros más recientes por encima del umbral.
-export function examReadiness(sessions, passThreshold) {
-  const exams = sessions.filter((s) => s.mode === 'exam' && s.total);
+export function examReadiness(sessions, passThreshold, bankVersion) {
+  const exams = sessions.filter((s) => s.mode === 'exam' && s.total &&
+    (!bankVersion || s.bankVersion === bankVersion));
   const recent = exams.slice(0, 3);
   const passed = recent.filter(
-    (s) => Math.round((s.ok / s.total) * 100) >= passThreshold
+    (s) => (s.ok / s.total) * 100 >= passThreshold
   ).length;
   return {
     examCount: exams.length,
