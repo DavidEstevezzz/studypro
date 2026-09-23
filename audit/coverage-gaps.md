@@ -30,7 +30,7 @@ La selección contrastada permite practicar los 19 objetivos, pero **no cubre ex
 2. Para cada pregunta revisar enunciado, todas las opciones, clave, explicación y referencia vigente. Corregir ambigüedades antes de habilitarla.
 3. Revisar las apartadas por prioridad: claves contradictorias, imágenes ausentes, afirmaciones absolutas y límites/precios/interfaces que cambian. Estar apartada no significa necesariamente ser incorrecta.
 4. Añadir escenarios originales cuando validar una pregunta antigua no resuelva el hueco. Evitar preguntas recordadas de exámenes o promesas de frecuencia de aparición.
-5. Practicar con documentación y ejercicios reales además del banco. Con 564 contrastadas, sucesivos simulacros repetirán muchas preguntas: el porcentaje puede reflejar memoria.
+5. Practicar con documentación y ejercicios reales además del banco. Con 823 contrastadas, sucesivos simulacros repetirán muchas preguntas: el porcentaje puede reflejar memoria.
 
 La fuente de verdad es la guía oficial COF-C03 y la documentación de Snowflake, no la procedencia comercial ni la frecuencia de una pregunta en webs de preparación. Revalidar el banco cuando cambie la guía o antes de reservar el examen.
 
@@ -60,3 +60,15 @@ Revisadas las siguientes 100 pendientes tras el batch 400: 36 conservadas, 24 co
 ## Batch 700 — 2026-09-23
 
 31 conservadas, 15 corregidas y 54 archivadas. Estado: 722 contrastadas, 91 pendientes, 455 apartadas y 214 archivadas. No se añaden preguntas ni se declara cobertura exhaustiva. [Informe](batch-700-report.md).
+
+## Batch 800 — 2026-09-23 (última tanda de pendientes)
+
+91 decisiones sobre las pendientes que quedaban: 54 conservadas, 5 corregidas y 32 archivadas. Estado: 781 contrastadas, 0 pendientes, 455 apartadas y 246 archivadas. Refuerza 1.6 (Cortex AISQL, Notebooks, Snowflake ML) y 3.3 (Git, catalog integration), que eran huecos señalados aquí. Errores corregidos: el operador Unload del Query Profile (ID 1287), el rol por defecto de ACCOUNT_USAGE frente a INFORMATION_SCHEMA (1277), STRIP_NULL_VALUE frente a la opción de formato (1302) y la profundidad de clustering como métrica de tabla (1301). Avisos: Notebooks pasa a Notebooks in Workspaces y TRY_COMPLETE queda como función heredada. [Informe](batch-800-report.md).
+
+Siguiente trabajo: las 455 apartadas. No están validadas ni declaradas falsas; cada una exige comprobar la sospecha concreta (clave dudosa, imagen ausente, afirmación absoluta o límite cambiante). Mientras tanto, la práctica y los simulacros solo usan las 781 contrastadas, así que se repetirá material.
+
+## Apartadas 900 — 2026-09-23 (primera tanda del bloque apartado)
+
+100 apartadas revisadas por criterio, no por ID: las 9 que dependen de una imagen ausente, las 31 con diagnóstico concreto y 60 del objetivo 2.1. Resultado: 26 conservadas, 16 corregidas, 53 archivadas y 5 que siguen apartadas por falta de fuente. Estado: 823 contrastadas, 0 pendientes, 360 apartadas y 299 archivadas. Seis claves eran incorrectas (459, 341, 730, 1037, 1229 y 1304) y la 1081 no tenía ninguna opción válida. [Informe](quarantine-900-report.md).
+
+Siguiente trabajo: las 360 apartadas restantes, casi todas con motivo genérico de cribado. Los objetivos con más material apartado siguen siendo 3.1, 1.4 y 4.4.

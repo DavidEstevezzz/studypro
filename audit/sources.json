@@ -1601,5 +1601,201 @@
     "status": 200,
     "sha256": "ed114a8a5d4570e91c0ae4539e49fea99dc2254a0cbe96414fa01f4b43ee8a55",
     "title": "Using auto-fulfillment"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/developer-guide/stored-procedure/stored-procedures-overview",
+    "fetchedAt": "2026-09-23",
+    "status": 200,
+    "sha256": "143a35f17996799a6a542679eb2887923f72105d5f4a4b9228b230afeb4b1cd7",
+    "title": "Stored procedures overview"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/sql-reference/functions/ai_complete",
+    "fetchedAt": "2026-09-23",
+    "status": 200,
+    "sha256": "7d5116458b53fafaa3a3ae6b95a7916f35b27f14f71b362772e185a123eb9e3f",
+    "title": "AI_COMPLETE"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/sql-reference/functions/ai_complete-single-string",
+    "fetchedAt": "2026-09-23",
+    "status": 200,
+    "sha256": "b47999b8e145f7968ff813f03c3b2aacc3fab1634f05152a8ca7de3fec81eebe",
+    "title": "AI_COMPLETE (Single string)"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/sql-reference/functions/ai_parse_document",
+    "fetchedAt": "2026-09-23",
+    "status": 200,
+    "sha256": "da4d7608f664a58ae26485f73f6bf2807cf8d27651622cc7674eca2129462539",
+    "title": "AI_PARSE_DOCUMENT"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/sql-reference/functions/ai_summarize_agg",
+    "fetchedAt": "2026-09-23",
+    "status": 200,
+    "sha256": "cf5d5cccb06b406c4c8f8e35bc749d146676e466e6fab49168d75c5cf31ec7ae",
+    "title": "AI_SUMMARIZE_AGG"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/sql-reference/functions/ai_transcribe",
+    "fetchedAt": "2026-09-23",
+    "status": 200,
+    "sha256": "596ace32af9cfea9f062f37b445d730ac15ae51fb9e130d058de29739c49e825",
+    "title": "AI_TRANSCRIBE"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/sql-reference/sql/alter-git-repository",
+    "fetchedAt": "2026-09-23",
+    "status": 200,
+    "sha256": "f9686f02caa47f094334018315c96673ea9161589fe3fd0d03adbd954250788b",
+    "title": "ALTER GIT REPOSITORY"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/sql-reference/sql/create-api-integration",
+    "fetchedAt": "2026-09-23",
+    "status": 200,
+    "sha256": "d634cd379416e02ea9e51928a7b51ef68ec1941a68211b6d4fdd3ac5a4f100ac",
+    "title": "CREATE API INTEGRATION"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/sql-reference/sql/create-git-repository",
+    "fetchedAt": "2026-09-23",
+    "status": 200,
+    "sha256": "522b365057f60ebe21bfc60d94057306790164506568f961b1412f09f2efd50b",
+    "title": "CREATE GIT REPOSITORY"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/sql-reference/sql/create-iceberg-table",
+    "fetchedAt": "2026-09-23",
+    "status": 200,
+    "sha256": "41103e34e8149af8ac8c3e2a453c5d33bd46686fde3397da0bf6025eea35fc3f",
+    "title": "CREATE ICEBERG TABLE"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/sql-reference/sql/create-notebook",
+    "fetchedAt": "2026-09-23",
+    "status": 200,
+    "sha256": "230aa6f2af7548613a322a3190c9d0ae0e48b39fa527f11ca28705a428075523",
+    "title": "CREATE NOTEBOOK"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/user-guide/snowflake-cortex/aisql",
+    "fetchedAt": "2026-09-23",
+    "status": 200,
+    "sha256": "924c2b3870e55b33c8ae3afcf5b730756d492dbc20e14512be93502ce1e7cf08",
+    "title": "Snowflake Cortex AI Functions (including LLM functions)"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/user-guide/snowflake-cortex/vector-embeddings",
+    "fetchedAt": "2026-09-23",
+    "status": 200,
+    "sha256": "c62510740a2dfb892b11137f4635f09443aa05542d0485a46cb67594704e24de",
+    "title": "Vector Embeddings"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/user-guide/tables-iceberg-configure-catalog-integration",
+    "fetchedAt": "2026-09-23",
+    "status": 200,
+    "sha256": "1dc25183ed271138a045137f442b1095d73e7848b30c04f170e01a9f785e1dbb",
+    "title": "Configure a catalog integration"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/user-guide/tables-iceberg-configure-external-volume",
+    "fetchedAt": "2026-09-23",
+    "status": 200,
+    "sha256": "40155dca559c36a0323f7bf428c1481da3d96993aba71229e6d3da640db866c0",
+    "title": "Configure an external volume"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/user-guide/tables-iceberg-load",
+    "fetchedAt": "2026-09-23",
+    "status": 200,
+    "sha256": "b8891ff2f309cbbc965d211edb770d8241fafefac6ec87fbe8a021c5352a8f4a",
+    "title": "Load data into Apache Iceberg™ tables"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/user-guide/tables-iceberg-manage",
+    "fetchedAt": "2026-09-23",
+    "status": 200,
+    "sha256": "a8b35155fa82a39dc1e0679f799e368906b26736ccb68f7ca53d885ad0f2159e",
+    "title": "Manage Apache Iceberg™ tables"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/user-guide/warehouses-overview",
+    "fetchedAt": "2026-09-23",
+    "status": 200,
+    "sha256": "552f0625fc438c95f42275f67c951a803dc5ff018b7e86504dd75323417b139a",
+    "title": "Overview of warehouses"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/developer-guide/jdbc/jdbc-parameters",
+    "fetchedAt": "2026-09-23",
+    "status": 200,
+    "sha256": "3f3dd1ef6daeb7d0a99ed13c6aaee3aeba7dfb81c7bb6ece8d180bab91d2dadc",
+    "title": "JDBC Driver connection parameter reference"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/developer-guide/stored-procedures-vs-udfs",
+    "fetchedAt": "2026-09-23",
+    "status": 200,
+    "sha256": "34e8ef22b055de9a66e411c50fbf52e38e1f3400b3b6a17f2dd4a9ff985c503d",
+    "title": "Choosing whether to write a stored procedure or a user-defined function"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/sql-reference/functions/system_global_account_set_parameter",
+    "fetchedAt": "2026-09-23",
+    "status": 200,
+    "sha256": "29e370714fb0876b391c5edcd578db3e786879f127d4804a616bee5e36213aef",
+    "title": "SYSTEM$GLOBAL_ACCOUNT_SET_PARAMETER"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/sql-reference/info-schema",
+    "fetchedAt": "2026-09-23",
+    "status": 200,
+    "sha256": "53e30f760f075d49e34f4c7d5067dec99ab64bab31108e24576e5dda3db6e132",
+    "title": "Snowflake Information Schema"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/sql-reference/sql/create-network-policy",
+    "fetchedAt": "2026-09-23",
+    "status": 200,
+    "sha256": "8ea04f0a1efcef3635c2bf8c94d200e4c11b441561a637d650967d9951a23c8b",
+    "title": "CREATE NETWORK POLICY"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/sql-reference/sql/create-task",
+    "fetchedAt": "2026-09-23",
+    "status": 200,
+    "sha256": "24ea94885505f9e973d1f7a9b8797c18680252e02481d51b9a6635d325451d3b",
+    "title": "CREATE TASK"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/sql-reference/sql/use-secondary-roles",
+    "fetchedAt": "2026-09-23",
+    "status": 200,
+    "sha256": "cbc71e7fdb94022e5b8ab204a003d4bd737912aeeb356a5ec202a14480b60d60",
+    "title": "USE SECONDARY ROLES"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/user-guide/admin-user-management",
+    "fetchedAt": "2026-09-23",
+    "status": 200,
+    "sha256": "910911a9b4dd9c6e141e0e23c90d6b195f81ce499ae43710ad9299af2d8f3672",
+    "title": "User management"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/user-guide/search-optimization/enabling",
+    "fetchedAt": "2026-09-23",
+    "status": 200,
+    "sha256": "6ece0fa6c96584931638b760f6d17d55dc525297e0eea703c02a509f4c000263",
+    "title": "Enabling and disabling search optimization"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/user-guide/security-access-control-considerations",
+    "fetchedAt": "2026-09-23",
+    "status": 200,
+    "sha256": "21670c16e54a59308ac7932158a04a41109c062152df8b8a02eecf9a9df465a9",
+    "title": "Access control best practices"
   }
 ]

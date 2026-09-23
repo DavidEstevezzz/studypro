@@ -10,6 +10,8 @@ import { batch400 } from './review-batch-400.mjs';
 import { batch500 } from './review-batch-500.mjs';
 import { batch600 } from './review-batch-600.mjs';
 import { batch700 } from './review-batch-700.mjs';
+import { batch800 } from './review-batch-800.mjs';
+import { quarantine900 } from './review-quarantine-900.mjs';
 
 const root = new URL('../', import.meta.url);
 const path = (p) => new URL(p, root);
@@ -121,35 +123,39 @@ for (const [id,text] of Object.entries(clarify)) {
   const q=byId.get(Number(id)); q.q=text; q.contentRevision=INITIAL_CONTENT_REVISION;
   records.get(q.i).decision='corregir'; records.get(q.i).reason='Acotado el escenario para evitar generalizaciones; clave conservada.';
 }
-for (const [batch, idsFile, revision, reviewedAt = REVIEW_DATE] of [
-  [batch100, 'audit/next-100-ids.json', 'cof-c03-2026-09-21-batch100'],
-  [batch200, 'audit/batch-200-ids.json', 'cof-c03-2026-09-21-batch200'],
-  [batch300, 'audit/batch-300-ids.json', 'cof-c03-2026-09-21-batch300'],
-  [batch400, 'audit/batch-400-ids.json', 'cof-c03-2026-09-21-batch400'],
-  [batch500, 'audit/batch-500-ids.json', 'cof-c03-2026-09-23-batch500', '2026-09-23'],
-  [batch600, 'audit/batch-600-ids.json', 'cof-c03-2026-09-23-batch600', '2026-09-23'],
-  [batch700, 'audit/batch-700-ids.json', BANK_VERSION, BANK_REVIEW_DATE],
-]) {
-const batchIds = JSON.parse(readFileSync(path(idsFile)));
-if (batch.length !== 100 || new Set(batch.map(q => q.i)).size !== 100 ||
-  batchIds.some(id => !batch.some(q => q.i === id))) throw new Error('Incomplete batch of 100');
-for (const item of batch) {
-  const q = byId.get(item.i);
-  if (!q || q.review.status !== 'pending') throw new Error(`Batch ID was not pending: ${item.i}`);
-  const { decision, reason, ...fields } = item;
-  // Only conservar_revisada and corregir mark a question as verified; anything unknown stops the build.
-  if (decision === 'archivar') {
-    q.review = { ...q.review, status: 'archived', reviewedAt, reason };
-  } else if (decision === 'mantener_pendiente' || decision === 'apartar') {
-    q.review = { ...q.review, status: decision === 'apartar' ? 'quarantine' : 'pending', reviewedAt, reason };
-  } else if (decision === 'conservar_revisada' || decision === 'corregir') {
-    Object.assign(q, fields, { d: domains[item.objective[0]], topic: objectives[item.objective],
-      review: { status: 'verified', reviewedAt, method: 'editorial-documentation', reason } });
-    if (decision === 'corregir') q.contentRevision = revision;
-  } else throw new Error(`Unknown batch decision for ${item.i}: ${decision}`);
-  records.set(q.i, { id: q.i, decision, reason, originalDomain: before.get(q.i).d });
+// Applies one reviewed batch. `from` is the status every question in it must have beforehand:
+// 'pending' for the batches taken from the pending queue, 'quarantine' for those rescued from the held pool.
+function applyBatch(batch, idsFile, revision, reviewedAt = REVIEW_DATE, from = 'pending') {
+  const batchIds = JSON.parse(readFileSync(path(idsFile)));
+  // La lista congelada de IDs define la tanda; la última de pendientes es menor porque se agotaron.
+  if (batch.length !== batchIds.length || new Set(batch.map(q => q.i)).size !== batchIds.length ||
+    batchIds.some(id => !batch.some(q => q.i === id))) throw new Error(`Batch does not match ${idsFile}`);
+  for (const item of batch) {
+    const q = byId.get(item.i);
+    if (!q || q.review.status !== from) throw new Error(`Batch ID was not ${from}: ${item.i}`);
+    const { decision, reason, ...fields } = item;
+    // Only conservar_revisada and corregir mark a question as verified; anything unknown stops the build.
+    if (decision === 'archivar') {
+      q.review = { ...q.review, status: 'archived', reviewedAt, reason };
+    } else if (decision === 'mantener_pendiente' || decision === 'apartar') {
+      q.review = { ...q.review, status: decision === 'apartar' ? 'quarantine' : 'pending', reviewedAt, reason };
+    } else if (decision === 'conservar_revisada' || decision === 'corregir') {
+      Object.assign(q, fields, { d: domains[item.objective[0]], topic: objectives[item.objective],
+        review: { status: 'verified', reviewedAt, method: 'editorial-documentation', reason } });
+      if (decision === 'corregir') q.contentRevision = revision;
+    } else throw new Error(`Unknown batch decision for ${item.i}: ${decision}`);
+    records.set(q.i, { id: q.i, decision, reason, originalDomain: before.get(q.i).d });
+  }
 }
-}
+applyBatch(batch100, 'audit/next-100-ids.json', 'cof-c03-2026-09-21-batch100');
+applyBatch(batch200, 'audit/batch-200-ids.json', 'cof-c03-2026-09-21-batch200');
+applyBatch(batch300, 'audit/batch-300-ids.json', 'cof-c03-2026-09-21-batch300');
+applyBatch(batch400, 'audit/batch-400-ids.json', 'cof-c03-2026-09-21-batch400');
+applyBatch(batch500, 'audit/batch-500-ids.json', 'cof-c03-2026-09-23-batch500', '2026-09-23');
+applyBatch(batch600, 'audit/batch-600-ids.json', 'cof-c03-2026-09-23-batch600', '2026-09-23');
+applyBatch(batch700, 'audit/batch-700-ids.json', 'cof-c03-2026-09-23-batch700', '2026-09-23');
+applyBatch(batch800, 'audit/batch-800-ids.json', 'cof-c03-2026-09-23-batch800', '2026-09-23');
+applyBatch(quarantine900, 'audit/quarantine-900-ids.json', BANK_VERSION, BANK_REVIEW_DATE, 'quarantine');
 const statusCounts=Object.fromEntries(['verified','pending','quarantine','archived'].map(s=>[s,bank.filter(q=>q.review.status===s).length]));
 const coverage=Object.entries(objectives).map(([id,title])=>({id,title,domain:domains[id[0]],
   reviewedIds:bank.filter(q=>q.objective===id && q.review.status==='verified').map(q=>q.i),
@@ -171,6 +177,8 @@ json('audit/batch-400-decisions.json', batch400);
 json('audit/batch-500-decisions.json', batch500);
 json('audit/batch-600-decisions.json', batch600);
 json('audit/batch-700-decisions.json', batch700);
+json('audit/batch-800-decisions.json', batch800);
+json('audit/quarantine-900-decisions.json', quarantine900);
 json('public/data/snowpro-core-audit.json',summary);
 json('audit/review-ledger.json',ledger);
 const fields=['id','decision','status','objective','candidateObjective','mapping','originalDomain','domain','question','reason','reference','reviewedAt'];
