@@ -8,6 +8,12 @@ import { domains, objectives, BANK_VERSION } from '../scripts/audit-config.mjs';
 import { batch100 } from '../scripts/review-batch-100.mjs';
 import { batch200 } from '../scripts/review-batch-200.mjs';
 import { batch300 } from '../scripts/review-batch-300.mjs';
+import { batch400 } from '../scripts/review-batch-400.mjs';
+import { batch500 } from '../scripts/review-batch-500.mjs';
+import { batch600 } from '../scripts/review-batch-600.mjs';
+import { batch700 } from '../scripts/review-batch-700.mjs';
+import { batch800 } from '../scripts/review-batch-800.mjs';
+import { quarantine900 } from '../scripts/review-quarantine-900.mjs';
 
 const read = (path) => JSON.parse(readFileSync(new URL(path, import.meta.url), 'utf8'));
 const questions = read('../public/data/snowpro-core.json');
@@ -22,21 +28,80 @@ test('original is unchanged and every original ID survives', () => {
   for (const q of JSON.parse(bytes)) assert.ok(ids.has(q.i));
 });
 
-for (const [batch, idsFile, revision] of [
+const batches = [
   [batch100, '../audit/next-100-ids.json', 'cof-c03-2026-09-21-batch100'],
   [batch200, '../audit/batch-200-ids.json', 'cof-c03-2026-09-21-batch200'],
   [batch300, '../audit/batch-300-ids.json', 'cof-c03-2026-09-21-batch300'],
-]) test(`all 100 selected pending questions have one applied decision: ${revision}`, () => {
+  [batch400, '../audit/batch-400-ids.json', 'cof-c03-2026-09-21-batch400'],
+  [batch500, '../audit/batch-500-ids.json', 'cof-c03-2026-09-23-batch500'],
+  [batch600, '../audit/batch-600-ids.json', 'cof-c03-2026-09-23-batch600'],
+  [batch700, '../audit/batch-700-ids.json', 'cof-c03-2026-09-23-batch700'],
+  [batch800, '../audit/batch-800-ids.json', 'cof-c03-2026-09-23-batch800'],
+];
+const quarantineBatches = [[quarantine900, '../audit/quarantine-900-ids.json', 'cof-c03-2026-09-23-q900']];
+// A later batch can re-decide a question it had left quarantined, so its final status belongs to that batch.
+const rescued = new Set(quarantineBatches.flatMap(([batch]) => batch.map(q => q.i)));
+const statusByDecision = { conservar_revisada: 'verified', corregir: 'verified', archivar: 'archived',
+  mantener_pendiente: 'pending', apartar: 'quarantine' };
+
+for (const [batch, idsFile, revision] of batches) test(`every selected pending question has one applied decision: ${revision}`, () => {
   const ids = read(idsFile);
-  assert.equal(batch.length, 100);
+  assert.equal(batch.length, ids.length);
   assert.deepEqual(batch.map(q => q.i).sort((a,b) => a-b), ids);
   for (const item of batch) {
     const q = questions.find(q => q.i === item.i);
-    assert.equal(q.review.status, item.decision === 'archivar' ? 'archived' : 'verified');
+    assert.ok(statusByDecision[item.decision], `Decision #${item.i}`);
+    if (!rescued.has(item.i)) assert.equal(q.review.status, statusByDecision[item.decision], `Status #${item.i}`);
+    assert.ok(item.reason, `Reason #${item.i}`);
     if (item.decision === 'corregir') assert.equal(q.contentRevision, revision);
+    else assert.notEqual(q.contentRevision, revision, `Revision #${item.i}`);
   }
   // A new batch must not change the revision of previously corrected questions.
   assert.equal(questions.find(q => q.i === 8).contentRevision, 'cof-c03-2026-09-21');
+});
+
+test('batches follow the next-100-pending rule and each revision belongs to its own corrections', () => {
+  const idLists = batches.map(([, idsFile]) => read(idsFile));
+  for (let k = 1; k < idLists.length; k++) assert.ok(Math.min(...idLists[k]) > Math.max(...idLists[k - 1]));
+  // Whatever is still pending must come after the last reviewed batch (there may be nothing left).
+  const lastReviewed = Math.max(...idLists.at(-1));
+  for (const id of questions.filter(q => q.review.status === 'pending').map(q => q.i)) assert.ok(id > lastReviewed);
+  for (const [batch, , revision] of [...batches, ...quarantineBatches]) {
+    const corrected = batch.filter(q => q.decision === 'corregir').map(q => q.i).sort((a,b) => a-b);
+    assert.deepEqual(questions.filter(q => q.contentRevision === revision).map(q => q.i).sort((a,b) => a-b), corrected);
+  }
+});
+
+test('batches 400 through 800 keep the original content in the ledger and apply the reviewed version', () => {
+  const original = new Map(read('../audit/original/snowpro-core.json').map(q => [q.i, q]));
+  const ledger = new Map(read('../audit/review-ledger.json').map(r => [r.id, r]));
+  for (const item of [...batch400, ...batch500, ...batch600, ...batch700, ...batch800]) {
+    const record = ledger.get(item.i);
+    assert.deepEqual(record.before, original.get(item.i), `Original #${item.i}`);
+    if (!rescued.has(item.i)) assert.equal(record.decision, item.decision);
+    const q = questions.find(q => q.i === item.i);
+    if (item.decision === 'archivar') assert.deepEqual([q.q, q.o, q.c], [original.get(item.i).q, original.get(item.i).o, original.get(item.i).c]);
+    if (item.decision === 'corregir') assert.deepEqual([q.q, q.o, q.c, q.n], [item.q, item.o, item.c, item.c.length]);
+  }
+});
+
+for (const [batch, idsFile, revision] of quarantineBatches) test(`every rescued quarantined question has one applied decision: ${revision}`, () => {
+  const ids = read(idsFile);
+  assert.equal(batch.length, ids.length);
+  assert.deepEqual(batch.map(q => q.i).sort((a,b) => a-b), ids);
+  const original = new Map(read('../audit/original/snowpro-core.json').map(q => [q.i, q]));
+  const ledger = new Map(read('../audit/review-ledger.json').map(r => [r.id, r]));
+  for (const item of batch) {
+    const q = questions.find(q => q.i === item.i);
+    assert.ok(statusByDecision[item.decision], `Decision #${item.i}`);
+    assert.equal(q.review.status, statusByDecision[item.decision], `Status #${item.i}`);
+    assert.ok(item.reason, `Reason #${item.i}`);
+    assert.deepEqual(ledger.get(item.i).before, original.get(item.i), `Original #${item.i}`);
+    if (item.decision === 'corregir') assert.equal(q.contentRevision, revision);
+    else assert.notEqual(q.contentRevision, revision, `Revision #${item.i}`);
+    // Una apartada rescatada no puede salir como pendiente: la cola de pendientes está cerrada.
+    assert.notEqual(q.review.status, 'pending', `Pending #${item.i}`);
+  }
 });
 
 test('reviewed questions have consistent keys, official mappings and checked sources', () => {
@@ -70,7 +135,9 @@ test('exam always has 100 distinct reviewed questions and exact official quotas'
 test('practice expands only on request and never uses quarantined or archived material', () => {
   assert.equal(buildPool('quick', questions, { count: 2000 }).length, verified.length);
   const expanded = buildPool('quick', questions, { count: 2000, includePending: true });
-  assert.ok(expanded.some(q => q.review.status === 'pending'));
+  const pending = questions.filter(q => q.review.status === 'pending');
+  assert.equal(expanded.filter(q => q.review.status === 'pending').length, pending.length);
+  assert.equal(expanded.length, verified.length + pending.length);
   assert.ok(expanded.every(q => ['verified', 'pending'].includes(q.review.status)));
 });
 

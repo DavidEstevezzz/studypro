@@ -5,7 +5,7 @@ La selección contrastada permite practicar los 19 objetivos, pero **no cubre ex
 | Objetivo | Ampliación prioritaria |
 |---|---|
 | 1.1 | Ediciones reforzadas con esta tanda; faltan más decisiones de arquitectura por escenario. |
-| 1.2 | Más uso de Snowsight, CLI e IDE; ahora cinco preguntas contrastadas. |
+| 1.2 | Más uso de Snowsight, CLI e IDE; ahora siete preguntas contrastadas. La navegación de Snowsight cambia (Activity pasó a Monitoring): evaluar funciones, no ubicaciones de menús. |
 | 1.3 | Jerarquía y ámbito de más objetos y parámetros; UDF frente a procedimientos. |
 | 1.4 | Snowpark-optimized, políticas de escalado y elección Gen1/Gen2 según carga. |
 | 1.5 | Iceberg, vistas materializadas/seguras y clustering en escenarios. |
@@ -21,7 +21,7 @@ La selección contrastada permite practicar los 19 objetivos, pero **no cubre ex
 | 4.3 | Invalidación y reutilización de cachés en escenarios combinados. |
 | 4.4 | Transformaciones SQL más complejas y datos no estructurados. |
 | 5.1 | Matices de replicación/failover, clonación y recuperación según edición/objeto. |
-| 5.2 | Secure sharing y clean rooms con permisos y restricciones. |
+| 5.2 | Secure sharing y clean rooms con permisos y restricciones. Las vistas no seguras pueden compartirse con SECURE_OBJECTS_ONLY = FALSE: revisar aparte el ID 487. |
 | 5.3 | Ampliado a ocho preguntas de listings y Native Apps. Faltan escenarios de permisos, instalación y ciclo de actualización. |
 
 ## Cómo continuar
@@ -30,7 +30,7 @@ La selección contrastada permite practicar los 19 objetivos, pero **no cubre ex
 2. Para cada pregunta revisar enunciado, todas las opciones, clave, explicación y referencia vigente. Corregir ambigüedades antes de habilitarla.
 3. Revisar las apartadas por prioridad: claves contradictorias, imágenes ausentes, afirmaciones absolutas y límites/precios/interfaces que cambian. Estar apartada no significa necesariamente ser incorrecta.
 4. Añadir escenarios originales cuando validar una pregunta antigua no resuelva el hueco. Evitar preguntas recordadas de exámenes o promesas de frecuencia de aparición.
-5. Practicar con documentación y ejercicios reales además del banco. Con 509 contrastadas, sucesivos simulacros repetirán muchas preguntas: el porcentaje puede reflejar memoria.
+5. Practicar con documentación y ejercicios reales además del banco. Con 823 contrastadas, sucesivos simulacros repetirán muchas preguntas: el porcentaje puede reflejar memoria.
 
 La fuente de verdad es la guía oficial COF-C03 y la documentación de Snowflake, no la procedencia comercial ni la frecuencia de una pregunta en webs de preparación. Revalidar el banco cuando cambie la guía o antes de reservar el examen.
 
@@ -43,3 +43,32 @@ La tanda de 100 pendientes (ver batch-100-report.md) valida 93 y archiva 7. Perm
 Segunda tanda de 100 pendientes (batch-200-report.md): otras 97 validadas y 3 archivadas. Estado actual: 415 contrastadas, 591 pendientes y 454 apartadas. Se refuerzan permisos, funciones externas, directorios, costes, replicación y rendimiento; sigue sin afirmarse cobertura exhaustiva.
 
 Tercera tanda de 100 pendientes (batch-300-report.md): 94 validadas y 6 archivadas. Estado actual: 509 contrastadas, 491 pendientes y 454 apartadas. Refuerzo de datos no estructurados, seguridad, secuencias, streams, SQL y rendimiento; no implica cobertura exhaustiva.
+
+Cuarta tanda de 100 pendientes (batch-400-report.md): 55 validadas (44 conservadas y 11 corregidas) y 45 archivadas, sobre todo casi duplicados de preguntas ya contrastadas y preguntas que dependen de la interfaz de Snowsight. Estado actual: 564 contrastadas, 391 pendientes, 454 apartadas y 73 archivadas. Queda por revisar aparte el ID 487 (vistas no seguras en shares). No implica cobertura exhaustiva.
+
+
+## Actualización batch 500 — 2026-09-23
+
+Revisadas las siguientes 100 pendientes tras el batch 400: 36 conservadas, 24 corregidas y 40 archivadas. Estado acumulado: 624 contrastadas, 291 pendientes, 454 apartadas y 113 archivadas. Esta tanda depura material existente; no añade preguntas ni acredita cobertura exhaustiva de los objetivos. Véase [informe de la tanda](batch-500-report.md).
+
+
+## Actualización batch 600 — 2026-09-23
+
+100 decisiones: 28 conservadas, 24 corregidas, 47 archivadas y 1 apartada. Totales: 676 contrastadas, 191 pendientes, 455 apartadas y 160 archivadas. Se aplican cambios mínimos y distractores de familias reales; las notas sin cambio de contenido no reinician el progreso. No se añaden preguntas ni se acredita cobertura exhaustiva. [Informe](batch-600-report.md).
+
+
+## Batch 700 — 2026-09-23
+
+31 conservadas, 15 corregidas y 54 archivadas. Estado: 722 contrastadas, 91 pendientes, 455 apartadas y 214 archivadas. No se añaden preguntas ni se declara cobertura exhaustiva. [Informe](batch-700-report.md).
+
+## Batch 800 — 2026-09-23 (última tanda de pendientes)
+
+91 decisiones sobre las pendientes que quedaban: 54 conservadas, 5 corregidas y 32 archivadas. Estado: 781 contrastadas, 0 pendientes, 455 apartadas y 246 archivadas. Refuerza 1.6 (Cortex AISQL, Notebooks, Snowflake ML) y 3.3 (Git, catalog integration), que eran huecos señalados aquí. Errores corregidos: el operador Unload del Query Profile (ID 1287), el rol por defecto de ACCOUNT_USAGE frente a INFORMATION_SCHEMA (1277), STRIP_NULL_VALUE frente a la opción de formato (1302) y la profundidad de clustering como métrica de tabla (1301). Avisos: Notebooks pasa a Notebooks in Workspaces y TRY_COMPLETE queda como función heredada. [Informe](batch-800-report.md).
+
+Siguiente trabajo: las 455 apartadas. No están validadas ni declaradas falsas; cada una exige comprobar la sospecha concreta (clave dudosa, imagen ausente, afirmación absoluta o límite cambiante). Mientras tanto, la práctica y los simulacros solo usan las 781 contrastadas, así que se repetirá material.
+
+## Apartadas 900 — 2026-09-23 (primera tanda del bloque apartado)
+
+100 apartadas revisadas por criterio, no por ID: las 9 que dependen de una imagen ausente, las 31 con diagnóstico concreto y 60 del objetivo 2.1. Resultado: 26 conservadas, 16 corregidas, 53 archivadas y 5 que siguen apartadas por falta de fuente. Estado: 823 contrastadas, 0 pendientes, 360 apartadas y 299 archivadas. Seis claves eran incorrectas (459, 341, 730, 1037, 1229 y 1304) y la 1081 no tenía ninguna opción válida. [Informe](quarantine-900-report.md).
+
+Siguiente trabajo: las 360 apartadas restantes, casi todas con motivo genérico de cribado. Los objetivos con más material apartado siguen siendo 3.1, 1.4 y 4.4.

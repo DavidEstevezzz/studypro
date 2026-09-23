@@ -1,11 +1,17 @@
 import { readFileSync, writeFileSync, mkdirSync, existsSync, copyFileSync } from 'node:fs';
 import { createHash } from 'node:crypto';
-import { REVIEW_DATE, BANK_VERSION, INITIAL_CONTENT_REVISION, GUIDE, domains, objectives, mappingRules } from './audit-config.mjs';
+import { BANK_REVIEW_DATE, REVIEW_DATE, BANK_VERSION, INITIAL_CONTENT_REVISION, GUIDE, domains, objectives, mappingRules } from './audit-config.mjs';
 import { reviewedGroups, corrections } from './reviewed-questions.mjs';
 import { additions } from './new-questions.mjs';
 import { batch100 } from './review-batch-100.mjs';
 import { batch200 } from './review-batch-200.mjs';
 import { batch300 } from './review-batch-300.mjs';
+import { batch400 } from './review-batch-400.mjs';
+import { batch500 } from './review-batch-500.mjs';
+import { batch600 } from './review-batch-600.mjs';
+import { batch700 } from './review-batch-700.mjs';
+import { batch800 } from './review-batch-800.mjs';
+import { quarantine900 } from './review-quarantine-900.mjs';
 
 const root = new URL('../', import.meta.url);
 const path = (p) => new URL(p, root);
@@ -117,34 +123,45 @@ for (const [id,text] of Object.entries(clarify)) {
   const q=byId.get(Number(id)); q.q=text; q.contentRevision=INITIAL_CONTENT_REVISION;
   records.get(q.i).decision='corregir'; records.get(q.i).reason='Acotado el escenario para evitar generalizaciones; clave conservada.';
 }
-for (const [batch, idsFile, revision] of [
-  [batch100, 'audit/next-100-ids.json', 'cof-c03-2026-09-21-batch100'],
-  [batch200, 'audit/batch-200-ids.json', 'cof-c03-2026-09-21-batch200'],
-  [batch300, 'audit/batch-300-ids.json', 'cof-c03-2026-09-21-batch300'],
-]) {
-const batchIds = JSON.parse(readFileSync(path(idsFile)));
-if (batch.length !== 100 || new Set(batch.map(q => q.i)).size !== 100 ||
-  batchIds.some(id => !batch.some(q => q.i === id))) throw new Error('Incomplete batch of 100');
-for (const item of batch) {
-  const q = byId.get(item.i);
-  if (!q || q.review.status !== 'pending') throw new Error(`Batch ID was not pending: ${item.i}`);
-  const { decision, reason, ...fields } = item;
-  if (decision === 'archivar') {
-    q.review = { ...q.review, status: 'archived', reviewedAt: REVIEW_DATE, reason };
-  } else {
-    Object.assign(q, fields, { d: domains[item.objective[0]], topic: objectives[item.objective],
-      review: { status: 'verified', reviewedAt: REVIEW_DATE, method: 'editorial-documentation', reason } });
-    if (decision === 'corregir') q.contentRevision = revision;
+// Applies one reviewed batch. `from` is the status every question in it must have beforehand:
+// 'pending' for the batches taken from the pending queue, 'quarantine' for those rescued from the held pool.
+function applyBatch(batch, idsFile, revision, reviewedAt = REVIEW_DATE, from = 'pending') {
+  const batchIds = JSON.parse(readFileSync(path(idsFile)));
+  // La lista congelada de IDs define la tanda; la última de pendientes es menor porque se agotaron.
+  if (batch.length !== batchIds.length || new Set(batch.map(q => q.i)).size !== batchIds.length ||
+    batchIds.some(id => !batch.some(q => q.i === id))) throw new Error(`Batch does not match ${idsFile}`);
+  for (const item of batch) {
+    const q = byId.get(item.i);
+    if (!q || q.review.status !== from) throw new Error(`Batch ID was not ${from}: ${item.i}`);
+    const { decision, reason, ...fields } = item;
+    // Only conservar_revisada and corregir mark a question as verified; anything unknown stops the build.
+    if (decision === 'archivar') {
+      q.review = { ...q.review, status: 'archived', reviewedAt, reason };
+    } else if (decision === 'mantener_pendiente' || decision === 'apartar') {
+      q.review = { ...q.review, status: decision === 'apartar' ? 'quarantine' : 'pending', reviewedAt, reason };
+    } else if (decision === 'conservar_revisada' || decision === 'corregir') {
+      Object.assign(q, fields, { d: domains[item.objective[0]], topic: objectives[item.objective],
+        review: { status: 'verified', reviewedAt, method: 'editorial-documentation', reason } });
+      if (decision === 'corregir') q.contentRevision = revision;
+    } else throw new Error(`Unknown batch decision for ${item.i}: ${decision}`);
+    records.set(q.i, { id: q.i, decision, reason, originalDomain: before.get(q.i).d });
   }
-  records.set(q.i, { id: q.i, decision, reason, originalDomain: before.get(q.i).d });
 }
-}
+applyBatch(batch100, 'audit/next-100-ids.json', 'cof-c03-2026-09-21-batch100');
+applyBatch(batch200, 'audit/batch-200-ids.json', 'cof-c03-2026-09-21-batch200');
+applyBatch(batch300, 'audit/batch-300-ids.json', 'cof-c03-2026-09-21-batch300');
+applyBatch(batch400, 'audit/batch-400-ids.json', 'cof-c03-2026-09-21-batch400');
+applyBatch(batch500, 'audit/batch-500-ids.json', 'cof-c03-2026-09-23-batch500', '2026-09-23');
+applyBatch(batch600, 'audit/batch-600-ids.json', 'cof-c03-2026-09-23-batch600', '2026-09-23');
+applyBatch(batch700, 'audit/batch-700-ids.json', 'cof-c03-2026-09-23-batch700', '2026-09-23');
+applyBatch(batch800, 'audit/batch-800-ids.json', 'cof-c03-2026-09-23-batch800', '2026-09-23');
+applyBatch(quarantine900, 'audit/quarantine-900-ids.json', BANK_VERSION, BANK_REVIEW_DATE, 'quarantine');
 const statusCounts=Object.fromEntries(['verified','pending','quarantine','archived'].map(s=>[s,bank.filter(q=>q.review.status===s).length]));
 const coverage=Object.entries(objectives).map(([id,title])=>({id,title,domain:domains[id[0]],
   reviewedIds:bank.filter(q=>q.objective===id && q.review.status==='verified').map(q=>q.i),
   candidateIds:bank.filter(q=>q.review.status!=='verified' && q.review.candidateObjective===id).map(q=>q.i),
   note:'Los IDs revisados acreditan práctica de este objetivo, no cobertura exhaustiva de todos sus subapartados.'}));
-const summary={version:BANK_VERSION,date:REVIEW_DATE,guide:GUIDE,originalCount:original.length,total:bank.length,statusCounts,
+const summary={version:BANK_VERSION,date:BANK_REVIEW_DATE,guide:GUIDE,originalCount:original.length,total:bank.length,statusCounts,
   originalSha256:createHash('sha256').update(originalBytes).digest('hex'),
   correctedIds:[...records.values()].filter(r=>r.decision==='corregir').map(r=>r.id),
   addedIds:additions.map(q=>q.i),coverage};
@@ -156,25 +173,31 @@ json('public/data/snowpro-core.json',bank);
 json('audit/batch-100-decisions.json', batch100);
 json('audit/batch-200-decisions.json', batch200);
 json('audit/batch-300-decisions.json', batch300);
+json('audit/batch-400-decisions.json', batch400);
+json('audit/batch-500-decisions.json', batch500);
+json('audit/batch-600-decisions.json', batch600);
+json('audit/batch-700-decisions.json', batch700);
+json('audit/batch-800-decisions.json', batch800);
+json('audit/quarantine-900-decisions.json', quarantine900);
 json('public/data/snowpro-core-audit.json',summary);
 json('audit/review-ledger.json',ledger);
 const fields=['id','decision','status','objective','candidateObjective','mapping','originalDomain','domain','question','reason','reference','reviewedAt'];
 const csv=v=>'"'+String(v??'').replaceAll('"','""')+'"';
 writeFileSync(path('audit/review-ledger.csv'),'\ufeff'+[fields.join(','),...ledger.map(r=>fields.map(f=>csv(r[f])).join(','))].join('\r\n'));
 const catalog=JSON.parse(readFileSync(path('public/data/catalog.json')));
-Object.assign(catalog.find(c=>c.id==='snowpro-core'),{bankVersion:BANK_VERSION,auditFile:'snowpro-core-audit.json',language:'en',
+Object.assign(catalog.find(c=>c.id==='snowpro-core'),{bankVersion:BANK_VERSION,reviewDate:BANK_REVIEW_DATE,auditFile:'snowpro-core-audit.json',language:'en',
   domainWeights:{[domains[1]]:31,[domains[2]]:20,[domains[3]]:18,[domains[4]]:21,[domains[5]]:10},
   blurb:'Práctica en inglés para COF-C03. Simulacros con preguntas contrastadas y cinco dominios oficiales.'});
 json('public/data/catalog.json',catalog);
 const rows=coverage.map(o=>`| ${o.id} ${o.title} | ${o.reviewedIds.length} | ${o.reviewedIds.join(', ')} |`).join('\n');
-writeFileSync(path('audit/README.md'),`# Auditoría SnowPro Core — ${REVIEW_DATE}\n\n`+
+writeFileSync(path('audit/README.md'),`# Auditoría SnowPro Core — ${BANK_REVIEW_DATE}\n\n`+
   `Banco original: ${original.length} preguntas. SHA-256: \`${summary.originalSha256}\`.\n\n`+
   `Se conserva intacto en [original/snowpro-core.json](original/snowpro-core.json). No se ha verificado independientemente la procedencia comercial.\n\n`+
   `## Alcance y resultados\n\nCribado editorial de enunciados y claves del banco, controles estructurales y revisión documental de una selección. No es una certificación de exactitud de las ${original.length} preguntas ni una revisión documental exhaustiva de cada distractor original.\n\n`+
   `- Contrastadas: **${statusCounts.verified}**, incluyendo **${additions.length} originales nuevas**.\n`+
   `- Pendientes de validación documental: **${statusCounts.pending}**.\n`+
   `- Apartadas para revisión prioritaria: **${statusCounts.quarantine}**. Una sospecha no equivale a demostrar que la pregunta es falsa.\n`+
-  `- Archivadas (duplicación exacta, consejos o trivia): **${statusCounts.archived}**.\n`+
+  `- Archivadas (duplicados exactos o casi exactos, consejos, trivia o dependencia de una interfaz antigua): **${statusCounts.archived}**.\n`+
   `- Reformuladas/corregidas: **${summary.correctedIds.length}**.\n\n`+
   `El simulacro y la práctica predeterminada usan solo contrastadas. La práctica ampliada permite pendientes con aviso; nunca incluye apartadas ni archivadas. Todo el original sigue en el registro.\n\n`+
   `## Guía y pesos\n\n[Guía oficial](${GUIDE}). Pesos: 31/20/18/21/10. El 31% es arquitectura y funcionalidades, no IA sola. No se atribuyen pesos inventados a subobjetivos. Git se ubica en 3.3, IA/aplicaciones en 1.6.\n\n`+
@@ -183,6 +206,6 @@ writeFileSync(path('audit/README.md'),`# Auditoría SnowPro Core — ${REVIEW_DA
   `## Trazabilidad\n\n[Registro CSV](review-ledger.csv): decisión y motivo por pregunta. [Registro JSON](review-ledger.json): también versiones antes/después. [Resumen de la app](../public/data/snowpro-core-audit.json). Las fuentes concretas están en cada pregunta; el estado de consulta se registra en sources.json.\n\n`+
   `## Progreso y límites\n\nSe conservan los IDs. Las estadísticas se reasignan por pregunta al nuevo dominio. Las preguntas reformuladas conservan su historial, pero reinician la racha/dominio para no contar una antigua clave como aprendida. El histórico de simulacros se conserva, pero solo sesiones de la versión vigente cuentan para la señal orientativa.\n\n`+
   `750/1000 es puntuación escalada, no 75% de aciertos. La app usa 75% como objetivo interno de práctica; no predice aprobar. No se probaron consultas en una cuenta real de Snowflake.\n\n`+
-  `## Mantenimiento\n\nEditar scripts/reviewed-questions.mjs y scripts/new-questions.mjs; ejecutar npm run audit:build y npm test. No volver a ejecutar el antiguo fix-multi-answers sobre este banco. Las nuevas preguntas son material original de práctica, no preguntas de exámenes.\n`);
+  `## Mantenimiento\n\nEditar scripts/reviewed-questions.mjs, scripts/new-questions.mjs o el script de la tanda correspondiente (scripts/review-batch-*.mjs, con sus IDs congelados en audit/*-ids.json); ejecutar npm run audit (alias de audit:build) y npm test. No volver a ejecutar el antiguo fix-multi-answers sobre este banco. Las nuevas preguntas son material original de práctica, no preguntas de exámenes.\n`);
 console.log(JSON.stringify({original:original.length,total:bank.length,...statusCounts,corrected:summary.correctedIds.length,added:additions.length,
   domains:Object.values(domains).map(d=>[d,bank.filter(q=>q.d===d&&q.review.status==='verified').length])},null,2));
