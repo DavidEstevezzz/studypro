@@ -141,21 +141,21 @@
   },
   {
     "url": "https://docs.snowflake.com/en/sql-reference/parameters",
-    "fetchedAt": "2026-09-21",
+    "fetchedAt": "2026-09-23",
     "status": 200,
-    "sha256": "7301b11f86083c821bae657e1d295e36d3a21d8e83b6bf9b6179ca6a51189a08",
+    "sha256": "a8b98511cdc57f98f5663b4167742a564c8cc2ad1a6a1374d7d13995c7d58e77",
     "title": "Parameters"
   },
   {
     "url": "https://docs.snowflake.com/en/sql-reference/sql/copy-into-location",
-    "fetchedAt": "2026-09-21",
+    "fetchedAt": "2026-09-23",
     "status": 200,
     "sha256": "b66d380ee8108ca1109a14de71d25bd8df47b0883b40bf425926e0bc21a011ee",
     "title": "COPY INTO *\\<location\\>*"
   },
   {
     "url": "https://docs.snowflake.com/en/sql-reference/sql/copy-into-table",
-    "fetchedAt": "2026-09-21",
+    "fetchedAt": "2026-09-23",
     "status": 200,
     "sha256": "b9ef80e66c2e442ee8693b7b85699d413e57123ffecdec0a119c640c2a12f3db",
     "title": "COPY INTO *\\<table\\>*"
@@ -365,7 +365,7 @@
   },
   {
     "url": "https://docs.snowflake.com/en/user-guide/data-time-travel",
-    "fetchedAt": "2026-09-21",
+    "fetchedAt": "2026-09-23",
     "status": 200,
     "sha256": "41f23803ed4e5cc02a89bdc5375e542ca24ae1461cb68650c0f4192ce0ce288e",
     "title": "Understanding & using Time Travel"
@@ -421,7 +421,7 @@
   },
   {
     "url": "https://docs.snowflake.com/en/user-guide/network-policies",
-    "fetchedAt": "2026-09-21",
+    "fetchedAt": "2026-09-23",
     "status": 200,
     "sha256": "41b94fae620846e597ed3bd070a9de0ac69f492a24950dd0220b97edebe23c06",
     "title": "Controlling network traffic with network policies"
@@ -442,7 +442,7 @@
   },
   {
     "url": "https://docs.snowflake.com/en/user-guide/organizations",
-    "fetchedAt": "2026-09-21",
+    "fetchedAt": "2026-09-23",
     "status": 200,
     "sha256": "13ea9cf79103d22cc4523d5b45a0e4f0f9d032070558042939ea1c768ac8b818",
     "title": "Introduction to organizations"
@@ -463,7 +463,7 @@
   },
   {
     "url": "https://docs.snowflake.com/en/user-guide/query-acceleration-service",
-    "fetchedAt": "2026-09-21",
+    "fetchedAt": "2026-09-23",
     "status": 200,
     "sha256": "28debbdfb0f689e1c31e03058a8282317c5574009bf388fa6602fdf6aa7431be",
     "title": "Using the Query Acceleration Service (QAS)"
@@ -491,14 +491,14 @@
   },
   {
     "url": "https://docs.snowflake.com/en/user-guide/resource-monitors",
-    "fetchedAt": "2026-09-21",
+    "fetchedAt": "2026-09-23",
     "status": 200,
     "sha256": "433bb35845e20091dffccbad19baab0b6c7e5a7fa5b5fd1bbd35daba0d6f846e",
     "title": "Working with resource monitors"
   },
   {
     "url": "https://docs.snowflake.com/en/user-guide/search-optimization-service",
-    "fetchedAt": "2026-09-21",
+    "fetchedAt": "2026-09-23",
     "status": 200,
     "sha256": "c8cb2319134ac549bc199c1b76cd7d7151bd27ebc3e427198cfba83bcc2b9492",
     "title": "Search optimization service"
@@ -610,7 +610,7 @@
   },
   {
     "url": "https://docs.snowflake.com/en/user-guide/ui-snowsight-activity",
-    "fetchedAt": "2026-09-21",
+    "fetchedAt": "2026-09-23",
     "status": 200,
     "sha256": "66f1289653ee49283d354faa3ab702926e83444ef4d1cb9047e17bfc0353fb69",
     "title": "Monitor query activity with Query History"
@@ -1268,9 +1268,9 @@
   },
   {
     "url": "https://docs.snowflake.com/en/user-guide/object-tagging/introduction",
-    "fetchedAt": "2026-09-21",
+    "fetchedAt": "2026-09-23",
     "status": 200,
-    "sha256": "be455788dc6d800b148729c7ebb2eaadd32036aefc7f79a9fdec4df9e86f4f3c",
+    "sha256": "076237bd2fe892d18c3aecf9ada7ebb86aa68a0388a45959c738b0ebb7814b0b",
     "title": "Introduction to object tagging"
   },
   {
@@ -1314,5 +1314,75 @@
     "status": 200,
     "sha256": "7add65a93d41b37df1008350f05c1a2b8f723f9d5c49fbd6710cb0eeec60c397",
     "title": "Share unstructured data with a secure view"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/user-guide/search-optimization/join-queries",
+    "fetchedAt": "2026-09-23",
+    "status": 200,
+    "sha256": "e35859bad4c974fd86d01557507bd691599ba2cba09c44046ee62cd8b70922c0",
+    "title": "Speeding up join queries with search optimization"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/sql-reference/functions/current_task_graphs",
+    "fetchedAt": "2026-09-23",
+    "status": 200,
+    "sha256": "e70971929648a2195212549dbc7e164a3dd766a8041430df164934da5304a390",
+    "title": "CURRENT_TASK_GRAPHS"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/sql-reference/functions/result_scan",
+    "fetchedAt": "2026-09-23",
+    "status": 200,
+    "sha256": "0ecaf3b347a758b384a74a6515f9805c52d80aedd4dd25a489f632016ae7323b",
+    "title": "RESULT_SCAN"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/sql-reference/sql/revoke-role",
+    "fetchedAt": "2026-09-23",
+    "status": 200,
+    "sha256": "1b14d74844aa3920c4e92f92fdf00efd46bd2190ff4fb46eb9f2e3b6800371c7",
+    "title": "REVOKE ROLE"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/sql-reference/info-schema/table_storage_metrics",
+    "fetchedAt": "2026-09-23",
+    "status": 200,
+    "sha256": "cd2b99508c32daf253f80fc542d8da1d20cae865224457226a2d17d6b4a134f3",
+    "title": "TABLE_STORAGE_METRICS view"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/user-guide/admin-security-fed-auth-configure-idp",
+    "fetchedAt": "2026-09-23",
+    "status": 200,
+    "sha256": "a37fb01759ff600a3be2826dde2bd5e26ba2a65c69c940f69c40df42d533d7ab",
+    "title": "Configuring an identity provider (IdP) for Snowflake"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/sql-reference/sql/show-file-formats",
+    "fetchedAt": "2026-09-23",
+    "status": 200,
+    "sha256": "25345373bf146f519a18955c9df149b0c76b3a4ed3acb77363eba1de5275ce06",
+    "title": "SHOW FILE FORMATS"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/collaboration/consumer-becoming",
+    "fetchedAt": "2026-09-23",
+    "status": 200,
+    "sha256": "0f96867915e420ce23323222aedcc6fe0c221fff683e40f95825752150d9de2f",
+    "title": "Use listings as a consumer"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/sql-reference/functions/object_construct",
+    "fetchedAt": "2026-09-23",
+    "status": 200,
+    "sha256": "bc73f47ac11aa966df4ae65b858191a6787f50ffad82ee2068c2c6d23cc918c4",
+    "title": "OBJECT_CONSTRUCT"
+  },
+  {
+    "url": "https://docs.snowflake.com/en/sql-reference/sql/create-security-integration-saml2",
+    "fetchedAt": "2026-09-23",
+    "status": 200,
+    "sha256": "e898da044ec2eff5edff88472915632f70b584a991650a581ec8988f050aea9f",
+    "title": "CREATE SECURITY INTEGRATION (SAML2)"
   }
 ]

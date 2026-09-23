@@ -1,12 +1,13 @@
 import { readFileSync, writeFileSync, mkdirSync, existsSync, copyFileSync } from 'node:fs';
 import { createHash } from 'node:crypto';
-import { REVIEW_DATE, BANK_VERSION, INITIAL_CONTENT_REVISION, GUIDE, domains, objectives, mappingRules } from './audit-config.mjs';
+import { BANK_REVIEW_DATE, REVIEW_DATE, BANK_VERSION, INITIAL_CONTENT_REVISION, GUIDE, domains, objectives, mappingRules } from './audit-config.mjs';
 import { reviewedGroups, corrections } from './reviewed-questions.mjs';
 import { additions } from './new-questions.mjs';
 import { batch100 } from './review-batch-100.mjs';
 import { batch200 } from './review-batch-200.mjs';
 import { batch300 } from './review-batch-300.mjs';
 import { batch400 } from './review-batch-400.mjs';
+import { batch500 } from './review-batch-500.mjs';
 
 const root = new URL('../', import.meta.url);
 const path = (p) => new URL(p, root);
@@ -118,11 +119,12 @@ for (const [id,text] of Object.entries(clarify)) {
   const q=byId.get(Number(id)); q.q=text; q.contentRevision=INITIAL_CONTENT_REVISION;
   records.get(q.i).decision='corregir'; records.get(q.i).reason='Acotado el escenario para evitar generalizaciones; clave conservada.';
 }
-for (const [batch, idsFile, revision] of [
+for (const [batch, idsFile, revision, reviewedAt = REVIEW_DATE] of [
   [batch100, 'audit/next-100-ids.json', 'cof-c03-2026-09-21-batch100'],
   [batch200, 'audit/batch-200-ids.json', 'cof-c03-2026-09-21-batch200'],
   [batch300, 'audit/batch-300-ids.json', 'cof-c03-2026-09-21-batch300'],
   [batch400, 'audit/batch-400-ids.json', 'cof-c03-2026-09-21-batch400'],
+  [batch500, 'audit/batch-500-ids.json', BANK_VERSION, BANK_REVIEW_DATE],
 ]) {
 const batchIds = JSON.parse(readFileSync(path(idsFile)));
 if (batch.length !== 100 || new Set(batch.map(q => q.i)).size !== 100 ||
@@ -133,12 +135,12 @@ for (const item of batch) {
   const { decision, reason, ...fields } = item;
   // Only conservar_revisada and corregir mark a question as verified; anything unknown stops the build.
   if (decision === 'archivar') {
-    q.review = { ...q.review, status: 'archived', reviewedAt: REVIEW_DATE, reason };
+    q.review = { ...q.review, status: 'archived', reviewedAt, reason };
   } else if (decision === 'mantener_pendiente' || decision === 'apartar') {
-    q.review = { ...q.review, status: decision === 'apartar' ? 'quarantine' : 'pending', reviewedAt: REVIEW_DATE, reason };
+    q.review = { ...q.review, status: decision === 'apartar' ? 'quarantine' : 'pending', reviewedAt, reason };
   } else if (decision === 'conservar_revisada' || decision === 'corregir') {
     Object.assign(q, fields, { d: domains[item.objective[0]], topic: objectives[item.objective],
-      review: { status: 'verified', reviewedAt: REVIEW_DATE, method: 'editorial-documentation', reason } });
+      review: { status: 'verified', reviewedAt, method: 'editorial-documentation', reason } });
     if (decision === 'corregir') q.contentRevision = revision;
   } else throw new Error(`Unknown batch decision for ${item.i}: ${decision}`);
   records.set(q.i, { id: q.i, decision, reason, originalDomain: before.get(q.i).d });
@@ -149,7 +151,7 @@ const coverage=Object.entries(objectives).map(([id,title])=>({id,title,domain:do
   reviewedIds:bank.filter(q=>q.objective===id && q.review.status==='verified').map(q=>q.i),
   candidateIds:bank.filter(q=>q.review.status!=='verified' && q.review.candidateObjective===id).map(q=>q.i),
   note:'Los IDs revisados acreditan práctica de este objetivo, no cobertura exhaustiva de todos sus subapartados.'}));
-const summary={version:BANK_VERSION,date:REVIEW_DATE,guide:GUIDE,originalCount:original.length,total:bank.length,statusCounts,
+const summary={version:BANK_VERSION,date:BANK_REVIEW_DATE,guide:GUIDE,originalCount:original.length,total:bank.length,statusCounts,
   originalSha256:createHash('sha256').update(originalBytes).digest('hex'),
   correctedIds:[...records.values()].filter(r=>r.decision==='corregir').map(r=>r.id),
   addedIds:additions.map(q=>q.i),coverage};
@@ -162,18 +164,19 @@ json('audit/batch-100-decisions.json', batch100);
 json('audit/batch-200-decisions.json', batch200);
 json('audit/batch-300-decisions.json', batch300);
 json('audit/batch-400-decisions.json', batch400);
+json('audit/batch-500-decisions.json', batch500);
 json('public/data/snowpro-core-audit.json',summary);
 json('audit/review-ledger.json',ledger);
 const fields=['id','decision','status','objective','candidateObjective','mapping','originalDomain','domain','question','reason','reference','reviewedAt'];
 const csv=v=>'"'+String(v??'').replaceAll('"','""')+'"';
 writeFileSync(path('audit/review-ledger.csv'),'\ufeff'+[fields.join(','),...ledger.map(r=>fields.map(f=>csv(r[f])).join(','))].join('\r\n'));
 const catalog=JSON.parse(readFileSync(path('public/data/catalog.json')));
-Object.assign(catalog.find(c=>c.id==='snowpro-core'),{bankVersion:BANK_VERSION,auditFile:'snowpro-core-audit.json',language:'en',
+Object.assign(catalog.find(c=>c.id==='snowpro-core'),{bankVersion:BANK_VERSION,reviewDate:BANK_REVIEW_DATE,auditFile:'snowpro-core-audit.json',language:'en',
   domainWeights:{[domains[1]]:31,[domains[2]]:20,[domains[3]]:18,[domains[4]]:21,[domains[5]]:10},
   blurb:'Práctica en inglés para COF-C03. Simulacros con preguntas contrastadas y cinco dominios oficiales.'});
 json('public/data/catalog.json',catalog);
 const rows=coverage.map(o=>`| ${o.id} ${o.title} | ${o.reviewedIds.length} | ${o.reviewedIds.join(', ')} |`).join('\n');
-writeFileSync(path('audit/README.md'),`# Auditoría SnowPro Core — ${REVIEW_DATE}\n\n`+
+writeFileSync(path('audit/README.md'),`# Auditoría SnowPro Core — ${BANK_REVIEW_DATE}\n\n`+
   `Banco original: ${original.length} preguntas. SHA-256: \`${summary.originalSha256}\`.\n\n`+
   `Se conserva intacto en [original/snowpro-core.json](original/snowpro-core.json). No se ha verificado independientemente la procedencia comercial.\n\n`+
   `## Alcance y resultados\n\nCribado editorial de enunciados y claves del banco, controles estructurales y revisión documental de una selección. No es una certificación de exactitud de las ${original.length} preguntas ni una revisión documental exhaustiva de cada distractor original.\n\n`+

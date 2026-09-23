@@ -51,9 +51,9 @@ Recuerda subir también la carpeta `data/` que queda dentro de `dist/`.
 
 ## Banco revisado COF-C03
 
-Las preguntas se mantienen en inglés. La práctica predeterminada y los simulacros usan 564 preguntas contrastadas, incluidas 70 nuevas y 157 reformuladas/corregidas. El simulacro distribuye 100 preguntas con pesos 31/20/18/21/10 y 115 minutos. El 31% engloba arquitectura y funcionalidades, no solo IA.
+Las preguntas se mantienen en inglés. La práctica predeterminada y los simulacros usan 624 preguntas contrastadas, incluidas 70 nuevas y 181 reformuladas/corregidas. El simulacro distribuye 100 preguntas con pesos 31/20/18/21/10 y 115 minutos. El 31% engloba arquitectura y funcionalidades, no solo IA.
 
-La práctica adicional permite incluir 391 preguntas pendientes con aviso. Otras 454 quedan apartadas para revisión y 73 archivadas; no se eliminan del original. Estos estados no equivalen a afirmar que todas las apartadas sean falsas. La revisión documental del banco completo sigue pendiente.
+La práctica adicional permite incluir 291 preguntas pendientes con aviso. Otras 454 quedan apartadas para revisión y 113 archivadas; no se eliminan del original. Estos estados no equivalen a afirmar que todas las apartadas sean falsas. La revisión documental del banco completo sigue pendiente.
 
 Consulta el [informe de auditoría](audit/README.md), el [mapa de carencias](audit/coverage-gaps.md) y el [registro de decisiones](audit/review-ledger.csv). El original intacto está en `audit/original/`. Cada pregunta contrastada identifica su objetivo, fecha y fuente. Los enlaces consultados se registran en `audit/sources.json`.
 
@@ -76,4 +76,4 @@ La generación parte siempre del original conservado. El antiguo script de corre
 - Los simulacros antiguos siguen en el historial; solo los de la versión vigente cuentan para el objetivo interno de práctica.
 - El 75% es un objetivo de práctica, no una equivalencia de los 750 puntos escalados exigidos en el examen. Repetir preguntas puede inflar el porcentaje por memorización.
 
-Última tanda: [cuarta tanda de 100 preguntas revisadas](audit/batch-400-report.md), con decisiones y referencias por ID.
+Última tanda: [quinta tanda de 100 preguntas revisadas](audit/batch-500-report.md), con decisiones y referencias por ID.

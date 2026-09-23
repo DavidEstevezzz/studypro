@@ -21116,16 +21116,18 @@
       1
     ],
     "n": 1,
-    "e": "When a Snowflake table is defined as transient, the storage cost associated with fail-safe storage is completely eliminated. This makes transient tables a cost-effective solution for temporary or less critical data.",
-    "r": "https://docs.snowflake.com/en/user-guide/tables-temp-transient.html",
+    "e": "Transient tables have no Fail-safe, eliminating their Fail-safe storage charges. Active data and retained Time Travel versions still occupy billable storage; making a table transient does not eliminate unrelated staged-file storage.",
+    "r": "https://docs.snowflake.com/en/user-guide/tables-temp-transient",
     "d": "Gestion de cuenta y Gobernanza",
     "p": false,
     "review": {
-      "status": "pending",
-      "candidateObjective": "2.3",
-      "reason": "Cribado de enunciado y clave. Sin validación exhaustiva de distractores y explicación; no apta para simulacro contrastado.",
-      "screenedAt": "2026-09-21"
-    }
+      "status": "verified",
+      "reviewedAt": "2026-09-23",
+      "method": "editorial-documentation",
+      "reason": "Enunciado, opciones y clave contrastados; explicación revisada."
+    },
+    "objective": "2.3",
+    "topic": "Monitoring and cost management"
   },
   {
     "i": 817,
@@ -21169,10 +21171,11 @@
     "d": "Gestion de cuenta y Gobernanza",
     "p": false,
     "review": {
-      "status": "pending",
+      "status": "archived",
       "candidateObjective": "2.1",
-      "reason": "Cribado de enunciado y clave. Sin validación exhaustiva de distractores y explicación; no apta para simulacro contrastado.",
-      "screenedAt": "2026-09-21"
+      "reason": "Repite la habilidad y respuesta de la pregunta contrastada 280, sin aportar un escenario sustancialmente distinto. Se conserva el original.",
+      "screenedAt": "2026-09-21",
+      "reviewedAt": "2026-09-23"
     }
   },
   {
@@ -21265,10 +21268,11 @@
     "d": "Rendimiento, Consultas y Transformacion",
     "p": false,
     "review": {
-      "status": "pending",
+      "status": "archived",
       "candidateObjective": "4.1",
-      "reason": "Cribado de enunciado y clave. Sin validación exhaustiva de distractores y explicación; no apta para simulacro contrastado.",
-      "screenedAt": "2026-09-21"
+      "reason": "Repite la habilidad y respuesta de la pregunta contrastada 792, sin aportar un escenario sustancialmente distinto. Se conserva el original.",
+      "screenedAt": "2026-09-21",
+      "reviewedAt": "2026-09-23"
     }
   },
   {
@@ -21284,16 +21288,18 @@
       3
     ],
     "n": 1,
-    "e": "To extract the name from the first element of the array called 'elements' in a JSON document stored in a VARIANT column, the correct syntax in Snowflake is 'source_column:elements[0].name'. This syntax accesses the first element of the array (index 0) and then extracts the value of the 'name' key.",
+    "e": "Use a colon after the VARIANT column, dot notation for object fields, and zero-based array indexing: source_column:elements[0].name. This returns the element value as VARIANT; append ::STRING if a SQL string is required.",
     "r": "https://docs.snowflake.com/en/user-guide/querying-semistructured",
     "d": "Rendimiento, Consultas y Transformacion",
     "p": false,
     "review": {
-      "status": "pending",
-      "candidateObjective": "4.4",
-      "reason": "Cribado de enunciado y clave. Sin validación exhaustiva de distractores y explicación; no apta para simulacro contrastado.",
-      "screenedAt": "2026-09-21"
-    }
+      "status": "verified",
+      "reviewedAt": "2026-09-23",
+      "method": "editorial-documentation",
+      "reason": "Enunciado, opciones y clave contrastados; explicación revisada."
+    },
+    "objective": "4.4",
+    "topic": "Data transformation"
   },
   {
     "i": 824,
@@ -21308,16 +21314,18 @@
       2
     ],
     "n": 1,
-    "e": "The PARSE_JSON function should be used to insert JSON formatted string data into a VARIANT field in Snowflake. This function converts a JSON text string into a VARIANT data type, which is Snowflake's semi-structured data type.",
-    "r": "https://docs.snowflake.com/en/sql-reference/functions/parse_json.html",
+    "e": "PARSE_JSON parses valid JSON text into its native representation in VARIANT. TO_VARIANT on a string preserves a string value rather than parsing its JSON structure. CHECK_JSON validates syntax and FLATTEN expands compound values.",
+    "r": "https://docs.snowflake.com/en/sql-reference/functions/parse_json",
     "d": "Rendimiento, Consultas y Transformacion",
     "p": false,
     "review": {
-      "status": "pending",
-      "candidateObjective": "4.4",
-      "reason": "Cribado de enunciado y clave. Sin validación exhaustiva de distractores y explicación; no apta para simulacro contrastado.",
-      "screenedAt": "2026-09-21"
-    }
+      "status": "verified",
+      "reviewedAt": "2026-09-23",
+      "method": "editorial-documentation",
+      "reason": "Enunciado, opciones y clave contrastados; explicación revisada."
+    },
+    "objective": "4.4",
+    "topic": "Data transformation"
   },
   {
     "i": 825,
@@ -21332,16 +21340,18 @@
       1
     ],
     "n": 1,
-    "e": "The MODIFY permission on a Snowflake virtual warehouse allows a role to resize the warehouse. This permission is necessary for adjusting the warehouse size according to the data processing needs.",
-    "r": "https://docs.snowflake.com/en/sql-reference/sql/grant-privilege",
-    "d": "Gestion de cuenta y Gobernanza",
+    "e": "MODIFY on the warehouse permits changing properties such as its size. MONITOR permits monitoring and USAGE permits using the warehouse. ALTER is a command family, not the warehouse privilege name.",
+    "r": "https://docs.snowflake.com/en/sql-reference/sql/alter-warehouse",
+    "d": "Arquitectura y Data Cloud",
     "p": false,
     "review": {
-      "status": "pending",
-      "candidateObjective": "2.1",
-      "reason": "Cribado de enunciado y clave. Sin validación exhaustiva de distractores y explicación; no apta para simulacro contrastado.",
-      "screenedAt": "2026-09-21"
-    }
+      "status": "verified",
+      "reviewedAt": "2026-09-23",
+      "method": "editorial-documentation",
+      "reason": "Enunciado, opciones y clave contrastados; explicación revisada."
+    },
+    "objective": "1.4",
+    "topic": "Virtual warehouses"
   },
   {
     "i": 826,
@@ -21385,10 +21395,11 @@
     "d": "Carga, Descarga y Conectividad",
     "p": false,
     "review": {
-      "status": "pending",
+      "status": "archived",
       "candidateObjective": "3.1",
-      "reason": "Cribado de enunciado y clave. Sin validación exhaustiva de distractores y explicación; no apta para simulacro contrastado.",
-      "screenedAt": "2026-09-21"
+      "reason": "Repite la habilidad y respuesta de la pregunta contrastada 230, sin aportar un escenario sustancialmente distinto. Se conserva el original.",
+      "screenedAt": "2026-09-21",
+      "reviewedAt": "2026-09-23"
     }
   },
   {
@@ -21457,10 +21468,11 @@
     "d": "Colaboracion y Proteccion de datos",
     "p": false,
     "review": {
-      "status": "pending",
+      "status": "archived",
       "candidateObjective": "5.1",
-      "reason": "Cribado de enunciado y clave. Sin validación exhaustiva de distractores y explicación; no apta para simulacro contrastado.",
-      "screenedAt": "2026-09-21"
+      "reason": "Repite la habilidad y respuesta de la pregunta contrastada 266, sin aportar un escenario sustancialmente distinto. Se conserva el original.",
+      "screenedAt": "2026-09-21",
+      "reviewedAt": "2026-09-23"
     }
   },
   {
@@ -21476,64 +21488,72 @@
       1
     ],
     "n": 1,
-    "e": "The query acceleration service in Snowflake is beneficial for queries with large scans and selective filters. This service optimizes the performance of queries that require scanning a large amount of data while applying specific filters to narrow down the results.",
+    "e": "Large scans with selective filters are typical query-acceleration candidates. Eligibility depends on the actual plan and supported workload; high-cardinality GROUP BY can prevent useful acceleration, and enabling search optimization alone does not make a query eligible.",
     "r": "https://docs.snowflake.com/en/user-guide/query-acceleration-service",
     "d": "Rendimiento, Consultas y Transformacion",
     "p": false,
     "review": {
-      "status": "pending",
-      "candidateObjective": "4.2",
-      "reason": "Cribado de enunciado y clave. Sin validación exhaustiva de distractores y explicación; no apta para simulacro contrastado.",
-      "screenedAt": "2026-09-21"
-    }
+      "status": "verified",
+      "reviewedAt": "2026-09-23",
+      "method": "editorial-documentation",
+      "reason": "Enunciado, opciones y clave contrastados; explicación revisada."
+    },
+    "objective": "4.2",
+    "topic": "Optimize query performance"
   },
   {
     "i": 832,
-    "q": "How does the search optimization service help Snowflake users improve query performance?",
+    "q": "How does search optimization help skip irrelevant micro-partitions?",
     "o": [
-      "It scans the micro-partitions based on the joins used in the queries and scans only join columns.",
-      "It maintains a persistent data structure that keeps track of the values of the table’s columns in each of its micro-partitions.",
-      "It scans the local disk cache to avoid scans on the tables used in the query.",
-      "It keeps track of running queries and their results and saves those extra scans on the table."
+      "It always scans only join columns",
+      "It maintains a persistent search access path recording where column values may occur",
+      "It replaces all table storage with warehouse cache",
+      "It stores every running query result for permanent reuse"
     ],
     "c": [
       1
     ],
     "n": 1,
-    "e": "The search optimization service in Snowflake improves query performance by maintaining a persistent data structure. This structure keeps track of the values of the table’s columns in each of its micro-partitions, allowing for more efficient query execution and faster retrieval of results.",
-    "r": "https://docs.snowflake.com/en/user-guide/search-optimization-service.html",
+    "e": "The search access path records which values might occur in each micro-partition so scans can skip candidates that cannot match supported predicates. It is maintained separately from warehouse cache and persisted query results. Damaged punctuation in the original was removed.",
+    "r": "https://docs.snowflake.com/en/user-guide/search-optimization-service",
     "d": "Rendimiento, Consultas y Transformacion",
     "p": false,
     "review": {
-      "status": "pending",
-      "candidateObjective": "4.2",
-      "reason": "Cribado de enunciado y clave. Sin validación exhaustiva de distractores y explicación; no apta para simulacro contrastado.",
-      "screenedAt": "2026-09-21"
-    }
+      "status": "verified",
+      "reviewedAt": "2026-09-23",
+      "method": "editorial-documentation",
+      "reason": "Acotado o corregido el contenido para evitar ambigüedad; alternativas y explicación contrastadas."
+    },
+    "objective": "4.2",
+    "topic": "Optimize query performance",
+    "contentRevision": "cof-c03-2026-09-23-batch500"
   },
   {
     "i": 833,
-    "q": "What can be done to reduce queueing on a virtual warehouse?",
+    "q": "An eligible warehouse has recurring concurrency queues. Which change adds independent clusters rather than more resources to one cluster?",
     "o": [
-      "Increase the AUTO_SUSPEND setting for the warehouse.",
-      "Change the warehouse to a multi-cluster warehouse.",
-      "Increase the warehouse size.",
-      "Lower the MAX_CONCURRENCY_LEVEL setting for the warehouse."
+      "Increase AUTO_SUSPEND alone",
+      "Configure multi-cluster scale-out",
+      "Increase the size of the existing single cluster",
+      "Reduce MAX_CONCURRENCY_LEVEL"
     ],
     "c": [
       1
     ],
     "n": 1,
-    "e": "To reduce queueing on a virtual warehouse in Snowflake, changing the warehouse to a multi-cluster warehouse can be effective. This allows for the distribution of query load across multiple clusters, reducing queue times and improving overall performance.",
-    "r": "https://docs.snowflake.com/en/user-guide/warehouses-multicluster.html",
+    "e": "Multi-cluster scaling adds clusters to serve concurrent queries. Increasing size can also reduce some queues by shortening execution, so the original generic question had more than one plausible remedy.",
+    "r": "https://docs.snowflake.com/en/user-guide/warehouses-multicluster",
     "d": "Arquitectura y Data Cloud",
     "p": false,
     "review": {
-      "status": "pending",
-      "candidateObjective": "1.4",
-      "reason": "Cribado de enunciado y clave. Sin validación exhaustiva de distractores y explicación; no apta para simulacro contrastado.",
-      "screenedAt": "2026-09-21"
-    }
+      "status": "verified",
+      "reviewedAt": "2026-09-23",
+      "method": "editorial-documentation",
+      "reason": "Acotado o corregido el contenido para evitar ambigüedad; alternativas y explicación contrastadas."
+    },
+    "objective": "1.4",
+    "topic": "Virtual warehouses",
+    "contentRevision": "cof-c03-2026-09-23-batch500"
   },
   {
     "i": 834,
@@ -21602,16 +21622,18 @@
       4
     ],
     "n": 2,
-    "e": "The correct answer is: File URL, Scoped URL. The docs list three URL types for unstructured data: Scoped URL, File URL, and Pre-signed URL. From the given options, C (File URL) and E (Scoped URL) are the two valid choices. Only C was marked. Both C and E should be marked correct. Reference: https://docs.snowflake.com/en/user-guide/unstructured-intro",
+    "e": "Snowflake provides file URLs and scoped URLs for staged files; pre-signed URLs are another supported type, but are not an offered answer. Absolute and relative paths are not the named access-URL categories in this question.",
     "r": "https://docs.snowflake.com/en/user-guide/unstructured-intro",
-    "d": "Arquitectura y Data Cloud",
+    "d": "Carga, Descarga y Conectividad",
     "p": false,
     "review": {
-      "status": "pending",
-      "candidateObjective": null,
-      "reason": "Cribado de enunciado y clave. Sin validación exhaustiva de distractores y explicación; no apta para simulacro contrastado.",
-      "screenedAt": "2026-09-21"
-    }
+      "status": "verified",
+      "reviewedAt": "2026-09-23",
+      "method": "editorial-documentation",
+      "reason": "Enunciado, opciones y clave contrastados; explicación revisada."
+    },
+    "objective": "3.1",
+    "topic": "Data loading and unloading"
   },
   {
     "i": 837,
@@ -21626,16 +21648,18 @@
       1
     ],
     "n": 1,
-    "e": "The correct query to return a sample of a table with a 10% probability for each row to be included is 'select * from testtable sample (10);'.",
-    "r": "https://docs.snowflake.com/en/sql-reference/constructs/sample.html",
+    "e": "SAMPLE (10) defaults to BERNOULLI/ROW sampling with a 10 percent per-row inclusion probability. It does not guarantee exactly 100 rows out of 1000. Adding ROWS requests a fixed count, and 0.1 without ROWS means 0.1 percent.",
+    "r": "https://docs.snowflake.com/en/sql-reference/constructs/sample",
     "d": "Rendimiento, Consultas y Transformacion",
     "p": false,
     "review": {
-      "status": "pending",
-      "candidateObjective": "4.4",
-      "reason": "Cribado de enunciado y clave. Sin validación exhaustiva de distractores y explicación; no apta para simulacro contrastado.",
-      "screenedAt": "2026-09-21"
-    }
+      "status": "verified",
+      "reviewedAt": "2026-09-23",
+      "method": "editorial-documentation",
+      "reason": "Enunciado, opciones y clave contrastados; explicación revisada."
+    },
+    "objective": "4.4",
+    "topic": "Data transformation"
   },
   {
     "i": 838,
@@ -21711,27 +21735,30 @@
   },
   {
     "i": 841,
-    "q": "How can a Snowflake user validate data that is unloaded using the COPY INTO command?",
+    "q": "What does VALIDATION_MODE=RETURN_ROWS do in COPY INTO a location?",
     "o": [
-      "Load the data into a CSV file.",
-      "Load the data into a relational table.",
-      "Use the VALIDATION_MODE = SQL statement.",
-      "Use the VALIDATION_MODE = RETURN_ROWS statement."
+      "Checks the contents of files already written to the stage",
+      "Unloads a CSV file and automatically reloads it",
+      "Replaces SQL NULL with the string null",
+      "Returns the SELECT results instead of writing output files"
     ],
     "c": [
       3
     ],
     "n": 1,
-    "e": "To validate data that is unloaded using the COPY INTO command in Snowflake, a user can use the VALIDATION_MODE = RETURN_ROWS statement. This validation mode enables the examination of the data to ensure its correctness after the unload operation.",
-    "r": "https://docs.snowflake.com/en/sql-reference/sql/copy-into-table.html#optional-parameters",
+    "e": "RETURN_ROWS previews the data selected for an unload without unloading it. It is not a validation of files after they have been written, nor a generic assurance that output parsing will succeed.",
+    "r": "https://docs.snowflake.com/en/sql-reference/sql/copy-into-location",
     "d": "Carga, Descarga y Conectividad",
     "p": false,
     "review": {
-      "status": "pending",
-      "candidateObjective": "3.1",
-      "reason": "Cribado de enunciado y clave. Sin validación exhaustiva de distractores y explicación; no apta para simulacro contrastado.",
-      "screenedAt": "2026-09-21"
-    }
+      "status": "verified",
+      "reviewedAt": "2026-09-23",
+      "method": "editorial-documentation",
+      "reason": "Acotado o corregido el contenido para evitar ambigüedad; alternativas y explicación contrastadas."
+    },
+    "objective": "3.1",
+    "topic": "Data loading and unloading",
+    "contentRevision": "cof-c03-2026-09-23-batch500"
   },
   {
     "i": 842,
@@ -21751,10 +21778,11 @@
     "d": "Gestion de cuenta y Gobernanza",
     "p": false,
     "review": {
-      "status": "pending",
+      "status": "archived",
       "candidateObjective": "2.1",
-      "reason": "Cribado de enunciado y clave. Sin validación exhaustiva de distractores y explicación; no apta para simulacro contrastado.",
-      "screenedAt": "2026-09-21"
+      "reason": "Repite la habilidad y respuesta de la pregunta contrastada 4, sin aportar un escenario sustancialmente distinto. Se conserva el original.",
+      "screenedAt": "2026-09-21",
+      "reviewedAt": "2026-09-23"
     }
   },
   {
@@ -21775,10 +21803,11 @@
     "d": "Carga, Descarga y Conectividad",
     "p": false,
     "review": {
-      "status": "pending",
+      "status": "archived",
       "candidateObjective": "3.1",
-      "reason": "Cribado de enunciado y clave. Sin validación exhaustiva de distractores y explicación; no apta para simulacro contrastado.",
-      "screenedAt": "2026-09-21"
+      "reason": "Repite la habilidad y respuesta de la pregunta contrastada 584, sin aportar un escenario sustancialmente distinto. Se conserva el original.",
+      "screenedAt": "2026-09-21",
+      "reviewedAt": "2026-09-23"
     }
   },
   {
@@ -21818,16 +21847,18 @@
       2
     ],
     "n": 1,
-    "e": "If a Snowflake user increases the size of a suspended virtual warehouse, the provisioning of additional compute resources will only be in effect when the warehouse is next resumed. The change does not trigger an immediate resumption or provisioning of resources.",
-    "r": "https://docs.snowflake.com/en/user-guide/warehouses-tasks.html#resizing-a-warehouse",
+    "e": "Resizing a suspended warehouse updates its configuration without starting it. Compute for the new size is provisioned when it resumes; query acceleration resources and other warehouses are independent.",
+    "r": "https://docs.snowflake.com/en/user-guide/warehouses-tasks",
     "d": "Arquitectura y Data Cloud",
     "p": false,
     "review": {
-      "status": "pending",
-      "candidateObjective": "1.4",
-      "reason": "Cribado de enunciado y clave. Sin validación exhaustiva de distractores y explicación; no apta para simulacro contrastado.",
-      "screenedAt": "2026-09-21"
-    }
+      "status": "verified",
+      "reviewedAt": "2026-09-23",
+      "method": "editorial-documentation",
+      "reason": "Enunciado, opciones y clave contrastados; explicación revisada."
+    },
+    "objective": "1.4",
+    "topic": "Virtual warehouses"
   },
   {
     "i": 846,
@@ -21842,16 +21873,18 @@
       3
     ],
     "n": 1,
-    "e": "The VALIDATE table function in Snowflake takes 'JOB_ID' as an input argument. This ID is used to specify the COPY INTO command execution whose files are to be validated.",
-    "r": "https://docs.snowflake.com/en/sql-reference/functions/validate.html",
-    "d": "Rendimiento, Consultas y Transformacion",
+    "e": "VALIDATE accepts a table and the named JOB_ID argument identifying the COPY load to inspect. A query ID value, including the supported last-job form, supplies that argument; LAST_QUERY_ID is not the argument name. Validation has documented restrictions, including transformed loads.",
+    "r": "https://docs.snowflake.com/en/sql-reference/functions/validate",
+    "d": "Carga, Descarga y Conectividad",
     "p": false,
     "review": {
-      "status": "pending",
-      "candidateObjective": "4.4",
-      "reason": "Cribado de enunciado y clave. Sin validación exhaustiva de distractores y explicación; no apta para simulacro contrastado.",
-      "screenedAt": "2026-09-21"
-    }
+      "status": "verified",
+      "reviewedAt": "2026-09-23",
+      "method": "editorial-documentation",
+      "reason": "Enunciado, opciones y clave contrastados; explicación revisada."
+    },
+    "objective": "3.1",
+    "topic": "Data loading and unloading"
   },
   {
     "i": 847,
@@ -21897,10 +21930,11 @@
     "d": "Gestion de cuenta y Gobernanza",
     "p": false,
     "review": {
-      "status": "pending",
+      "status": "archived",
       "candidateObjective": "2.3",
-      "reason": "Cribado de enunciado y clave. Sin validación exhaustiva de distractores y explicación; no apta para simulacro contrastado.",
-      "screenedAt": "2026-09-21"
+      "reason": "Repite la habilidad y respuesta de la pregunta contrastada 44, sin aportar un escenario sustancialmente distinto. Se conserva el original.",
+      "screenedAt": "2026-09-21",
+      "reviewedAt": "2026-09-23"
     }
   },
   {
@@ -21923,37 +21957,41 @@
     "d": "Arquitectura y Data Cloud",
     "p": false,
     "review": {
-      "status": "pending",
+      "status": "archived",
       "candidateObjective": "1.4",
-      "reason": "Cribado de enunciado y clave. Sin validación exhaustiva de distractores y explicación; no apta para simulacro contrastado.",
-      "screenedAt": "2026-09-21"
+      "reason": "Repite la habilidad y respuesta de la pregunta contrastada 26, sin aportar un escenario sustancialmente distinto. Se conserva el original.",
+      "screenedAt": "2026-09-21",
+      "reviewedAt": "2026-09-23"
     }
   },
   {
     "i": 850,
-    "q": "What strategies can be used to optimize the performance of a virtual warehouse? (Choose two.)",
+    "q": "Which workload-specific actions can improve performance when justified by measurements? (Choose two.)",
     "o": [
-      "Reduce queuing.",
-      "Allow memory spillage.",
-      "Increase the MAX_CONCURRENCY_LEVEL parameter.",
-      "Increase the warehouse size.",
-      "Suspend the warehouse frequently."
+      "Address concurrency queues with additional appropriate compute capacity",
+      "Deliberately increase spilling",
+      "Always raise MAX_CONCURRENCY_LEVEL regardless of memory",
+      "Benchmark a larger warehouse for a resource-bound query",
+      "Suspend after every query to keep the cache warm"
     ],
     "c": [
       0,
       3
     ],
     "n": 2,
-    "e": "To optimize the performance of a virtual warehouse in Snowflake, strategies such as reducing queuing and increasing the warehouse size can be effective. Reducing queuing ensures more efficient use of resources, while a larger warehouse size allows for handling more concurrent queries and workloads.",
-    "r": "https://docs.snowflake.com/en/user-guide/performance-query-warehouse",
+    "e": "Treat concurrency and resource-intensive individual queries separately. Larger compute is not universally faster; raising concurrency can increase memory contention, and suspension drops the local data cache.",
+    "r": "https://docs.snowflake.com/en/user-guide/warehouses-considerations",
     "d": "Rendimiento, Consultas y Transformacion",
     "p": false,
     "review": {
-      "status": "pending",
-      "candidateObjective": "4.2",
-      "reason": "Cribado de enunciado y clave. Sin validación exhaustiva de distractores y explicación; no apta para simulacro contrastado.",
-      "screenedAt": "2026-09-21"
-    }
+      "status": "verified",
+      "reviewedAt": "2026-09-23",
+      "method": "editorial-documentation",
+      "reason": "Acotado o corregido el contenido para evitar ambigüedad; alternativas y explicación contrastadas."
+    },
+    "objective": "4.1",
+    "topic": "Evaluate query performance",
+    "contentRevision": "cof-c03-2026-09-23-batch500"
   },
   {
     "i": 851,
@@ -21968,16 +22006,18 @@
       0
     ],
     "n": 1,
-    "e": "In a role hierarchy in Snowflake, privileges are inherited by any roles above the role in the hierarchy. This means that higher-level roles automatically inherit the privileges of the roles beneath them, facilitating efficient and hierarchical management of access and permissions.",
-    "r": "https://docs.snowflake.com/en/user-guide/security-access-control-overview.html#role-hierarchy",
+    "e": "A parent role inherits privileges from roles granted to it, transitively up the granted hierarchy. Sibling roles do not inherit each other merely by being at the same level, and privileges do not flow down to child roles.",
+    "r": "https://docs.snowflake.com/en/user-guide/security-access-control-overview",
     "d": "Gestion de cuenta y Gobernanza",
     "p": false,
     "review": {
-      "status": "pending",
-      "candidateObjective": "2.1",
-      "reason": "Cribado de enunciado y clave. Sin validación exhaustiva de distractores y explicación; no apta para simulacro contrastado.",
-      "screenedAt": "2026-09-21"
-    }
+      "status": "verified",
+      "reviewedAt": "2026-09-23",
+      "method": "editorial-documentation",
+      "reason": "Enunciado, opciones y clave contrastados; explicación revisada."
+    },
+    "objective": "2.1",
+    "topic": "Security model and access control"
   },
   {
     "i": 852,
@@ -21992,16 +22032,18 @@
       0
     ],
     "n": 1,
-    "e": "The ALLOW_CLIENT_MFA_CACHING parameter in Snowflake can be set at the account level. This parameter controls the caching of multi-factor authentication (MFA) credentials, impacting the security settings for the entire account.",
-    "r": "https://docs.snowflake.com/en/user-guide/security-mfa.html",
-    "d": "Rendimiento, Consultas y Transformacion",
+    "e": "ALLOW_CLIENT_MFA_CACHING is an account-level parameter. It controls whether supported clients can cache MFA tokens in the operating-system keystore; role, session and user are not its parameter-setting levels.",
+    "r": "https://docs.snowflake.com/en/sql-reference/parameters",
+    "d": "Gestion de cuenta y Gobernanza",
     "p": false,
     "review": {
-      "status": "pending",
-      "candidateObjective": "4.3",
-      "reason": "Cribado de enunciado y clave. Sin validación exhaustiva de distractores y explicación; no apta para simulacro contrastado.",
-      "screenedAt": "2026-09-21"
-    }
+      "status": "verified",
+      "reviewedAt": "2026-09-23",
+      "method": "editorial-documentation",
+      "reason": "Enunciado, opciones y clave contrastados; explicación revisada."
+    },
+    "objective": "2.1",
+    "topic": "Security model and access control"
   },
   {
     "i": 853,
@@ -22016,16 +22058,18 @@
       0
     ],
     "n": 1,
-    "e": "In Snowflake, the data provider is responsible for hosting and sharing data. The data provider manages the data and shares it with data consumers, who can then access and use the shared data based on the permissions granted.",
-    "r": "https://docs.snowflake.com/en/user-guide/data-sharing-intro.html",
+    "e": "The provider owns or controls the source data and exposes authorized objects through sharing. Consumers query the shared data; a reader account is a provider-managed consumption account, not the definition of a data provider.",
+    "r": "https://docs.snowflake.com/en/user-guide/data-sharing-intro",
     "d": "Colaboracion y Proteccion de datos",
     "p": false,
     "review": {
-      "status": "pending",
-      "candidateObjective": "5.2",
-      "reason": "Cribado de enunciado y clave. Sin validación exhaustiva de distractores y explicación; no apta para simulacro contrastado.",
-      "screenedAt": "2026-09-21"
-    }
+      "status": "verified",
+      "reviewedAt": "2026-09-23",
+      "method": "editorial-documentation",
+      "reason": "Enunciado, opciones y clave contrastados; explicación revisada."
+    },
+    "objective": "5.2",
+    "topic": "Data sharing"
   },
   {
     "i": 854,
@@ -22064,16 +22108,18 @@
       0
     ],
     "n": 1,
-    "e": "The MINS_TO_BYPASS_NETWORK_POLICY property in Snowflake is set at the User level. This setting determines the number of minutes a network policy can be bypassed",
+    "e": "MINS_TO_BYPASS_NETWORK_POLICY is a user-object property for temporary bypass. Snowflake documentation says only Snowflake can set it and directs users to Support. A powerful local role alone does not authorize setting this special property.",
     "r": "https://docs.snowflake.com/en/user-guide/network-policies",
-    "d": "Arquitectura y Data Cloud",
+    "d": "Gestion de cuenta y Gobernanza",
     "p": false,
     "review": {
-      "status": "pending",
-      "candidateObjective": null,
-      "reason": "Cribado de enunciado y clave. Sin validación exhaustiva de distractores y explicación; no apta para simulacro contrastado.",
-      "screenedAt": "2026-09-21"
-    }
+      "status": "verified",
+      "reviewedAt": "2026-09-23",
+      "method": "editorial-documentation",
+      "reason": "Enunciado, opciones y clave contrastados; explicación revisada."
+    },
+    "objective": "2.1",
+    "topic": "Security model and access control"
   },
   {
     "i": 856,
@@ -22088,16 +22134,18 @@
       2
     ],
     "n": 1,
-    "e": "The NULL_IF file format option in Snowflake can be used to convert SQL NULL values to the string 'null' when unloading data with the CSV file format.",
-    "r": "https://docs.snowflake.com/en/user-guide/data-unload-considerations#empty-strings-and-null-values",
+    "e": "For CSV unloading, NULL_IF specifies the output text used for SQL NULL; the first specified string is used, for example NULL_IF=('null'). EMPTY_FIELD_AS_NULL concerns empty-field handling rather than choosing this output string.",
+    "r": "https://docs.snowflake.com/en/sql-reference/sql/copy-into-location",
     "d": "Carga, Descarga y Conectividad",
     "p": false,
     "review": {
-      "status": "pending",
-      "candidateObjective": "3.1",
-      "reason": "Cribado de enunciado y clave. Sin validación exhaustiva de distractores y explicación; no apta para simulacro contrastado.",
-      "screenedAt": "2026-09-21"
-    }
+      "status": "verified",
+      "reviewedAt": "2026-09-23",
+      "method": "editorial-documentation",
+      "reason": "Enunciado, opciones y clave contrastados; explicación revisada."
+    },
+    "objective": "3.1",
+    "topic": "Data loading and unloading"
   },
   {
     "i": 857,
@@ -22112,16 +22160,18 @@
       2
     ],
     "n": 1,
-    "e": "The CURRENT_TASK_GRAPHS table function in Snowflake should be used to view details on a Directed Acyclic Graph (DAG) run that is currently scheduled or executing. This function provides information about the structure and status of ongoing DAG runs.",
-    "r": "https://docs.snowflake.com/en/sql-reference/functions/current_task_graphs.html",
-    "d": "Rendimiento, Consultas y Transformacion",
+    "e": "CURRENT_TASK_GRAPHS returns graph runs currently scheduled or executing. TASK_DEPENDENTS describes dependencies, while completed graph history is a different function; COMPLETE_TASK_GRAPHS is not its correct name.",
+    "r": "https://docs.snowflake.com/en/sql-reference/functions/current_task_graphs",
+    "d": "Carga, Descarga y Conectividad",
     "p": false,
     "review": {
-      "status": "pending",
-      "candidateObjective": "4.4",
-      "reason": "Cribado de enunciado y clave. Sin validación exhaustiva de distractores y explicación; no apta para simulacro contrastado.",
-      "screenedAt": "2026-09-21"
-    }
+      "status": "verified",
+      "reviewedAt": "2026-09-23",
+      "method": "editorial-documentation",
+      "reason": "Enunciado, opciones y clave contrastados; explicación revisada."
+    },
+    "objective": "3.2",
+    "topic": "Automated ingestion"
   },
   {
     "i": 858,
@@ -22136,40 +22186,45 @@
       3
     ],
     "n": 1,
-    "e": "A Materialized view in Snowflake is a database object derived from a query specification, stored for later use. It is specifically designed to speed up expensive aggregations on large data sets by storing the results of the query.",
+    "e": "A materialized view stores and automatically maintains the result of a supported query definition, enabling reuse of precomputed work. A standard secure view does not itself materialize its result; maintenance and storage have costs.",
     "r": "https://docs.snowflake.com/en/user-guide/views-materialized",
-    "d": "Arquitectura y Data Cloud",
+    "d": "Rendimiento, Consultas y Transformacion",
     "p": false,
     "review": {
-      "status": "pending",
-      "candidateObjective": "1.5",
-      "reason": "Cribado de enunciado y clave. Sin validación exhaustiva de distractores y explicación; no apta para simulacro contrastado.",
-      "screenedAt": "2026-09-21"
-    }
+      "status": "verified",
+      "reviewedAt": "2026-09-23",
+      "method": "editorial-documentation",
+      "reason": "Enunciado, opciones y clave contrastados; explicación revisada."
+    },
+    "objective": "4.2",
+    "topic": "Optimize query performance"
   },
   {
     "i": 859,
-    "q": "User1, who has the SYSADMIN role, executed a query on Snowsight. User2, who is in the same Snowflake account, wants to view the result set of the query executed by User1 using the Snowsight query history. What will happen if User2 tries to access the query history?",
+    "q": "User1 manually ran a query. Can a different User2 access that stored result with RESULT_SCAN solely by holding ACCOUNTADMIN?",
     "o": [
-      "If User2 has the SYSADMIN role they will be able to see the results.",
-      "If User2 has the SECURITYADMIN role they will be able to see the results.",
-      "If User2 has the ACCOUNTADMIN role they will be able to see the results.",
-      "User2 will be unable to view the result set of the query executed by User1."
+      "Yes, ACCOUNTADMIN can read every stored result",
+      "Yes, if both users select the same primary role",
+      "Yes, provided User2 resumes the original warehouse",
+      "No; a manually run query result is accessible through RESULT_SCAN only to the user who ran it"
     ],
     "c": [
       3
     ],
     "n": 1,
-    "e": "You can view results only for queries you have executed. If you have privileges to view queries executed by another user, the Query Detail page displays the details for the query, but, for data privacy reasons, the page does not display the actual query result",
-    "r": "https://docs.snowflake.com/en/user-guide/ui-history",
-    "d": "Arquitectura y Data Cloud",
+    "e": "Viewing another user's query history is distinct from accessing its result rows. RESULT_SCAN restricts manually executed results by user. Task-generated results have a separate owner-role rule. The rewrite avoids conflating history visibility with results.",
+    "r": "https://docs.snowflake.com/en/sql-reference/functions/result_scan",
+    "d": "Rendimiento, Consultas y Transformacion",
     "p": false,
     "review": {
-      "status": "pending",
-      "candidateObjective": "1.2",
-      "reason": "Cribado de enunciado y clave. Sin validación exhaustiva de distractores y explicación; no apta para simulacro contrastado.",
-      "screenedAt": "2026-09-21"
-    }
+      "status": "verified",
+      "reviewedAt": "2026-09-23",
+      "method": "editorial-documentation",
+      "reason": "Acotado o corregido el contenido para evitar ambigüedad; alternativas y explicación contrastadas."
+    },
+    "objective": "4.3",
+    "topic": "Caching",
+    "contentRevision": "cof-c03-2026-09-23-batch500"
   },
   {
     "i": 860,
@@ -22197,7 +22252,7 @@
   },
   {
     "i": 861,
-    "q": "The effects of query pruning can be observed by evaluating which statistics? (Choose two.)",
+    "q": "Which pair of Query Profile statistics directly compares scanned micro-partitions with all partitions of the scanned table? (Choose two.)",
     "o": [
       "Partitions scanned",
       "Partitions total",
@@ -22210,16 +22265,19 @@
       1
     ],
     "n": 2,
-    "e": "The effects of query pruning in Snowflake can be observed by evaluating the 'Partitions scanned' and 'Partitions total' statistics. These statistics indicate how efficiently Snowflake is scanning data by reducing unnecessary data scans, which is a key aspect of query pruning.",
-    "r": "https://docs.snowflake.com/en/user-guide/ui-query-profile#query-operator-details",
+    "e": "Comparing scanned with total partitions quantifies partition pruning. Bytes scanned can also reflect pruning effects, so the original wording did not uniquely distinguish its required pair.",
+    "r": "https://docs.snowflake.com/en/user-guide/ui-snowsight-activity",
     "d": "Rendimiento, Consultas y Transformacion",
     "p": false,
     "review": {
-      "status": "pending",
-      "candidateObjective": "4.1",
-      "reason": "Cribado de enunciado y clave. Sin validación exhaustiva de distractores y explicación; no apta para simulacro contrastado.",
-      "screenedAt": "2026-09-21"
-    }
+      "status": "verified",
+      "reviewedAt": "2026-09-23",
+      "method": "editorial-documentation",
+      "reason": "Acotado o corregido el contenido para evitar ambigüedad; alternativas y explicación contrastadas."
+    },
+    "objective": "4.1",
+    "topic": "Evaluate query performance",
+    "contentRevision": "cof-c03-2026-09-23-batch500"
   },
   {
     "i": 862,
@@ -22241,10 +22299,11 @@
     "d": "Rendimiento, Consultas y Transformacion",
     "p": false,
     "review": {
-      "status": "pending",
+      "status": "archived",
       "candidateObjective": "4.4",
-      "reason": "Cribado de enunciado y clave. Sin validación exhaustiva de distractores y explicación; no apta para simulacro contrastado.",
-      "screenedAt": "2026-09-21"
+      "reason": "Repite la habilidad y respuesta de la pregunta contrastada 623, sin aportar un escenario sustancialmente distinto. Se conserva el original.",
+      "screenedAt": "2026-09-21",
+      "reviewedAt": "2026-09-23"
     }
   },
   {
@@ -22265,10 +22324,11 @@
     "d": "Carga, Descarga y Conectividad",
     "p": false,
     "review": {
-      "status": "pending",
+      "status": "archived",
       "candidateObjective": "3.2",
-      "reason": "Cribado de enunciado y clave. Sin validación exhaustiva de distractores y explicación; no apta para simulacro contrastado.",
-      "screenedAt": "2026-09-21"
+      "reason": "Repite la habilidad y respuesta de la pregunta contrastada 107, sin aportar un escenario sustancialmente distinto. Se conserva el original.",
+      "screenedAt": "2026-09-21",
+      "reviewedAt": "2026-09-23"
     }
   },
   {
@@ -22308,20 +22368,22 @@
       0
     ],
     "n": 1,
-    "e": "By default, the ACCOUNTADMIN role in Snowflake has the privilege to create resource monitors. This role is responsible for managing the account and its resources, including the creation and configuration of resource monitors.",
-    "r": "https://docs.snowflake.com/en/user-guide/resource-monitors#access-control-privileges-for-resource-monitors",
+    "e": "Only users with ACCOUNTADMIN can create resource monitors. Account administrators can grant other roles privileges to view or modify existing monitors; these are distinct from creation.",
+    "r": "https://docs.snowflake.com/en/user-guide/resource-monitors",
     "d": "Gestion de cuenta y Gobernanza",
     "p": false,
     "review": {
-      "status": "pending",
-      "candidateObjective": "2.1",
-      "reason": "Cribado de enunciado y clave. Sin validación exhaustiva de distractores y explicación; no apta para simulacro contrastado.",
-      "screenedAt": "2026-09-21"
-    }
+      "status": "verified",
+      "reviewedAt": "2026-09-23",
+      "method": "editorial-documentation",
+      "reason": "Enunciado, opciones y clave contrastados; explicación revisada."
+    },
+    "objective": "2.3",
+    "topic": "Monitoring and cost management"
   },
   {
     "i": 866,
-    "q": "Which DDL/DML operation is allowed on an inbound data share?",
+    "q": "Which statement can a consumer execute directly against an accessible shared table without modifying the provider data?",
     "o": [
       "ALTER TABLE",
       "INSERT INTO",
@@ -22332,16 +22394,19 @@
       3
     ],
     "n": 1,
-    "e": "For an inbound data share in Snowflake, the only allowed DDL/DML operation is SELECT. This operation permits users to query and view the shared data, while other modifications like ALTER, INSERT, and MERGE are not allowed.",
-    "r": "https://docs.snowflake.com/en/user-guide/data-sharing-intro.html",
+    "e": "Shared databases are read-only to consumers, who may SELECT permitted data. This avoids labeling SELECT as a data-definition or modifying statement; modification or cloning of the provider object is not granted by sharing.",
+    "r": "https://docs.snowflake.com/en/user-guide/data-sharing-intro",
     "d": "Colaboracion y Proteccion de datos",
     "p": false,
     "review": {
-      "status": "pending",
-      "candidateObjective": "5.2",
-      "reason": "Cribado de enunciado y clave. Sin validación exhaustiva de distractores y explicación; no apta para simulacro contrastado.",
-      "screenedAt": "2026-09-21"
-    }
+      "status": "verified",
+      "reviewedAt": "2026-09-23",
+      "method": "editorial-documentation",
+      "reason": "Acotado o corregido el contenido para evitar ambigüedad; alternativas y explicación contrastadas."
+    },
+    "objective": "5.2",
+    "topic": "Data sharing",
+    "contentRevision": "cof-c03-2026-09-23-batch500"
   },
   {
     "i": 867,
@@ -22363,10 +22428,11 @@
     "d": "Arquitectura y Data Cloud",
     "p": false,
     "review": {
-      "status": "pending",
+      "status": "archived",
       "candidateObjective": "1.2",
-      "reason": "Cribado de enunciado y clave. Sin validación exhaustiva de distractores y explicación; no apta para simulacro contrastado.",
-      "screenedAt": "2026-09-21"
+      "reason": "Memorización de tipos de gráficos de Snowsight, dependiente de interfaz; se mantiene el criterio aplicado a IDs 442 y 742 y se conserva el original.",
+      "screenedAt": "2026-09-21",
+      "reviewedAt": "2026-09-23"
     }
   },
   {
@@ -22435,10 +22501,11 @@
     "d": "Rendimiento, Consultas y Transformacion",
     "p": false,
     "review": {
-      "status": "pending",
+      "status": "archived",
       "candidateObjective": "4.1",
-      "reason": "Cribado de enunciado y clave. Sin validación exhaustiva de distractores y explicación; no apta para simulacro contrastado.",
-      "screenedAt": "2026-09-21"
+      "reason": "Repite la habilidad y respuesta de la pregunta contrastada 792, sin aportar un escenario sustancialmente distinto. Se conserva el original.",
+      "screenedAt": "2026-09-21",
+      "reviewedAt": "2026-09-23"
     }
   },
   {
@@ -22469,27 +22536,30 @@
   },
   {
     "i": 872,
-    "q": "Which use case does the search optimization service support?",
+    "q": "Which listed join-predicate pattern is supported by search optimization?",
     "o": [
-      "Disjuncts (OR) in join predicates",
+      "Disjunctions using OR in join predicates",
       "LIKE/ILIKE/RLIKE join predicates",
       "Join predicates on VARIANT columns",
-      "Conjunctions (AND) of multiple equality predicates"
+      "Conjunctions using AND of supported equality predicates"
     ],
     "c": [
       3
     ],
     "n": 1,
-    "e": "The search optimization service in Snowflake supports use cases such as conjunctions (AND) of multiple equality predicates. This service is designed to optimize the performance of queries that involve complex predicates and need efficient data retrieval.",
-    "r": "https://docs.snowflake.com/en/user-guide/search-optimization-service.html",
+    "e": "Search optimization supports conjunctions of equality join predicates. The listed OR, pattern-matching and VARIANT join cases are documented limitations. Standalone WHERE predicate support is a separate question.",
+    "r": "https://docs.snowflake.com/en/user-guide/search-optimization/join-queries",
     "d": "Rendimiento, Consultas y Transformacion",
     "p": false,
     "review": {
-      "status": "pending",
-      "candidateObjective": "4.2",
-      "reason": "Cribado de enunciado y clave. Sin validación exhaustiva de distractores y explicación; no apta para simulacro contrastado.",
-      "screenedAt": "2026-09-21"
-    }
+      "status": "verified",
+      "reviewedAt": "2026-09-23",
+      "method": "editorial-documentation",
+      "reason": "Acotado o corregido el contenido para evitar ambigüedad; alternativas y explicación contrastadas."
+    },
+    "objective": "4.2",
+    "topic": "Optimize query performance",
+    "contentRevision": "cof-c03-2026-09-23-batch500"
   },
   {
     "i": 873,
@@ -22504,16 +22574,18 @@
       2
     ],
     "n": 1,
-    "e": "When creating a CSV file format in Snowflake where the columns are wrapped by single quotes or double quotes, the 'FIELD_OPTIONALLY_ENCLOSED_BY' parameter should be used. This parameter specifies a character that encloses field values, which is essential for properly parsing quoted CSV data.",
-    "r": "https://docs.snowflake.com/en/sql-reference/sql/create-file-format.html",
+    "e": "FIELD_OPTIONALLY_ENCLOSED_BY selects the field-enclosure character for CSV. Configure the actual character used, such as a single or double quote; one setting does not mean both quote styles are automatically interchangeable.",
+    "r": "https://docs.snowflake.com/en/sql-reference/sql/create-file-format",
     "d": "Carga, Descarga y Conectividad",
     "p": false,
     "review": {
-      "status": "pending",
-      "candidateObjective": "3.1",
-      "reason": "Cribado de enunciado y clave. Sin validación exhaustiva de distractores y explicación; no apta para simulacro contrastado.",
-      "screenedAt": "2026-09-21"
-    }
+      "status": "verified",
+      "reviewedAt": "2026-09-23",
+      "method": "editorial-documentation",
+      "reason": "Enunciado, opciones y clave contrastados; explicación revisada."
+    },
+    "objective": "3.1",
+    "topic": "Data loading and unloading"
   },
   {
     "i": 874,
@@ -22552,16 +22624,18 @@
       0
     ],
     "n": 1,
-    "e": "In the Query Profile of Snowflake, the TableScan operator represents the access to a single table. This operator is used to identify how a table is accessed and scanned during the execution of a query.",
-    "r": "https://docs.snowflake.com/en/user-guide/ui-query-profile.html",
+    "e": "TableScan represents access to a table in the execution plan. The statistics include pruning measures such as Partitions scanned and Partitions total. Stage scans, VALUES and generated rows have different operator meanings; the operator tree is distinct from the statistics pane.",
+    "r": "https://docs.snowflake.com/en/user-guide/ui-snowsight-activity",
     "d": "Rendimiento, Consultas y Transformacion",
     "p": false,
     "review": {
-      "status": "pending",
-      "candidateObjective": "4.1",
-      "reason": "Cribado de enunciado y clave. Sin validación exhaustiva de distractores y explicación; no apta para simulacro contrastado.",
-      "screenedAt": "2026-09-21"
-    }
+      "status": "verified",
+      "reviewedAt": "2026-09-23",
+      "method": "editorial-documentation",
+      "reason": "Enunciado, opciones y clave contrastados; explicación revisada."
+    },
+    "objective": "4.1",
+    "topic": "Evaluate query performance"
   },
   {
     "i": 876,
@@ -22576,16 +22650,18 @@
       1
     ],
     "n": 1,
-    "e": "Dentro de la seccion Statistics del Query Profile en Snowflake, se muestra informacion sobre Table pruning, incluyendo metricas de particiones escaneadas vs. podadas (partitions scanned/total), lo que ayuda a diagnosticar la eficiencia del micro-partition pruning. Operator tree es un panel separado que muestra el plan de ejecucion. Most expensive nodes aparece en la seccion Overview, no en Statistics. Nodes by execution time no es una metrica de la seccion Statistics.",
-    "r": "https://docs.snowflake.com/en/user-guide/ui-query-profile.html",
+    "e": "TableScan represents access to a table in the execution plan. The statistics include pruning measures such as Partitions scanned and Partitions total. Stage scans, VALUES and generated rows have different operator meanings; the operator tree is distinct from the statistics pane.",
+    "r": "https://docs.snowflake.com/en/user-guide/ui-snowsight-activity",
     "d": "Rendimiento, Consultas y Transformacion",
     "p": false,
     "review": {
-      "status": "pending",
-      "candidateObjective": "4.1",
-      "reason": "Cribado de enunciado y clave. Sin validación exhaustiva de distractores y explicación; no apta para simulacro contrastado.",
-      "screenedAt": "2026-09-21"
-    }
+      "status": "verified",
+      "reviewedAt": "2026-09-23",
+      "method": "editorial-documentation",
+      "reason": "Enunciado, opciones y clave contrastados; explicación revisada."
+    },
+    "objective": "4.1",
+    "topic": "Evaluate query performance"
   },
   {
     "i": 877,
@@ -22615,27 +22691,30 @@
   },
   {
     "i": 878,
-    "q": "How can a Snowflake user post-process the result of SHOW FILE FORMATS?",
+    "q": "Which table function can expose the stored output of SHOW FILE FORMATS to a subsequent SELECT within the supported access/retention window?",
     "o": [
-      "Use the RESULT_SCAN function.",
-      "Create a CURSOR for the command.",
-      "Put it in the FROM clause in brackets.",
-      "Assign the command to RESULTSET."
+      "RESULT_SCAN",
+      "FLATTEN directly on the SHOW keyword",
+      "PARSE_JSON on the command name",
+      "CURRENT_WAREHOUSE"
     ],
     "c": [
       0
     ],
     "n": 1,
-    "e": "To post-process the result of the SHOW FILE FORMATS command in Snowflake, a user can use the RESULT_SCAN function. This function allows users to query the results of a previous statement, such as SHOW FILE FORMATS, for further analysis or processing.",
-    "r": "https://docs.snowflake.com/en/sql-reference/functions/result_scan.html",
-    "d": "Carga, Descarga y Conectividad",
+    "e": "RESULT_SCAN can turn a SHOW result into a queryable row set. Other scripting mechanisms can process results too, so the original broad alternatives were not a reliable single-choice distinction.",
+    "r": "https://docs.snowflake.com/en/sql-reference/functions/result_scan",
+    "d": "Rendimiento, Consultas y Transformacion",
     "p": false,
     "review": {
-      "status": "pending",
-      "candidateObjective": "3.1",
-      "reason": "Cribado de enunciado y clave. Sin validación exhaustiva de distractores y explicación; no apta para simulacro contrastado.",
-      "screenedAt": "2026-09-21"
-    }
+      "status": "verified",
+      "reviewedAt": "2026-09-23",
+      "method": "editorial-documentation",
+      "reason": "Acotado o corregido el contenido para evitar ambigüedad; alternativas y explicación contrastadas."
+    },
+    "objective": "4.4",
+    "topic": "Data transformation",
+    "contentRevision": "cof-c03-2026-09-23-batch500"
   },
   {
     "i": 879,
@@ -22715,27 +22794,30 @@
   },
   {
     "i": 882,
-    "q": "What is one of the benefits of using a multi-cluster virtual warehouse?",
+    "q": "What is a benefit of an auto-scaling multi-cluster warehouse configured with different minimum and maximum cluster counts?",
     "o": [
-      "It will speed up data loading.",
-      "It will reduce the cost of running the warehouse.",
-      "It will automatically increase the warehouse size as needed.",
-      "It will automatically start and stop additional clusters as needed."
+      "It always makes one data-load statement faster",
+      "It always costs less than a single cluster",
+      "It automatically changes the warehouse size",
+      "It can start and stop additional clusters as concurrency demand changes"
     ],
     "c": [
       3
     ],
     "n": 1,
-    "e": "One of the key benefits of using a multi-cluster virtual warehouse in Snowflake is that it can automatically start and stop additional clusters as needed. This feature helps in managing varying workloads efficiently by scaling resources up or down based on the demand.",
-    "r": "https://docs.snowflake.com/en/user-guide/warehouses-multicluster.html",
+    "e": "Auto-scale changes cluster count within configured limits. Maximized mode uses equal minimum/maximum counts; multi-cluster by itself does not imply elastic cluster counts or automatic resizing.",
+    "r": "https://docs.snowflake.com/en/user-guide/warehouses-multicluster",
     "d": "Arquitectura y Data Cloud",
     "p": false,
     "review": {
-      "status": "pending",
-      "candidateObjective": "1.4",
-      "reason": "Cribado de enunciado y clave. Sin validación exhaustiva de distractores y explicación; no apta para simulacro contrastado.",
-      "screenedAt": "2026-09-21"
-    }
+      "status": "verified",
+      "reviewedAt": "2026-09-23",
+      "method": "editorial-documentation",
+      "reason": "Acotado o corregido el contenido para evitar ambigüedad; alternativas y explicación contrastadas."
+    },
+    "objective": "1.4",
+    "topic": "Virtual warehouses",
+    "contentRevision": "cof-c03-2026-09-23-batch500"
   },
   {
     "i": 883,
@@ -22755,10 +22837,11 @@
     "d": "Arquitectura y Data Cloud",
     "p": false,
     "review": {
-      "status": "pending",
+      "status": "archived",
       "candidateObjective": "1.4",
-      "reason": "Cribado de enunciado y clave. Sin validación exhaustiva de distractores y explicación; no apta para simulacro contrastado.",
-      "screenedAt": "2026-09-21"
+      "reason": "Repite la habilidad y respuesta de la pregunta contrastada 597, sin aportar un escenario sustancialmente distinto. Se conserva el original.",
+      "screenedAt": "2026-09-21",
+      "reviewedAt": "2026-09-23"
     }
   },
   {
@@ -22779,10 +22862,11 @@
     "d": "Arquitectura y Data Cloud",
     "p": false,
     "review": {
-      "status": "pending",
+      "status": "archived",
       "candidateObjective": "1.5",
-      "reason": "Cribado de enunciado y clave. Sin validación exhaustiva de distractores y explicación; no apta para simulacro contrastado.",
-      "screenedAt": "2026-09-21"
+      "reason": "Repite la habilidad y respuesta de la pregunta contrastada 858, sin aportar un escenario sustancialmente distinto. Se conserva el original.",
+      "screenedAt": "2026-09-21",
+      "reviewedAt": "2026-09-23"
     }
   },
   {
@@ -22798,16 +22882,18 @@
       3
     ],
     "n": 1,
-    "e": "To temporarily bypass a network policy by configuring the MINS_TO_BYPASS_NETWORK_POLICY property for a user in Snowflake it is necessary to contact Snowflake Support.",
-    "r": "https://docs.snowflake.com/en/user-guide/network-policies#bypassing-a-network-policy",
+    "e": "MINS_TO_BYPASS_NETWORK_POLICY is a user-object property for temporary bypass. Snowflake documentation says only Snowflake can set it and directs users to Support. A powerful local role alone does not authorize setting this special property.",
+    "r": "https://docs.snowflake.com/en/user-guide/network-policies",
     "d": "Gestion de cuenta y Gobernanza",
     "p": false,
     "review": {
-      "status": "pending",
-      "candidateObjective": "2.1",
-      "reason": "Cribado de enunciado y clave. Sin validación exhaustiva de distractores y explicación; no apta para simulacro contrastado.",
-      "screenedAt": "2026-09-21"
-    }
+      "status": "verified",
+      "reviewedAt": "2026-09-23",
+      "method": "editorial-documentation",
+      "reason": "Enunciado, opciones y clave contrastados; explicación revisada."
+    },
+    "objective": "2.1",
+    "topic": "Security model and access control"
   },
   {
     "i": 886,
@@ -22846,16 +22932,18 @@
       1
     ],
     "n": 1,
-    "e": "In Snowflake, a user can omit the FROM clause while loading data into a table if they are using the table stage. The table stage is implicitly associated with the specific table, allowing the FROM clause to be omitted in this context.",
-    "r": "https://docs.snowflake.com/en/user-guide/data-load-local-file-system-copy",
+    "e": "COPY INTO a table may omit FROM when loading from that target table's table stage. It does not automatically select the user stage or an arbitrary named internal/external stage. File-format and load options still need to suit the files.",
+    "r": "https://docs.snowflake.com/en/sql-reference/sql/copy-into-table",
     "d": "Carga, Descarga y Conectividad",
     "p": false,
     "review": {
-      "status": "pending",
-      "candidateObjective": "3.1",
-      "reason": "Cribado de enunciado y clave. Sin validación exhaustiva de distractores y explicación; no apta para simulacro contrastado.",
-      "screenedAt": "2026-09-21"
-    }
+      "status": "verified",
+      "reviewedAt": "2026-09-23",
+      "method": "editorial-documentation",
+      "reason": "Enunciado, opciones y clave contrastados; explicación revisada."
+    },
+    "objective": "3.1",
+    "topic": "Data loading and unloading"
   },
   {
     "i": 888,
@@ -22899,10 +22987,11 @@
     "d": "Gestion de cuenta y Gobernanza",
     "p": false,
     "review": {
-      "status": "pending",
+      "status": "archived",
       "candidateObjective": "2.3",
-      "reason": "Cribado de enunciado y clave. Sin validación exhaustiva de distractores y explicación; no apta para simulacro contrastado.",
-      "screenedAt": "2026-09-21"
+      "reason": "Repite la habilidad y respuesta de la pregunta contrastada 289, sin aportar un escenario sustancialmente distinto. Se conserva el original.",
+      "screenedAt": "2026-09-21",
+      "reviewedAt": "2026-09-23"
     }
   },
   {
@@ -22925,10 +23014,11 @@
     "d": "Carga, Descarga y Conectividad",
     "p": false,
     "review": {
-      "status": "pending",
+      "status": "archived",
       "candidateObjective": "3.1",
-      "reason": "Cribado de enunciado y clave. Sin validación exhaustiva de distractores y explicación; no apta para simulacro contrastado.",
-      "screenedAt": "2026-09-21"
+      "reason": "Repite la habilidad y respuesta de la pregunta contrastada 161, sin aportar un escenario sustancialmente distinto. Se conserva el original.",
+      "screenedAt": "2026-09-21",
+      "reviewedAt": "2026-09-23"
     }
   },
   {
@@ -23025,10 +23115,11 @@
     "d": "Rendimiento, Consultas y Transformacion",
     "p": false,
     "review": {
-      "status": "pending",
+      "status": "archived",
       "candidateObjective": "4.1",
-      "reason": "Cribado de enunciado y clave. Sin validación exhaustiva de distractores y explicación; no apta para simulacro contrastado.",
-      "screenedAt": "2026-09-21"
+      "reason": "Repite la habilidad y respuesta de la pregunta contrastada 600, sin aportar un escenario sustancialmente distinto. Se conserva el original.",
+      "screenedAt": "2026-09-21",
+      "reviewedAt": "2026-09-23"
     }
   },
   {
@@ -23151,10 +23242,11 @@
     "d": "Arquitectura y Data Cloud",
     "p": false,
     "review": {
-      "status": "pending",
+      "status": "archived",
       "candidateObjective": null,
-      "reason": "Cribado de enunciado y clave. Sin validación exhaustiva de distractores y explicación; no apta para simulacro contrastado.",
-      "screenedAt": "2026-09-21"
+      "reason": "Repite la habilidad y respuesta de la pregunta contrastada 678, sin aportar un escenario sustancialmente distinto. Se conserva el original.",
+      "screenedAt": "2026-09-21",
+      "reviewedAt": "2026-09-23"
     }
   },
   {
@@ -23172,16 +23264,18 @@
       1
     ],
     "n": 2,
-    "e": "Temporary and transient tables in Snowflake have no Fail-safe period and and have data retention periods of one day maximum. These tables differ from permanent tables in terms of data durability and availability.",
-    "r": "https://docs.snowflake.com/en/user-guide/tables-temp-transient#comparison-of-table-types",
+    "e": "Temporary and transient tables have no Fail-safe and at most one day of Time Travel. Temporary-table lifetime is session-scoped; transient tables persist beyond a session. Dropping a transient table does not erase the entire configured Time Travel window immediately.",
+    "r": "https://docs.snowflake.com/en/user-guide/tables-temp-transient",
     "d": "Colaboracion y Proteccion de datos",
     "p": false,
     "review": {
-      "status": "pending",
-      "candidateObjective": "5.1",
-      "reason": "Cribado de enunciado y clave. Sin validación exhaustiva de distractores y explicación; no apta para simulacro contrastado.",
-      "screenedAt": "2026-09-21"
-    }
+      "status": "verified",
+      "reviewedAt": "2026-09-23",
+      "method": "editorial-documentation",
+      "reason": "Enunciado, opciones y clave contrastados; explicación revisada."
+    },
+    "objective": "5.1",
+    "topic": "Collaboration and protection"
   },
   {
     "i": 901,
@@ -23203,10 +23297,11 @@
     "d": "Gestion de cuenta y Gobernanza",
     "p": false,
     "review": {
-      "status": "pending",
+      "status": "archived",
       "candidateObjective": "2.1",
-      "reason": "Cribado de enunciado y clave. Sin validación exhaustiva de distractores y explicación; no apta para simulacro contrastado.",
-      "screenedAt": "2026-09-21"
+      "reason": "Repite la habilidad y respuesta de la pregunta contrastada 465, sin aportar un escenario sustancialmente distinto. Se conserva el original.",
+      "screenedAt": "2026-09-21",
+      "reviewedAt": "2026-09-23"
     }
   },
   {
@@ -23235,27 +23330,31 @@
   },
   {
     "i": 903,
-    "q": "What happens when a Snowflake user changes the data retention period at the schema level?",
+    "q": "A schema retention setting changes. Which statements about child-table retention are true, assuming applicable edition/type limits and no higher account minimum? (Choose two.)",
     "o": [
-      "All child objects will retain data for the new retention period.",
-      "All child objects that do not have an explicit retention period will automatically inherit the new retention period.",
-      "All child objects with an explicit retention period will be overridden with the new retention period.",
-      "All explicit child object retention periods will remain unchanged."
+      "Every explicit table setting is replaced",
+      "Tables without an explicit override inherit the applicable schema value",
+      "All tables automatically become permanent",
+      "Explicit table overrides remain configured"
     ],
     "c": [
-      1
+      1,
+      3
     ],
-    "n": 1,
-    "e": "When a data retention period is changed at the schema level in Snowflake, all child objects that do not have an explicit retention period set will automatically inherit the new retention period. Objects with explicit retention periods will remain unaffected.",
-    "r": "https://docs.snowflake.com/en/user-guide/data-time-travel#specifying-the-data-retention-period-for-an-object",
+    "n": 2,
+    "e": "Inheritance applies to tables without their own setting. Explicit overrides remain in place, so the original single-answer key omitted another true option. Account minimums and object-type limits can affect effective retention separately.",
+    "r": "https://docs.snowflake.com/en/user-guide/data-time-travel",
     "d": "Colaboracion y Proteccion de datos",
     "p": false,
     "review": {
-      "status": "pending",
-      "candidateObjective": "5.1",
-      "reason": "Cribado de enunciado y clave. Sin validación exhaustiva de distractores y explicación; no apta para simulacro contrastado.",
-      "screenedAt": "2026-09-21"
-    }
+      "status": "verified",
+      "reviewedAt": "2026-09-23",
+      "method": "editorial-documentation",
+      "reason": "Acotado o corregido el contenido para evitar ambigüedad; alternativas y explicación contrastadas."
+    },
+    "objective": "5.1",
+    "topic": "Collaboration and protection",
+    "contentRevision": "cof-c03-2026-09-23-batch500"
   },
   {
     "i": 904,
@@ -23272,20 +23371,22 @@
       2
     ],
     "n": 2,
-    "e": "Snowpark provides libraries specifically for Python and Scala. These libraries enable developers and data scientists to use these programming languages to interact with Snowflake, facilitating data transformations and analysis.",
-    "r": "https://docs.snowflake.com/en/developer-guide/snowpark/index.html",
+    "e": "Python and Scala are Snowpark library languages among these choices; Java is also supported but is not offered. JavaScript UDF support does not imply a JavaScript Snowpark library, and R/C++ are not these library interfaces.",
+    "r": "https://docs.snowflake.com/en/developer-guide/snowpark/index",
     "d": "Arquitectura y Data Cloud",
     "p": false,
     "review": {
-      "status": "pending",
-      "candidateObjective": "1.6",
-      "reason": "Cribado de enunciado y clave. Sin validación exhaustiva de distractores y explicación; no apta para simulacro contrastado.",
-      "screenedAt": "2026-09-21"
-    }
+      "status": "verified",
+      "reviewedAt": "2026-09-23",
+      "method": "editorial-documentation",
+      "reason": "Enunciado, opciones y clave contrastados; explicación revisada."
+    },
+    "objective": "1.6",
+    "topic": "AI/ML and application development"
   },
   {
     "i": 905,
-    "q": "How can a Snowflake user sample 10 rows from a table named SNOWPRO? (Choose two.)",
+    "q": "Assuming SNOWPRO contains at least 10 rows, which statements request a fixed sample of 10 rows? (Choose two.)",
     "o": [
       "SELECT * FROM SNOWPRO SAMPLE SYSTEM (10)",
       "SELECT * FROM SNOWPRO TABLESAMPLE (10 ROWS)",
@@ -23298,16 +23399,19 @@
       4
     ],
     "n": 2,
-    "e": "The correct answer is: SELECT * FROM SNOWPRO TABLESAMPLE (10 ROWS), SELECT * FROM SNOWPRO SAMPLE BERNOULLI (10 ROWS). The SAMPLE doc shows fixed-size row sampling syntax: 'BERNOULLI | ROW ( num ROWS )'. Default method when unspecified is BERNOULLI. Option B 'TABLESAMPLE (10 ROWS)' uses default BERNOULLI and is valid. Option E 'SAMPLE BERNOULLI (10 ROWS)' explicitly uses BERNOULLI and is valid. BLOCK/SYSTEM does not support fixed-size sampling. The question says 'Choose two' but only E was marked. Both B and E are correct. Reference: https://docs.snowflake.com/en/sql-reference/constructs/sample",
-    "r": "https://docs.snowflake.com/en/sql-reference/constructs/sample.html",
+    "e": "Fixed-row sampling is supported with ROW/BERNOULLI, including the default method. SYSTEM/BLOCK uses a percentage and does not support a fixed ROWS count. A table with fewer than 10 rows cannot provide 10 distinct input rows.",
+    "r": "https://docs.snowflake.com/en/sql-reference/constructs/sample",
     "d": "Rendimiento, Consultas y Transformacion",
     "p": false,
     "review": {
-      "status": "pending",
-      "candidateObjective": "4.4",
-      "reason": "Cribado de enunciado y clave. Sin validación exhaustiva de distractores y explicación; no apta para simulacro contrastado.",
-      "screenedAt": "2026-09-21"
-    }
+      "status": "verified",
+      "reviewedAt": "2026-09-23",
+      "method": "editorial-documentation",
+      "reason": "Acotado o corregido el contenido para evitar ambigüedad; alternativas y explicación contrastadas."
+    },
+    "objective": "4.4",
+    "topic": "Data transformation",
+    "contentRevision": "cof-c03-2026-09-23-batch500"
   },
   {
     "i": 906,
@@ -23327,10 +23431,11 @@
     "d": "Arquitectura y Data Cloud",
     "p": false,
     "review": {
-      "status": "pending",
+      "status": "archived",
       "candidateObjective": "1.5",
-      "reason": "Cribado de enunciado y clave. Sin validación exhaustiva de distractores y explicación; no apta para simulacro contrastado.",
-      "screenedAt": "2026-09-21"
+      "reason": "Repite la habilidad y respuesta de la pregunta contrastada 555, sin aportar un escenario sustancialmente distinto. Se conserva el original.",
+      "screenedAt": "2026-09-21",
+      "reviewedAt": "2026-09-23"
     }
   },
   {
@@ -23372,16 +23477,18 @@
       4
     ],
     "n": 2,
-    "e": "In Snowflake, a consumer account can perform actions such as executing the SELECT statement on a shared table and joining the data from a shared table with another table. These actions allow consumers to query and analyze the shared data while maintaining data integrity.",
-    "r": "https://docs.snowflake.com/en/user-guide/data-share-consumers",
+    "e": "Consumers can SELECT shared tables and join them to other accessible tables. The imported shared database is read-only: consumers cannot modify its shared source data, clone shared tables or use ordinary consumer Time Travel on those shared tables.",
+    "r": "https://docs.snowflake.com/en/user-guide/data-sharing-intro",
     "d": "Colaboracion y Proteccion de datos",
     "p": false,
     "review": {
-      "status": "pending",
-      "candidateObjective": "5.2",
-      "reason": "Cribado de enunciado y clave. Sin validación exhaustiva de distractores y explicación; no apta para simulacro contrastado.",
-      "screenedAt": "2026-09-21"
-    }
+      "status": "verified",
+      "reviewedAt": "2026-09-23",
+      "method": "editorial-documentation",
+      "reason": "Enunciado, opciones y clave contrastados; explicación revisada."
+    },
+    "objective": "5.2",
+    "topic": "Data sharing"
   },
   {
     "i": 909,
@@ -23401,10 +23508,11 @@
     "d": "Rendimiento, Consultas y Transformacion",
     "p": false,
     "review": {
-      "status": "pending",
+      "status": "archived",
       "candidateObjective": "4.4",
-      "reason": "Cribado de enunciado y clave. Sin validación exhaustiva de distractores y explicación; no apta para simulacro contrastado.",
-      "screenedAt": "2026-09-21"
+      "reason": "Repite la habilidad y respuesta de la pregunta contrastada 640, sin aportar un escenario sustancialmente distinto. Se conserva el original.",
+      "screenedAt": "2026-09-21",
+      "reviewedAt": "2026-09-23"
     }
   },
   {
@@ -23475,10 +23583,11 @@
     "d": "Rendimiento, Consultas y Transformacion",
     "p": false,
     "review": {
-      "status": "pending",
+      "status": "archived",
       "candidateObjective": "4.1",
-      "reason": "Cribado de enunciado y clave. Sin validación exhaustiva de distractores y explicación; no apta para simulacro contrastado.",
-      "screenedAt": "2026-09-21"
+      "reason": "Repite la habilidad y respuesta de la pregunta contrastada 451, sin aportar un escenario sustancialmente distinto. Se conserva el original.",
+      "screenedAt": "2026-09-21",
+      "reviewedAt": "2026-09-23"
     }
   },
   {
@@ -23499,10 +23608,11 @@
     "d": "Colaboracion y Proteccion de datos",
     "p": false,
     "review": {
-      "status": "pending",
+      "status": "archived",
       "candidateObjective": "5.1",
-      "reason": "Cribado de enunciado y clave. Sin validación exhaustiva de distractores y explicación; no apta para simulacro contrastado.",
-      "screenedAt": "2026-09-21"
+      "reason": "Repite la habilidad y respuesta de la pregunta contrastada 624, sin aportar un escenario sustancialmente distinto. Se conserva el original.",
+      "screenedAt": "2026-09-21",
+      "reviewedAt": "2026-09-23"
     }
   },
   {
@@ -23542,40 +23652,45 @@
       1
     ],
     "n": 1,
-    "e": "Collecting statistics on data in Snowflake is primarily for enabling efficient pruning based on query filters. These statistics help Snowflake's query optimizer to determine the most efficient way to access data, often leading to performance improvements.",
+    "e": "Micro-partition metadata, including value ranges, helps eliminate partitions that cannot satisfy filters. Collecting such statistics does not itself reduce the physical partition count or require reading every partition for every query.",
     "r": "https://docs.snowflake.com/en/user-guide/tables-clustering-micropartitions",
     "d": "Rendimiento, Consultas y Transformacion",
     "p": false,
     "review": {
-      "status": "pending",
-      "candidateObjective": "4.1",
-      "reason": "Cribado de enunciado y clave. Sin validación exhaustiva de distractores y explicación; no apta para simulacro contrastado.",
-      "screenedAt": "2026-09-21"
-    }
+      "status": "verified",
+      "reviewedAt": "2026-09-23",
+      "method": "editorial-documentation",
+      "reason": "Enunciado, opciones y clave contrastados; explicación revisada."
+    },
+    "objective": "4.1",
+    "topic": "Evaluate query performance"
   },
   {
     "i": 916,
-    "q": "What type of function returns one value for each invocation?",
+    "q": "Which kind of UDF returns a single value for each input row rather than a table of output rows?",
     "o": [
-      "Aggregate",
-      "Scalar",
-      "Table",
-      "Window"
+      "A table UDF",
+      "A scalar UDF",
+      "A directory table",
+      "A stage"
     ],
     "c": [
       1
     ],
     "n": 1,
-    "e": "Scalar functions in Snowflake return one value for each invocation. These functions operate on a single value and return a single value, making them distinct from aggregate, table, or window functions.",
-    "r": "https://docs.snowflake.com/en/sql-reference/functions.html",
+    "e": "A scalar UDF returns one value per input row; a table UDF returns rows. The original one-value-per-invocation wording could also describe other function families without distinguishing their grouping semantics.",
+    "r": "https://docs.snowflake.com/en/developer-guide/udf/udf-overview",
     "d": "Rendimiento, Consultas y Transformacion",
     "p": false,
     "review": {
-      "status": "pending",
-      "candidateObjective": "4.4",
-      "reason": "Cribado de enunciado y clave. Sin validación exhaustiva de distractores y explicación; no apta para simulacro contrastado.",
-      "screenedAt": "2026-09-21"
-    }
+      "status": "verified",
+      "reviewedAt": "2026-09-23",
+      "method": "editorial-documentation",
+      "reason": "Acotado o corregido el contenido para evitar ambigüedad; alternativas y explicación contrastadas."
+    },
+    "objective": "4.4",
+    "topic": "Data transformation",
+    "contentRevision": "cof-c03-2026-09-23-batch500"
   },
   {
     "i": 917,
@@ -23597,10 +23712,11 @@
     "d": "Carga, Descarga y Conectividad",
     "p": false,
     "review": {
-      "status": "pending",
+      "status": "archived",
       "candidateObjective": "3.1",
-      "reason": "Cribado de enunciado y clave. Sin validación exhaustiva de distractores y explicación; no apta para simulacro contrastado.",
-      "screenedAt": "2026-09-21"
+      "reason": "Repite la habilidad y respuesta de la pregunta contrastada 161, sin aportar un escenario sustancialmente distinto. Se conserva el original.",
+      "screenedAt": "2026-09-21",
+      "reviewedAt": "2026-09-23"
     }
   },
   {
@@ -23645,10 +23761,11 @@
     "d": "Gestion de cuenta y Gobernanza",
     "p": false,
     "review": {
-      "status": "pending",
+      "status": "archived",
       "candidateObjective": "2.3",
-      "reason": "Cribado de enunciado y clave. Sin validación exhaustiva de distractores y explicación; no apta para simulacro contrastado.",
-      "screenedAt": "2026-09-21"
+      "reason": "Repite la habilidad y respuesta de la pregunta contrastada 8, sin aportar un escenario sustancialmente distinto. Se conserva el original.",
+      "screenedAt": "2026-09-21",
+      "reviewedAt": "2026-09-23"
     }
   },
   {
@@ -23669,10 +23786,11 @@
     "d": "Colaboracion y Proteccion de datos",
     "p": false,
     "review": {
-      "status": "pending",
+      "status": "archived",
       "candidateObjective": "5.2",
-      "reason": "Cribado de enunciado y clave. Sin validación exhaustiva de distractores y explicación; no apta para simulacro contrastado.",
-      "screenedAt": "2026-09-21"
+      "reason": "Repite la habilidad y respuesta de la pregunta contrastada 452, sin aportar un escenario sustancialmente distinto. Se conserva el original.",
+      "screenedAt": "2026-09-21",
+      "reviewedAt": "2026-09-23"
     }
   },
   {
@@ -23712,16 +23830,18 @@
       0
     ],
     "n": 1,
-    "e": "- The cache is dropped when the warehouse is suspended and is no longer available upon restart.: Cuando un almacén virtual se suspende, su caché se elimina y no está disponible cuando se reinicia. Las otras opciones no reflejan correctamente el comportamiento del caché en relación con la suspensión del almacén virtual.",
-    "r": "https://docs.snowflake.com/en/user-guide/warehouses-considerations, https://docs.snowflake.com/en/user-guide/performance-query-warehouse-cache",
+    "e": "Suspending a warehouse discards its local table-data cache. That cache must be rebuilt by later reads after restart. Persisted query results are separate and are not deleted merely because the warehouse is suspended.",
+    "r": "https://docs.snowflake.com/en/user-guide/performance-query-warehouse-cache",
     "d": "Rendimiento, Consultas y Transformacion",
     "p": false,
     "review": {
-      "status": "pending",
-      "candidateObjective": "4.3",
-      "reason": "Cribado de enunciado y clave. Sin validación exhaustiva de distractores y explicación; no apta para simulacro contrastado.",
-      "screenedAt": "2026-09-21"
-    }
+      "status": "verified",
+      "reviewedAt": "2026-09-23",
+      "method": "editorial-documentation",
+      "reason": "Enunciado, opciones y clave contrastados; explicación revisada."
+    },
+    "objective": "4.3",
+    "topic": "Caching"
   },
   {
     "i": 923,
@@ -23791,10 +23911,11 @@
     "d": "Rendimiento, Consultas y Transformacion",
     "p": false,
     "review": {
-      "status": "pending",
+      "status": "archived",
       "candidateObjective": "4.1",
-      "reason": "Cribado de enunciado y clave. Sin validación exhaustiva de distractores y explicación; no apta para simulacro contrastado.",
-      "screenedAt": "2026-09-21"
+      "reason": "Repite la habilidad y respuesta de la pregunta contrastada 509, sin aportar un escenario sustancialmente distinto. Se conserva el original.",
+      "screenedAt": "2026-09-21",
+      "reviewedAt": "2026-09-23"
     }
   },
   {
@@ -23810,16 +23931,18 @@
       2
     ],
     "n": 1,
-    "e": "- CREATE SECURITY INTEGRATION: El comando 'CREATE SECURITY INTEGRATION' se utiliza para configurar Snowflake para Single Sign-On (SSO) y otras integraciones de seguridad. Las otras opciones no son correctas para este propósito: 'CREATE SESSION POLICY' se usa para políticas de sesión, 'CREATE NETWORK RULE' para reglas de red, y 'CREATE PASSWORD POLICY' para políticas de contraseñas.",
-    "r": "https://docs.snowflake.com/en/user-guide/admin-security-fed-auth-security-integration.html",
-    "d": "Carga, Descarga y Conectividad",
+    "e": "CREATE SECURITY INTEGRATION with TYPE=SAML2 is used to configure a Snowflake SAML integration with an identity provider. A password policy, session policy or network rule is not that integration; the identity-provider setup must also be completed.",
+    "r": "https://docs.snowflake.com/en/sql-reference/sql/create-security-integration-saml2",
+    "d": "Gestion de cuenta y Gobernanza",
     "p": false,
     "review": {
-      "status": "pending",
-      "candidateObjective": "3.3",
-      "reason": "Cribado de enunciado y clave. Sin validación exhaustiva de distractores y explicación; no apta para simulacro contrastado.",
-      "screenedAt": "2026-09-21"
-    }
+      "status": "verified",
+      "reviewedAt": "2026-09-23",
+      "method": "editorial-documentation",
+      "reason": "Enunciado, opciones y clave contrastados; explicación revisada."
+    },
+    "objective": "2.1",
+    "topic": "Security model and access control"
   },
   {
     "i": 927,
@@ -23861,40 +23984,45 @@
       1
     ],
     "n": 1,
-    "e": "- REVOKE ROLE: El comando 'REVOKE ROLE' se utiliza para eliminar un rol de otro rol o de un usuario en Snowflake. Los otros comandos tienen funciones diferentes: 'ALTER ROLE' se usa para modificar atributos de un rol, 'USE ROLE' cambia el rol activo del usuario, y 'USE SECONDARY ROLES' se utiliza para habilitar roles secundarios adicionales.",
-    "r": "https://docs.snowflake.com/en/sql-reference/sql/revoke-role.html",
+    "e": "REVOKE ROLE removes an existing role grant from a role or user. USE ROLE and USE SECONDARY ROLES change session activation without removing the underlying grants.",
+    "r": "https://docs.snowflake.com/en/sql-reference/sql/revoke-role",
     "d": "Gestion de cuenta y Gobernanza",
     "p": false,
     "review": {
-      "status": "pending",
-      "candidateObjective": "2.1",
-      "reason": "Cribado de enunciado y clave. Sin validación exhaustiva de distractores y explicación; no apta para simulacro contrastado.",
-      "screenedAt": "2026-09-21"
-    }
+      "status": "verified",
+      "reviewedAt": "2026-09-23",
+      "method": "editorial-documentation",
+      "reason": "Enunciado, opciones y clave contrastados; explicación revisada."
+    },
+    "objective": "2.1",
+    "topic": "Security model and access control"
   },
   {
     "i": 929,
-    "q": "In which hierarchy is tag inheritance possible?",
+    "q": "A tag is assigned to a schema. With ordinary tag inheritance and no overriding value, which path describes its inheritance to table columns?",
     "o": [
-      "Organization » Account » Role",
-      "Account » User » Schema",
-      "Database » View » Column",
-      "Schema » Table » Column"
+      "Schema to table to column",
+      "Schema to warehouse to user",
+      "Schema to account role to warehouse",
+      "Schema to organization to cloud region"
     ],
     "c": [
-      3
+      0
     ],
     "n": 1,
-    "e": "- Schema » Table » Column: En Snowflake, la herencia de etiquetas es posible en la jerarquía de 'Schema » Table » Column'. Las otras opciones no representan una jerarquía válida para la herencia de etiquetas en Snowflake: 'Organization » Account » Role' y 'Account » User » Schema' no son niveles de herencia válidos, y 'Database » View » Column' no incluye 'View' como parte de la herencia.",
-    "r": "https://docs.snowflake.com/en/user-guide/object-tagging.html",
+    "e": "Tags inherit through supported securable-object hierarchies, including schema, table and column. The original database-to-view-to-column alternative could also describe supported inheritance, making the single-answer question ambiguous.",
+    "r": "https://docs.snowflake.com/en/user-guide/object-tagging/introduction",
     "d": "Gestion de cuenta y Gobernanza",
     "p": false,
     "review": {
-      "status": "pending",
-      "candidateObjective": "2.2",
-      "reason": "Cribado de enunciado y clave. Sin validación exhaustiva de distractores y explicación; no apta para simulacro contrastado.",
-      "screenedAt": "2026-09-21"
-    }
+      "status": "verified",
+      "reviewedAt": "2026-09-23",
+      "method": "editorial-documentation",
+      "reason": "Acotado o corregido el contenido para evitar ambigüedad; alternativas y explicación contrastadas."
+    },
+    "objective": "2.2",
+    "topic": "Data governance",
+    "contentRevision": "cof-c03-2026-09-23-batch500"
   },
   {
     "i": 930,
@@ -23914,10 +24042,11 @@
     "d": "Gestion de cuenta y Gobernanza",
     "p": false,
     "review": {
-      "status": "pending",
+      "status": "archived",
       "candidateObjective": "2.1",
-      "reason": "Cribado de enunciado y clave. Sin validación exhaustiva de distractores y explicación; no apta para simulacro contrastado.",
-      "screenedAt": "2026-09-21"
+      "reason": "Repite la habilidad y respuesta de la pregunta contrastada 573, sin aportar un escenario sustancialmente distinto. Se conserva el original.",
+      "screenedAt": "2026-09-21",
+      "reviewedAt": "2026-09-23"
     }
   },
   {
@@ -23962,10 +24091,11 @@
     "d": "Carga, Descarga y Conectividad",
     "p": false,
     "review": {
-      "status": "pending",
+      "status": "archived",
       "candidateObjective": "3.1",
-      "reason": "Cribado de enunciado y clave. Sin validación exhaustiva de distractores y explicación; no apta para simulacro contrastado.",
-      "screenedAt": "2026-09-21"
+      "reason": "Repite la habilidad y respuesta de la pregunta contrastada 729, sin aportar un escenario sustancialmente distinto. Se conserva el original.",
+      "screenedAt": "2026-09-21",
+      "reviewedAt": "2026-09-23"
     }
   },
   {
@@ -23983,16 +24113,18 @@
       3
     ],
     "n": 2,
-    "e": "Users with appropriate privileges can view data storage for individual tables using:\n- TABLE_STORAGE_METRICS view in the ACCOUNT_USAGE schema: Provides detailed information about data storage for specific tables at the account level.\n- TABLE_STORAGE_METRICS view in the INFORMATION_SCHEMA schema: Also provides information about data storage for tables within a specific database.\nBoth views contain metrics about active bytes, time travel bytes, and failsafe bytes for individual tables.",
-    "r": "https://docs.snowflake.com/en/user-guide/tables-storage-considerations",
+    "e": "TABLE_STORAGE_METRICS exists in both ACCOUNT_USAGE and INFORMATION_SCHEMA and describes per-table storage, including retained historical bytes. These surfaces differ in access requirements and latency; metering views concern credits and STORAGE_USAGE reports broader totals.",
+    "r": "https://docs.snowflake.com/en/sql-reference/info-schema/table_storage_metrics",
     "d": "Gestion de cuenta y Gobernanza",
     "p": false,
     "review": {
-      "status": "pending",
-      "candidateObjective": "2.1",
-      "reason": "Cribado de enunciado y clave. Sin validación exhaustiva de distractores y explicación; no apta para simulacro contrastado.",
-      "screenedAt": "2026-09-21"
-    }
+      "status": "verified",
+      "reviewedAt": "2026-09-23",
+      "method": "editorial-documentation",
+      "reason": "Enunciado, opciones y clave contrastados; explicación revisada."
+    },
+    "objective": "2.3",
+    "topic": "Monitoring and cost management"
   },
   {
     "i": 934,
@@ -24062,10 +24194,11 @@
     "d": "Gestion de cuenta y Gobernanza",
     "p": false,
     "review": {
-      "status": "pending",
+      "status": "archived",
       "candidateObjective": "2.1",
-      "reason": "Cribado de enunciado y clave. Sin validación exhaustiva de distractores y explicación; no apta para simulacro contrastado.",
-      "screenedAt": "2026-09-21"
+      "reason": "Repite la habilidad y respuesta de la pregunta contrastada 555, sin aportar un escenario sustancialmente distinto. Se conserva el original.",
+      "screenedAt": "2026-09-21",
+      "reviewedAt": "2026-09-23"
     }
   },
   {
@@ -24107,16 +24240,18 @@
       3
     ],
     "n": 1,
-    "e": "- Parquet: Apache Parquet es un formato de archivo abierto, orientado a columnas, diseñado para un almacenamiento y recuperación de datos eficiente. Es conocido por su compresión y formato columnar que optimiza el rendimiento.\n- Avro: Avro es un formato de archivo binario basado en registros y no orientado a columnas, por lo tanto, no es columnar ni necesariamente el más eficiente para todas las operaciones.\n- JSON: JSON es un formato de datos basado en texto, que no es comprimido ni orientado a columnas. Es útil para datos semi-estructurados pero no es el más eficiente para el almacenamiento y recuperación de datos.\n- TSV: TSV (Tab-Separated Values) es un formato basado en texto que utiliza tabulaciones para separar valores. No está comprimido ni es columnar, lo que lo hace menos eficiente para el almacenamiento y procesamiento comparado con los formatos columnar.",
-    "r": "https://docs.snowflake.com/en/user-guide/data-load-parquet.html",
+    "e": "Parquet is a columnar representation commonly used with compression. Avro is row-oriented, JSON is textual and TSV is delimited text. Parquet encoding and compression settings determine actual storage size.",
+    "r": "https://docs.snowflake.com/en/user-guide/data-load-overview",
     "d": "Carga, Descarga y Conectividad",
     "p": false,
     "review": {
-      "status": "pending",
-      "candidateObjective": "3.1",
-      "reason": "Cribado de enunciado y clave. Sin validación exhaustiva de distractores y explicación; no apta para simulacro contrastado.",
-      "screenedAt": "2026-09-21"
-    }
+      "status": "verified",
+      "reviewedAt": "2026-09-23",
+      "method": "editorial-documentation",
+      "reason": "Enunciado, opciones y clave contrastados; explicación revisada."
+    },
+    "objective": "3.1",
+    "topic": "Data loading and unloading"
   },
   {
     "i": 939,
@@ -24136,10 +24271,11 @@
     "d": "Colaboracion y Proteccion de datos",
     "p": false,
     "review": {
-      "status": "pending",
+      "status": "archived",
       "candidateObjective": "5.2",
-      "reason": "Cribado de enunciado y clave. Sin validación exhaustiva de distractores y explicación; no apta para simulacro contrastado.",
-      "screenedAt": "2026-09-21"
+      "reason": "Repite la habilidad y respuesta de la pregunta contrastada 148, sin aportar un escenario sustancialmente distinto. Se conserva el original.",
+      "screenedAt": "2026-09-21",
+      "reviewedAt": "2026-09-23"
     }
   },
   {
@@ -24160,35 +24296,39 @@
     "d": "Rendimiento, Consultas y Transformacion",
     "p": false,
     "review": {
-      "status": "pending",
+      "status": "archived",
       "candidateObjective": "4.4",
-      "reason": "Cribado de enunciado y clave. Sin validación exhaustiva de distractores y explicación; no apta para simulacro contrastado.",
-      "screenedAt": "2026-09-21"
+      "reason": "Repite la habilidad y respuesta de la pregunta contrastada 640, sin aportar un escenario sustancialmente distinto. Se conserva el original.",
+      "screenedAt": "2026-09-21",
+      "reviewedAt": "2026-09-23"
     }
   },
   {
     "i": 941,
-    "q": "The following settings are configured:\n\nTHE MIN_DATA_RETENTION_TIME_IN_DAYS is set to 5 at the account level.\nTHE DATA_RETENTION_TIME_IN_DAYS is set to 2 at the object level.\n\nFor how many days will the data be retained at the object level?",
+    "q": "In Enterprise Edition, a permanent table has DATA_RETENTION_TIME_IN_DAYS=2 and the account has MIN_DATA_RETENTION_TIME_IN_DAYS=5. What is its effective Time Travel retention?",
     "o": [
-      "2",
-      "3",
-      "5",
-      "7"
+      "2 days",
+      "3 days",
+      "5 days",
+      "7 days"
     ],
     "c": [
       2
     ],
     "n": 1,
-    "e": "- 5: El período de retención de datos efectivo se establece en el valor máximo entre el tiempo de retención configurado a nivel de cuenta (MIN_DATA_RETENTION_TIME_IN_DAYS) y el tiempo de retención configurado a nivel del objeto (DATA_RETENTION_TIME_IN_DAYS). En este caso, el valor máximo es 5 días.\n- 2: Aunque el tiempo de retención a nivel del objeto está configurado en 2 días, el valor efectivo será el mayor entre el valor a nivel de cuenta y el valor a nivel del objeto.\n- 3: Este valor no es correcto ya que el valor máximo entre 2 y 5 es 5, no 3.\n- 7: Este valor es incorrecto porque no hay configuración que establezca un tiempo de retención de 7 días en este escenario.",
-    "r": "https://docs.snowflake.com/en/release-notes/bcr-bundles/2023_04/bcr-928?utm_source=legacy&utm_medium=serp&utm_term=MIN_DATA_RETENTION_TIME_IN_DAYS",
+    "e": "For an eligible permanent table the effective retention is MAX(2,5)=5. The minimum parameter does not change the stored table setting and does not apply to temporary/transient tables; edition and object type must be specified.",
+    "r": "https://docs.snowflake.com/en/sql-reference/parameters",
     "d": "Colaboracion y Proteccion de datos",
     "p": false,
     "review": {
-      "status": "pending",
-      "candidateObjective": "5.1",
-      "reason": "Cribado de enunciado y clave. Sin validación exhaustiva de distractores y explicación; no apta para simulacro contrastado.",
-      "screenedAt": "2026-09-21"
-    }
+      "status": "verified",
+      "reviewedAt": "2026-09-23",
+      "method": "editorial-documentation",
+      "reason": "Acotado o corregido el contenido para evitar ambigüedad; alternativas y explicación contrastadas."
+    },
+    "objective": "5.1",
+    "topic": "Collaboration and protection",
+    "contentRevision": "cof-c03-2026-09-23-batch500"
   },
   {
     "i": 942,
@@ -24203,40 +24343,45 @@
       1
     ],
     "n": 1,
-    "e": "- Privilege: En Snowflake, un 'Privilege' es un nivel definido de acceso a un objeto. Varios privilegios distintos pueden ser utilizados para controlar la granularidad del acceso concedido a un objeto.\n- Grant: Un 'Grant' se refiere al acto de conceder un privilegio, no al propio nivel de acceso.\n- Role: Un 'Role' es un conjunto de privilegios asignados a los usuarios, no un nivel de acceso específico.\n- Session: Una 'Session' es una instancia de acceso a Snowflake, no un nivel de acceso a un objeto.",
+    "e": "A privilege defines an allowed level of access to an object. SECURITYADMIN has global MANAGE GRANTS by default, allowing broad grant management; custom roles or higher roles can also hold that privilege. A role, grant operation and session are different concepts.",
     "r": "https://docs.snowflake.com/en/user-guide/security-access-control-overview",
     "d": "Gestion de cuenta y Gobernanza",
     "p": false,
     "review": {
-      "status": "pending",
-      "candidateObjective": "2.1",
-      "reason": "Cribado de enunciado y clave. Sin validación exhaustiva de distractores y explicación; no apta para simulacro contrastado.",
-      "screenedAt": "2026-09-21"
-    }
+      "status": "verified",
+      "reviewedAt": "2026-09-23",
+      "method": "editorial-documentation",
+      "reason": "Enunciado, opciones y clave contrastados; explicación revisada."
+    },
+    "objective": "2.1",
+    "topic": "Security model and access control"
   },
   {
     "i": 943,
-    "q": "Which Snowflake object uses credits for maintenance?",
+    "q": "Which object has automatically maintained stored query results whose refresh can incur credits?",
     "o": [
-      "Regular table",
-      "Regular view",
-      "Materialized view",
-      "Cached query result"
+      "A standard view with no materialization",
+      "A role",
+      "A materialized view",
+      "A file-format definition"
     ],
     "c": [
       2
     ],
     "n": 1,
-    "e": "- Materialized view: Las vistas materializadas en Snowflake utilizan créditos para su mantenimiento automático, debido a la necesidad de mantener los datos actualizados.\n- Regular table: Las tablas regulares no utilizan créditos para mantenimiento continuo.\n- Regular view: Las vistas regulares no incurren en costos de mantenimiento porque son simplemente una representación de los datos.\n- Cached query result: Los resultados en caché no requieren mantenimiento continuo ni utilizan créditos.",
-    "r": "https://docs.snowflake.com/en/user-guide/views-materialized.html",
-    "d": "Gestion de cuenta y Gobernanza",
+    "e": "Materialized-view maintenance refreshes stored query results and incurs costs. Ordinary tables can also incur optional service costs such as Automatic Clustering, so the original broad maintenance question was insufficiently precise.",
+    "r": "https://docs.snowflake.com/en/user-guide/views-materialized",
+    "d": "Rendimiento, Consultas y Transformacion",
     "p": false,
     "review": {
-      "status": "pending",
-      "candidateObjective": "2.3",
-      "reason": "Cribado de enunciado y clave. Sin validación exhaustiva de distractores y explicación; no apta para simulacro contrastado.",
-      "screenedAt": "2026-09-21"
-    }
+      "status": "verified",
+      "reviewedAt": "2026-09-23",
+      "method": "editorial-documentation",
+      "reason": "Acotado o corregido el contenido para evitar ambigüedad; alternativas y explicación contrastadas."
+    },
+    "objective": "4.2",
+    "topic": "Optimize query performance",
+    "contentRevision": "cof-c03-2026-09-23-batch500"
   },
   {
     "i": 944,
@@ -24280,10 +24425,11 @@
     "d": "Rendimiento, Consultas y Transformacion",
     "p": false,
     "review": {
-      "status": "pending",
+      "status": "archived",
       "candidateObjective": "4.1",
-      "reason": "Cribado de enunciado y clave. Sin validación exhaustiva de distractores y explicación; no apta para simulacro contrastado.",
-      "screenedAt": "2026-09-21"
+      "reason": "Repite la habilidad y respuesta de la pregunta contrastada 451, sin aportar un escenario sustancialmente distinto. Se conserva el original.",
+      "screenedAt": "2026-09-21",
+      "reviewedAt": "2026-09-23"
     }
   },
   {
@@ -24306,10 +24452,11 @@
     "d": "Rendimiento, Consultas y Transformacion",
     "p": false,
     "review": {
-      "status": "pending",
+      "status": "archived",
       "candidateObjective": "4.1",
-      "reason": "Cribado de enunciado y clave. Sin validación exhaustiva de distractores y explicación; no apta para simulacro contrastado.",
-      "screenedAt": "2026-09-21"
+      "reason": "Repite la habilidad y respuesta de la pregunta contrastada 809, sin aportar un escenario sustancialmente distinto. Se conserva el original.",
+      "screenedAt": "2026-09-21",
+      "reviewedAt": "2026-09-23"
     }
   },
   {
@@ -24349,16 +24496,18 @@
       3
     ],
     "n": 1,
-    "e": "- SECURITYADMIN: El rol `SECURITYADMIN` (Administrador de Seguridad) tiene la capacidad de gestionar cualquier concesión de objeto a nivel global, incluyendo la modificación y revocación de concesiones. Este rol tiene el privilegio de seguridad `MANAGE GRANTS` que le permite modificar cualquier concesión, así como revocarla.\n- USERADMIN: El rol `USERADMIN` (Administrador de Usuarios) se encarga de la gestión de usuarios y roles, pero no tiene la capacidad de gestionar concesiones globalmente.\n- ORGADMIN: El rol `ORGADMIN` (Administrador de Organización) se ocupa de la administración a nivel de la organización, pero no tiene el control global sobre las concesiones de objetos.\n- SYSADMIN: El rol `SYSADMIN` (Administrador de Sistema) gestiona los objetos en una base de datos específica, pero no tiene la capacidad para gestionar concesiones de objetos a nivel global.",
-    "r": "https://docs.snowflake.com/en/user-guide/security-access-control-considerations.html",
+    "e": "A privilege defines an allowed level of access to an object. SECURITYADMIN has global MANAGE GRANTS by default, allowing broad grant management; custom roles or higher roles can also hold that privilege. A role, grant operation and session are different concepts.",
+    "r": "https://docs.snowflake.com/en/user-guide/security-access-control-overview",
     "d": "Gestion de cuenta y Gobernanza",
     "p": false,
     "review": {
-      "status": "pending",
-      "candidateObjective": "2.1",
-      "reason": "Cribado de enunciado y clave. Sin validación exhaustiva de distractores y explicación; no apta para simulacro contrastado.",
-      "screenedAt": "2026-09-21"
-    }
+      "status": "verified",
+      "reviewedAt": "2026-09-23",
+      "method": "editorial-documentation",
+      "reason": "Enunciado, opciones y clave contrastados; explicación revisada."
+    },
+    "objective": "2.1",
+    "topic": "Security model and access control"
   },
   {
     "i": 949,
@@ -24436,27 +24585,30 @@
   },
   {
     "i": 952,
-    "q": "How does Snowflake define its approach to Discretionary Access Control (DAC)?",
+    "q": "Which statement describes the ownership principle of discretionary access control in Snowflake?",
     "o": [
-      "A defined level of access to an object.",
-      "An entity to which access can be granted.",
-      "Each object has an owner, who can in turn grant access to that object.",
-      "Access privileges are assigned to roles, which are in turn assigned to users."
+      "A privilege is a session identifier",
+      "Objects cannot have owners",
+      "A securable object has an owner with control over it, subject to Snowflake grant-management rules",
+      "Only the name of a role determines its privileges"
     ],
     "c": [
       2
     ],
     "n": 1,
-    "e": "- Each object has an owner, who can in turn grant access to that object.: En el control de acceso discrecional (DAC) de Snowflake, cada objeto tiene un propietario que puede otorgar acceso a ese objeto. Esto permite una gestión más flexible y granular de los permisos.\n- A defined level of access to an object.: Esto no describe DAC en su totalidad, ya que DAC se centra en la propiedad y la capacidad de otorgar acceso, no solo en definir niveles de acceso.\n- An entity to which access can be granted.: Esta descripción es más general y no captura el aspecto de propiedad que es central en DAC.\n- Access privileges are assigned to roles, which are in turn assigned to users.: Esto describe más el control de acceso basado en roles (RBAC), que es diferente del enfoque DAC donde la propiedad y la concesión de acceso son clave.",
-    "r": "https://docs.snowflake.com/en/user-guide/security-access-control-overview?utm_source=legacy&utm_medium=serp&utm_term=DAC",
+    "e": "DAC is based on object ownership. Managed access schemas centralize grant decisions with the schema owner or MANAGE GRANTS role, so object ownership does not mean unrestricted grant authority in every context.",
+    "r": "https://docs.snowflake.com/en/user-guide/security-access-control-overview",
     "d": "Gestion de cuenta y Gobernanza",
     "p": false,
     "review": {
-      "status": "pending",
-      "candidateObjective": "2.1",
-      "reason": "Cribado de enunciado y clave. Sin validación exhaustiva de distractores y explicación; no apta para simulacro contrastado.",
-      "screenedAt": "2026-09-21"
-    }
+      "status": "verified",
+      "reviewedAt": "2026-09-23",
+      "method": "editorial-documentation",
+      "reason": "Acotado o corregido el contenido para evitar ambigüedad; alternativas y explicación contrastadas."
+    },
+    "objective": "2.1",
+    "topic": "Security model and access control",
+    "contentRevision": "cof-c03-2026-09-23-batch500"
   },
   {
     "i": 953,
@@ -24476,10 +24628,11 @@
     "d": "Carga, Descarga y Conectividad",
     "p": false,
     "review": {
-      "status": "pending",
+      "status": "archived",
       "candidateObjective": "3.1",
-      "reason": "Cribado de enunciado y clave. Sin validación exhaustiva de distractores y explicación; no apta para simulacro contrastado.",
-      "screenedAt": "2026-09-21"
+      "reason": "Repite la habilidad y respuesta de la pregunta contrastada 182, sin aportar un escenario sustancialmente distinto. Se conserva el original.",
+      "screenedAt": "2026-09-21",
+      "reviewedAt": "2026-09-23"
     }
   },
   {
@@ -24524,10 +24677,11 @@
     "d": "Carga, Descarga y Conectividad",
     "p": false,
     "review": {
-      "status": "pending",
+      "status": "archived",
       "candidateObjective": "3.2",
-      "reason": "Cribado de enunciado y clave. Sin validación exhaustiva de distractores y explicación; no apta para simulacro contrastado.",
-      "screenedAt": "2026-09-21"
+      "reason": "Repite la habilidad y respuesta de la pregunta contrastada 612, sin aportar un escenario sustancialmente distinto. Se conserva el original.",
+      "screenedAt": "2026-09-21",
+      "reviewedAt": "2026-09-23"
     }
   },
   {
@@ -24543,42 +24697,47 @@
       0
     ],
     "n": 1,
-    "e": "- ACCESS_HISTORY: La vista 'ACCESS_HISTORY' en Snowflake muestra el historial de acceso de los datos, incluyendo cómo fluyen los datos desde las columnas de origen hasta las columnas de destino en operaciones de escritura SQL como INSERT, UPDATE y DELETE. También proporciona información sobre cómo se mueve el dato en operaciones que implican la modificación de objetos.\n- LOAD_HISTORY: 'LOAD_HISTORY' muestra información sobre las cargas de datos realizadas, pero no sobre la línea de datos a nivel de columna.\n- QUERY_HISTORY: 'QUERY_HISTORY' proporciona detalles sobre las consultas ejecutadas, pero no específicamente sobre la línea de datos en operaciones de escritura.\n- COPY_HISTORY: 'COPY_HISTORY' detalla la información relacionada con las operaciones COPY, no la línea de datos a nivel de columna.",
-    "r": "https://docs.snowflake.com/en/user-guide/access-history",
+    "e": "ACCESS_HISTORY includes supported read/write object access and column-lineage information linking sources to write targets. COPY_HISTORY and LOAD_HISTORY concern ingestion history; QUERY_HISTORY is not the equivalent lineage record. Access History has edition, latency and coverage requirements.",
+    "r": "https://docs.snowflake.com/en/sql-reference/account-usage/access_history",
     "d": "Gestion de cuenta y Gobernanza",
     "p": false,
     "review": {
-      "status": "pending",
-      "candidateObjective": "2.2",
-      "reason": "Cribado de enunciado y clave. Sin validación exhaustiva de distractores y explicación; no apta para simulacro contrastado.",
-      "screenedAt": "2026-09-21"
-    }
+      "status": "verified",
+      "reviewedAt": "2026-09-23",
+      "method": "editorial-documentation",
+      "reason": "Enunciado, opciones y clave contrastados; explicación revisada."
+    },
+    "objective": "2.2",
+    "topic": "Data governance"
   },
   {
     "i": 957,
-    "q": "Who can create network policies within Snowflake? (Choose two.)",
+    "q": "Which roles can create a network policy? (Choose two.)",
     "o": [
-      "SYSADMIN only",
-      "ORGADMIN only",
-      "SECURITYADMIN or higher roles",
-      "A role with the CREATE NETWORK POLICY privilege",
-      "A role with the CREATE SECURITY INTEGRATION privilege"
+      "SYSADMIN solely because of its name",
+      "ORGADMIN solely because of its name",
+      "SECURITYADMIN or a role inheriting its relevant privileges",
+      "A custom role granted CREATE NETWORK POLICY on the account",
+      "Any role with only CREATE SECURITY INTEGRATION"
     ],
     "c": [
       2,
       3
     ],
     "n": 2,
-    "e": "- SECURITYADMIN or higher roles: Solo los administradores de seguridad (es decir, usuarios con el rol SECURITYADMIN) o roles superiores pueden crear políticas de red en Snowflake. Estos roles tienen permisos adecuados para gestionar políticas de seguridad.\n- A role with the CREATE NETWORK POLICY privilege: También se puede crear políticas de red mediante un rol que tenga el privilegio global CREATE NETWORK POLICY.\n- SYSADMIN only: El rol SYSADMIN no tiene permisos específicos para crear políticas de red; necesita ser un rol de seguridad o tener el privilegio adecuado.\n- ORGADMIN only: El rol ORGADMIN no tiene el privilegio por defecto para crear políticas de red.\n- A role with the CREATE SECURITY INTEGRATION privilege: El privilegio CREATE SECURITY INTEGRATION no está relacionado con la creación de políticas de red.",
+    "e": "Creation depends on CREATE NETWORK POLICY. SECURITYADMIN has it by default, and it can be delegated. Snowflake roles form a grant hierarchy, not a universal ranking in which every administrator role is automatically higher.",
     "r": "https://docs.snowflake.com/en/user-guide/network-policies",
     "d": "Gestion de cuenta y Gobernanza",
     "p": false,
     "review": {
-      "status": "pending",
-      "candidateObjective": "2.1",
-      "reason": "Cribado de enunciado y clave. Sin validación exhaustiva de distractores y explicación; no apta para simulacro contrastado.",
-      "screenedAt": "2026-09-21"
-    }
+      "status": "verified",
+      "reviewedAt": "2026-09-23",
+      "method": "editorial-documentation",
+      "reason": "Acotado o corregido el contenido para evitar ambigüedad; alternativas y explicación contrastadas."
+    },
+    "objective": "2.1",
+    "topic": "Security model and access control",
+    "contentRevision": "cof-c03-2026-09-23-batch500"
   },
   {
     "i": 958,
@@ -24617,16 +24776,18 @@
       3
     ],
     "n": 1,
-    "e": "- SHOW FILE FORMATS: El comando 'SHOW FILE FORMATS' es utilizado para listar todos los formatos de archivo a los que un usuario tiene privilegios de acceso. \n- **LIST**: El comando 'LIST' se utiliza para listar los archivos en un stage o almacenamiento externo, no para listar formatos de archivo.\n- **ALTER FILE FORMAT**: Este comando se usa para modificar un formato de archivo existente, no para listar los formatos disponibles.\n- **DESCRIBE FILE FORMAT**: 'DESCRIBE FILE FORMAT' devuelve la definición de un formato de archivo en específico, pero no lista todos los formatos disponibles.",
+    "e": "SHOW FILE FORMATS lists file formats visible to the active role; use IN ACCOUNT for an account-wide scope. Without an explicit scope the current database/schema context can affect the listing. DESCRIBE examines one format, and LIST enumerates staged files.",
     "r": "https://docs.snowflake.com/en/sql-reference/sql/show-file-formats",
-    "d": "Gestion de cuenta y Gobernanza",
+    "d": "Arquitectura y Data Cloud",
     "p": false,
     "review": {
-      "status": "pending",
-      "candidateObjective": "2.1",
-      "reason": "Cribado de enunciado y clave. Sin validación exhaustiva de distractores y explicación; no apta para simulacro contrastado.",
-      "screenedAt": "2026-09-21"
-    }
+      "status": "verified",
+      "reviewedAt": "2026-09-23",
+      "method": "editorial-documentation",
+      "reason": "Enunciado, opciones y clave contrastados; explicación revisada."
+    },
+    "objective": "1.3",
+    "topic": "Object hierarchy and types; session context"
   },
   {
     "i": 960,
@@ -24670,10 +24831,11 @@
     "d": "Rendimiento, Consultas y Transformacion",
     "p": false,
     "review": {
-      "status": "pending",
+      "status": "archived",
       "candidateObjective": "4.1",
-      "reason": "Cribado de enunciado y clave. Sin validación exhaustiva de distractores y explicación; no apta para simulacro contrastado.",
-      "screenedAt": "2026-09-21"
+      "reason": "Repite la habilidad y respuesta de la pregunta contrastada 692, sin aportar un escenario sustancialmente distinto. Se conserva el original.",
+      "screenedAt": "2026-09-21",
+      "reviewedAt": "2026-09-23"
     }
   },
   {
@@ -24718,10 +24880,11 @@
     "d": "Rendimiento, Consultas y Transformacion",
     "p": false,
     "review": {
-      "status": "pending",
+      "status": "archived",
       "candidateObjective": "4.4",
-      "reason": "Cribado de enunciado y clave. Sin validación exhaustiva de distractores y explicación; no apta para simulacro contrastado.",
-      "screenedAt": "2026-09-21"
+      "reason": "Repite la habilidad y respuesta de la pregunta contrastada 47, sin aportar un escenario sustancialmente distinto. Se conserva el original.",
+      "screenedAt": "2026-09-21",
+      "reviewedAt": "2026-09-23"
     }
   },
   {
@@ -24774,27 +24937,30 @@
   },
   {
     "i": 966,
-    "q": "Which function is used to convert rows in a relational table to a single VARIANT column?",
+    "q": "Which expression constructs an OBJECT from the columns of each input row when used in a SELECT?",
     "o": [
-      "ARRAY_AGG",
-      "OBJECT_AGG",
-      "ARRAY_CONSTRUCT",
-      "OBJECT_CONSTRUCT"
+      "ARRAY_AGG(*)",
+      "OBJECT_AGG(*) without its required arguments",
+      "ARRAY_CONSTRUCT(*)",
+      "OBJECT_CONSTRUCT(*)"
     ],
     "c": [
       3
     ],
     "n": 1,
-    "e": "- OBJECT_CONSTRUCT: La función 'OBJECT_CONSTRUCT' se utiliza para convertir varias filas en una columna VARIANT, lo que facilita la manipulación de datos semi-estructurados como JSON.",
-    "r": "https://docs.snowflake.com/en/sql-reference/functions/object_construct.html",
+    "e": "OBJECT_CONSTRUCT(*) produces an OBJECT for each row, which can be stored in VARIANT. It does not by itself aggregate all rows into one value. SQL NULL-valued pairs are omitted unless a suitable keep-null function is used.",
+    "r": "https://docs.snowflake.com/en/sql-reference/functions/object_construct",
     "d": "Rendimiento, Consultas y Transformacion",
     "p": false,
     "review": {
-      "status": "pending",
-      "candidateObjective": "4.4",
-      "reason": "Cribado de enunciado y clave. Sin validación exhaustiva de distractores y explicación; no apta para simulacro contrastado.",
-      "screenedAt": "2026-09-21"
-    }
+      "status": "verified",
+      "reviewedAt": "2026-09-23",
+      "method": "editorial-documentation",
+      "reason": "Acotado o corregido el contenido para evitar ambigüedad; alternativas y explicación contrastadas."
+    },
+    "objective": "4.4",
+    "topic": "Data transformation",
+    "contentRevision": "cof-c03-2026-09-23-batch500"
   },
   {
     "i": 967,
@@ -24814,10 +24980,11 @@
     "d": "Carga, Descarga y Conectividad",
     "p": false,
     "review": {
-      "status": "pending",
+      "status": "archived",
       "candidateObjective": "3.1",
-      "reason": "Cribado de enunciado y clave. Sin validación exhaustiva de distractores y explicación; no apta para simulacro contrastado.",
-      "screenedAt": "2026-09-21"
+      "reason": "Repite la habilidad y respuesta de la pregunta contrastada 182, sin aportar un escenario sustancialmente distinto. Se conserva el original.",
+      "screenedAt": "2026-09-21",
+      "reviewedAt": "2026-09-23"
     }
   },
   {
@@ -24838,35 +25005,39 @@
     "d": "Arquitectura y Data Cloud",
     "p": false,
     "review": {
-      "status": "pending",
+      "status": "archived",
       "candidateObjective": "1.4",
-      "reason": "Cribado de enunciado y clave. Sin validación exhaustiva de distractores y explicación; no apta para simulacro contrastado.",
-      "screenedAt": "2026-09-21"
+      "reason": "Repite la habilidad y respuesta de la pregunta contrastada 457, sin aportar un escenario sustancialmente distinto. Se conserva el original.",
+      "screenedAt": "2026-09-21",
+      "reviewedAt": "2026-09-23"
     }
   },
   {
     "i": 969,
-    "q": "What action can be performed using the GET command in Snowflake?",
+    "q": "What is the primary transfer operation performed by GET?",
     "o": [
-      "Automatically rename downloaded files.",
-      "Automatically decrypt downloaded data on a client machine.",
-      "Download data files from Snowflake internal stages to a local directory/folder.",
-      "Download data files from Snowflake external stages to a local directory/folder."
+      "Rename every source file",
+      "Upload local files to external storage",
+      "Download internal-stage files to the local client filesystem",
+      "Download external-stage files directly with the same GET command"
     ],
     "c": [
       2
     ],
     "n": 1,
-    "e": "- Download data files from Snowflake internal stages to a local directory/folder: El comando 'GET' se utiliza específicamente para descargar archivos desde 'stages' internos de Snowflake a una carpeta local.",
-    "r": "https://docs.snowflake.com/en/sql-reference/sql/get.html",
+    "e": "GET downloads internal-stage files. Decryption may also occur as part of the applicable client-side encryption workflow, so the original action question included another potentially true statement.",
+    "r": "https://docs.snowflake.com/en/sql-reference/sql/get",
     "d": "Carga, Descarga y Conectividad",
     "p": false,
     "review": {
-      "status": "pending",
-      "candidateObjective": "3.1",
-      "reason": "Cribado de enunciado y clave. Sin validación exhaustiva de distractores y explicación; no apta para simulacro contrastado.",
-      "screenedAt": "2026-09-21"
-    }
+      "status": "verified",
+      "reviewedAt": "2026-09-23",
+      "method": "editorial-documentation",
+      "reason": "Acotado o corregido el contenido para evitar ambigüedad; alternativas y explicación contrastadas."
+    },
+    "objective": "3.1",
+    "topic": "Data loading and unloading",
+    "contentRevision": "cof-c03-2026-09-23-batch500"
   },
   {
     "i": 970,
@@ -24894,79 +25065,88 @@
   },
   {
     "i": 971,
-    "q": "What are the correct settings for column and element names, regardless of which notation is used while accessing elements in a JSON object?",
+    "q": "In a JSON path expression using an unquoted SQL column identifier, how are that identifier and the JSON element names treated?",
     "o": [
-      "Both the column name and the element name are case-insensitive.",
-      "Both the column name and the element name are case-sensitive.",
-      "The column name is case-sensitive and the element names are case-insensitive.",
-      "The column name is case-insensitive and the element name is case-sensitive."
+      "Both are always case-insensitive",
+      "Both are always case-sensitive",
+      "Only the SQL column identifier is case-sensitive",
+      "The unquoted SQL column identifier is case-insensitive; JSON element names are case-sensitive"
     ],
     "c": [
       3
     ],
     "n": 1,
-    "e": "- The column name is case-insensitive and the element name is case-sensitive: Los nombres de columnas no son sensibles a mayúsculas, pero los nombres de los elementos sí lo son al consultar datos semi-estructurados en Snowflake.",
+    "e": "Unquoted SQL identifiers follow Snowflake normalization rules; JSON element names retain case. Double-quoted SQL identifiers require separate handling, so the original regardless-of-notation claim was too broad.",
     "r": "https://docs.snowflake.com/en/user-guide/querying-semistructured",
     "d": "Rendimiento, Consultas y Transformacion",
     "p": false,
     "review": {
-      "status": "pending",
-      "candidateObjective": "4.4",
-      "reason": "Cribado de enunciado y clave. Sin validación exhaustiva de distractores y explicación; no apta para simulacro contrastado.",
-      "screenedAt": "2026-09-21"
-    }
+      "status": "verified",
+      "reviewedAt": "2026-09-23",
+      "method": "editorial-documentation",
+      "reason": "Acotado o corregido el contenido para evitar ambigüedad; alternativas y explicación contrastadas."
+    },
+    "objective": "4.4",
+    "topic": "Data transformation",
+    "contentRevision": "cof-c03-2026-09-23-batch500"
   },
   {
     "i": 972,
-    "q": "How can the Query Profile be used to identify the costliest operator of a query?",
+    "q": "How can Query Profile help identify the operator accounting for the largest share of query processing time?",
     "o": [
-      "Select any node in the operator tree and look at the number of micro-partitions scanned.",
-      "Find the operator node with the highest fraction of time or percentage of total time.",
-      "Select the TableScan operator node and look at the percentage scanned from cache.",
-      "Look at the number of rows between operator nodes across the operator tree."
+      "Assume any scan with many partitions is always the slowest",
+      "Compare operator time percentages and the most-expensive-node information",
+      "Treat percent scanned from cache as operator elapsed time",
+      "Use output row count as an exact elapsed-time measure"
     ],
     "c": [
       1
     ],
     "n": 1,
-    "e": "- Find the operator node with the highest fraction of time...: En el perfil de consultas de Snowflake, el nodo que consume más tiempo es generalmente el operador más costoso en términos de recursos.",
-    "r": "https://docs.snowflake.com/en/user-guide/querying-query-profile.html",
-    "d": "Gestion de cuenta y Gobernanza",
+    "e": "Operator time shares identify time-intensive work. They are not an exact allocation of monetary credits per operator; rows and partitions provide context rather than direct time measurements.",
+    "r": "https://docs.snowflake.com/en/user-guide/ui-snowsight-activity",
+    "d": "Rendimiento, Consultas y Transformacion",
     "p": false,
     "review": {
-      "status": "pending",
-      "candidateObjective": "2.3",
-      "reason": "Cribado de enunciado y clave. Sin validación exhaustiva de distractores y explicación; no apta para simulacro contrastado.",
-      "screenedAt": "2026-09-21"
-    }
+      "status": "verified",
+      "reviewedAt": "2026-09-23",
+      "method": "editorial-documentation",
+      "reason": "Acotado o corregido el contenido para evitar ambigüedad; alternativas y explicación contrastadas."
+    },
+    "objective": "4.1",
+    "topic": "Evaluate query performance",
+    "contentRevision": "cof-c03-2026-09-23-batch500"
   },
   {
     "i": 973,
-    "q": "In order to access Snowflake Marketplace listings, who needs to accept the Snowflake Consumer Terms of Service?",
+    "q": "Before consuming a paid listing where acceptance of the Snowflake Provider and Consumer Terms is required, which statement reflects the documented setup?",
     "o": [
-      "SYSADMIN",
-      "SECURITYADMIN",
-      "ACCOUNTADMIN",
-      "ORGADMIN"
+      "Every SELECT requires a fresh acceptance",
+      "The SYSADMIN role automatically bypasses the terms",
+      "Sharing a warehouse accepts terms for every account",
+      "An organization administrator accepts the terms, and consumers still need the relevant listing privileges"
     ],
     "c": [
       3
     ],
     "n": 1,
-    "e": "- ORGADMIN: Los administradores de la organización (ORGADMIN) son los responsables de aceptar los Términos de Servicio de Snowflake para acceder a los listados del Snowflake Marketplace.",
-    "r": "https://docs.snowflake.com/en/user-guide/marketplace-getting-started.html",
+    "e": "The consumer setup describes organization-administrator acceptance and separate consumer privileges. Free/offline-term cases can differ; the original unqualified claim about every Marketplace listing was too broad. No terms are accepted by this practice question.",
+    "r": "https://docs.snowflake.com/en/collaboration/consumer-becoming",
     "d": "Colaboracion y Proteccion de datos",
     "p": false,
     "review": {
-      "status": "pending",
-      "candidateObjective": "5.3",
-      "reason": "Cribado de enunciado y clave. Sin validación exhaustiva de distractores y explicación; no apta para simulacro contrastado.",
-      "screenedAt": "2026-09-21"
-    }
+      "status": "verified",
+      "reviewedAt": "2026-09-23",
+      "method": "editorial-documentation",
+      "reason": "Acotado o corregido el contenido para evitar ambigüedad; alternativas y explicación contrastadas."
+    },
+    "objective": "5.3",
+    "topic": "Marketplace and listings",
+    "contentRevision": "cof-c03-2026-09-23-batch500"
   },
   {
     "i": 974,
-    "q": "Which statistics are displayed in a Query Profile that indicate that intermediate results do not fit in memory? (Choose two.)",
+    "q": "Which Query Profile statistics record intermediate data spilled beyond memory? (Choose two.)",
     "o": [
       "Bytes scanned",
       "Partitions scanned",
@@ -24979,16 +25159,19 @@
       3
     ],
     "n": 2,
-    "e": "- Bytes spilled to local storage y Bytes spilled to remote storage: Estos son indicadores clave que muestran que los resultados intermedios no caben en la memoria y deben escribirse en almacenamiento temporal (spilling). Otros parámetros como 'bytes scanned' o 'partitions scanned' no están directamente relacionados con la limitación de memoria.",
-    "r": "https://docs.snowflake.com/en/user-guide/querying-queries.html#interpreting-the-query-profile",
+    "e": "Local and remote spill bytes measure intermediate data written beyond memory. This identifies memory pressure without asserting that resizing is the only remedy; reducing intermediate rows can help too.",
+    "r": "https://docs.snowflake.com/en/user-guide/ui-snowsight-activity",
     "d": "Rendimiento, Consultas y Transformacion",
     "p": false,
     "review": {
-      "status": "pending",
-      "candidateObjective": "4.1",
-      "reason": "Cribado de enunciado y clave. Sin validación exhaustiva de distractores y explicación; no apta para simulacro contrastado.",
-      "screenedAt": "2026-09-21"
-    }
+      "status": "verified",
+      "reviewedAt": "2026-09-23",
+      "method": "editorial-documentation",
+      "reason": "Acotado o corregido el contenido para evitar ambigüedad; alternativas y explicación contrastadas."
+    },
+    "objective": "4.1",
+    "topic": "Evaluate query performance",
+    "contentRevision": "cof-c03-2026-09-23-batch500"
   },
   {
     "i": 975,
@@ -25053,16 +25236,18 @@
       2
     ],
     "n": 1,
-    "e": "- Ability to consolidate account management and billing: El uso de 'organizations' en Snowflake permite la consolidación de la administración de cuentas y la facturación en una sola entidad organizativa, lo que mejora la gestión y visibilidad financiera.",
-    "r": "https://docs.snowflake.com/en/user-guide/organizations-intro.html",
-    "d": "Gestion de cuenta y Gobernanza",
+    "e": "Organizations link related Snowflake accounts and simplify consolidated administration and billing across regions/clouds. They do not enable zero-copy cloning directly across accounts; replication and sharing are separate capabilities.",
+    "r": "https://docs.snowflake.com/en/user-guide/organizations",
+    "d": "Arquitectura y Data Cloud",
     "p": false,
     "review": {
-      "status": "pending",
-      "candidateObjective": "2.3",
-      "reason": "Cribado de enunciado y clave. Sin validación exhaustiva de distractores y explicación; no apta para simulacro contrastado.",
-      "screenedAt": "2026-09-21"
-    }
+      "status": "verified",
+      "reviewedAt": "2026-09-23",
+      "method": "editorial-documentation",
+      "reason": "Enunciado, opciones y clave contrastados; explicación revisada."
+    },
+    "objective": "1.1",
+    "topic": "Architecture and editions"
   },
   {
     "i": 978,

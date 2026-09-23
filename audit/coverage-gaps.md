@@ -45,3 +45,8 @@ Segunda tanda de 100 pendientes (batch-200-report.md): otras 97 validadas y 3 ar
 Tercera tanda de 100 pendientes (batch-300-report.md): 94 validadas y 6 archivadas. Estado actual: 509 contrastadas, 491 pendientes y 454 apartadas. Refuerzo de datos no estructurados, seguridad, secuencias, streams, SQL y rendimiento; no implica cobertura exhaustiva.
 
 Cuarta tanda de 100 pendientes (batch-400-report.md): 55 validadas (44 conservadas y 11 corregidas) y 45 archivadas, sobre todo casi duplicados de preguntas ya contrastadas y preguntas que dependen de la interfaz de Snowsight. Estado actual: 564 contrastadas, 391 pendientes, 454 apartadas y 73 archivadas. Queda por revisar aparte el ID 487 (vistas no seguras en shares). No implica cobertura exhaustiva.
+
+
+## Actualización batch 500 — 2026-09-23
+
+Revisadas las siguientes 100 pendientes tras el batch 400: 36 conservadas, 24 corregidas y 40 archivadas. Estado acumulado: 624 contrastadas, 291 pendientes, 454 apartadas y 113 archivadas. Esta tanda depura material existente; no añade preguntas ni acredita cobertura exhaustiva de los objetivos. Véase [informe de la tanda](batch-500-report.md).

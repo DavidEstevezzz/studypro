@@ -5,7 +5,7 @@ export default function BankAudit({ questions, cert, includePending, onIncludePe
   return (
     <section className="card" aria-label="Estado del banco">
       <div className="section-head">
-        <div><div className="eyebrow mb">Revisión · 21 septiembre 2026</div><h2>Qué estás practicando</h2></div>
+        <div><div className="eyebrow mb">Revisión · {new Date((cert.reviewDate ?? '2026-09-21') + 'T12:00:00').toLocaleDateString('es-ES', { day: 'numeric', month: 'long', year: 'numeric' })}</div><h2>Qué estás practicando</h2></div>
         <span className="threshold">Preguntas en inglés</span>
       </div>
       <p>{counts.verified ?? 0} preguntas contrastadas con documentación, incluidas {questions.filter(q => q.origin === 'original-practice-2026').length} nuevas.</p>

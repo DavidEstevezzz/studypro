@@ -1,5 +1,6 @@
 export const REVIEW_DATE = '2026-09-21';
-export const BANK_VERSION = 'cof-c03-2026-09-21-batch400';
+export const BANK_REVIEW_DATE = '2026-09-23';
+export const BANK_VERSION = 'cof-c03-2026-09-23-batch500';
 export const INITIAL_CONTENT_REVISION = 'cof-c03-2026-09-21';
 export const GUIDE = 'https://publish-p93462-e887935.adobeaemcloud.com/content/dam/snowpro-sg/SnowProCoreStudyGuideC03.pdf';
 export const domains = {
