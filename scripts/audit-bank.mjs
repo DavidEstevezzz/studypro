@@ -8,6 +8,8 @@ import { batch200 } from './review-batch-200.mjs';
 import { batch300 } from './review-batch-300.mjs';
 import { batch400 } from './review-batch-400.mjs';
 import { batch500 } from './review-batch-500.mjs';
+import { batch600 } from './review-batch-600.mjs';
+import { batch700 } from './review-batch-700.mjs';
 
 const root = new URL('../', import.meta.url);
 const path = (p) => new URL(p, root);
@@ -124,7 +126,9 @@ for (const [batch, idsFile, revision, reviewedAt = REVIEW_DATE] of [
   [batch200, 'audit/batch-200-ids.json', 'cof-c03-2026-09-21-batch200'],
   [batch300, 'audit/batch-300-ids.json', 'cof-c03-2026-09-21-batch300'],
   [batch400, 'audit/batch-400-ids.json', 'cof-c03-2026-09-21-batch400'],
-  [batch500, 'audit/batch-500-ids.json', BANK_VERSION, BANK_REVIEW_DATE],
+  [batch500, 'audit/batch-500-ids.json', 'cof-c03-2026-09-23-batch500', '2026-09-23'],
+  [batch600, 'audit/batch-600-ids.json', 'cof-c03-2026-09-23-batch600', '2026-09-23'],
+  [batch700, 'audit/batch-700-ids.json', BANK_VERSION, BANK_REVIEW_DATE],
 ]) {
 const batchIds = JSON.parse(readFileSync(path(idsFile)));
 if (batch.length !== 100 || new Set(batch.map(q => q.i)).size !== 100 ||
@@ -165,6 +169,8 @@ json('audit/batch-200-decisions.json', batch200);
 json('audit/batch-300-decisions.json', batch300);
 json('audit/batch-400-decisions.json', batch400);
 json('audit/batch-500-decisions.json', batch500);
+json('audit/batch-600-decisions.json', batch600);
+json('audit/batch-700-decisions.json', batch700);
 json('public/data/snowpro-core-audit.json',summary);
 json('audit/review-ledger.json',ledger);
 const fields=['id','decision','status','objective','candidateObjective','mapping','originalDomain','domain','question','reason','reference','reviewedAt'];

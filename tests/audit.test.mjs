@@ -10,6 +10,8 @@ import { batch200 } from '../scripts/review-batch-200.mjs';
 import { batch300 } from '../scripts/review-batch-300.mjs';
 import { batch400 } from '../scripts/review-batch-400.mjs';
 import { batch500 } from '../scripts/review-batch-500.mjs';
+import { batch600 } from '../scripts/review-batch-600.mjs';
+import { batch700 } from '../scripts/review-batch-700.mjs';
 
 const read = (path) => JSON.parse(readFileSync(new URL(path, import.meta.url), 'utf8'));
 const questions = read('../public/data/snowpro-core.json');
@@ -30,6 +32,8 @@ const batches = [
   [batch300, '../audit/batch-300-ids.json', 'cof-c03-2026-09-21-batch300'],
   [batch400, '../audit/batch-400-ids.json', 'cof-c03-2026-09-21-batch400'],
   [batch500, '../audit/batch-500-ids.json', 'cof-c03-2026-09-23-batch500'],
+  [batch600, '../audit/batch-600-ids.json', 'cof-c03-2026-09-23-batch600'],
+  [batch700, '../audit/batch-700-ids.json', 'cof-c03-2026-09-23-batch700'],
 ];
 const statusByDecision = { conservar_revisada: 'verified', corregir: 'verified', archivar: 'archived',
   mantener_pendiente: 'pending', apartar: 'quarantine' };
@@ -61,10 +65,10 @@ test('batches follow the next-100-pending rule and each revision belongs to its 
   }
 });
 
-test('batches 400 and 500 keep the original content in the ledger and applies the reviewed version', () => {
+test('batches 400 through 700 keep the original content in the ledger and applies the reviewed version', () => {
   const original = new Map(read('../audit/original/snowpro-core.json').map(q => [q.i, q]));
   const ledger = new Map(read('../audit/review-ledger.json').map(r => [r.id, r]));
-  for (const item of [...batch400, ...batch500]) {
+  for (const item of [...batch400, ...batch500, ...batch600, ...batch700]) {
     const record = ledger.get(item.i);
     assert.deepEqual(record.before, original.get(item.i), `Original #${item.i}`);
     assert.equal(record.decision, item.decision);

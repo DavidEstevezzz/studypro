@@ -50,3 +50,13 @@ Cuarta tanda de 100 pendientes (batch-400-report.md): 55 validadas (44 conservad
 ## Actualización batch 500 — 2026-09-23
 
 Revisadas las siguientes 100 pendientes tras el batch 400: 36 conservadas, 24 corregidas y 40 archivadas. Estado acumulado: 624 contrastadas, 291 pendientes, 454 apartadas y 113 archivadas. Esta tanda depura material existente; no añade preguntas ni acredita cobertura exhaustiva de los objetivos. Véase [informe de la tanda](batch-500-report.md).
+
+
+## Actualización batch 600 — 2026-09-23
+
+100 decisiones: 28 conservadas, 24 corregidas, 47 archivadas y 1 apartada. Totales: 676 contrastadas, 191 pendientes, 455 apartadas y 160 archivadas. Se aplican cambios mínimos y distractores de familias reales; las notas sin cambio de contenido no reinician el progreso. No se añaden preguntas ni se acredita cobertura exhaustiva. [Informe](batch-600-report.md).
+
+
+## Batch 700 — 2026-09-23
+
+31 conservadas, 15 corregidas y 54 archivadas. Estado: 722 contrastadas, 91 pendientes, 455 apartadas y 214 archivadas. No se añaden preguntas ni se declara cobertura exhaustiva. [Informe](batch-700-report.md).

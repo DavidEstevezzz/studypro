@@ -1,0 +1,863 @@
+[
+  {
+    "i": 1121,
+    "duplicateOf": 1050,
+    "decision": "archivar",
+    "reason": "Repite propiedad inicial del objeto; 1050 aplica la distinción entre creador y propietario del esquema. Cubierto por 1050; original conservado."
+  },
+  {
+    "i": 1122,
+    "objective": "2.2",
+    "r": "https://docs.snowflake.com/en/user-guide/intro-editions",
+    "e": "ACCESS_HISTORY requires Enterprise Edition or higher. It records supported object and column access; this is distinct from QUERY_HISTORY, which is not the same edition-gated feature.",
+    "reason": "Enterprise se confirma en la matriz oficial; se diferencia Access History de Query History sin cambiar la pregunta.",
+    "decision": "conservar_revisada"
+  },
+  {
+    "i": 1123,
+    "objective": "2.3",
+    "r": "https://docs.snowflake.com/en/user-guide/security-access-control-overview",
+    "q": "Which built-in account role combines SYSADMIN and SECURITYADMIN privileges and is reserved for top-level account administration, including account usage and billing?",
+    "o": [
+      "ORGADMIN",
+      "ACCOUNTADMIN",
+      "SYSADMIN",
+      "SECURITYADMIN"
+    ],
+    "c": [
+      1
+    ],
+    "n": 1,
+    "e": "ACCOUNTADMIN is the account-level administrative role that combines account administration with usage and billing responsibilities. Organization administration and delegated monitoring roles also have relevant billing capabilities; the account scope matters.",
+    "reason": "Gestionar billing no identifica un rol único sin ámbito: ORGADMIN y roles delegados también pueden intervenir. Se acota al rol administrativo de cuenta.",
+    "decision": "corregir"
+  },
+  {
+    "i": 1124,
+    "duplicateOf": 657,
+    "decision": "archivar",
+    "reason": "Repite la identidad de un file URL y mezcla directory table con tipos de URL. Cubierto por 657; original conservado."
+  },
+  {
+    "i": 1127,
+    "duplicateOf": 1100,
+    "decision": "archivar",
+    "reason": "Repite SINGLE=TRUE con opciones FILES=SINGLE inventadas. Cubierto por 1100; original conservado."
+  },
+  {
+    "i": 1128,
+    "duplicateOf": 221,
+    "decision": "archivar",
+    "reason": "Substring también está soportado; la clave de dos respuestas no es única y prometer mejora significativa es excesivo. Cubierto por 221; original conservado."
+  },
+  {
+    "i": 1129,
+    "objective": "4.1",
+    "r": "https://docs.snowflake.com/en/user-guide/ui-snowsight-activity",
+    "e": "The Merge operator performs MERGE against a table. ExternalScan reads an external source, Flatten expands compound values, and Sort orders rows. These are real Query Profile operators with different responsibilities.",
+    "reason": "Merge es el operador DML; se comprueba contra los otros tres operadores reales del perfil.",
+    "decision": "conservar_revisada"
+  },
+  {
+    "i": 1131,
+    "objective": "4.4",
+    "r": "https://docs.snowflake.com/en/sql-reference/constructs/sample",
+    "q": "Which sampling setup can return different rows across repeated executions even when the table is unchanged?",
+    "o": [
+      "BLOCK sampling with the same seed of 7",
+      "BLOCK sampling without a supplied seed",
+      "SYSTEM sampling with the same seed of 7",
+      "SYSTEM sampling with the same seed of 42"
+    ],
+    "c": [
+      1
+    ],
+    "n": 1,
+    "e": "For SYSTEM/BLOCK sampling, SEED or REPEATABLE specifies the seed. Reusing it on unchanged table data gives a repeatable sample. An unseeded sample may differ, but is not guaranteed to differ on every execution.",
+    "reason": "El original hacía mutuamente excluyentes conceptos compatibles: muestras por fracción o tamaño también pueden variar. Se comparan variantes válidas de una misma muestra por bloques.",
+    "decision": "corregir"
+  },
+  {
+    "i": 1132,
+    "objective": "4.4",
+    "r": "https://docs.snowflake.com/en/sql-reference/functions-semistructured",
+    "e": "Type predicates such as IS_ARRAY, IS_OBJECT and IS_INTEGER test the type of a value, including values stored in VARIANT. They do not extract paths, cast values or modify compound data.",
+    "reason": "La clave distingue comprobar tipo de extraer, convertir o modificar; se enlaza la familia oficial de predicados sin cambiar contenido.",
+    "decision": "conservar_revisada"
+  },
+  {
+    "i": 1133,
+    "duplicateOf": 878,
+    "decision": "archivar",
+    "reason": "Repite RESULT_SCAN e incluye DESCRIBE_RESULTS, que no es la función documentada. Cubierto por 878; original conservado."
+  },
+  {
+    "i": 1134,
+    "duplicateOf": 298,
+    "decision": "archivar",
+    "reason": "Repite acciones de resource monitors con distractores de asignar almacenamiento o modificar consultas ajenos a su función. Cubierto por 298; original conservado."
+  },
+  {
+    "i": 1135,
+    "decision": "archivar",
+    "r": "https://docs.snowflake.com/en/user-guide/snowcd",
+    "reason": "SnowCD ha llegado a End of Life; se aplica el mismo criterio de 1045. La documentación remite a snow connection test de Snowflake CLI."
+  },
+  {
+    "i": 1138,
+    "objective": "2.1",
+    "r": "https://docs.snowflake.com/en/user-guide/security-access-control-overview",
+    "e": "DAC and RBAC are supported models among these choices. Current Snowflake also supports user-based access control (UBAC), which is not offered here. SAML is an authentication standard, not a third answer to this access-control-model selection.",
+    "reason": "DAC y RBAC siguen siendo correctos entre las opciones; se actualiza la explicación para no excluir el actual UBAC.",
+    "decision": "conservar_revisada"
+  },
+  {
+    "i": 1139,
+    "objective": "2.2",
+    "r": "https://docs.snowflake.com/en/user-guide/object-tagging/introduction",
+    "e": "Object tags attach metadata labels. They support discovery and governance and can be associated with masking policies, but a label alone does not grant or deny SQL privileges. Secure objects and row access policies have different functions.",
+    "reason": "La etiqueta no impone permisos por sí sola; se corrige esa posible lectura sin cambiar Object tagging como respuesta.",
+    "decision": "conservar_revisada"
+  },
+  {
+    "i": 1140,
+    "objective": "5.1",
+    "r": "https://docs.snowflake.com/en/user-guide/intro-editions",
+    "e": "Database and share replication is available across editions, starting with Standard. Account-object replication and failover/failback have different edition requirements; database replication alone must not be confused with those capabilities.",
+    "reason": "Se conserva Standard y se distingue replicación de bases de failover y replicación de otros objetos.",
+    "decision": "conservar_revisada"
+  },
+  {
+    "i": 1141,
+    "duplicateOf": 517,
+    "decision": "archivar",
+    "reason": "Repite COPY con OBJECT_CONSTRUCT e incluye EXPORT como supuesto comando. Cubierto por 517; original conservado."
+  },
+  {
+    "i": 1143,
+    "objective": "2.2",
+    "r": "https://docs.snowflake.com/en/user-guide/security-access-control-privileges",
+    "e": "APPLY on a masking policy allows applying that policy when the required target-object authority is also present. Global APPLY MASKING POLICY is a separate account privilege; CREATE MASKING POLICY creates policies rather than applying them.",
+    "reason": "APPLY es la respuesta del objeto policy; se añaden los requisitos del objeto destino y la distinción frente al privilegio global.",
+    "decision": "conservar_revisada"
+  },
+  {
+    "i": 1144,
+    "duplicateOf": 453,
+    "decision": "archivar",
+    "reason": "Repite grants para compartir tablas e incluye privilegios que no pertenecen a esos objetos. Cubierto por 453; original conservado."
+  },
+  {
+    "i": 1145,
+    "duplicateOf": 974,
+    "decision": "archivar",
+    "reason": "Repite diagnóstico de memoria en Query Profile; el perfil no determina cuotas ni autoescala. Cubierto por 974; original conservado."
+  },
+  {
+    "i": 1147,
+    "duplicateOf": 1032,
+    "decision": "archivar",
+    "reason": "Repite Data Exchange como grupo de miembros invitados. Cubierto por 1032; original conservado."
+  },
+  {
+    "i": 1149,
+    "objective": "3.2",
+    "r": "https://docs.snowflake.com/en/user-guide/streams-intro",
+    "q": "What are the possible values within a METADATA$ACTION column in a Snowflake stream? (Choose two.)",
+    "o": [
+      "INSERT",
+      "UPDATE",
+      "DELETE",
+      "TRUNCATE",
+      "MERGE"
+    ],
+    "c": [
+      0,
+      2
+    ],
+    "n": 2,
+    "e": "METADATA$ACTION uses INSERT and DELETE. An update is represented by DELETE and INSERT records with METADATA$ISUPDATE indicating their relationship. UPDATE, MERGE and TRUNCATE are real SQL operations, not additional values of this column.",
+    "reason": "La explicación debe distinguir UPDATE de sus registros DELETE/INSERT. Se sustituye UPSERT, que no es un comando Snowflake, por MERGE.",
+    "decision": "corregir"
+  },
+  {
+    "i": 1151,
+    "duplicateOf": 665,
+    "decision": "archivar",
+    "reason": "Repite precedencia de opciones del COPY frente a stage y tabla. Cubierto por 665; original conservado."
+  },
+  {
+    "i": 1152,
+    "objective": "1.2",
+    "r": "https://docs.snowflake.com/en/user-guide/snowsql",
+    "e": "SnowSQL is a legacy SQL command-line client. Snowflake CLI is the newer CLI, but is not offered among these answers. SnowCD was a connectivity diagnostic tool and has reached end of life; Snowpark is a development API.",
+    "reason": "SnowSQL sigue identificando el cliente solicitado; se actualiza su carácter legacy y el estado de SnowCD sin reiniciar contenido.",
+    "decision": "conservar_revisada"
+  },
+  {
+    "i": 1153,
+    "objective": "1.6",
+    "r": "https://docs.snowflake.com/en/developer-guide/udf/udf-overview",
+    "e": "Snowflake supports JavaScript handlers for stored procedures and UDFs. Tasks can invoke procedures but do not themselves define JavaScript handlers; views contain SQL definitions and stages locate files.",
+    "reason": "Se distingue contener el handler JavaScript de invocar un procedimiento desde una task; se mantienen las dos respuestas.",
+    "decision": "conservar_revisada"
+  },
+  {
+    "i": 1154,
+    "duplicateOf": 138,
+    "decision": "archivar",
+    "reason": "Repite la edición mínima para seguridad de columnas. Cubierto por 138; original conservado."
+  },
+  {
+    "i": 1155,
+    "objective": "2.1",
+    "r": "https://docs.snowflake.com/en/user-guide/key-pair-auth",
+    "q": "For initial key-pair authentication, what value is assigned to RSA_PUBLIC_KEY using ALTER USER?",
+    "o": [
+      "The private key without its PEM delimiters",
+      "The public key fingerprint in SHA-256 form",
+      "The passphrase protecting the private key",
+      "The public key without its PEM delimiters"
+    ],
+    "c": [
+      3
+    ],
+    "n": 1,
+    "e": "Assign the PEM public-key body to RSA_PUBLIC_KEY without the header/footer lines. The private key stays with the client; its passphrase decrypts that private key. A public-key fingerprint verifies identity but is not the assigned public key.",
+    "reason": "RSA_P8_KEY, ENCRYPTED_KEY y RSA_PRIVATE_KEY eran propiedades inventadas. Se comparan cuatro materiales criptográficos reales de la misma configuración.",
+    "decision": "corregir"
+  },
+  {
+    "i": 1156,
+    "duplicateOf": 487,
+    "decision": "archivar",
+    "reason": "UDTFs también pueden compartirse bajo condiciones; elige dos sin acotar y repite objetos compartibles. Cubierto por 487; original conservado."
+  },
+  {
+    "i": 1157,
+    "duplicateOf": 996,
+    "decision": "archivar",
+    "reason": "Repite configuración automática de warehouse con cache size y storage size que no son sus propiedades configurables. Cubierto por 996; original conservado."
+  },
+  {
+    "i": 1159,
+    "duplicateOf": 517,
+    "decision": "archivar",
+    "reason": "Repite OBJECT_CONSTRUCT para preparar JSON y atribuye a la función toda la descarga. Cubierto por 517; original conservado."
+  },
+  {
+    "i": 1160,
+    "duplicateOf": 956,
+    "decision": "archivar",
+    "reason": "Repite accesos y modificaciones en ACCESS_HISTORY; la versión conservada incorpora linaje. Cubierto por 956; original conservado."
+  },
+  {
+    "i": 1161,
+    "duplicateOf": 395,
+    "decision": "archivar",
+    "reason": "Repite COPY INTO para descarga a stage. Cubierto por 395; original conservado."
+  },
+  {
+    "i": 1165,
+    "objective": "3.1",
+    "r": "https://docs.snowflake.com/en/user-guide/querying-metadata",
+    "q": "Which staged-file metadata column identifies the source file of each row?",
+    "o": [
+      "METADATA$FILE_LAST_MODIFIED",
+      "METADATA$FILE_CONTENT_KEY",
+      "METADATA$FILE_ROW_NUMBER",
+      "METADATA$FILENAME"
+    ],
+    "c": [
+      3
+    ],
+    "n": 1,
+    "e": "METADATA$FILENAME identifies the staged file for each row. FILE_CONTENT_KEY identifies file content, FILE_ROW_NUMBER identifies the row position, and FILE_LAST_MODIFIED records file modification time. Query these metadata columns alongside staged data.",
+    "reason": "SHOW FILE FORMATS no era una columna de metadatos y SELECT sin FROM era incompleto. Se comparan cuatro columnas hermanas reales.",
+    "decision": "corregir"
+  },
+  {
+    "i": 1166,
+    "duplicateOf": 221,
+    "decision": "archivar",
+    "reason": "Repite Search Optimization para point lookups. Cubierto por 221; original conservado."
+  },
+  {
+    "i": 1168,
+    "duplicateOf": 3063,
+    "decision": "archivar",
+    "reason": "Repite MANAGE GRANTS y propietario del esquema en managed access. Cubierto por 3063; original conservado."
+  },
+  {
+    "i": 1169,
+    "objective": "3.2",
+    "r": "https://docs.snowflake.com/en/user-guide/tasks-intro",
+    "e": "Tasks execute scheduled SQL or procedure calls. A task graph orders dependent tasks, with a schedule on its root. Streams track changes, pipes load files, and sequences generate values rather than orchestrate transformations.",
+    "reason": "Tasks es correcto; se precisa que el orden corresponde al grafo de dependencias y el horario a su raíz.",
+    "decision": "conservar_revisada"
+  },
+  {
+    "i": 1170,
+    "objective": "3.1",
+    "r": "https://docs.snowflake.com/en/sql-reference/sql/remove",
+    "e": "REMOVE deletes staged files from internal or external stages, subject to stage and cloud permissions. DROP removes objects; DELETE and TRUNCATE operate on table rows. Removing staged files does not delete already loaded rows.",
+    "reason": "Se confirma REMOVE y se distingue eliminar archivos del stage de eliminar objetos o filas de tablas.",
+    "decision": "conservar_revisada"
+  },
+  {
+    "i": 1172,
+    "duplicateOf": 597,
+    "decision": "archivar",
+    "reason": "Repite scale-out por concurrencia sin aportar escenario nuevo. Cubierto por 597; original conservado."
+  },
+  {
+    "i": 1173,
+    "objective": "2.2",
+    "r": "https://docs.snowflake.com/en/user-guide/security-column-intro",
+    "q": "Which column-protection mechanism integrates with an external service to tokenize and detokenize sensitive values?",
+    "o": [
+      "Dynamic Data Masking",
+      "Tag-based masking",
+      "External tokenization",
+      "Row access policies"
+    ],
+    "c": [
+      2
+    ],
+    "n": 1,
+    "e": "External tokenization uses a tokenization service outside Snowflake with masking policies to tokenize or detokenize protected data. Dynamic masking and tag-based masking are also supported column-security mechanisms; row access policies govern rows.",
+    "reason": "External tokenization y tag-based masking eran ambas respuestas válidas. Se pregunta por la integración con el servicio externo y se usan cuatro mecanismos reales de gobierno.",
+    "decision": "corregir"
+  },
+  {
+    "i": 1174,
+    "objective": "2.1",
+    "r": "https://docs.snowflake.com/en/user-guide/network-policies",
+    "e": "A user-level network policy overrides an account-level network policy for that user. Network policies can also interact with supported integrations; the two policy levels are not simply combined into one allowed-IP list.",
+    "reason": "Se verifica la precedencia usuario/cuenta y se evita describirla como una unión de listas de IP.",
+    "decision": "conservar_revisada"
+  },
+  {
+    "i": 1175,
+    "duplicateOf": 555,
+    "decision": "archivar",
+    "reason": "External table también persiste sin Fail-safe; la versión conservada especifica almacenamiento nativo reconstruible. Cubierto por 555; original conservado."
+  },
+  {
+    "i": 1176,
+    "objective": "5.3",
+    "r": "https://docs.snowflake.com/en/collaboration/collaboration-listings-about",
+    "e": "Listings package discovery and access to data products and can be offered to specified consumers or publicly on Marketplace. A direct share alone is not a Marketplace publication; a reader account and Data Exchange serve different access arrangements.",
+    "reason": "Listing es correcto; se precisa la oferta a consumidores seleccionados frente a publicación pública.",
+    "decision": "conservar_revisada"
+  },
+  {
+    "i": 1178,
+    "objective": "3.1",
+    "r": "https://docs.snowflake.com/en/user-guide/data-load-considerations-stage",
+    "q": "Stage my_stage contains several directories. Which statement loads CSV files only from app_files/ into my_table while restricting the scanned prefix?",
+    "o": [
+      "COPY INTO my_table FROM @my_stage PATTERN='.*[.]csv$';",
+      "COPY INTO my_table FROM @my_stage/app_files/ PATTERN='.*[.]csv$';",
+      "COPY INTO my_table FROM @my_stage/app_files/ PATTERN='.*[.]txt$';",
+      "COPY INTO my_table FROM @my_stage PATTERN='.*[.]txt$';"
+    ],
+    "c": [
+      1
+    ],
+    "n": 1,
+    "e": "Use the directory prefix to restrict candidate files before applying the CSV pattern. A trailing slash distinguishes app_files/ from a similarly prefixed directory; the end anchor excludes filenames that merely contain .csv before another suffix. COPY loads rows and does not move source files by default.",
+    "reason": "Faltaba cerrar el prefijo de directorio y anclar la extensión; además COPY carga, no mueve archivos. Se conservan cuatro sentencias válidas con estructura equivalente.",
+    "decision": "corregir"
+  },
+  {
+    "i": 1179,
+    "objective": "2.3",
+    "r": "https://docs.snowflake.com/en/sql-reference/parameters",
+    "q": "Which parameters set time limits for statement execution and for waiting in a warehouse queue? (Choose two.)",
+    "o": [
+      "MULTI_STATEMENT_COUNT",
+      "ENABLE_QUERY_ACCELERATION",
+      "STATEMENT_TIMEOUT_IN_SECONDS",
+      "STATEMENT_QUEUED_TIMEOUT_IN_SECONDS",
+      "QUERY_ACCELERATION_MAX_SCALE_FACTOR"
+    ],
+    "c": [
+      2,
+      3
+    ],
+    "n": 2,
+    "e": "STATEMENT_TIMEOUT_IN_SECONDS limits statement duration; STATEMENT_QUEUED_TIMEOUT_IN_SECONDS limits warehouse queue time. Query acceleration settings concern eligible query processing, while MULTI_STATEMENT_COUNT concerns the number of statements in a request. Timeouts cancel work rather than adding capacity.",
+    "reason": "Limitar slowdowns también podía sugerir aceleración. Se acota a límites de tiempo de ejecución y cola, manteniendo los cinco parámetros reales.",
+    "decision": "corregir"
+  },
+  {
+    "i": 1180,
+    "duplicateOf": 905,
+    "decision": "archivar",
+    "reason": "Repite muestreo fijo de diez filas e incluye FETCH 10 incompleto. Cubierto por 905; original conservado."
+  },
+  {
+    "i": 1181,
+    "duplicateOf": 89,
+    "decision": "archivar",
+    "reason": "Repite expansión relacional con FLATTEN. Cubierto por 89; original conservado."
+  },
+  {
+    "i": 1182,
+    "objective": "4.2",
+    "r": "https://docs.snowflake.com/en/user-guide/tables-auto-reclustering",
+    "e": "Automatic Clustering runs when Snowflake determines reclustering is beneficial; it is not a user-maintained schedule. Defining a key normally enables it, with exceptions such as initially suspended clustering on clones.",
+    "reason": "Se confirma la decisión por beneficio y se añade la excepción de clones para evitar prometer mantenimiento inmediato siempre.",
+    "decision": "conservar_revisada"
+  },
+  {
+    "i": 1183,
+    "duplicateOf": 943,
+    "decision": "archivar",
+    "reason": "Tables también pueden consumir mantenimiento automático; la versión conservada acota resultados almacenados. Cubierto por 943; original conservado."
+  },
+  {
+    "i": 1185,
+    "objective": "2.2",
+    "r": "https://docs.snowflake.com/en/user-guide/views-secure",
+    "q": "Which objects support the SECURE modifier in their CREATE statement? (Choose two.)",
+    "o": [
+      "Schemas",
+      "Stages",
+      "Views",
+      "Materialized views",
+      "Tags"
+    ],
+    "c": [
+      2,
+      3
+    ],
+    "n": 2,
+    "e": "CREATE VIEW and CREATE MATERIALIZED VIEW support SECURE. Other listed objects can be protected through access control, but that is different from supporting this specific modifier. Secure views protect definition and information disclosure, not merely grant SELECT.",
+    "reason": "Proteger privacidad también podía describir permisos de schemas, stages y tags. Se pregunta por el modificador SECURE para mantener inequívocas las dos respuestas.",
+    "decision": "corregir"
+  },
+  {
+    "i": 1186,
+    "duplicateOf": 915,
+    "decision": "archivar",
+    "reason": "Pruning de columnas y micro-particiones son técnicas compatibles; las alternativas se solapan y el tema ya está cubierto. Cubierto por 915; original conservado."
+  },
+  {
+    "i": 1187,
+    "objective": "2.3",
+    "r": "https://docs.snowflake.com/en/user-guide/resource-monitors",
+    "q": "Which resource-monitor trigger action cancels running queries when its credit threshold is reached?",
+    "o": [
+      "NOTIFY",
+      "SUSPEND",
+      "SUSPEND_IMMEDIATE"
+    ],
+    "c": [
+      2
+    ],
+    "n": 1,
+    "e": "SUSPEND_IMMEDIATE suspends a warehouse and cancels running queries. SUSPEND allows existing queries to finish; NOTIFY sends notifications without suspending compute. Threshold evaluation is not a guarantee of an exact credit cap.",
+    "reason": "NOTIFY_USERS era una propiedad, no una acción de trigger. Se comparan las tres acciones documentadas y se diferencia suspensión inmediata de suspensión con finalización.",
+    "decision": "corregir"
+  },
+  {
+    "i": 1188,
+    "duplicateOf": 4,
+    "decision": "archivar",
+    "reason": "Repite USERADMIN como rol dedicado a usuarios. Cubierto por 4; original conservado."
+  },
+  {
+    "i": 1189,
+    "objective": "4.1",
+    "r": "https://docs.snowflake.com/en/sql-reference/account-usage/query_history",
+    "e": "QUERY_HISTORY exposes query timing and execution details, including TOTAL_ELAPSED_TIME. ACCOUNT_USAGE has latency and is not a live list of all currently executing statements. The other views concern transfers, tasks or metering.",
+    "reason": "La vista es correcta; se explicita el campo de duración y se evita presentarla como monitor instantáneo de consultas activas.",
+    "decision": "conservar_revisada"
+  },
+  {
+    "i": 1190,
+    "duplicateOf": 3050,
+    "decision": "archivar",
+    "reason": "Repite compute pagado por el consumidor de un share con cuenta propia. Cubierto por 3050; original conservado."
+  },
+  {
+    "i": 1191,
+    "objective": "4.2",
+    "r": "https://docs.snowflake.com/en/user-guide/intro-editions",
+    "e": "Query Acceleration Service requires Enterprise Edition or higher and helps eligible query portions. Edition availability does not imply every query benefits from enabling it.",
+    "reason": "Enterprise se confirma con la matriz de ediciones; se limita el beneficio a consultas elegibles.",
+    "decision": "conservar_revisada"
+  },
+  {
+    "i": 1196,
+    "duplicateOf": 974,
+    "decision": "archivar",
+    "reason": "Spilling también puede deberse a un plan ineficiente, no solo al tamaño; ya se cubren las métricas que lo identifican. Cubierto por 974; original conservado."
+  },
+  {
+    "i": 1197,
+    "objective": "4.1",
+    "r": "https://docs.snowflake.com/en/user-guide/ui-snowsight-activity",
+    "q": "Query Profile shows large spills to remote storage because intermediate results exceed memory. Which change increases the resources of the cluster executing this query?",
+    "o": [
+      "Convert the virtual warehouse to Maximized mode.",
+      "Increase the size of the virtual warehouse.",
+      "Increase the auto suspend time in the virtual warehouse.",
+      "Increase the number of clusters in the virtual warehouse."
+    ],
+    "c": [
+      1
+    ],
+    "n": 1,
+    "e": "A larger warehouse provides more resources, including memory, per cluster and can reduce spill for an individual query. Adding clusters primarily serves concurrency; extending auto-suspend preserves cache rather than increasing memory. Validate with the workload.",
+    "reason": "Remote Disk IO no demuestra por sí solo derrame: también puede corresponder a lecturas remotas normales. Se añade la evidencia de spilling por falta de memoria.",
+    "decision": "corregir"
+  },
+  {
+    "i": 1199,
+    "duplicateOf": 645,
+    "decision": "archivar",
+    "reason": "Repite GET desde stages internos y mezcla tipos de stage con tablas. Cubierto por 645; original conservado."
+  },
+  {
+    "i": 1200,
+    "duplicateOf": 1068,
+    "decision": "archivar",
+    "reason": "La protección genérica de PII también incluye MFA y cifrado; la versión conservada evalúa masking con un mecanismo concreto. Cubierto por 1068; original conservado."
+  },
+  {
+    "i": 1202,
+    "objective": "2.1",
+    "r": "https://docs.snowflake.com/en/user-guide/security-access-control-overview",
+    "e": "FINANCEADMIN is a custom role name among these choices. Built-in system roles such as ACCOUNTADMIN, USERADMIN and PUBLIC cannot be dropped. Dropping a custom role still requires appropriate authority and review of ownership and grants.",
+    "reason": "Se distingue un rol personalizado de roles del sistema; no se presupone que cualquier usuario tenga autorización para eliminarlo.",
+    "decision": "conservar_revisada"
+  },
+  {
+    "i": 1204,
+    "duplicateOf": 996,
+    "decision": "archivar",
+    "reason": "Los períodos genéricos y de inactividad se solapan; la automatización ya está cubierta sin afirmar ahorro óptimo universal. Cubierto por 996; original conservado."
+  },
+  {
+    "i": 1205,
+    "duplicateOf": 166,
+    "decision": "archivar",
+    "reason": "Repite Fail-safe como último recurso de recuperación. Cubierto por 166; original conservado."
+  },
+  {
+    "i": 1206,
+    "duplicateOf": 580,
+    "decision": "archivar",
+    "reason": "Repite colas por falta de capacidad; el caso conservado aporta evidencia de queued load. Cubierto por 580; original conservado."
+  },
+  {
+    "i": 1207,
+    "duplicateOf": 832,
+    "decision": "archivar",
+    "reason": "Pruning y search access path no son explicaciones excluyentes; la versión conservada precisa el mecanismo. Cubierto por 832; original conservado."
+  },
+  {
+    "i": 1208,
+    "objective": "3.1",
+    "r": "https://docs.snowflake.com/en/sql-reference/sql/copy-into-table",
+    "e": "LOAD_UNCERTAIN_FILES=TRUE permits files whose load status is unknown under the documented metadata-age conditions. It does not force every file to reload; FORCE has different semantics. PURGE deletes successfully loaded source files and ENFORCE_LENGTH concerns string length.",
+    "reason": "Se aclara qué significa metadata expirada y se diferencia cargar estado desconocido de forzar recarga de todos los archivos.",
+    "decision": "conservar_revisada"
+  },
+  {
+    "i": 1210,
+    "objective": "1.1",
+    "r": "https://docs.snowflake.com/en/user-guide/intro-editions",
+    "e": "External functions and Fail-safe are available in Standard. Materialized views, multi-cluster warehouses and row access policies require higher editions. External functions can have separate infrastructure and usage costs.",
+    "reason": "Se comprueban las cinco capacidades en la matriz oficial; disponible en Standard no equivale a uso sin costes.",
+    "decision": "conservar_revisada"
+  },
+  {
+    "i": 1211,
+    "objective": "3.1",
+    "r": "https://docs.snowflake.com/en/sql-reference/functions/get_presigned_url",
+    "e": "GET_PRESIGNED_URL produces a time-limited URL that a recipient can use without Snowflake authentication. The creator needs appropriate stage access; the recipient holds a bearer URL. File and scoped URLs have different access rules.",
+    "reason": "La función prefirmada es correcta; se añade caducidad y la diferencia entre permisos del creador y autenticación del destinatario.",
+    "decision": "conservar_revisada"
+  },
+  {
+    "i": 1212,
+    "objective": "3.1",
+    "r": "https://docs.snowflake.com/en/sql-reference/sql/copy-into-location",
+    "e": "FIELD_OPTIONALLY_ENCLOSED_BY accepts an enclosure character or NONE to disable enclosure. A single quote is a valid character; a double quote is also supported but not offered. SQL NULL and the strings NULL or NONE are not the unquoted NONE setting.",
+    "reason": "La clave es válida; se explica NONE frente a los literales de texto y se menciona la doble comilla sin añadir opciones.",
+    "decision": "conservar_revisada"
+  },
+  {
+    "i": 1215,
+    "duplicateOf": 916,
+    "decision": "archivar",
+    "reason": "Object también puede ser un valor escalar; se mezclan categorías de retorno y tipos. 916 distingue scalar/table y 646 el retorno tabular. Cubierto por 916; original conservado."
+  },
+  {
+    "i": 1216,
+    "duplicateOf": 866,
+    "decision": "archivar",
+    "reason": "Repite SELECT frente a DML sobre datos de solo lectura. Cubierto por 866; original conservado."
+  },
+  {
+    "i": 1219,
+    "objective": "5.3",
+    "r": "https://docs.snowflake.com/en/collaboration/provider-listings-auto-fulfillment-setup",
+    "q": "A provider wants its data delivered to consumers in other regions using Cross-Cloud Auto-Fulfillment rather than manually managing replicas. Which sharing mechanism should it use?",
+    "o": [
+      "Direct share",
+      "Data Exchange",
+      "Data replication",
+      "Listing"
+    ],
+    "c": [
+      3
+    ],
+    "n": 1,
+    "e": "Cross-Cloud Auto-Fulfillment delivers listing data to supported consumer regions without the provider manually managing replication for each consumer. Manual replication can also enable cross-region sharing, so geography alone does not uniquely identify a listing.",
+    "reason": "Replicación y listing podían resolver el requisito original. Se añade entrega automática sin gestionar réplicas manualmente y se conservan los mecanismos reales.",
+    "decision": "corregir"
+  },
+  {
+    "i": 1221,
+    "duplicateOf": 233,
+    "decision": "archivar",
+    "reason": "Repite UNDROP dentro de retención como restauración directa. Cubierto por 233; original conservado."
+  },
+  {
+    "i": 1224,
+    "objective": "4.1",
+    "r": "https://docs.snowflake.com/en/user-guide/ui-snowsight-activity",
+    "e": "Remote Disk IO measures time when processing was blocked by remote disk access. It is not exclusively spill time: inspect bytes spilled and the relevant operators before diagnosing insufficient memory. Local-cache and network-communication statistics are distinct.",
+    "reason": "El significado del indicador es correcto; se evita equiparar toda lectura remota con spilling.",
+    "decision": "conservar_revisada"
+  },
+  {
+    "i": 1225,
+    "duplicateOf": 1117,
+    "decision": "archivar",
+    "reason": "Repite Snowpark-optimized para cargas de alta memoria. Cubierto por 1117; original conservado."
+  },
+  {
+    "i": 1227,
+    "duplicateOf": 504,
+    "decision": "archivar",
+    "reason": "Repite COPY GRANTS y exclusión de OWNERSHIP en clones. Cubierto por 504; original conservado."
+  },
+  {
+    "i": 1228,
+    "duplicateOf": 172,
+    "decision": "archivar",
+    "reason": "Mezcla ubicación física remota con caché lógica; 172 ya distingue los resultados persistidos. Cubierto por 172; original conservado."
+  },
+  {
+    "i": 1230,
+    "objective": "2.3",
+    "r": "https://docs.snowflake.com/en/user-guide/cost-understanding-compute",
+    "e": "Under the daily cloud-services adjustment, only cloud-services credits exceeding 10% of eligible daily warehouse credits are billed. The adjustment is daily, not per query, and does not mean all cloud-services usage becomes billable after crossing the threshold.",
+    "reason": "El umbral es correcto; se precisa que se factura el exceso y que el ajuste se calcula por día, no por consulta.",
+    "decision": "conservar_revisada"
+  },
+  {
+    "i": 1231,
+    "duplicateOf": 1068,
+    "decision": "archivar",
+    "reason": "Repite finalidad de masking con alternativas que mezclan cifrado y filtrado de filas. Cubierto por 1068; original conservado."
+  },
+  {
+    "i": 1232,
+    "objective": "4.2",
+    "r": "https://docs.snowflake.com/en/user-guide/views-materialized",
+    "q": "Which object can store precomputed query results over an external table and incur automatic maintenance credits?",
+    "o": [
+      "Standard view",
+      "Materialized view",
+      "Directory table",
+      "Secure standard view"
+    ],
+    "c": [
+      1
+    ],
+    "n": 1,
+    "e": "Materialized views store precomputed query results and can be defined on supported external tables. Standard and secure standard views do not store query results; directory tables store staged-file metadata. Maintenance and storage incur costs.",
+    "reason": "Optimizar rendimiento era demasiado amplio para descartar caché de metadatos. Se acota a resultados precomputados y se comparan cuatro objetos tabulares reales.",
+    "decision": "corregir"
+  },
+  {
+    "i": 1233,
+    "objective": "4.4",
+    "r": "https://docs.snowflake.com/en/sql-reference/data-types-unsupported",
+    "e": "Use BINARY for binary large-object data and VARCHAR for character large-object data instead of BLOB and CLOB. VARIANT, ARRAY and OBJECT represent semi-structured or structured compound values, not the direct binary/text alternatives.",
+    "reason": "Se verifica BINARY/VARCHAR y se distingue su función de los tres tipos compuestos ofrecidos.",
+    "decision": "conservar_revisada"
+  },
+  {
+    "i": 1237,
+    "objective": "2.1",
+    "r": "https://docs.snowflake.com/en/user-guide/intro-editions",
+    "e": "Object-level access control is available in all editions. The listed masking, tagging and customer-managed-key capabilities have higher-edition requirements. Basic access control is distinct from these governance and key-management features.",
+    "reason": "Se confirma control de acceso a objetos en Standard; no se confunde con políticas o gestión externa de claves.",
+    "decision": "conservar_revisada"
+  },
+  {
+    "i": 1239,
+    "objective": "4.4",
+    "r": "https://docs.snowflake.com/en/sql-reference/functions/to_boolean",
+    "e": "TO_BOOLEAN accepts on and yes as true string representations, case-insensitively. The offered 0, n and no strings convert to false. These conversion rules are not specific to unloading.",
+    "reason": "Las dos conversiones son correctas; la nota aclara que son reglas generales, no exclusivas de COPY de descarga.",
+    "decision": "conservar_revisada"
+  },
+  {
+    "i": 1241,
+    "objective": "3.3",
+    "r": "https://docs.snowflake.com/en/developer-guide/python-connector/python-connector",
+    "q": "Which Snowflake interface directly implements DB-API 2.0 (PEP 249)?",
+    "o": [
+      "Snowflake SQLAlchemy",
+      "Snowpark Python",
+      "Snowflake Connector for Python",
+      "Snowflake Python APIs"
+    ],
+    "c": [
+      2
+    ],
+    "n": 1,
+    "e": "The Snowflake Connector for Python implements Python DB-API 2.0 (PEP 249). Snowflake SQLAlchemy is an SQLAlchemy dialect built on the connector; Snowpark Python provides DataFrame processing, and Snowflake Python APIs manage resources.",
+    "reason": "Los distractores incluían drivers inexistentes. Se comparan cuatro interfaces Python reales y cercanas para distinguir DB-API de ORM, DataFrame y gestión de recursos.",
+    "decision": "corregir"
+  },
+  {
+    "i": 1242,
+    "objective": "5.1",
+    "r": "https://docs.snowflake.com/en/user-guide/object-clone",
+    "e": "Without an explicit historical point, cloning uses a snapshot at initiation of the clone statement. Later source updates are not folded into that snapshot. Session creation and clone completion are not the snapshot boundary.",
+    "reason": "Se confirma el inicio de la sentencia como instante de snapshot, distinguiéndolo de la sesión y la finalización.",
+    "decision": "conservar_revisada"
+  },
+  {
+    "i": 1244,
+    "duplicateOf": 368,
+    "decision": "archivar",
+    "reason": "Repite POLICY_REFERENCES para políticas asignadas. Cubierto por 368; original conservado."
+  },
+  {
+    "i": 1245,
+    "duplicateOf": 181,
+    "decision": "archivar",
+    "reason": "CREATE puede consumir el stream mediante CTAS; falta precisar la transacción. 181 enumera operaciones y commit. Cubierto por 181; original conservado."
+  },
+  {
+    "i": 1246,
+    "duplicateOf": 1003,
+    "decision": "archivar",
+    "reason": "Repite gestión de metadatos en cloud services. Cubierto por 1003; original conservado."
+  },
+  {
+    "i": 1247,
+    "objective": "2.1",
+    "r": "https://docs.snowflake.com/en/user-guide/admin-security-privatelink",
+    "e": "Private connectivity uses the supported cloud private-link service to reach Snowflake without traversing the public internet. It is not equivalent to a user VPN, database isolation or Secure Data Sharing. Availability and setup depend on cloud and edition.",
+    "reason": "La conexión privada es correcta; se distingue de VPN y de sharing y se añaden dependencias de proveedor y edición.",
+    "decision": "conservar_revisada"
+  },
+  {
+    "i": 1250,
+    "duplicateOf": 850,
+    "decision": "archivar",
+    "reason": "La recomendación genérica omite contexto y los índices existen para hybrid tables; 850 exige diagnóstico de carga. Cubierto por 850; original conservado."
+  },
+  {
+    "i": 1252,
+    "duplicateOf": 86,
+    "decision": "archivar",
+    "reason": "Repite edición mínima Standard para compartir. Cubierto por 86; original conservado."
+  },
+  {
+    "i": 1257,
+    "duplicateOf": 725,
+    "decision": "archivar",
+    "reason": "Repite COPY INTO location para descarga a stage externo. Cubierto por 725; original conservado."
+  },
+  {
+    "i": 1260,
+    "duplicateOf": 138,
+    "decision": "archivar",
+    "reason": "Repite Enterprise para masking de columnas. Cubierto por 138; original conservado."
+  },
+  {
+    "i": 1261,
+    "duplicateOf": 1060,
+    "decision": "archivar",
+    "reason": "Repite COPY_HISTORY y lo llama comando en lugar de función/vista. Cubierto por 1060; original conservado."
+  },
+  {
+    "i": 1263,
+    "duplicateOf": 657,
+    "decision": "archivar",
+    "reason": "Repite file URL y mezcla HTTPS, que es protocolo, con las categorías de URL. Cubierto por 657; original conservado."
+  },
+  {
+    "i": 1264,
+    "decision": "archivar",
+    "reason": "Identificación genérica de interfaz: administrar y monitorizar también se puede hacer con SQL. No aporta un escenario inequívoco y se retira conforme al criterio de preguntas de interfaz."
+  },
+  {
+    "i": 1266,
+    "objective": "4.2",
+    "r": "https://docs.snowflake.com/en/user-guide/views-materialized",
+    "e": "Frequent source changes can make materialized-view maintenance expensive, favoring a standard view when the read-performance benefit does not justify the cost. This is a workload tradeoff, not a rule that materialized views cannot support frequently changing data.",
+    "reason": "Se conserva la recomendación y se matiza el equilibrio entre mantenimiento y beneficio, sin convertirlo en prohibición absoluta.",
+    "decision": "conservar_revisada"
+  },
+  {
+    "i": 1269,
+    "objective": "2.1",
+    "r": "https://docs.snowflake.com/en/user-guide/network-policies",
+    "e": "When a user-level policy is activated, an already logged-in user whose IP is disallowed cannot execute further queries. The documented effect is not automatically deactivating the policy or permitting queries until token expiry.",
+    "reason": "Se confirma el bloqueo de nuevas consultas para la sesión activa; se distingue del cierre de sesión y de esperar al token.",
+    "decision": "conservar_revisada"
+  },
+  {
+    "i": 1270,
+    "duplicateOf": 852,
+    "decision": "archivar",
+    "reason": "Repite el nivel Account de ALLOW_CLIENT_MFA_CACHING. Cubierto por 852; original conservado."
+  },
+  {
+    "i": 1271,
+    "objective": "5.2",
+    "r": "https://docs.snowflake.com/en/user-guide/account-replication-intro",
+    "q": "A provider is not using listing auto-fulfillment and wants to maintain a database copy in another region before creating a local share there. Which mechanism supplies that copy?",
+    "o": [
+      "Use Cross-Cloud Auto-Fulfillment.",
+      "Use replication.",
+      "Use the CREATE SHARE command.",
+      "Use the GRANT command to share selected objects."
+    ],
+    "c": [
+      1
+    ],
+    "n": 1,
+    "e": "Database replication can copy source data to a target region/account where a share is created. Auto-fulfillment is another cross-region delivery path for listings; the original question did not exclude it. CREATE SHARE and GRANT alone do not copy the database to a region.",
+    "reason": "Auto-fulfillment y replicación eran válidos. Se concreta el flujo de réplica gestionada por el proveedor sin auto-fulfillment.",
+    "decision": "corregir"
+  },
+  {
+    "i": 1272,
+    "duplicateOf": 317,
+    "decision": "archivar",
+    "reason": "Repite tamaño y tiempo sin fijar tipo, generación y clusters; la versión conservada sí lo acota. Cubierto por 317; original conservado."
+  },
+  {
+    "i": 1273,
+    "objective": "2.1",
+    "r": "https://docs.snowflake.com/en/user-guide/security-access-control-privileges",
+    "e": "MONITOR provides warehouse usage and query statistics. MODIFY changes configuration, OPERATE controls warehouse state and can abort queries, and USAGE runs queries. Viewing statistics does not itself grant execution or modification authority.",
+    "reason": "Se comprueba MONITOR para estadísticas y se separa de ejecutar, modificar y controlar el warehouse.",
+    "decision": "conservar_revisada"
+  }
+]
