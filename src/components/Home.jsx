@@ -140,7 +140,7 @@ export default function Home({
               const sum = guideSummary(study, guideKey(cert.id, g.id), g.sectionCount, g.cardCount);
               const started = sum.read > 0 || sum.known > 0 || sum.last;
               return (
-                <button key={g.id} className="study-guide-card" onClick={onOpenStudy}>
+                <button key={g.id} className="study-guide-card" onClick={() => onOpenStudy(g.id)}>
                   <span className="sg-top">
                     <b>{g.label}</b>
                     <span className="threshold">{g.weight}% del examen</span>
