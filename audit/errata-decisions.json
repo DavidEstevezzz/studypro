@@ -1,0 +1,7 @@
+[
+  {
+    "i": 487,
+    "decision": "archivar",
+    "reason": "Contrastada en la tanda 300, pero su distractor \"vista estándar no segura\" dejó de ser falso: con SECURE_OBJECTS_ONLY = FALSE se puede conceder SELECT sobre vistas no seguras a un share, condición que ya evalúa el ID 781. El resto de la pregunta duplica el ID 373, que enumera tablas, vistas seguras y UDFs seguras. Se archiva en lugar de reformularla para no repetir un hecho ya cubierto por dos preguntas mejores."
+  }
+]

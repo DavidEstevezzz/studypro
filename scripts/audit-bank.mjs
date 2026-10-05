@@ -12,6 +12,8 @@ import { batch600 } from './review-batch-600.mjs';
 import { batch700 } from './review-batch-700.mjs';
 import { batch800 } from './review-batch-800.mjs';
 import { quarantine900 } from './review-quarantine-900.mjs';
+import { quarantine1000 } from './review-quarantine-1000.mjs';
+import { errata } from './review-errata.mjs';
 
 const root = new URL('../', import.meta.url);
 const path = (p) => new URL(p, root);
@@ -155,7 +157,10 @@ applyBatch(batch500, 'audit/batch-500-ids.json', 'cof-c03-2026-09-23-batch500', 
 applyBatch(batch600, 'audit/batch-600-ids.json', 'cof-c03-2026-09-23-batch600', '2026-09-23');
 applyBatch(batch700, 'audit/batch-700-ids.json', 'cof-c03-2026-09-23-batch700', '2026-09-23');
 applyBatch(batch800, 'audit/batch-800-ids.json', 'cof-c03-2026-09-23-batch800', '2026-09-23');
-applyBatch(quarantine900, 'audit/quarantine-900-ids.json', BANK_VERSION, BANK_REVIEW_DATE, 'quarantine');
+applyBatch(quarantine900, 'audit/quarantine-900-ids.json', 'cof-c03-2026-09-23-q900', BANK_REVIEW_DATE, 'quarantine');
+applyBatch(quarantine1000, 'audit/quarantine-1000-ids.json', BANK_VERSION, BANK_REVIEW_DATE, 'quarantine');
+// Erratas sobre preguntas ya contrastadas: se revisan al final para que la última decisión prevalezca.
+applyBatch(errata, 'audit/errata-ids.json', 'cof-c03-2026-09-23-errata', BANK_REVIEW_DATE, 'verified');
 const statusCounts=Object.fromEntries(['verified','pending','quarantine','archived'].map(s=>[s,bank.filter(q=>q.review.status===s).length]));
 const coverage=Object.entries(objectives).map(([id,title])=>({id,title,domain:domains[id[0]],
   reviewedIds:bank.filter(q=>q.objective===id && q.review.status==='verified').map(q=>q.i),
@@ -179,6 +184,8 @@ json('audit/batch-600-decisions.json', batch600);
 json('audit/batch-700-decisions.json', batch700);
 json('audit/batch-800-decisions.json', batch800);
 json('audit/quarantine-900-decisions.json', quarantine900);
+json('audit/quarantine-1000-decisions.json', quarantine1000);
+json('audit/errata-decisions.json', errata);
 json('public/data/snowpro-core-audit.json',summary);
 json('audit/review-ledger.json',ledger);
 const fields=['id','decision','status','objective','candidateObjective','mapping','originalDomain','domain','question','reason','reference','reviewedAt'];
