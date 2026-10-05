@@ -68,6 +68,10 @@ npm run build
 
 La generación parte siempre del original conservado. El antiguo script de correcciones se bloquea sobre un banco auditado.
 
+## Material de estudio
+
+Temario y glosario por dominio en [`study/`](study/README.md). Disponible: dominio 1 (arquitectura, 31%).
+
 ## Progreso y resultados
 
 - El progreso se guarda en `localStorage` del navegador de cada usuario.
