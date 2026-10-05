@@ -6,6 +6,8 @@ Temarios y glosarios por dominio. El contenido está en **inglés**, igual que e
 |---|---|---|---|
 | 1. Snowflake AI Data Cloud Features & Architecture | 31% | [syllabus](domain-1/syllabus.md) | [glossary](domain-1/glossary.md) |
 
+En la web de StudyPro se abre desde la portada, en **Material de estudio**: temario por objetivos con índice, glosario con buscador y tarjetas de repaso. Estos `.md` son la fuente única: si los editas, la app muestra el cambio en la siguiente compilación.
+
 Cómo usarlo:
 
 1. Lee el temario por objetivos (1.1 a 1.6). Las palabras en **negrita** son las que usa el examen.
