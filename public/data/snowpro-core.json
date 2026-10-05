@@ -69,10 +69,11 @@
     "d": "Arquitectura y Data Cloud",
     "p": false,
     "review": {
-      "status": "quarantine",
+      "status": "archived",
       "candidateObjective": "1.3",
-      "reason": "Revisar alcance, condiciones o clave: una lectura preliminar detectó ambigüedad, límite histórico, contexto ausente o posible respuesta adicional. No se declara incorrecta sin validar todas las opciones.",
-      "screenedAt": "2026-09-21"
+      "reason": "Verdadero/falso cuya respuesta depende de leer una réplica como la misma base de datos; la replicación entre cuentas ya se evalúa en los IDs 1140 y 290.",
+      "screenedAt": "2026-09-21",
+      "reviewedAt": "2026-09-23"
     }
   },
   {
@@ -360,10 +361,11 @@
     "d": "Gestion de cuenta y Gobernanza",
     "p": false,
     "review": {
-      "status": "quarantine",
+      "status": "archived",
       "candidateObjective": "2.3",
-      "reason": "Revisar alcance, condiciones o clave: una lectura preliminar detectó ambigüedad, límite histórico, contexto ausente o posible respuesta adicional. No se declara incorrecta sin validar todas las opciones.",
-      "screenedAt": "2026-09-21"
+      "reason": "Repite que el resource monitor limita el consumo de créditos, ya contrastado en el ID 289.",
+      "screenedAt": "2026-09-21",
+      "reviewedAt": "2026-09-23"
     }
   },
   {
@@ -385,10 +387,11 @@
     "d": "Arquitectura y Data Cloud",
     "p": false,
     "review": {
-      "status": "quarantine",
+      "status": "archived",
       "candidateObjective": null,
-      "reason": "Revisar alcance, condiciones o clave: una lectura preliminar detectó ambigüedad, límite histórico, contexto ausente o posible respuesta adicional. No se declara incorrecta sin validar todas las opciones.",
-      "screenedAt": "2026-09-21"
+      "reason": "La contraposición OLAP frente a OLTP dejó de ser exacta desde que Snowflake ofrece tablas híbridas para cargas transaccionales, y cargas concurrentes no es un tipo de carga.",
+      "screenedAt": "2026-09-21",
+      "reviewedAt": "2026-09-23"
     }
   },
   {
@@ -542,16 +545,18 @@
       3
     ],
     "n": 3,
-    "e": "One of the key benefits of Snowflake's architecture is the separation of storage and compute. This separation allows for independent scaling of storage and compute resources and enables multiple compute clusters to access the same stored data without contention.",
-    "r": "https://docs.snowflake.com/en/user-guide/intro-key-concepts.html#cloud-data-architecture",
+    "e": "Snowflake keeps data in a shared storage layer and processes it in independent virtual warehouses. Storage can therefore grow without adding compute, a warehouse can be resized without touching storage, and several warehouses can read the same data at the same time without competing for resources. Coupled growth is precisely what this architecture avoids.",
+    "r": "https://docs.snowflake.com/en/user-guide/intro-key-concepts",
     "d": "Arquitectura y Data Cloud",
     "p": false,
     "review": {
-      "status": "quarantine",
-      "candidateObjective": null,
-      "reason": "Revisar alcance, condiciones o clave: una lectura preliminar detectó ambigüedad, límite histórico, contexto ausente o posible respuesta adicional. No se declara incorrecta sin validar todas las opciones.",
-      "screenedAt": "2026-09-21"
-    }
+      "status": "verified",
+      "reviewedAt": "2026-09-23",
+      "method": "editorial-documentation",
+      "reason": "Los tres beneficios coinciden con la descripción de la arquitectura de tres capas; el distractor es la negación del principio."
+    },
+    "objective": "1.1",
+    "topic": "Architecture and editions"
   },
   {
     "i": 22,
@@ -791,27 +796,30 @@
   },
   {
     "i": 31,
-    "q": "What is the minimum Snowflake edition that customers planning on storing protected information in Snowflake should consider for regulatory compliance?",
+    "q": "A customer must store regulated data such as protected health information and needs the compliance features Snowflake documents for it. What is the MINIMUM edition that meets that requirement?",
     "o": [
       "Standard",
-      "Premier",
       "Enterprise",
-      "Business Critical Edition"
+      "Business Critical",
+      "Virtual Private Snowflake (VPS)"
     ],
     "c": [
-      3
+      2
     ],
     "n": 1,
-    "e": "For customers needing to store protected information in Snowflake, the Business Critical Edition (or higher) is recommended for regulatory compliance. This edition offers enhanced security features such as end-to-end encryption and additional compliance certifications.",
-    "r": "https://docs.snowflake.com/en/user-guide/intro-editions#security-governance-data-protection",
+    "e": "Support for regulated data such as PHI, together with Tri-Secret Secure and private connectivity, starts at Business Critical in the editions table. VPS contains everything Business Critical offers but is not the minimum, and Standard and Enterprise do not cover those requirements. A signed business associate agreement is also required before any PHI is stored.",
+    "r": "https://docs.snowflake.com/en/user-guide/intro-editions",
     "d": "Arquitectura y Data Cloud",
     "p": false,
     "review": {
-      "status": "quarantine",
-      "candidateObjective": "1.1",
-      "reason": "Revisar alcance, condiciones o clave: una lectura preliminar detectó ambigüedad, límite histórico, contexto ausente o posible respuesta adicional. No se declara incorrecta sin validar todas las opciones.",
-      "screenedAt": "2026-09-21"
-    }
+      "status": "verified",
+      "reviewedAt": "2026-09-23",
+      "method": "editorial-documentation",
+      "reason": "Premier no es una edición de Snowflake; se sustituye por VPS, que obliga a razonar cuál es la edición mínima y no solo cuál es la más protegida."
+    },
+    "objective": "1.1",
+    "topic": "Architecture and editions",
+    "contentRevision": "cof-c03-2026-09-23-q1000"
   },
   {
     "i": 32,
@@ -828,16 +836,18 @@
       3
     ],
     "n": 3,
-    "e": "Snowflake supports three main types of tables: Temporary, Transient, and Permanent. Each type serves different use cases and has unique characteristics in terms of data persistence and performance.",
-    "r": "https://docs.snowflake.com/en/user-guide/tables-temp-transient.html",
+    "e": "Snowflake tables are permanent, transient or temporary. Permanent tables keep Time Travel plus a seven-day Fail-safe period, transient tables persist until they are dropped but have no Fail-safe, and temporary tables live only for the session that created them. Provisional is not a Snowflake table type.",
+    "r": "https://docs.snowflake.com/en/user-guide/tables-temp-transient",
     "d": "Arquitectura y Data Cloud",
     "p": false,
     "review": {
-      "status": "quarantine",
-      "candidateObjective": "1.5",
-      "reason": "Revisar alcance, condiciones o clave: una lectura preliminar detectó ambigüedad, límite histórico, contexto ausente o posible respuesta adicional. No se declara incorrecta sin validar todas las opciones.",
-      "screenedAt": "2026-09-21"
-    }
+      "status": "verified",
+      "reviewedAt": "2026-09-23",
+      "method": "editorial-documentation",
+      "reason": "Los tres tipos figuran en la documentación de tablas temporales y transitorias; el cuarto nombre no existe."
+    },
+    "objective": "1.5",
+    "topic": "Storage, table types and views"
   },
   {
     "i": 33,
@@ -969,26 +979,29 @@
     "i": 38,
     "q": "Which statements are true of micro-partitions? (Choose two.)",
     "o": [
-      "They are approximately 16MB in size",
-      "They are stored compressed only if COMPRESS=TRUE on Table",
-      "They are immutable",
-      "They are only encrypted in the Enterprise edition and above"
+      "Each one holds between 50 MB and 500 MB of uncompressed data",
+      "They are stored compressed only if COMPRESS = TRUE is set on the table",
+      "They are immutable once written",
+      "They are encrypted only in Enterprise edition and above"
     ],
     "c": [
       0,
       2
     ],
     "n": 2,
-    "e": "Micro-partitions in Snowflake are approximately 16MB in size and are immutable, meaning once written, they cannot be modified. This immutability is a key aspect of Snowflake's architecture. Encryption of micro-partitions is standard across all editions of Snowflake, not just the Enterprise edition.",
-    "r": "https://docs.snowflake.com/en/user-guide/tables-clustering-micropartitions.html",
+    "e": "The documentation defines a micro-partition as a contiguous unit of storage holding between 50 MB and 500 MB of uncompressed data, smaller once stored because Snowflake always compresses it. Micro-partitions are immutable: a DML operation writes new ones instead of editing them. Compression is automatic and encryption applies to every edition.",
+    "r": "https://docs.snowflake.com/en/user-guide/tables-clustering-micropartitions",
     "d": "Arquitectura y Data Cloud",
     "p": false,
     "review": {
-      "status": "quarantine",
-      "candidateObjective": "1.5",
-      "reason": "Revisar alcance, condiciones o clave: una lectura preliminar detectó ambigüedad, límite histórico, contexto ausente o posible respuesta adicional. No se declara incorrecta sin validar todas las opciones.",
-      "screenedAt": "2026-09-21"
-    }
+      "status": "verified",
+      "reviewedAt": "2026-09-23",
+      "method": "editorial-documentation",
+      "reason": "La opción marcada decía aproximadamente 16 MB, que es el tamaño comprimido habitual pero no el dato documentado; se sustituye por el rango 50-500 MB sin comprimir."
+    },
+    "objective": "1.5",
+    "topic": "Storage, table types and views",
+    "contentRevision": "cof-c03-2026-09-23-q1000"
   },
   {
     "i": 39,
@@ -1032,10 +1045,11 @@
     "d": "Rendimiento, Consultas y Transformacion",
     "p": false,
     "review": {
-      "status": "quarantine",
+      "status": "archived",
       "candidateObjective": "4.3",
-      "reason": "Revisar alcance, condiciones o clave: una lectura preliminar detectó ambigüedad, límite histórico, contexto ausente o posible respuesta adicional. No se declara incorrecta sin validar todas las opciones.",
-      "screenedAt": "2026-09-21"
+      "reason": "Repite las condiciones de reutilización de resultados persistidos y la ventana de 24 horas, ya contrastadas en los IDs 316 y 579; además una opción está corrompida con caracteres ilegibles.",
+      "screenedAt": "2026-09-21",
+      "reviewedAt": "2026-09-23"
     }
   },
   {
@@ -1109,10 +1123,11 @@
     "d": "Arquitectura y Data Cloud",
     "p": false,
     "review": {
-      "status": "quarantine",
+      "status": "archived",
       "candidateObjective": "1.4",
-      "reason": "Revisar alcance, condiciones o clave: una lectura preliminar detectó ambigüedad, límite histórico, contexto ausente o posible respuesta adicional. No se declara incorrecta sin validar todas las opciones.",
-      "screenedAt": "2026-09-21"
+      "reason": "La ausencia de índices dejó de ser general desde que las tablas híbridas los admiten, y el enunciado evalúa una lista de tareas de migración, no un comportamiento documentado.",
+      "screenedAt": "2026-09-21",
+      "reviewedAt": "2026-09-23"
     }
   },
   {
@@ -1310,16 +1325,18 @@
       1
     ],
     "n": 1,
-    "e": "It is false that a Data Consumer can extend a data share to other Data Consumers. In Snowflake, only the Data Provider has the ability to share data. Data Consumers cannot re-share the data they receive with other accounts.",
-    "r": "https://docs.snowflake.com/en/user-guide/data-sharing-intro.html",
+    "e": "A share is controlled entirely by the provider account. The consumer gets a read-only database created from the share and can query or join that data, but it cannot grant those objects to a share of its own, so the data cannot be forwarded to a third account.",
+    "r": "https://docs.snowflake.com/en/user-guide/data-sharing-intro",
     "d": "Colaboracion y Proteccion de datos",
     "p": false,
     "review": {
-      "status": "quarantine",
-      "candidateObjective": "5.2",
-      "reason": "Revisar alcance, condiciones o clave: una lectura preliminar detectó ambigüedad, límite histórico, contexto ausente o posible respuesta adicional. No se declara incorrecta sin validar todas las opciones.",
-      "screenedAt": "2026-09-21"
-    }
+      "status": "verified",
+      "reviewedAt": "2026-09-23",
+      "method": "editorial-documentation",
+      "reason": "El control exclusivo del proveedor y el carácter de solo lectura de la base importada figuran en la introducción a Secure Data Sharing."
+    },
+    "objective": "5.2",
+    "topic": "Data sharing"
   },
   {
     "i": 52,
@@ -1390,10 +1407,11 @@
     "d": "Rendimiento, Consultas y Transformacion",
     "p": false,
     "review": {
-      "status": "quarantine",
+      "status": "archived",
       "candidateObjective": "4.3",
-      "reason": "Revisar alcance, condiciones o clave: una lectura preliminar detectó ambigüedad, límite histórico, contexto ausente o posible respuesta adicional. No se declara incorrecta sin validar todas las opciones.",
-      "screenedAt": "2026-09-21"
+      "reason": "Repite la duración de la caché de resultados, ya contrastada en los IDs 316 y 579.",
+      "screenedAt": "2026-09-21",
+      "reviewedAt": "2026-09-23"
     }
   },
   {
@@ -1542,16 +1560,18 @@
       2
     ],
     "n": 1,
-    "e": "Query History page available under Activity menu on Web UI, holds query data for 14 days. And you can Query_history view available in Account_Usage schema holds query data for 365 days",
-    "r": "https://docs.snowflake.com/en/user-guide/ui-snowsight-activity#query-history",
+    "e": "Query History in Snowsight, reached through Monitoring, covers the last 14 days and cannot retrieve older queries. For a longer window use the ACCOUNT_USAGE.QUERY_HISTORY view, which retains one year of history.",
+    "r": "https://docs.snowflake.com/en/user-guide/ui-snowsight-activity",
     "d": "Arquitectura y Data Cloud",
     "p": false,
     "review": {
-      "status": "quarantine",
-      "candidateObjective": "1.2",
-      "reason": "Revisar alcance, condiciones o clave: una lectura preliminar detectó ambigüedad, límite histórico, contexto ausente o posible respuesta adicional. No se declara incorrecta sin validar todas las opciones.",
-      "screenedAt": "2026-09-21"
-    }
+      "status": "verified",
+      "reviewedAt": "2026-09-23",
+      "method": "editorial-documentation",
+      "reason": "Clave correcta: solo se actualizan explicación y enlace porque la página sitúa ahora Query History en el menú Monitoring. No se reformula el enunciado ni se reinicia el progreso."
+    },
+    "objective": "1.2",
+    "topic": "Interfaces and tools"
   },
   {
     "i": 61,
@@ -1698,16 +1718,18 @@
       3
     ],
     "n": 1,
-    "e": "In Snowflake, Time Travel allows users to access historical data within a specified retention period, but it does not cover 'Stages'. Time Travel applies to objects like Tables, Schemas, and Databases, enabling point-in-time recovery and data analysis.",
-    "r": "https://docs.snowflake.com/en/user-guide/data-time-travel.html",
+    "e": "Time Travel keeps historical versions of databases, schemas and tables, which is why UNDROP and AT | BEFORE work on them. A stage only points to files, so it has no historical versions: dropping an internal stage removes its files and dropping an external stage leaves the files in the cloud bucket.",
+    "r": "https://docs.snowflake.com/en/user-guide/data-time-travel",
     "d": "Colaboracion y Proteccion de datos",
     "p": false,
     "review": {
-      "status": "quarantine",
-      "candidateObjective": "5.1",
-      "reason": "Revisar alcance, condiciones o clave: una lectura preliminar detectó ambigüedad, límite histórico, contexto ausente o posible respuesta adicional. No se declara incorrecta sin validar todas las opciones.",
-      "screenedAt": "2026-09-21"
-    }
+      "status": "verified",
+      "reviewedAt": "2026-09-23",
+      "method": "editorial-documentation",
+      "reason": "Objetos cubiertos por Time Travel y comportamiento de los stages al eliminarlos contrastados con la documentación de Time Travel."
+    },
+    "objective": "5.1",
+    "topic": "Collaboration and protection"
   },
   {
     "i": 67,
@@ -1725,10 +1747,11 @@
     "d": "Arquitectura y Data Cloud",
     "p": false,
     "review": {
-      "status": "quarantine",
+      "status": "archived",
       "candidateObjective": "1.5",
-      "reason": "Revisar alcance, condiciones o clave: una lectura preliminar detectó ambigüedad, límite histórico, contexto ausente o posible respuesta adicional. No se declara incorrecta sin validar todas las opciones.",
-      "screenedAt": "2026-09-21"
+      "reason": "Afirma que los metadatos de micro-partición permiten completar operaciones sin cómputo; la documentación de warehouses dice que las consultas requieren warehouse y no documenta esa excepción.",
+      "screenedAt": "2026-09-21",
+      "reviewedAt": "2026-09-23"
     }
   },
   {
@@ -1745,16 +1768,18 @@
       3
     ],
     "n": 2,
-    "e": "In Snowflake, both 'INSERT' and 'COPY' commands are typically non-blocking operations. They can be executed concurrently with other transactions, unlike 'UPDATE' and 'MERGE' commands, which may require locks on the tables and can block other operations.",
-    "r": "https://docs.snowflake.com/en/user-guide/transactions.html",
-    "d": "Carga, Descarga y Conectividad",
+    "e": "The documentation states that INSERT operations are not blocked, and that most INSERT and COPY statements only write new partitions, so they can run in parallel with each other. UPDATE, DELETE and MERGE hold locks that generally prevent them from running in parallel with other UPDATE, DELETE or MERGE statements on the same rows.",
+    "r": "https://docs.snowflake.com/en/sql-reference/transactions",
+    "d": "Rendimiento, Consultas y Transformacion",
     "p": false,
     "review": {
-      "status": "quarantine",
-      "candidateObjective": "3.1",
-      "reason": "Revisar alcance, condiciones o clave: una lectura preliminar detectó ambigüedad, límite histórico, contexto ausente o posible respuesta adicional. No se declara incorrecta sin validar todas las opciones.",
-      "screenedAt": "2026-09-21"
-    }
+      "status": "verified",
+      "reviewedAt": "2026-09-23",
+      "method": "editorial-documentation",
+      "reason": "La sección Resource locking de Transactions distingue explícitamente INSERT y COPY de UPDATE, DELETE y MERGE."
+    },
+    "objective": "4.4",
+    "topic": "Data transformation"
   },
   {
     "i": 69,
@@ -1826,10 +1851,11 @@
     "d": "Arquitectura y Data Cloud",
     "p": false,
     "review": {
-      "status": "quarantine",
+      "status": "archived",
       "candidateObjective": "1.4",
-      "reason": "Revisar alcance, condiciones o clave: una lectura preliminar detectó ambigüedad, límite histórico, contexto ausente o posible respuesta adicional. No se declara incorrecta sin validar todas las opciones.",
-      "screenedAt": "2026-09-21"
+      "reason": "Duplicado del ID 292 de esta misma tanda, que plantea la misma pregunta con distractores razonables.",
+      "screenedAt": "2026-09-21",
+      "reviewedAt": "2026-09-23"
     }
   },
   {
@@ -1905,29 +1931,33 @@
   },
   {
     "i": 75,
-    "q": "Which of the following languages can be used to implement Snowflake User Defined Functions (UDFs)? (Choose three.)",
+    "q": "Which languages can be used to write the handler of a Snowflake UDF? (Choose three.)",
     "o": [
       "Java",
-      "Javascript",
+      "Ruby",
+      "Python",
       "SQL",
-      "Python"
+      "C#"
     ],
     "c": [
-      1,
+      0,
       2,
       3
     ],
     "n": 3,
-    "e": "In Snowflake, User Defined Functions (UDFs) can be implemented using Javascript,SQL and Python. These languages provide the necessary flexibility and capability for creating custom functions to handle various data processing and transformation tasks within Snowflake.",
-    "r": "https://docs.snowflake.com/en/sql-reference/udf-overview.html",
+    "e": "The supported handler languages are Java, JavaScript, Python, Scala and SQL. Java UDFs and UDTFs have been supported for years, so excluding Java is wrong. Ruby and C# are not handler languages, although an application written in them can call a UDF through a driver.",
+    "r": "https://docs.snowflake.com/en/developer-guide/udf/udf-overview",
     "d": "Rendimiento, Consultas y Transformacion",
     "p": false,
     "review": {
-      "status": "quarantine",
-      "candidateObjective": "4.4",
-      "reason": "Revisar alcance, condiciones o clave: una lectura preliminar detectó ambigüedad, límite histórico, contexto ausente o posible respuesta adicional. No se declara incorrecta sin validar todas las opciones.",
-      "screenedAt": "2026-09-21"
-    }
+      "status": "verified",
+      "reviewedAt": "2026-09-23",
+      "method": "editorial-documentation",
+      "reason": "La clave original excluía Java, que sí es un lenguaje de handler admitido: quien estudiara esta pregunta aprendería lo contrario de la documentación."
+    },
+    "objective": "4.4",
+    "topic": "Data transformation",
+    "contentRevision": "cof-c03-2026-09-23-q1000"
   },
   {
     "i": 76,
@@ -2050,16 +2080,18 @@
       2
     ],
     "n": 2,
-    "e": "Snowflake documentation states that the number of queries a warehouse can concurrently process is determined by the size and complexity of each query. So the best choices are the complexity option and the size-related option. The docs do not mention CONCURRENT_QUERY_LIMIT; the documented concurrency-related parameter is MAX_CONCURRENCY_LEVEL.",
-    "r": "https://docs.snowflake.com/en/user-guide/warehouses-considerations.html#concurrency-and-warehouses",
+    "e": "The number of queries a warehouse can process concurrently depends on the size and the complexity of each query: larger scans and heavier processing take more of the warehouse resources, so fewer queries fit at once. MAX_CONCURRENCY_LEVEL exists as a parameter, but there is no CONCURRENT_QUERY_LIMIT account parameter, and the client tool issuing the query is irrelevant.",
+    "r": "https://docs.snowflake.com/en/user-guide/warehouses-considerations",
     "d": "Arquitectura y Data Cloud",
     "p": false,
     "review": {
-      "status": "quarantine",
-      "candidateObjective": "1.4",
-      "reason": "Revisar alcance, condiciones o clave: una lectura preliminar detectó ambigüedad, límite histórico, contexto ausente o posible respuesta adicional. No se declara incorrecta sin validar todas las opciones.",
-      "screenedAt": "2026-09-21"
-    }
+      "status": "verified",
+      "reviewedAt": "2026-09-23",
+      "method": "editorial-documentation",
+      "reason": "Se reescribe la explicación para eliminar el comentario editorial anterior; la clave coincide con la guía de concurrencia de warehouses."
+    },
+    "objective": "1.4",
+    "topic": "Virtual warehouses"
   },
   {
     "i": 81,
@@ -2306,33 +2338,39 @@
     "d": "Carga, Descarga y Conectividad",
     "p": false,
     "review": {
-      "status": "quarantine",
+      "status": "archived",
       "candidateObjective": "3.1",
-      "reason": "Revisar alcance, condiciones o clave: una lectura preliminar detectó ambigüedad, límite histórico, contexto ausente o posible respuesta adicional. No se declara incorrecta sin validar todas las opciones.",
-      "screenedAt": "2026-09-21"
+      "reason": "Que COPY INTO necesita un warehouse activo queda cubierto por el ID 157 de esta tanda, reformulado para distinguir DDL de DML.",
+      "screenedAt": "2026-09-21",
+      "reviewedAt": "2026-09-23"
     }
   },
   {
     "i": 91,
-    "q": "True or False: AWS Private Link provides a secure connection from the Customer's on-premise data center to the Snowflake.",
+    "q": "A customer wants traffic from its own data centre to reach Snowflake over private connectivity on AWS, without traversing the public internet. What does Snowflake document for this case?",
     "o": [
-      "True",
-      "False"
+      "AWS PrivateLink on its own already connects an on-premises data centre to Snowflake",
+      "AWS Direct Connect is combined with AWS PrivateLink so that physical and virtual environments share a single private network",
+      "A network policy listing the data centre IP range provides the private connection",
+      "The customer must host a Snowflake deployment inside its own data centre"
     ],
     "c": [
-      0
+      1
     ],
     "n": 1,
-    "e": "It is true that AWS Private Link provides a secure connection from a customer's on-premise data center to Snowflake. This service enables private connectivity between AWS VPCs and Snowflake, enhancing security and data privacy.",
-    "r": "https://docs.snowflake.com/en/user-guide/data-load-private-link.html",
-    "d": "Arquitectura y Data Cloud",
+    "e": "PrivateLink creates a private endpoint between a VPC and the Snowflake service. To reach it from a non-hosted data centre the customer adds AWS Direct Connect, a separate AWS service, which is the on-premises-to-VPC connection type Snowflake documents. A network policy filters source IP addresses but leaves the traffic on the public network.",
+    "r": "https://docs.snowflake.com/en/user-guide/admin-security-privatelink",
+    "d": "Carga, Descarga y Conectividad",
     "p": false,
     "review": {
-      "status": "quarantine",
-      "candidateObjective": null,
-      "reason": "Revisar alcance, condiciones o clave: una lectura preliminar detectó ambigüedad, límite histórico, contexto ausente o posible respuesta adicional. No se declara incorrecta sin validar todas las opciones.",
-      "screenedAt": "2026-09-21"
-    }
+      "status": "verified",
+      "reviewedAt": "2026-09-23",
+      "method": "editorial-documentation",
+      "reason": "La formulación verdadero/falso daba por buena la idea de que PrivateLink por sí solo llega al centro de datos; la documentación exige combinarlo con Direct Connect."
+    },
+    "objective": "3.3",
+    "topic": "Connectors and integrations",
+    "contentRevision": "cof-c03-2026-09-23-q1000"
   },
   {
     "i": 92,
@@ -2350,10 +2388,11 @@
     "d": "Arquitectura y Data Cloud",
     "p": false,
     "review": {
-      "status": "quarantine",
+      "status": "archived",
       "candidateObjective": "1.5",
-      "reason": "Revisar alcance, condiciones o clave: una lectura preliminar detectó ambigüedad, límite histórico, contexto ausente o posible respuesta adicional. No se declara incorrecta sin validar todas las opciones.",
-      "screenedAt": "2026-09-21"
+      "reason": "Repite que la capa de servicios mantiene los metadatos de particiones y columnas, ya contrastado en el ID 1003; además el enlace apuntaba a la página de PrivateLink.",
+      "screenedAt": "2026-09-21",
+      "reviewedAt": "2026-09-23"
     }
   },
   {
@@ -2450,10 +2489,11 @@
     "d": "Colaboracion y Proteccion de datos",
     "p": false,
     "review": {
-      "status": "quarantine",
+      "status": "archived",
       "candidateObjective": "5.2",
-      "reason": "Revisar alcance, condiciones o clave: una lectura preliminar detectó ambigüedad, límite histórico, contexto ausente o posible respuesta adicional. No se declara incorrecta sin validar todas las opciones.",
-      "screenedAt": "2026-09-21"
+      "reason": "Trivia sobre un límite que la documentación actual de Secure Data Sharing no publica, así que la respuesta ilimitado no puede acreditarse.",
+      "screenedAt": "2026-09-21",
+      "reviewedAt": "2026-09-23"
     }
   },
   {
@@ -2646,16 +2686,18 @@
       3
     ],
     "n": 1,
-    "e": "As a best practice in Snowflake, clustering keys should generally be defined on tables that are in the multi-terabyte (TB) range. For smaller tables, the benefits of clustering may not be significant enough to justify the overhead.",
-    "r": "https://docs.snowflake.com/en/user-guide/tables-clustering-keys.html",
+    "e": "Clustering keys carry maintenance cost, so Snowflake recommends them for very large tables, in the multi-terabyte range, where the pruning gain outweighs the cost of reclustering. Smaller tables rarely benefit enough to justify it.",
+    "r": "https://docs.snowflake.com/en/user-guide/tables-clustering-keys",
     "d": "Rendimiento, Consultas y Transformacion",
     "p": false,
     "review": {
-      "status": "quarantine",
-      "candidateObjective": "4.2",
-      "reason": "Revisar alcance, condiciones o clave: una lectura preliminar detectó ambigüedad, límite histórico, contexto ausente o posible respuesta adicional. No se declara incorrecta sin validar todas las opciones.",
-      "screenedAt": "2026-09-21"
-    }
+      "status": "verified",
+      "reviewedAt": "2026-09-23",
+      "method": "editorial-documentation",
+      "reason": "El umbral multiterabyte figura en las recomendaciones de claves de clustering."
+    },
+    "objective": "4.2",
+    "topic": "Optimize query performance"
   },
   {
     "i": 105,
@@ -2799,10 +2841,11 @@
     "d": "Gestion de cuenta y Gobernanza",
     "p": false,
     "review": {
-      "status": "quarantine",
+      "status": "archived",
       "candidateObjective": "2.3",
-      "reason": "Revisar alcance, condiciones o clave: una lectura preliminar detectó ambigüedad, límite histórico, contexto ausente o posible respuesta adicional. No se declara incorrecta sin validar todas las opciones.",
-      "screenedAt": "2026-09-21"
+      "reason": "Repite que solo se consumen créditos mientras el warehouse está activo, ya contrastado en los IDs 317 y 770.",
+      "screenedAt": "2026-09-21",
+      "reviewedAt": "2026-09-23"
     }
   },
   {
@@ -2875,10 +2918,11 @@
     "d": "Carga, Descarga y Conectividad",
     "p": false,
     "review": {
-      "status": "quarantine",
+      "status": "archived",
       "candidateObjective": "3.1",
-      "reason": "Revisar alcance, condiciones o clave: una lectura preliminar detectó ambigüedad, límite histórico, contexto ausente o posible respuesta adicional. No se declara incorrecta sin validar todas las opciones.",
-      "screenedAt": "2026-09-21"
+      "reason": "Duplicado del ID 415 de esta tanda, con los mismos formatos de descarga y la misma respuesta.",
+      "screenedAt": "2026-09-21",
+      "reviewedAt": "2026-09-23"
     }
   },
   {
@@ -2897,10 +2941,11 @@
     "d": "Colaboracion y Proteccion de datos",
     "p": false,
     "review": {
-      "status": "quarantine",
+      "status": "archived",
       "candidateObjective": "5.2",
-      "reason": "Revisar alcance, condiciones o clave: una lectura preliminar detectó ambigüedad, límite histórico, contexto ausente o posible respuesta adicional. No se declara incorrecta sin validar todas las opciones.",
-      "screenedAt": "2026-09-21"
+      "reason": "Repite que se puede compartir con cuentas de lectura además de con clientes de Snowflake, ya contrastado en los IDs 468, 531 y 533.",
+      "screenedAt": "2026-09-21",
+      "reviewedAt": "2026-09-23"
     }
   },
   {
@@ -3176,10 +3221,11 @@
     "d": "Arquitectura y Data Cloud",
     "p": false,
     "review": {
-      "status": "quarantine",
+      "status": "archived",
       "candidateObjective": null,
-      "reason": "Revisar alcance, condiciones o clave: una lectura preliminar detectó ambigüedad, límite histórico, contexto ausente o posible respuesta adicional. No se declara incorrecta sin validar todas las opciones.",
-      "screenedAt": "2026-09-21"
+      "reason": "Duplicado del ID 449 de esta tanda, que evalúa la misma regla de constraints en formato de opción múltiple.",
+      "screenedAt": "2026-09-21",
+      "reviewedAt": "2026-09-23"
     }
   },
   {
@@ -3347,10 +3393,11 @@
     "d": "Colaboracion y Proteccion de datos",
     "p": false,
     "review": {
-      "status": "quarantine",
+      "status": "archived",
       "candidateObjective": "5.1",
-      "reason": "Revisar alcance, condiciones o clave: una lectura preliminar detectó ambigüedad, límite histórico, contexto ausente o posible respuesta adicional. No se declara incorrecta sin validar todas las opciones.",
-      "screenedAt": "2026-09-21"
+      "reason": "Repite que el periodo de Fail-safe no es configurable, ya contrastado en el ID 24.",
+      "screenedAt": "2026-09-21",
+      "reviewedAt": "2026-09-23"
     }
   },
   {
@@ -3608,10 +3655,11 @@
     "d": "Arquitectura y Data Cloud",
     "p": false,
     "review": {
-      "status": "quarantine",
+      "status": "archived",
       "candidateObjective": "1.5",
-      "reason": "Revisar alcance, condiciones o clave: una lectura preliminar detectó ambigüedad, límite histórico, contexto ausente o posible respuesta adicional. No se declara incorrecta sin validar todas las opciones.",
-      "screenedAt": "2026-09-21"
+      "reason": "Repite el máximo de protección continua de una tabla temporal, ya contrastado en los IDs 208 y 900.",
+      "screenedAt": "2026-09-21",
+      "reviewedAt": "2026-09-23"
     }
   },
   {
@@ -3819,10 +3867,11 @@
     "d": "Arquitectura y Data Cloud",
     "p": false,
     "review": {
-      "status": "quarantine",
+      "status": "archived",
       "candidateObjective": "1.1",
-      "reason": "Revisar alcance, condiciones o clave: una lectura preliminar detectó ambigüedad, límite histórico, contexto ausente o posible respuesta adicional. No se declara incorrecta sin validar todas las opciones.",
-      "screenedAt": "2026-09-21"
+      "reason": "Admite tres respuestas, porque VPS incluye todo lo de Business Critical, de modo que elige dos no tiene solución única; la edición mínima para datos regulados se evalúa en el ID 31 de esta tanda.",
+      "screenedAt": "2026-09-21",
+      "reviewedAt": "2026-09-23"
     }
   },
   {
@@ -3898,16 +3947,18 @@
       2
     ],
     "n": 1,
-    "e": "A key feature of Snowflake architecture is its virtual warehouse implementation, which eliminates resource contention. This allows for independent scaling of compute and storage, ensuring that workloads do not compete for resources.",
-    "r": "https://docs.snowflake.com/en/user-guide/warehouses-compute.html",
+    "e": "Each virtual warehouse is an independent compute cluster reading from the same shared storage, so one workload does not compete for the resources of another. A zero-copy clone does not follow later changes to its source, releases are not quarterly, one query runs on a single cluster of a multi-cluster warehouse, and Snowflake does not sort DATE columns on ingest.",
+    "r": "https://docs.snowflake.com/en/user-guide/warehouses-overview",
     "d": "Arquitectura y Data Cloud",
     "p": false,
     "review": {
-      "status": "quarantine",
-      "candidateObjective": "1.4",
-      "reason": "Revisar alcance, condiciones o clave: una lectura preliminar detectó ambigüedad, límite histórico, contexto ausente o posible respuesta adicional. No se declara incorrecta sin validar todas las opciones.",
-      "screenedAt": "2026-09-21"
-    }
+      "status": "verified",
+      "reviewedAt": "2026-09-23",
+      "method": "editorial-documentation",
+      "reason": "El aislamiento entre warehouses figura en la visión general de warehouses; los cuatro distractores contradicen comportamientos documentados."
+    },
+    "objective": "1.1",
+    "topic": "Architecture and editions"
   },
   {
     "i": 154,
@@ -3929,10 +3980,11 @@
     "d": "Colaboracion y Proteccion de datos",
     "p": false,
     "review": {
-      "status": "quarantine",
+      "status": "archived",
       "candidateObjective": "5.3",
-      "reason": "Revisar alcance, condiciones o clave: una lectura preliminar detectó ambigüedad, límite histórico, contexto ausente o posible respuesta adicional. No se declara incorrecta sin validar todas las opciones.",
-      "screenedAt": "2026-09-21"
+      "reason": "Describe la publicación en regiones remotas con la terminología anterior de listings, y el caso de negocio ya se evalúa en los IDs 1219 y 1271.",
+      "screenedAt": "2026-09-21",
+      "reviewedAt": "2026-09-23"
     }
   },
   {
@@ -3953,10 +4005,11 @@
     "d": "Carga, Descarga y Conectividad",
     "p": false,
     "review": {
-      "status": "quarantine",
+      "status": "archived",
       "candidateObjective": "3.2",
-      "reason": "Revisar alcance, condiciones o clave: una lectura preliminar detectó ambigüedad, límite histórico, contexto ausente o posible respuesta adicional. No se declara incorrecta sin validar todas las opciones.",
-      "screenedAt": "2026-09-21"
+      "reason": "Repite el tamaño de fichero recomendado al cargar, ya contrastado en el ID 189.",
+      "screenedAt": "2026-09-21",
+      "reviewedAt": "2026-09-23"
     }
   },
   {
@@ -3987,12 +4040,12 @@
   },
   {
     "i": 157,
-    "q": "Which of the following are examples of operations that require a Virtual Warehouse to complete, assuming no queries have been executed previously? (Choose three.)",
+    "q": "Which operations require a running virtual warehouse to complete? (Choose three.)",
     "o": [
-      "MIN(<< column value >>)",
-      "COPY",
-      "SUM(<< column value >>)",
-      "UPDATE"
+      "ALTER TABLE ... ADD COLUMN",
+      "COPY INTO a table from a stage",
+      "SELECT SUM(order_amount) FROM sales",
+      "UPDATE on a table"
     ],
     "c": [
       1,
@@ -4000,16 +4053,19 @@
       3
     ],
     "n": 3,
-    "e": "MIN(<<column value>>) can be answered directly from micro-partition metadata (metadata cache), so it does not require a running virtual warehouse. COPY loads data, SUM(<<column value>>) must scan column values, and UPDATE is a DML operation - these three require a virtual warehouse.",
-    "r": "https://docs.snowflake.com/en/user-guide/warehouses.html",
-    "d": "Carga, Descarga y Conectividad",
+    "e": "Warehouses are required for queries and for all DML operations, including loading data. COPY INTO loads rows, the aggregate has to scan column values, and UPDATE modifies data. Adding a column is DDL: the cloud services layer changes the metadata with no compute involved.",
+    "r": "https://docs.snowflake.com/en/user-guide/warehouses-overview",
+    "d": "Arquitectura y Data Cloud",
     "p": false,
     "review": {
-      "status": "quarantine",
-      "candidateObjective": "3.1",
-      "reason": "Revisar alcance, condiciones o clave: una lectura preliminar detectó ambigüedad, límite histórico, contexto ausente o posible respuesta adicional. No se declara incorrecta sin validar todas las opciones.",
-      "screenedAt": "2026-09-21"
-    }
+      "status": "verified",
+      "reviewedAt": "2026-09-23",
+      "method": "editorial-documentation",
+      "reason": "La opción MIN(columna) daba por documentado que un agregado se resuelve solo con metadatos y sin warehouse, algo que la documentación no dice y que contradice la frase \"Warehouses are required for queries\"."
+    },
+    "objective": "1.4",
+    "topic": "Virtual warehouses",
+    "contentRevision": "cof-c03-2026-09-23-q1000"
   },
   {
     "i": 158,
@@ -4076,16 +4132,18 @@
       0
     ],
     "n": 1,
-    "e": "Decreasing the size of a running warehouse removes compute resources from the warehouse. When the computer resources are removed, the cache associated with those resources is dropped, which can impact performance in the same way that suspending the warehouse can impact performance after it is resumed.",
-    "r": "https://docs.snowflake.com/en/user-guide/warehouses-considerations#scaling-up-vs-scaling-out",
+    "e": "The warehouse cache lives on the compute resources themselves. Reducing the size of a running warehouse removes resources and drops the cache they held, so part of the cached data is lost, with an effect similar to resuming a suspended warehouse. The cache is not independent of the warehouse size, and no encryption key is involved.",
+    "r": "https://docs.snowflake.com/en/user-guide/warehouses-considerations",
     "d": "Rendimiento, Consultas y Transformacion",
     "p": false,
     "review": {
-      "status": "quarantine",
-      "candidateObjective": "4.3",
-      "reason": "Revisar alcance, condiciones o clave: una lectura preliminar detectó ambigüedad, límite histórico, contexto ausente o posible respuesta adicional. No se declara incorrecta sin validar todas las opciones.",
-      "screenedAt": "2026-09-21"
-    }
+      "status": "verified",
+      "reviewedAt": "2026-09-23",
+      "method": "editorial-documentation",
+      "reason": "El efecto de reducir el tamaño sobre la caché local figura en las consideraciones de warehouses."
+    },
+    "objective": "4.3",
+    "topic": "Caching"
   },
   {
     "i": 161,
@@ -4432,10 +4490,11 @@
     "d": "Carga, Descarga y Conectividad",
     "p": false,
     "review": {
-      "status": "quarantine",
+      "status": "archived",
       "candidateObjective": "3.1",
-      "reason": "Revisar alcance, condiciones o clave: una lectura preliminar detectó ambigüedad, límite histórico, contexto ausente o posible respuesta adicional. No se declara incorrecta sin validar todas las opciones.",
-      "screenedAt": "2026-09-21"
+      "reason": "El escenario parte de un error de tamaño máximo de 16 MB que ya no se reproduce con los límites actuales de VARIANT, y la corrección propuesta no encaja con una concatenación de documentos JSON.",
+      "screenedAt": "2026-09-21",
+      "reviewedAt": "2026-09-23"
     }
   },
   {
@@ -4557,16 +4616,18 @@
       0
     ],
     "n": 1,
-    "e": "Serverless features in Snowflake are billed per second, multiplied by an automatic sizing for the job. This billing method ensures that users are charged based on the actual usage and computational resources required for serverless operations.",
-    "r": "https://docs.snowflake.com/en/user-guide/cost-understanding-compute#label-serverless-credit-usage",
-    "d": "Arquitectura y Data Cloud",
+    "e": "Serverless features run on Snowflake-managed compute and are billed per second of use multiplied by the sizing Snowflake chooses for the job, so there is no warehouse size to pick and no per-minute minimum like a user-managed warehouse. There is no SERVERLESS_FEATURES_SIZE parameter, and serverless usage is always billed.",
+    "r": "https://docs.snowflake.com/en/user-guide/cost-understanding-compute",
+    "d": "Gestion de cuenta y Gobernanza",
     "p": false,
     "review": {
-      "status": "quarantine",
-      "candidateObjective": null,
-      "reason": "Revisar alcance, condiciones o clave: una lectura preliminar detectó ambigüedad, límite histórico, contexto ausente o posible respuesta adicional. No se declara incorrecta sin validar todas las opciones.",
-      "screenedAt": "2026-09-21"
-    }
+      "status": "verified",
+      "reviewedAt": "2026-09-23",
+      "method": "editorial-documentation",
+      "reason": "El modelo por segundo y el dimensionado automático figuran en el apartado de créditos de features serverless."
+    },
+    "objective": "2.3",
+    "topic": "Monitoring and cost management"
   },
   {
     "i": 179,
@@ -4886,10 +4947,11 @@
     "d": "Colaboracion y Proteccion de datos",
     "p": false,
     "review": {
-      "status": "quarantine",
+      "status": "archived",
       "candidateObjective": "5.1",
-      "reason": "Revisar alcance, condiciones o clave: una lectura preliminar detectó ambigüedad, límite histórico, contexto ausente o posible respuesta adicional. No se declara incorrecta sin validar todas las opciones.",
-      "screenedAt": "2026-09-21"
+      "reason": "Las features de la edición Enterprise ya se evalúan en los IDs 95, 97 y 1210, y el soporte nativo de datos geoespaciales está disponible en todas las ediciones, lo que hace ambigua la selección.",
+      "screenedAt": "2026-09-21",
+      "reviewedAt": "2026-09-23"
     }
   },
   {
@@ -4934,16 +4996,18 @@
       3
     ],
     "n": 2,
-    "e": "Within Snowflake's Continuous Data Protection (CDP) feature set, Data encryption and Time Travel do not require additional configuration. Data encryption is inherent to Snowflake's security model, while Time Travel is a built-in feature enabling data access to historical states without extra setup.",
+    "e": "Continuous Data Protection groups the features that protect data by default: every piece of data is encrypted end to end with no configuration, and Time Travel is active with the default retention period. Masking policies, row access policies and external tokenization only take effect once an administrator creates and assigns them.",
     "r": "https://docs.snowflake.com/en/user-guide/data-cdp",
     "d": "Gestion de cuenta y Gobernanza",
     "p": false,
     "review": {
-      "status": "quarantine",
-      "candidateObjective": "2.2",
-      "reason": "Revisar alcance, condiciones o clave: una lectura preliminar detectó ambigüedad, límite histórico, contexto ausente o posible respuesta adicional. No se declara incorrecta sin validar todas las opciones.",
-      "screenedAt": "2026-09-21"
-    }
+      "status": "verified",
+      "reviewedAt": "2026-09-23",
+      "method": "editorial-documentation",
+      "reason": "La separación entre lo automático y lo que exige configuración figura en la página de Continuous Data Protection."
+    },
+    "objective": "2.2",
+    "topic": "Data governance"
   },
   {
     "i": 193,
@@ -4992,10 +5056,11 @@
     "d": "Carga, Descarga y Conectividad",
     "p": false,
     "review": {
-      "status": "quarantine",
+      "status": "archived",
       "candidateObjective": "3.3",
-      "reason": "Revisar alcance, condiciones o clave: una lectura preliminar detectó ambigüedad, límite histórico, contexto ausente o posible respuesta adicional. No se declara incorrecta sin validar todas las opciones.",
-      "screenedAt": "2026-09-21"
+      "reason": "Trivia sobre qué aparece en la sección de descargas de la interfaz; SnowSQL también se descarga desde ahí, así que la opción descartada es tan válida como las marcadas.",
+      "screenedAt": "2026-09-21",
+      "reviewedAt": "2026-09-23"
     }
   },
   {
@@ -5037,16 +5102,18 @@
       1
     ],
     "n": 1,
-    "e": "Snowflake charges storage fees for historical data during both Time Travel and Fail-safe. Those costs stop only after the Fail-safe period ends, not when the data is deleted from a table.",
-    "r": "https://docs.snowflake.com/en/user-guide/data-storage.html",
+    "e": "Storage fees are incurred for historical data during both the Time Travel and the Fail-safe periods. Deleting or truncating a table starts that clock instead of stopping the charges: the data keeps being billed until it leaves Fail-safe.",
+    "r": "https://docs.snowflake.com/en/user-guide/data-cdp-storage-costs",
     "d": "Gestion de cuenta y Gobernanza",
     "p": false,
     "review": {
-      "status": "quarantine",
-      "candidateObjective": "2.3",
-      "reason": "Revisar alcance, condiciones o clave: una lectura preliminar detectó ambigüedad, límite histórico, contexto ausente o posible respuesta adicional. No se declara incorrecta sin validar todas las opciones.",
-      "screenedAt": "2026-09-21"
-    }
+      "status": "verified",
+      "reviewedAt": "2026-09-23",
+      "method": "editorial-documentation",
+      "reason": "La frase inicial de Storage costs for Time Travel and Fail-safe respalda la clave."
+    },
+    "objective": "2.3",
+    "topic": "Monitoring and cost management"
   },
   {
     "i": 197,
@@ -5118,10 +5185,11 @@
     "d": "Arquitectura y Data Cloud",
     "p": false,
     "review": {
-      "status": "quarantine",
+      "status": "archived",
       "candidateObjective": null,
-      "reason": "Revisar alcance, condiciones o clave: una lectura preliminar detectó ambigüedad, límite histórico, contexto ausente o posible respuesta adicional. No se declara incorrecta sin validar todas las opciones.",
-      "screenedAt": "2026-09-21"
+      "reason": "Parte del mismo supuesto no documentado que corrige el ID 157 de esta tanda: que MIN se resuelve sin cómputo.",
+      "screenedAt": "2026-09-21",
+      "reviewedAt": "2026-09-23"
     }
   },
   {
@@ -5220,16 +5288,18 @@
       4
     ],
     "n": 2,
-    "e": "Usage for cloud services is charged only if the daily consumption of cloud services exceeds 10% of the daily usage of virtual warehouses.",
+    "e": "Cloud services usage is billed only for the part that exceeds 10 percent of the daily virtual warehouse credits. With 50 compute credits the allowance is 5, so 10 cloud services credits are partly billed; with 200 the allowance is 20 and 26 exceeds it. In the other cases, 5 of 8, 9 of 10 and 10 of 12, usage stays inside the allowance.",
     "r": "https://docs.snowflake.com/en/user-guide/cost-understanding-compute",
     "d": "Gestion de cuenta y Gobernanza",
     "p": false,
     "review": {
-      "status": "quarantine",
-      "candidateObjective": "2.3",
-      "reason": "Revisar alcance, condiciones o clave: una lectura preliminar detectó ambigüedad, límite histórico, contexto ausente o posible respuesta adicional. No se declara incorrecta sin validar todas las opciones.",
-      "screenedAt": "2026-09-21"
-    }
+      "status": "verified",
+      "reviewedAt": "2026-09-23",
+      "method": "editorial-documentation",
+      "reason": "El umbral diario del 10 % figura en el apartado de créditos de cloud services; los cuatro escenarios se comprueban aritméticamente."
+    },
+    "objective": "2.3",
+    "topic": "Monitoring and cost management"
   },
   {
     "i": 204,
@@ -5333,10 +5403,11 @@
     "d": "Colaboracion y Proteccion de datos",
     "p": false,
     "review": {
-      "status": "quarantine",
+      "status": "archived",
       "candidateObjective": "5.3",
-      "reason": "Revisar alcance, condiciones o clave: una lectura preliminar detectó ambigüedad, límite histórico, contexto ausente o posible respuesta adicional. No se declara incorrecta sin validar todas las opciones.",
-      "screenedAt": "2026-09-21"
+      "reason": "Los tipos de listing documentados hoy son gratuito, de prueba limitada y de pago; estándar y personalizado son la terminología anterior.",
+      "screenedAt": "2026-09-21",
+      "reviewedAt": "2026-09-23"
     }
   },
   {
@@ -5650,16 +5721,18 @@
       4
     ],
     "n": 2,
-    "e": "In Snowflake data sharing, an account can act both as a provider and a consumer of shared data. Also, the Data Consumer is responsible only for the compute resources required to query the shared data, not for data storage.",
-    "r": "https://docs.snowflake.com/en/user-guide/data-sharing-intro.html",
+    "e": "Any full Snowflake account can act as a provider and as a consumer. No data is copied: the consumer creates a read-only database from the share and pays only for the warehouse compute used to query it, while the storage stays in, and is paid for by, the provider account.",
+    "r": "https://docs.snowflake.com/en/user-guide/data-sharing-intro",
     "d": "Colaboracion y Proteccion de datos",
     "p": false,
     "review": {
-      "status": "quarantine",
-      "candidateObjective": "5.2",
-      "reason": "Revisar alcance, condiciones o clave: una lectura preliminar detectó ambigüedad, límite histórico, contexto ausente o posible respuesta adicional. No se declara incorrecta sin validar todas las opciones.",
-      "screenedAt": "2026-09-21"
-    }
+      "status": "verified",
+      "reviewedAt": "2026-09-23",
+      "method": "editorial-documentation",
+      "reason": "Ambas afirmaciones figuran en la introducción a Secure Data Sharing; los distractores contradicen el modelo de costes."
+    },
+    "objective": "5.2",
+    "topic": "Data sharing"
   },
   {
     "i": 220,
@@ -5781,16 +5854,18 @@
       2
     ],
     "n": 2,
-    "e": "In the query profiler view, 'Bytes scanned' and 'Number of partitions scanned' are key components that can help in optimizing query performance. Reducing the amount of data scanned and minimizing the number of partitions accessed can significantly improve query efficiency and speed.",
+    "e": "Bytes scanned and partitions scanned against partitions total show how much data the query really read and how well pruning worked, which is what a clustering key, a better filter or a search access path can improve. Bytes sent over the network and the share read from cache describe the environment rather than a lever you act on directly.",
     "r": "https://docs.snowflake.com/en/user-guide/ui-query-profile",
     "d": "Rendimiento, Consultas y Transformacion",
     "p": false,
     "review": {
-      "status": "quarantine",
-      "candidateObjective": "4.1",
-      "reason": "Revisar alcance, condiciones o clave: una lectura preliminar detectó ambigüedad, límite histórico, contexto ausente o posible respuesta adicional. No se declara incorrecta sin validar todas las opciones.",
-      "screenedAt": "2026-09-21"
-    }
+      "status": "verified",
+      "reviewedAt": "2026-09-23",
+      "method": "editorial-documentation",
+      "reason": "Las estadísticas de escaneo y pruning del Query Profile son las que la documentación asocia a la optimización."
+    },
+    "objective": "4.1",
+    "topic": "Evaluate query performance"
   },
   {
     "i": 225,
@@ -5993,10 +6068,11 @@
     "d": "Carga, Descarga y Conectividad",
     "p": false,
     "review": {
-      "status": "quarantine",
+      "status": "archived",
       "candidateObjective": "3.1",
-      "reason": "Revisar alcance, condiciones o clave: una lectura preliminar detectó ambigüedad, límite histórico, contexto ausente o posible respuesta adicional. No se declara incorrecta sin validar todas las opciones.",
-      "screenedAt": "2026-09-21"
+      "reason": "Repite el tamaño de fichero recomendado al cargar, ya contrastado en el ID 189.",
+      "screenedAt": "2026-09-21",
+      "reviewedAt": "2026-09-23"
     }
   },
   {
@@ -6075,8 +6151,9 @@
     "review": {
       "status": "quarantine",
       "candidateObjective": "3.3",
-      "reason": "Revisar alcance, condiciones o clave: una lectura preliminar detectó ambigüedad, límite histórico, contexto ausente o posible respuesta adicional. No se declara incorrecta sin validar todas las opciones.",
-      "screenedAt": "2026-09-21"
+      "reason": "La documentación actual de SCIM no declara edición mínima y la tabla de ediciones no menciona SCIM, mientras que la autenticación federada y el SSO figuran en todas las ediciones. No se puede confirmar ni refutar Enterprise sin una fuente oficial, así que se mantiene apartada.",
+      "screenedAt": "2026-09-21",
+      "reviewedAt": "2026-09-23"
     }
   },
   {
@@ -6255,16 +6332,18 @@
       2
     ],
     "n": 1,
-    "e": "The warehouse auto-resumes for the first query (3 minutes), then auto-suspends after 10 minutes of inactivity. When the user returns and runs the second query, the warehouse resumes again. Therefore, the total billable compute time is 3 minutes (first query) + 10 minutes (idle time before auto-suspend) + 1 minute (second query and manual suspension) = 14 minutes.",
-    "r": "https://docs.snowflake.com/en/user-guide/warehouses-considerations.html#billing-and-credit-usage",
-    "d": "Arquitectura y Data Cloud",
+    "e": "Billing starts when the warehouse resumes and is charged per second with a minimum of 60 seconds each time. The first query bills 3 minutes plus the 10 idle minutes before auto-suspend, and the second query bills the 60-second minimum although it lasts 10 seconds, which adds up to 14 minutes. The remaining idle time is not billed because the warehouse was already suspended.",
+    "r": "https://docs.snowflake.com/en/user-guide/warehouses-considerations",
+    "d": "Gestion de cuenta y Gobernanza",
     "p": false,
     "review": {
-      "status": "quarantine",
-      "candidateObjective": "1.4",
-      "reason": "Revisar alcance, condiciones o clave: una lectura preliminar detectó ambigüedad, límite histórico, contexto ausente o posible respuesta adicional. No se declara incorrecta sin validar todas las opciones.",
-      "screenedAt": "2026-09-21"
-    }
+      "status": "verified",
+      "reviewedAt": "2026-09-23",
+      "method": "editorial-documentation",
+      "reason": "Se contrasta con la facturación por segundo con mínimo de 60 segundos y con el efecto del auto-suspend de 10 minutos."
+    },
+    "objective": "2.3",
+    "topic": "Monitoring and cost management"
   },
   {
     "i": 243,
@@ -6286,10 +6365,11 @@
     "d": "Gestion de cuenta y Gobernanza",
     "p": false,
     "review": {
-      "status": "quarantine",
+      "status": "archived",
       "candidateObjective": "2.3",
-      "reason": "Revisar alcance, condiciones o clave: una lectura preliminar detectó ambigüedad, límite histórico, contexto ausente o posible respuesta adicional. No se declara incorrecta sin validar todas las opciones.",
-      "screenedAt": "2026-09-21"
+      "reason": "Repite la vista WAREHOUSE_METERING_HISTORY, ya contrastada en el ID 450, y su segunda opción nombra una pestaña de la interfaz que ya no existe con ese nombre.",
+      "screenedAt": "2026-09-21",
+      "reviewedAt": "2026-09-23"
     }
   },
   {
@@ -6312,10 +6392,11 @@
     "d": "Rendimiento, Consultas y Transformacion",
     "p": false,
     "review": {
-      "status": "quarantine",
+      "status": "archived",
       "candidateObjective": "4.3",
-      "reason": "Revisar alcance, condiciones o clave: una lectura preliminar detectó ambigüedad, límite histórico, contexto ausente o posible respuesta adicional. No se declara incorrecta sin validar todas las opciones.",
-      "screenedAt": "2026-09-21"
+      "reason": "Repite que quitar una columna del SELECT impide reutilizar el resultado persistido, ya contrastado en el ID 293; además cambiar una columna ajena a la consulta también invalidaría la caché, lo que deja la selección ambigua.",
+      "screenedAt": "2026-09-21",
+      "reviewedAt": "2026-09-23"
     }
   },
   {
@@ -6391,10 +6472,11 @@
     "d": "Arquitectura y Data Cloud",
     "p": false,
     "review": {
-      "status": "quarantine",
+      "status": "archived",
       "candidateObjective": "1.4",
-      "reason": "Revisar alcance, condiciones o clave: una lectura preliminar detectó ambigüedad, límite histórico, contexto ausente o posible respuesta adicional. No se declara incorrecta sin validar todas las opciones.",
-      "screenedAt": "2026-09-21"
+      "reason": "Duplicado del ID 874, contrastado, que además enuncia la política Economy con la condición estimada que emplea la documentación.",
+      "screenedAt": "2026-09-21",
+      "reviewedAt": "2026-09-23"
     }
   },
   {
@@ -6441,10 +6523,11 @@
     "d": "Rendimiento, Consultas y Transformacion",
     "p": false,
     "review": {
-      "status": "quarantine",
+      "status": "archived",
       "candidateObjective": "4.3",
-      "reason": "Revisar alcance, condiciones o clave: una lectura preliminar detectó ambigüedad, límite histórico, contexto ausente o posible respuesta adicional. No se declara incorrecta sin validar todas las opciones.",
-      "screenedAt": "2026-09-21"
+      "reason": "Atribuye COUNT(1) a una caché de metadatos que la documentación no describe, mientras que la página de warehouses afirma que las consultas requieren warehouse.",
+      "screenedAt": "2026-09-21",
+      "reviewedAt": "2026-09-23"
     }
   },
   {
@@ -6460,16 +6543,18 @@
       1
     ],
     "n": 1,
-    "e": "When resizing a virtual warehouse in Snowflake, if the size is reduced, the compute resources are removed only once they are not in use for executing current statements. This ensures that ongoing operations are not abruptly interrupted.",
-    "r": "https://docs.snowflake.com/en/user-guide/warehouses-considerations.html#resizing-warehouses",
+    "e": "Resizing does not disturb statements that are already running: when a warehouse is made smaller, the compute resources are removed only once they finish the statements they are executing. Resources added by an increase serve queued and future queries rather than the ones already in flight, and the warehouse is neither suspended nor made to return errors while it is resized.",
+    "r": "https://docs.snowflake.com/en/user-guide/warehouses-considerations",
     "d": "Arquitectura y Data Cloud",
     "p": false,
     "review": {
-      "status": "quarantine",
-      "candidateObjective": "1.4",
-      "reason": "Revisar alcance, condiciones o clave: una lectura preliminar detectó ambigüedad, límite histórico, contexto ausente o posible respuesta adicional. No se declara incorrecta sin validar todas las opciones.",
-      "screenedAt": "2026-09-21"
-    }
+      "status": "verified",
+      "reviewedAt": "2026-09-23",
+      "method": "editorial-documentation",
+      "reason": "El comportamiento al reducir el tamaño figura en el apartado Resizing warehouses de las consideraciones de warehouses."
+    },
+    "objective": "1.4",
+    "topic": "Virtual warehouses"
   },
   {
     "i": 251,
@@ -6702,10 +6787,11 @@
     "d": "Rendimiento, Consultas y Transformacion",
     "p": false,
     "review": {
-      "status": "quarantine",
+      "status": "archived",
       "candidateObjective": "4.1",
-      "reason": "Revisar alcance, condiciones o clave: una lectura preliminar detectó ambigüedad, límite histórico, contexto ausente o posible respuesta adicional. No se declara incorrecta sin validar todas las opciones.",
-      "screenedAt": "2026-09-21"
+      "reason": "Repite las dos consideraciones de una vista segura, menos optimizaciones internas y definición no visible, ya contrastadas en el ID 586.",
+      "screenedAt": "2026-09-21",
+      "reviewedAt": "2026-09-23"
     }
   },
   {
@@ -6723,16 +6809,18 @@
       2
     ],
     "n": 2,
-    "e": "Snowflake Information Schema includes storage-related metadata for databases and internal stages. Database storage can be queried through database storage usage history information, and internal stage storage is available through stage-related storage usage metadata. Pipes are not storage objects and are not listed as one of the storage-related Information Schema object types.",
-    "r": "https://docs.snowflake.com/en/sql-reference/info-schema.html",
-    "d": "Carga, Descarga y Conectividad",
+    "e": "The account-level views of INFORMATION_SCHEMA include DATABASE_STORAGE_USAGE_HISTORY and STAGE_STORAGE_USAGE_HISTORY, which report storage for databases and for internal stages. Users, resource monitors and pipes appear in other views, none of which reports storage bytes.",
+    "r": "https://docs.snowflake.com/en/sql-reference/info-schema",
+    "d": "Gestion de cuenta y Gobernanza",
     "p": false,
     "review": {
-      "status": "quarantine",
-      "candidateObjective": "3.1",
-      "reason": "Revisar alcance, condiciones o clave: una lectura preliminar detectó ambigüedad, límite histórico, contexto ausente o posible respuesta adicional. No se declara incorrecta sin validar todas las opciones.",
-      "screenedAt": "2026-09-21"
-    }
+      "status": "verified",
+      "reviewedAt": "2026-09-23",
+      "method": "editorial-documentation",
+      "reason": "Las vistas de almacenamiento del Information Schema se comprueban en su índice de vistas."
+    },
+    "objective": "2.3",
+    "topic": "Monitoring and cost management"
   },
   {
     "i": 261,
@@ -6764,27 +6852,32 @@
   },
   {
     "i": 262,
-    "q": "Which data type is supported by Snowflake data classification?",
+    "q": "Which data types can Snowflake sensitive data classification process? (Choose two.)",
     "o": [
-      "Binary",
-      "Float",
-      "Geography",
-      "Variant"
+      "BINARY",
+      "FLOAT",
+      "GEOGRAPHY",
+      "VARCHAR",
+      "UUID"
     ],
     "c": [
-      1
+      1,
+      3
     ],
-    "n": 1,
-    "e": "Float is supported by Snowflake data classification. The documentation explicitly excludes BINARY, GEOGRAPHY, DECFLOAT, UUID, and VECTOR from classification. Float is a standard numeric type that is fully supported. Binary and Geography are both explicitly listed as unsupported data types. JSON is the only semi-structured format supported for classification.",
+    "n": 2,
+    "e": "Classification covers every supported data type except BINARY, DECFLOAT, GEOGRAPHY, UUID and VECTOR, so numeric and text columns such as FLOAT and VARCHAR are eligible. Among semi-structured data only JSON is supported, and unstructured content such as long free text is not.",
     "r": "https://docs.snowflake.com/en/user-guide/governance-classify-concepts",
     "d": "Gestion de cuenta y Gobernanza",
     "p": false,
     "review": {
-      "status": "quarantine",
-      "candidateObjective": "2.2",
-      "reason": "Revisar alcance, condiciones o clave: una lectura preliminar detectó ambigüedad, límite histórico, contexto ausente o posible respuesta adicional. No se declara incorrecta sin validar todas las opciones.",
-      "screenedAt": "2026-09-21"
-    }
+      "status": "verified",
+      "reviewedAt": "2026-09-23",
+      "method": "editorial-documentation",
+      "reason": "La versión original daba VARIANT por no admitido: la documentación solo excluye BINARY, DECFLOAT, GEOGRAPHY, UUID y VECTOR, de modo que la pregunta tenía dos respuestas correctas entre las opciones."
+    },
+    "objective": "2.2",
+    "topic": "Data governance",
+    "contentRevision": "cof-c03-2026-09-23-q1000"
   },
   {
     "i": 263,
@@ -6923,7 +7016,7 @@
   },
   {
     "i": 268,
-    "q": "Which schema has the RESOURCE_MONITORS view?",
+    "q": "Which schemas of the SNOWFLAKE database expose a RESOURCE_MONITORS view? (Choose two.)",
     "o": [
       "ACCOUNT_USAGE",
       "READER_ACCOUNT_USAGE",
@@ -6935,16 +7028,19 @@
       1
     ],
     "n": 2,
-    "e": "The RESOURCE_MONITORS view is documented in both SNOWFLAKE.ACCOUNT_USAGE and SNOWFLAKE.READER_ACCOUNT_USAGE. Snowflake also notes that the READER_ACCOUNT_USAGE version includes an additional READER_ACCOUNT_NAME column for reader-account-specific monitoring.",
+    "e": "The RESOURCE_MONITORS view is documented in SNOWFLAKE.ACCOUNT_USAGE and in SNOWFLAKE.READER_ACCOUNT_USAGE, where it adds a READER_ACCOUNT_NAME column so a provider can monitor each reader account separately. INFORMATION_SCHEMA has no such view and WAREHOUSE_USAGE_SCHEMA does not exist.",
     "r": "https://docs.snowflake.com/en/sql-reference/account-usage/resource_monitors",
-    "d": "Arquitectura y Data Cloud",
+    "d": "Gestion de cuenta y Gobernanza",
     "p": false,
     "review": {
-      "status": "quarantine",
-      "candidateObjective": "1.3",
-      "reason": "Revisar alcance, condiciones o clave: una lectura preliminar detectó ambigüedad, límite histórico, contexto ausente o posible respuesta adicional. No se declara incorrecta sin validar todas las opciones.",
-      "screenedAt": "2026-09-21"
-    }
+      "status": "verified",
+      "reviewedAt": "2026-09-23",
+      "method": "editorial-documentation",
+      "reason": "El enunciado pedía un esquema en singular mientras la clave marcaba dos opciones; se corrige el enunciado sin alterar la respuesta."
+    },
+    "objective": "2.3",
+    "topic": "Monitoring and cost management",
+    "contentRevision": "cof-c03-2026-09-23-q1000"
   },
   {
     "i": 269,
@@ -7017,10 +7113,11 @@
     "d": "Colaboracion y Proteccion de datos",
     "p": false,
     "review": {
-      "status": "quarantine",
+      "status": "archived",
       "candidateObjective": "5.1",
-      "reason": "Revisar alcance, condiciones o clave: una lectura preliminar detectó ambigüedad, límite histórico, contexto ausente o posible respuesta adicional. No se declara incorrecta sin validar todas las opciones.",
-      "screenedAt": "2026-09-21"
+      "reason": "Los objetos protegidos por Fail-safe ya se evalúan en los IDs 65 y 791, y la documentación no atribuye periodo de Fail-safe a las vistas materializadas.",
+      "screenedAt": "2026-09-21",
+      "reviewedAt": "2026-09-23"
     }
   },
   {
@@ -7153,10 +7250,11 @@
     "d": "Rendimiento, Consultas y Transformacion",
     "p": false,
     "review": {
-      "status": "quarantine",
+      "status": "archived",
       "candidateObjective": "4.3",
-      "reason": "Revisar alcance, condiciones o clave: una lectura preliminar detectó ambigüedad, límite histórico, contexto ausente o posible respuesta adicional. No se declara incorrecta sin validar todas las opciones.",
-      "screenedAt": "2026-09-21"
+      "reason": "Repite las condiciones de reutilización de la caché de resultados, ya contrastadas en el ID 316.",
+      "screenedAt": "2026-09-21",
+      "reviewedAt": "2026-09-23"
     }
   },
   {
@@ -7177,39 +7275,40 @@
     "d": "Carga, Descarga y Conectividad",
     "p": false,
     "review": {
-      "status": "quarantine",
+      "status": "archived",
       "candidateObjective": "3.2",
-      "reason": "Revisar alcance, condiciones o clave: una lectura preliminar detectó ambigüedad, límite histórico, contexto ausente o posible respuesta adicional. No se declara incorrecta sin validar todas las opciones.",
-      "screenedAt": "2026-09-21"
+      "reason": "Repite el tamaño de fichero recomendado para Snowpipe, ya contrastado en el ID 189.",
+      "screenedAt": "2026-09-21",
+      "reviewedAt": "2026-09-23"
     }
   },
   {
     "i": 278,
-    "q": "Which statements are true concerning Snowflake’s underlying cloud infrastructure? (Choose three.)",
+    "q": "Which statements are true of the cloud infrastructure Snowflake runs on? (Choose two.)",
     "o": [
-      "Snowflake data and services are deployed in a single availability zone within a cloud provider’s region.",
-      "Snowflake data and services are available in a single cloud provider and a single region; the use of multiple cloud providers is not supported.",
-      "Snowflake can be deployed in a customer’s private cloud using the customer’s own compute and storage resources for Snowflake compute and storage.",
-      "Snowflake uses the core compute and storage services of each cloud provider for its own compute and storage.",
-      "All three layers of Snowflake’s architecture (storage, compute, and cloud services) are deployed and managed entirely on a selected cloud platform.",
-      "Snowflake data and services are deployed in at least three availability zones within a cloud provider’s region."
+      "Snowflake can be installed in a customer private cloud using the customer own servers",
+      "All three layers of the architecture, storage, compute and cloud services, are deployed and managed entirely on the selected cloud platform",
+      "Snowflake runs completely on public cloud infrastructure as a self-managed service",
+      "An account can only ever be hosted on one cloud provider, and an organization cannot use another"
     ],
     "c": [
-      3,
-      4,
-      5
+      1,
+      2
     ],
-    "n": 3,
-    "e": "Snowflake's architecture is designed to use the core compute and storage services provided by each cloud platform, ensuring seamless integration and optimization. All three layers of its architecture are entirely deployed and managed on the chosen cloud platform. Additionally, for high availability and resilience, Snowflake services are typically deployed across at least three availability zones within a cloud provider’s region.",
-    "r": "https://docs.snowflake.com/en/user-guide/intro-key-concepts.html#architecture",
+    "n": 2,
+    "e": "Snowflake is delivered as a self-managed service that runs completely on cloud infrastructure: the three layers are deployed and managed on the chosen platform, which can be AWS, Google Cloud or Azure. There is no installable version for a private data centre, and an organization can host different accounts on different platforms and regions.",
+    "r": "https://docs.snowflake.com/en/user-guide/intro-cloud-platforms",
     "d": "Arquitectura y Data Cloud",
     "p": false,
     "review": {
-      "status": "quarantine",
-      "candidateObjective": "1.1",
-      "reason": "Revisar alcance, condiciones o clave: una lectura preliminar detectó ambigüedad, límite histórico, contexto ausente o posible respuesta adicional. No se declara incorrecta sin validar todas las opciones.",
-      "screenedAt": "2026-09-21"
-    }
+      "status": "verified",
+      "reviewedAt": "2026-09-23",
+      "method": "editorial-documentation",
+      "reason": "La opción sobre tres zonas de disponibilidad no está respaldada por las páginas actuales de plataformas y regiones, así que se retira y la pregunta pasa a dos respuestas comprobables."
+    },
+    "objective": "1.1",
+    "topic": "Architecture and editions",
+    "contentRevision": "cof-c03-2026-09-23-q1000"
   },
   {
     "i": 279,
@@ -7276,16 +7375,18 @@
       3
     ],
     "n": 1,
-    "e": "To use AWS/Azure Privatelink or Google Cloud Private Service Connect with Snowflake, the minimum required edition is the Business Critical edition. This edition provides advanced security and networking features, including Privatelink and Private Service Connect.",
-    "r": "https://docs.snowflake.com/en/user-guide/network-policies.html#using-privatelink-with-snowflake",
+    "e": "Private connectivity to the Snowflake service through AWS PrivateLink, Azure Private Link or Google Cloud Private Service Connect appears in the editions table from Business Critical upwards, together with private connectivity to internal stages. Standard and Enterprise do not include it, and Premium is not a Snowflake edition.",
+    "r": "https://docs.snowflake.com/en/user-guide/admin-security-privatelink",
     "d": "Arquitectura y Data Cloud",
     "p": false,
     "review": {
-      "status": "quarantine",
-      "candidateObjective": "1.1",
-      "reason": "Revisar alcance, condiciones o clave: una lectura preliminar detectó ambigüedad, límite histórico, contexto ausente o posible respuesta adicional. No se declara incorrecta sin validar todas las opciones.",
-      "screenedAt": "2026-09-21"
-    }
+      "status": "verified",
+      "reviewedAt": "2026-09-23",
+      "method": "editorial-documentation",
+      "reason": "La edición mínima se comprueba en la tabla de ediciones; se corrige el enlace, que apuntaba a la página de network policies."
+    },
+    "objective": "1.1",
+    "topic": "Architecture and editions"
   },
   {
     "i": 282,
@@ -7387,10 +7488,11 @@
     "d": "Rendimiento, Consultas y Transformacion",
     "p": false,
     "review": {
-      "status": "quarantine",
+      "status": "archived",
       "candidateObjective": "4.2",
-      "reason": "Revisar alcance, condiciones o clave: una lectura preliminar detectó ambigüedad, límite histórico, contexto ausente o posible respuesta adicional. No se declara incorrecta sin validar todas las opciones.",
-      "screenedAt": "2026-09-21"
+      "reason": "Repite que una profundidad de clustering alta señala la conveniencia de una clave, ya contrastado en los IDs 1095 y 1301.",
+      "screenedAt": "2026-09-21",
+      "reviewedAt": "2026-09-23"
     }
   },
   {
@@ -7460,16 +7562,18 @@
       4
     ],
     "n": 2,
-    "e": "In Snowflake, executing a stored procedure and querying data from a materialized view require the use of a running virtual warehouse. These operations involve data processing and computation that necessitate the computational resources provided by a virtual warehouse.",
-    "r": "https://docs.snowflake.com/en/user-guide/warehouses.html",
+    "e": "Warehouses are required for queries and for every DML operation. Calling a stored procedure runs statements, and reading a materialized view is a query, so both need a running warehouse. Listing files in a stage, downloading them with GET and altering a table are metadata or DDL operations served by the cloud services layer.",
+    "r": "https://docs.snowflake.com/en/user-guide/warehouses-overview",
     "d": "Arquitectura y Data Cloud",
     "p": false,
     "review": {
-      "status": "quarantine",
-      "candidateObjective": "1.4",
-      "reason": "Revisar alcance, condiciones o clave: una lectura preliminar detectó ambigüedad, límite histórico, contexto ausente o posible respuesta adicional. No se declara incorrecta sin validar todas las opciones.",
-      "screenedAt": "2026-09-21"
-    }
+      "status": "verified",
+      "reviewedAt": "2026-09-23",
+      "method": "editorial-documentation",
+      "reason": "La frase \"Warehouses are required for queries, as well as all DML operations\" delimita qué operaciones necesitan cómputo."
+    },
+    "objective": "1.4",
+    "topic": "Virtual warehouses"
   },
   {
     "i": 289,
@@ -7565,16 +7669,18 @@
       2
     ],
     "n": 1,
-    "e": "A newly configured virtual warehouse in Snowflake can start running SQL queries once the provisioning process is completed. This ensures that the necessary compute resources are allocated and ready for query execution.",
-    "r": "https://docs.snowflake.com/en/user-guide/warehouses.html",
+    "e": "A warehouse can run statements as soon as its compute resources are provisioned, whether it was just created, resumed from suspension or resized upwards. Provisioning is not partial, there are no administrator time slots, and replication has nothing to do with warehouses.",
+    "r": "https://docs.snowflake.com/en/user-guide/warehouses-overview",
     "d": "Arquitectura y Data Cloud",
     "p": false,
     "review": {
-      "status": "quarantine",
-      "candidateObjective": "1.4",
-      "reason": "Revisar alcance, condiciones o clave: una lectura preliminar detectó ambigüedad, límite histórico, contexto ausente o posible respuesta adicional. No se declara incorrecta sin validar todas las opciones.",
-      "screenedAt": "2026-09-21"
-    }
+      "status": "verified",
+      "reviewedAt": "2026-09-23",
+      "method": "editorial-documentation",
+      "reason": "Se conserva esta versión de la idea por tener distractores razonables; el ID 71 de esta misma tanda se archiva por repetirla."
+    },
+    "objective": "1.4",
+    "topic": "Virtual warehouses"
   },
   {
     "i": 293,
@@ -7701,16 +7807,18 @@
       2
     ],
     "n": 2,
-    "e": "In Snowflake, masking policies can be applied to tables and materialized views. These policies allow for the dynamic data masking of sensitive information, enhancing data protection and privacy.",
-    "r": "https://docs.snowflake.com/en/user-guide/security-column-ddm.html",
+    "e": "A masking policy is applied to a column, so it can be set on tables, views and materialized views. Streams, pipes and stored procedures have no columns to mask; protecting what is read through them depends on the policies of the underlying tables.",
+    "r": "https://docs.snowflake.com/en/user-guide/security-column-ddm",
     "d": "Gestion de cuenta y Gobernanza",
     "p": false,
     "review": {
-      "status": "quarantine",
-      "candidateObjective": "2.2",
-      "reason": "Revisar alcance, condiciones o clave: una lectura preliminar detectó ambigüedad, límite histórico, contexto ausente o posible respuesta adicional. No se declara incorrecta sin validar todas las opciones.",
-      "screenedAt": "2026-09-21"
-    }
+      "status": "verified",
+      "reviewedAt": "2026-09-23",
+      "method": "editorial-documentation",
+      "reason": "Los objetos admitidos figuran en Understanding Dynamic Data Masking."
+    },
+    "objective": "2.2",
+    "topic": "Data governance"
   },
   {
     "i": 298,
@@ -7755,16 +7863,18 @@
       2
     ],
     "n": 1,
-    "e": "The 'CREATE TABLE ... LIKE' statement in Snowflake duplicates the structure of an existing table without copying the data. This operation uses metadata only and does not incur any processing or storage costs.",
+    "e": "CREATE TABLE ... LIKE copies the structure of the source table, including column definitions and defaults, but not its rows. It is a DDL statement resolved by the cloud services layer, so it needs no running warehouse and adds no storage; only cloud services usage above the daily allowance could be billed.",
     "r": "https://docs.snowflake.com/en/sql-reference/sql/create-table",
     "d": "Gestion de cuenta y Gobernanza",
     "p": false,
     "review": {
-      "status": "quarantine",
-      "candidateObjective": "2.3",
-      "reason": "Revisar alcance, condiciones o clave: una lectura preliminar detectó ambigüedad, límite histórico, contexto ausente o posible respuesta adicional. No se declara incorrecta sin validar todas las opciones.",
-      "screenedAt": "2026-09-21"
-    }
+      "status": "verified",
+      "reviewedAt": "2026-09-23",
+      "method": "editorial-documentation",
+      "reason": "Se contrasta con CREATE TABLE ... LIKE y con la facturación de cloud services; se matiza que el coste cero no es absoluto."
+    },
+    "objective": "2.3",
+    "topic": "Monitoring and cost management"
   },
   {
     "i": 300,
@@ -7943,10 +8053,11 @@
     "d": "Colaboracion y Proteccion de datos",
     "p": false,
     "review": {
-      "status": "quarantine",
+      "status": "archived",
       "candidateObjective": "5.2",
-      "reason": "Revisar alcance, condiciones o clave: una lectura preliminar detectó ambigüedad, límite histórico, contexto ausente o posible respuesta adicional. No se declara incorrecta sin validar todas las opciones.",
-      "screenedAt": "2026-09-21"
+      "reason": "Repite que los objetos compartidos quedan accesibles sin copiar datos, ya contrastado en el ID 228.",
+      "screenedAt": "2026-09-21",
+      "reviewedAt": "2026-09-23"
     }
   },
   {
@@ -8156,10 +8267,11 @@
     "d": "Colaboracion y Proteccion de datos",
     "p": false,
     "review": {
-      "status": "quarantine",
+      "status": "archived",
       "candidateObjective": "5.2",
-      "reason": "Revisar alcance, condiciones o clave: una lectura preliminar detectó ambigüedad, límite histórico, contexto ausente o posible respuesta adicional. No se declara incorrecta sin validar todas las opciones.",
-      "screenedAt": "2026-09-21"
+      "reason": "Repite los objetos que pueden incluirse en un share, ya contrastado en el ID 373; además la opción de vistas materializadas sin el calificativo de seguras es ambigua.",
+      "screenedAt": "2026-09-21",
+      "reviewedAt": "2026-09-23"
     }
   },
   {
@@ -8180,10 +8292,11 @@
     "d": "Rendimiento, Consultas y Transformacion",
     "p": false,
     "review": {
-      "status": "quarantine",
+      "status": "archived",
       "candidateObjective": "4.1",
-      "reason": "Revisar alcance, condiciones o clave: una lectura preliminar detectó ambigüedad, límite histórico, contexto ausente o posible respuesta adicional. No se declara incorrecta sin validar todas las opciones.",
-      "screenedAt": "2026-09-21"
+      "reason": "Repite el efecto de una clave de clustering sobre la colocación de datos y el pruning, ya contrastado en los IDs 256 y 287.",
+      "screenedAt": "2026-09-21",
+      "reviewedAt": "2026-09-23"
     }
   },
   {
@@ -8341,10 +8454,11 @@
     "d": "Colaboracion y Proteccion de datos",
     "p": false,
     "review": {
-      "status": "quarantine",
+      "status": "archived",
       "candidateObjective": "5.2",
-      "reason": "Revisar alcance, condiciones o clave: una lectura preliminar detectó ambigüedad, límite histórico, contexto ausente o posible respuesta adicional. No se declara incorrecta sin validar todas las opciones.",
-      "screenedAt": "2026-09-21"
+      "reason": "Repite los objetos compartibles, ya contrastado en los IDs 344, 593 y 1072.",
+      "screenedAt": "2026-09-21",
+      "reviewedAt": "2026-09-23"
     }
   },
   {
@@ -8420,10 +8534,11 @@
     "d": "Arquitectura y Data Cloud",
     "p": false,
     "review": {
-      "status": "quarantine",
+      "status": "archived",
       "candidateObjective": "1.5",
-      "reason": "Revisar alcance, condiciones o clave: una lectura preliminar detectó ambigüedad, límite histórico, contexto ausente o posible respuesta adicional. No se declara incorrecta sin validar todas las opciones.",
-      "screenedAt": "2026-09-21"
+      "reason": "Repite qué feature organiza los datos dentro de las micro-particiones, ya contrastado en los IDs 1 y 186.",
+      "screenedAt": "2026-09-21",
+      "reviewedAt": "2026-09-23"
     }
   },
   {
@@ -8527,10 +8642,11 @@
     "d": "Arquitectura y Data Cloud",
     "p": false,
     "review": {
-      "status": "quarantine",
+      "status": "archived",
       "candidateObjective": "1.5",
-      "reason": "Revisar alcance, condiciones o clave: una lectura preliminar detectó ambigüedad, límite histórico, contexto ausente o posible respuesta adicional. No se declara incorrecta sin validar todas las opciones.",
-      "screenedAt": "2026-09-21"
+      "reason": "Repite cuándo conviene crear una vista materializada, ya contrastado en el ID 540.",
+      "screenedAt": "2026-09-21",
+      "reviewedAt": "2026-09-23"
     }
   },
   {
@@ -8628,10 +8744,11 @@
     "d": "Gestion de cuenta y Gobernanza",
     "p": false,
     "review": {
-      "status": "quarantine",
+      "status": "archived",
       "candidateObjective": "2.2",
-      "reason": "Revisar alcance, condiciones o clave: una lectura preliminar detectó ambigüedad, límite histórico, contexto ausente o posible respuesta adicional. No se declara incorrecta sin validar todas las opciones.",
-      "screenedAt": "2026-09-21"
+      "reason": "Duplicado del ID 1309, contrastado, sobre la edición mínima para el rekeying periódico.",
+      "screenedAt": "2026-09-21",
+      "reviewedAt": "2026-09-23"
     }
   },
   {
@@ -8647,16 +8764,18 @@
       1
     ],
     "n": 1,
-    "e": "In Snowflake, only Named stages (Internal Named stages and External stages) can be altered and dropped using ALTER STAGE and DROP STAGE commands. User stages (@~) and Table stages (@%table) are automatically created and managed by Snowflake and cannot be altered or dropped. Note: 'Database stage' is not a standard Snowflake term. Among the available options, only External stage (a type of Named stage referencing external cloud storage) can be altered and dropped.",
-    "r": "https://docs.snowflake.com/en/sql-reference/sql/drop-stage",
+    "e": "ALTER STAGE and DROP STAGE work on named stages, internal or external. The user stage, written @~, and the table stage, written @%table, are created automatically with the user or the table and cannot be altered or dropped on their own. There is no database stage in Snowflake.",
+    "r": "https://docs.snowflake.com/en/sql-reference/sql/alter-stage",
     "d": "Carga, Descarga y Conectividad",
     "p": false,
     "review": {
-      "status": "quarantine",
-      "candidateObjective": "3.1",
-      "reason": "Revisar alcance, condiciones o clave: una lectura preliminar detectó ambigüedad, límite histórico, contexto ausente o posible respuesta adicional. No se declara incorrecta sin validar todas las opciones.",
-      "screenedAt": "2026-09-21"
-    }
+      "status": "verified",
+      "reviewedAt": "2026-09-23",
+      "method": "editorial-documentation",
+      "reason": "ALTER STAGE documenta que solo modifica stages con nombre, internos o externos."
+    },
+    "objective": "3.1",
+    "topic": "Data loading and unloading"
   },
   {
     "i": 334,
@@ -8751,16 +8870,18 @@
       3
     ],
     "n": 1,
-    "e": "When determining a cluster key for a Snowflake table, it is best to use columns that are most actively used in the select filters. This approach aligns the physical organization of the table with common query patterns, improving query performance by reducing the amount of data scanned.",
-    "r": "https://docs.snowflake.com/en/user-guide/tables-clustering-keys.html",
-    "d": "Arquitectura y Data Cloud",
+    "e": "A clustering key should mirror how the table is filtered, so the best candidates are the columns used most often in WHERE predicates and join conditions. Columns with extremely high cardinality, such as a unique identifier or a timestamp down to the second, produce too many distinct values to cluster efficiently, and columns that only appear in the SELECT list do not help pruning.",
+    "r": "https://docs.snowflake.com/en/user-guide/tables-clustering-keys",
+    "d": "Rendimiento, Consultas y Transformacion",
     "p": false,
     "review": {
-      "status": "quarantine",
-      "candidateObjective": null,
-      "reason": "Revisar alcance, condiciones o clave: una lectura preliminar detectó ambigüedad, límite histórico, contexto ausente o posible respuesta adicional. No se declara incorrecta sin validar todas las opciones.",
-      "screenedAt": "2026-09-21"
-    }
+      "status": "verified",
+      "reviewedAt": "2026-09-23",
+      "method": "editorial-documentation",
+      "reason": "La selección por predicados y la advertencia sobre cardinalidad muy alta figuran en la guía de claves de clustering."
+    },
+    "objective": "4.2",
+    "topic": "Optimize query performance"
   },
   {
     "i": 338,
@@ -8777,16 +8898,18 @@
       3
     ],
     "n": 2,
-    "e": "In Snowflake, a VARIANT column can store semi-structured data types. The two primary value types it can hold are OBJECT and ARRAY. OBJECT is used for JSON-like structures, and ARRAY can store ordered lists of values.",
-    "r": "https://docs.snowflake.com/en/sql-reference/data-types-semistructured.html#variant",
+    "e": "Semi-structured data is held in a VARIANT through two container types: OBJECT for sets of key-value pairs and ARRAY for ordered lists that are accessed by position. STRUCT and CLOB are not Snowflake data types.",
+    "r": "https://docs.snowflake.com/en/sql-reference/data-types-semistructured",
     "d": "Rendimiento, Consultas y Transformacion",
     "p": false,
     "review": {
-      "status": "quarantine",
-      "candidateObjective": "4.4",
-      "reason": "Revisar alcance, condiciones o clave: una lectura preliminar detectó ambigüedad, límite histórico, contexto ausente o posible respuesta adicional. No se declara incorrecta sin validar todas las opciones.",
-      "screenedAt": "2026-09-21"
-    }
+      "status": "verified",
+      "reviewedAt": "2026-09-23",
+      "method": "editorial-documentation",
+      "reason": "Los tipos ARRAY y OBJECT figuran en la documentación de tipos semiestructurados."
+    },
+    "objective": "4.4",
+    "topic": "Data transformation"
   },
   {
     "i": 339,
@@ -8806,10 +8929,11 @@
     "d": "Arquitectura y Data Cloud",
     "p": false,
     "review": {
-      "status": "quarantine",
+      "status": "archived",
       "candidateObjective": "1.4",
-      "reason": "Revisar alcance, condiciones o clave: una lectura preliminar detectó ambigüedad, límite histórico, contexto ausente o posible respuesta adicional. No se declara incorrecta sin validar todas las opciones.",
-      "screenedAt": "2026-09-21"
+      "reason": "La recomendación de dividir en más ficheros pequeños ya se evalúa en el ID 189, y la opción marcada añade un tamaño de warehouse concreto que la documentación no prescribe.",
+      "screenedAt": "2026-09-21",
+      "reviewedAt": "2026-09-23"
     }
   },
   {
@@ -8909,10 +9033,11 @@
     "d": "Gestion de cuenta y Gobernanza",
     "p": false,
     "review": {
-      "status": "quarantine",
+      "status": "archived",
       "candidateObjective": "2.2",
-      "reason": "Revisar alcance, condiciones o clave: una lectura preliminar detectó ambigüedad, límite histórico, contexto ausente o posible respuesta adicional. No se declara incorrecta sin validar todas las opciones.",
-      "screenedAt": "2026-09-21"
+      "reason": "Repite que el rekeying periódico está disponible desde Enterprise, ya contrastado en el ID 1309; los demás distractores contienen erratas.",
+      "screenedAt": "2026-09-21",
+      "reviewedAt": "2026-09-23"
     }
   },
   {
@@ -8961,10 +9086,11 @@
     "d": "Rendimiento, Consultas y Transformacion",
     "p": false,
     "review": {
-      "status": "quarantine",
+      "status": "archived",
       "candidateObjective": "4.4",
-      "reason": "Revisar alcance, condiciones o clave: una lectura preliminar detectó ambigüedad, límite histórico, contexto ausente o posible respuesta adicional. No se declara incorrecta sin validar todas las opciones.",
-      "screenedAt": "2026-09-21"
+      "reason": "Duplicado del ID 338 de esta tanda, con los mismos tipos ARRAY y OBJECT.",
+      "screenedAt": "2026-09-21",
+      "reviewedAt": "2026-09-23"
     }
   },
   {
@@ -9022,29 +9148,31 @@
   },
   {
     "i": 348,
-    "q": "Which of the following can be used when unloading data from Snowflake? (Choose two.)",
+    "q": "Which statements about unloading data from Snowflake are correct? (Choose two.)",
     "o": [
-      "When unloading semi-structured data, it is recommended that the STRIP_OUTER_ARRAY option be used.",
-      "Use the ENCODING file format option to change the encoding from the default UTF-8.",
-      "The OBJECT_CONSTRUCT function can be used to convert relational data to semi-structured data.",
-      "By using the SINGLE = TRUE parameter, a single file up to 5 GB in size can be exported to the storage layer.",
-      "Use the PARSE_JSON function to ensure structured data will be unloaded into the VARIANT data type."
+      "STRIP_OUTER_ARRAY removes the outer array when unloading semi-structured data",
+      "OBJECT_CONSTRUCT can turn relational rows into a single VARIANT column that is then unloaded as JSON",
+      "SINGLE = TRUE writes one output file, whose size limit can be raised up to the supported maximum of 5 GB",
+      "PARSE_JSON must be applied so that structured data is unloaded into a VARIANT"
     ],
     "c": [
-      0,
-      3
+      1,
+      2
     ],
     "n": 2,
-    "e": "When unloading data from Snowflake, the ENCODING file format option allows users to change the character encoding from the default UTF-8. The SINGLE = TRUE parameter facilitates exporting data as a single file up to 5 GB in size, which can be useful for large data sets.",
-    "r": "https://docs.snowflake.com/en/user-guide/data-unload-considerations.html",
+    "e": "COPY INTO location splits the output into several files by default; SINGLE = TRUE produces a single file, and MAX_FILE_SIZE, 16 MB by default, can be raised to the 5 GB supported by the cloud stages. To unload relational rows as JSON the documented approach is to build a VARIANT with OBJECT_CONSTRUCT in the SELECT. STRIP_OUTER_ARRAY is a loading option, and PARSE_JSON parses a string into a VARIANT rather than preparing an unload.",
+    "r": "https://docs.snowflake.com/en/user-guide/data-unload-considerations",
     "d": "Carga, Descarga y Conectividad",
     "p": false,
     "review": {
-      "status": "quarantine",
-      "candidateObjective": "3.1",
-      "reason": "Revisar alcance, condiciones o clave: una lectura preliminar detectó ambigüedad, límite histórico, contexto ausente o posible respuesta adicional. No se declara incorrecta sin validar todas las opciones.",
-      "screenedAt": "2026-09-21"
-    }
+      "status": "verified",
+      "reviewedAt": "2026-09-23",
+      "method": "editorial-documentation",
+      "reason": "La clave marcaba STRIP_OUTER_ARRAY, que es una opción de carga, y la explicación describía dos opciones distintas de las marcadas; se corrigen clave y explicación con las dos afirmaciones documentadas."
+    },
+    "objective": "3.1",
+    "topic": "Data loading and unloading",
+    "contentRevision": "cof-c03-2026-09-23-q1000"
   },
   {
     "i": 349,
@@ -9693,10 +9821,11 @@
     "d": "Colaboracion y Proteccion de datos",
     "p": false,
     "review": {
-      "status": "quarantine",
+      "status": "archived",
       "candidateObjective": "5.2",
-      "reason": "Apartada tras cribado: posible clave o generalización incorrecta, dependencia de interfaz/versión, o condiciones insuficientes. Requiere validación individual.",
-      "screenedAt": "2026-09-21"
+      "reason": "Repite que sin auto-fulfillment hay que replicar la base de datos antes de compartirla en otra región, ya contrastado en el ID 1271.",
+      "screenedAt": "2026-09-21",
+      "reviewedAt": "2026-09-23"
     }
   },
   {
@@ -9748,10 +9877,11 @@
     "d": "Carga, Descarga y Conectividad",
     "p": false,
     "review": {
-      "status": "quarantine",
+      "status": "archived",
       "candidateObjective": "3.2",
-      "reason": "Apartada tras cribado: posible clave o generalización incorrecta, dependencia de interfaz/versión, o condiciones insuficientes. Requiere validación individual.",
-      "screenedAt": "2026-09-21"
+      "reason": "Repite que Snowpipe es la vía para cargas continuas de poco volumen, ya contrastado en el ID 197.",
+      "screenedAt": "2026-09-21",
+      "reviewedAt": "2026-09-23"
     }
   },
   {
@@ -9824,10 +9954,11 @@
     "d": "Arquitectura y Data Cloud",
     "p": false,
     "review": {
-      "status": "quarantine",
+      "status": "archived",
       "candidateObjective": "1.5",
-      "reason": "Apartada tras cribado: posible clave o generalización incorrecta, dependencia de interfaz/versión, o condiciones insuficientes. Requiere validación individual.",
-      "screenedAt": "2026-09-21"
+      "reason": "Los objetos con mantenimiento serverless ya se evalúan en los IDs 327 y 229, y la clave excluye la tabla con clustering automático, que incurre exactamente en ese tipo de coste.",
+      "screenedAt": "2026-09-21",
+      "reviewedAt": "2026-09-23"
     }
   },
   {
@@ -9991,10 +10122,11 @@
     "d": "Colaboracion y Proteccion de datos",
     "p": false,
     "review": {
-      "status": "quarantine",
+      "status": "archived",
       "candidateObjective": "5.1",
-      "reason": "Apartada tras cribado: posible clave o generalización incorrecta, dependencia de interfaz/versión, o condiciones insuficientes. Requiere validación individual.",
-      "screenedAt": "2026-09-21"
+      "reason": "Repite que Time Travel sirve para consultar y para restaurar, ya contrastado en el ID 136.",
+      "screenedAt": "2026-09-21",
+      "reviewedAt": "2026-09-23"
     }
   },
   {
@@ -10042,10 +10174,11 @@
     "d": "Carga, Descarga y Conectividad",
     "p": false,
     "review": {
-      "status": "quarantine",
+      "status": "archived",
       "candidateObjective": "3.2",
-      "reason": "Apartada tras cribado: posible clave o generalización incorrecta, dependencia de interfaz/versión, o condiciones insuficientes. Requiere validación individual.",
-      "screenedAt": "2026-09-21"
+      "reason": "Repite el tamaño de fichero recomendado para Snowpipe, ya contrastado en el ID 189.",
+      "screenedAt": "2026-09-21",
+      "reviewedAt": "2026-09-23"
     }
   },
   {
@@ -10190,16 +10323,18 @@
       0
     ],
     "n": 1,
-    "e": "Within a reader account in Snowflake, the command 'CREATE SHARE' cannot be used. Reader accounts are typically limited in terms of data sharing capabilities, and they cannot create shares to distribute data to other accounts.",
-    "r": "https://docs.snowflake.com/en/user-guide/data-sharing-reader-accounts.html",
+    "e": "A reader account consumes data from the provider that created it and cannot become a provider itself: the documentation lists CREATE SHARE among the commands that cannot be executed there, along with INSERT and CREATE STAGE. Reading metadata with SHOW or DESCRIBE, and managing its own warehouses and roles, is allowed.",
+    "r": "https://docs.snowflake.com/en/user-guide/data-sharing-reader-create",
     "d": "Colaboracion y Proteccion de datos",
     "p": false,
     "review": {
-      "status": "quarantine",
-      "candidateObjective": "5.2",
-      "reason": "Apartada tras cribado: posible clave o generalización incorrecta, dependencia de interfaz/versión, o condiciones insuficientes. Requiere validación individual.",
-      "screenedAt": "2026-09-21"
-    }
+      "status": "verified",
+      "reviewedAt": "2026-09-23",
+      "method": "editorial-documentation",
+      "reason": "La lista de comandos no permitidos en una reader account incluye CREATE SHARE."
+    },
+    "objective": "5.2",
+    "topic": "Data sharing"
   },
   {
     "i": 392,
@@ -10353,10 +10488,11 @@
     "d": "Arquitectura y Data Cloud",
     "p": false,
     "review": {
-      "status": "quarantine",
+      "status": "archived",
       "candidateObjective": null,
-      "reason": "Apartada tras cribado: posible clave o generalización incorrecta, dependencia de interfaz/versión, o condiciones insuficientes. Requiere validación individual.",
-      "screenedAt": "2026-09-21"
+      "reason": "Duplicado del ID 460, contrastado, sobre la rotación automática de claves a los 30 días.",
+      "screenedAt": "2026-09-21",
+      "reviewedAt": "2026-09-23"
     }
   },
   {
@@ -10562,16 +10698,18 @@
       3
     ],
     "n": 1,
-    "e": "Even if a developer is granted ownership of a table with a masking policy, they will not be able to modify the table to read the masked data if their role does not have the required permissions. Ownership of the table does not automatically confer the ability to change or unset masking policies.",
-    "r": "https://docs.snowflake.com/en/user-guide/security-column-ddm.html",
+    "e": "Masking policies are separate objects with their own ownership. Unsetting a policy from a column or altering it requires the APPLY MASKING POLICY privilege or ownership of the policy, neither of which comes with owning the table, so the developer keeps seeing masked values. That separation is what prevents a table owner from bypassing governance.",
+    "r": "https://docs.snowflake.com/en/user-guide/security-column-ddm",
     "d": "Gestion de cuenta y Gobernanza",
     "p": false,
     "review": {
-      "status": "quarantine",
-      "candidateObjective": "2.2",
-      "reason": "Apartada tras cribado: posible clave o generalización incorrecta, dependencia de interfaz/versión, o condiciones insuficientes. Requiere validación individual.",
-      "screenedAt": "2026-09-21"
-    }
+      "status": "verified",
+      "reviewedAt": "2026-09-23",
+      "method": "editorial-documentation",
+      "reason": "La separación entre propiedad de la tabla y privilegio sobre la política figura en Dynamic Data Masking."
+    },
+    "objective": "2.2",
+    "topic": "Data governance"
   },
   {
     "i": 406,
@@ -10720,10 +10858,11 @@
     "d": "Colaboracion y Proteccion de datos",
     "p": false,
     "review": {
-      "status": "quarantine",
+      "status": "archived",
       "candidateObjective": "5.1",
-      "reason": "Apartada tras cribado: posible clave o generalización incorrecta, dependencia de interfaz/versión, o condiciones insuficientes. Requiere validación individual.",
-      "screenedAt": "2026-09-21"
+      "reason": "Repite que los datos pasan a Fail-safe al terminar la retención, ya contrastado en los IDs 115 y 166.",
+      "screenedAt": "2026-09-21",
+      "reviewedAt": "2026-09-23"
     }
   },
   {
@@ -10822,16 +10961,18 @@
       4
     ],
     "n": 2,
-    "e": "Snowflake supports unloading data to Delimited (CSV, TSV, etc.) and JSON formats (and also Parquet). Avro is supported for loading, not unloading.",
-    "r": "https://docs.snowflake.com/en/user-guide/data-unload-considerations.html",
+    "e": "Unloading supports delimited files such as CSV and TSV and, for semi-structured output, JSON and Parquet. Avro, ORC and XML can be loaded into Snowflake but cannot be produced by COPY INTO location.",
+    "r": "https://docs.snowflake.com/en/user-guide/data-unload-prepare",
     "d": "Carga, Descarga y Conectividad",
     "p": false,
     "review": {
-      "status": "quarantine",
-      "candidateObjective": "3.1",
-      "reason": "Apartada tras cribado: posible clave o generalización incorrecta, dependencia de interfaz/versión, o condiciones insuficientes. Requiere validación individual.",
-      "screenedAt": "2026-09-21"
-    }
+      "status": "verified",
+      "reviewedAt": "2026-09-23",
+      "method": "editorial-documentation",
+      "reason": "La tabla de formatos admitidos al descargar confirma la clave e incluye Parquet, que no figura entre las opciones."
+    },
+    "objective": "3.1",
+    "topic": "Data loading and unloading"
   },
   {
     "i": 416,
@@ -10966,30 +11107,31 @@
   },
   {
     "i": 421,
-    "q": "According to Snowflake best practice recommendations, which system-defined roles should be used to create custom roles? (Choose two.)",
+    "q": "According to Snowflake recommendations for custom roles, which statements are correct? (Choose two.)",
     "o": [
-      "ACCOUNTADMIN",
-      "SYSADMIN",
-      "SECURITYADMIN",
-      "USERADMIN",
-      "ORGADMIN"
+      "Custom roles are created by USERADMIN or by another role granted the CREATE ROLE privilege",
+      "Every custom role must be owned by ACCOUNTADMIN",
+      "The hierarchy of custom roles is ultimately granted to SYSADMIN so that it can manage the objects those roles own",
+      "Custom roles inherit the privileges of SECURITYADMIN by default"
     ],
     "c": [
-      1,
-      3
+      0,
+      2
     ],
     "n": 2,
-    "e": "Snowflake best practice recommends using USERADMIN to manage users and roles and SYSADMIN as the system role at the top of the custom-role hierarchy for owning/managing objects. SECURITYADMIN is primarily for granting/revoking privileges.",
-    "r": "https://docs.snowflake.com/en/user-guide/security-access-control-overview.html#custom-roles",
+    "e": "USERADMIN holds the privileges to create and manage users and roles, and Snowflake recommends building a hierarchy of custom roles aligned with business functions whose top role is granted to SYSADMIN, so that warehouse and database operations stay manageable from there. Assigning ownership to ACCOUNTADMIN or inheriting from SECURITYADMIN is not part of the recommendation.",
+    "r": "https://docs.snowflake.com/en/user-guide/security-access-control-considerations",
     "d": "Gestion de cuenta y Gobernanza",
     "p": false,
     "review": {
-      "status": "quarantine",
-      "candidateObjective": "2.1",
-      "reason": "La documentación distingue USERADMIN (crea y gestiona roles) de SYSADMIN (padre de los roles personalizados en la jerarquía recomendada). «Qué roles se usan para crear roles personalizados» no tiene una respuesta de dos opciones respaldada: falta una fuente que fije esa pareja.",
-      "screenedAt": "2026-09-21",
-      "reviewedAt": "2026-09-23"
-    }
+      "status": "verified",
+      "reviewedAt": "2026-09-23",
+      "method": "editorial-documentation",
+      "reason": "Rescatada de cuarentena: el enunciado preguntaba qué roles se usan para crear roles personalizados y mezclaba quién los crea con quién los hereda. Ahora cada opción enuncia una recomendación concreta."
+    },
+    "objective": "2.1",
+    "topic": "Security model and access control",
+    "contentRevision": "cof-c03-2026-09-23-q1000"
   },
   {
     "i": 422,
@@ -11158,28 +11300,31 @@
   },
   {
     "i": 428,
-    "q": "What are benefits of using the ACCESS_HISTORY view in the SNOWFLAKE database?",
+    "q": "Which benefits does the documentation list for the ACCESS_HISTORY view? (Choose two.)",
     "o": [
-      "Identification of unused data",
-      "Identification of which roles have been used",
-      "Tracking of network policy usage",
-      "Highlighting of row access policy usage",
-      "Identification of who has read data"
+      "Discovering unused data in order to archive or delete it",
+      "Identifying the user who performed a write operation on a table or stage, and when it happened",
+      "Listing which roles have been granted to a user",
+      "Reporting how many connections each network policy has blocked"
     ],
     "c": [
-      0
+      0,
+      1
     ],
-    "n": 1,
-    "e": "ACCESS_HISTORY is used to discover unused data and to audit access/write activity. The documented benefit relevant to the options is identification of unused data; the docs do not state a benefit of identifying who has read data.",
-    "r": "https://docs.snowflake.com/en/user-guide/access-history#benefits",
+    "n": 2,
+    "e": "The Benefits section names data discovery, tracking how sensitive data moves, and compliance auditing, which identifies the user behind a write operation on a table or stage and the moment it occurred. Role grants are queried in GRANTS_TO_USERS, and network policy activity is not part of this view.",
+    "r": "https://docs.snowflake.com/en/user-guide/access-history",
     "d": "Gestion de cuenta y Gobernanza",
     "p": false,
     "review": {
-      "status": "quarantine",
-      "candidateObjective": "2.2",
-      "reason": "Apartada tras cribado: posible clave o generalización incorrecta, dependencia de interfaz/versión, o condiciones insuficientes. Requiere validación individual.",
-      "screenedAt": "2026-09-21"
-    }
+      "status": "verified",
+      "reviewedAt": "2026-09-23",
+      "method": "editorial-documentation",
+      "reason": "Rescatada de cuarentena: la pregunta era de respuesta única y descartaba la auditoría de escrituras, que la documentación sí enumera como beneficio, de modo que había dos opciones válidas."
+    },
+    "objective": "2.2",
+    "topic": "Data governance",
+    "contentRevision": "cof-c03-2026-09-23-q1000"
   },
   {
     "i": 429,
@@ -11278,16 +11423,18 @@
       3
     ],
     "n": 1,
-    "e": "When unloading data from Snowflake, the default compression type is 'gzip'. This widely-used compression format balances compression ratio and speed, providing efficient data unloading and transfer.",
-    "r": "https://docs.snowflake.com/en/user-guide/data-unload-considerations.html#compression",
+    "e": "For a CSV or JSON unload the COMPRESSION option defaults to AUTO, which compresses the files with gzip. BZ2, Brotli and Zstandard are valid values that must be requested explicitly, and a Parquet unload uses a different list in which AUTO means Snappy.",
+    "r": "https://docs.snowflake.com/en/sql-reference/sql/copy-into-location",
     "d": "Carga, Descarga y Conectividad",
     "p": false,
     "review": {
-      "status": "quarantine",
-      "candidateObjective": "3.1",
-      "reason": "Apartada tras cribado: posible clave o generalización incorrecta, dependencia de interfaz/versión, o condiciones insuficientes. Requiere validación individual.",
-      "screenedAt": "2026-09-21"
-    }
+      "status": "verified",
+      "reviewedAt": "2026-09-23",
+      "method": "editorial-documentation",
+      "reason": "Los valores admitidos y el comportamiento de AUTO figuran en las opciones de formato de COPY INTO location."
+    },
+    "objective": "3.1",
+    "topic": "Data loading and unloading"
   },
   {
     "i": 433,
@@ -11342,27 +11489,30 @@
   },
   {
     "i": 435,
-    "q": "User A cloned a schema and overwrote a schema that User B was working on. User B no longer has access to their version of the tables. However, this all occurred within the Time Travel retention period defined at the database level. How should the missing tables be restored?",
+    "q": "User A replaced a schema with a clone and the tables User B was working on disappeared. Everything happened inside the Time Travel retention period. How can the previous tables be recovered?",
     "o": [
-      "Use an UNDROP TABLE statement.",
-      "Use a CREATE TABLE AS SELECT statement",
-      "Rename the cloned schema and use an UNDROP SCHEMA statement.",
-      "Contact Snowflake Support to retrieve the data from Fail-safe"
+      "Run UNDROP TABLE for each table so they are restored into the schema that exists now",
+      "Rename the cloned schema and then run UNDROP SCHEMA",
+      "Recreate each table with CREATE TABLE AS SELECT",
+      "Ask Snowflake Support to recover the data from Fail-safe"
     ],
     "c": [
-      0
+      1
     ],
     "n": 1,
-    "e": "If User B's tables were overwritten within the Time Travel retention period, they can be restored using the 'UNDROP TABLE' statement. This command will recover the dropped tables from the Time Travel history, provided it is within the retention period.",
-    "r": "https://docs.snowflake.com/en/sql-reference/sql/undrop-table.html",
+    "e": "Replacing the schema dropped it together with its tables, so the previous version can only be recovered as a whole with UNDROP SCHEMA. UNDROP returns an error if an object with the same name already exists, which is why the clone has to be renamed first. Fail-safe is not involved while the data is still inside Time Travel, and CREATE TABLE AS SELECT cannot read a version that is no longer reachable.",
+    "r": "https://docs.snowflake.com/en/sql-reference/sql/undrop-schema",
     "d": "Colaboracion y Proteccion de datos",
     "p": false,
     "review": {
-      "status": "quarantine",
-      "candidateObjective": "5.1",
-      "reason": "Apartada tras cribado: posible clave o generalización incorrecta, dependencia de interfaz/versión, o condiciones insuficientes. Requiere validación individual.",
-      "screenedAt": "2026-09-21"
-    }
+      "status": "verified",
+      "reviewedAt": "2026-09-23",
+      "method": "editorial-documentation",
+      "reason": "La clave original, UNDROP TABLE, no es aplicable: las tablas desaparecieron con el esquema y UNDROP falla si ya existe un objeto con ese nombre. La respuesta correcta ya figuraba entre los distractores."
+    },
+    "objective": "5.1",
+    "topic": "Collaboration and protection",
+    "contentRevision": "cof-c03-2026-09-23-q1000"
   },
   {
     "i": 436,
@@ -11695,10 +11845,11 @@
     "d": "Gestion de cuenta y Gobernanza",
     "p": false,
     "review": {
-      "status": "quarantine",
+      "status": "archived",
       "candidateObjective": "2.3",
-      "reason": "Apartada tras cribado: posible clave o generalización incorrecta, dependencia de interfaz/versión, o condiciones insuficientes. Requiere validación individual.",
-      "screenedAt": "2026-09-21"
+      "reason": "Repite las características de las tablas temporales, ya contrastadas en los IDs 900 y 164.",
+      "screenedAt": "2026-09-21",
+      "reviewedAt": "2026-09-23"
     }
   },
   {
@@ -11714,16 +11865,18 @@
       3
     ],
     "n": 1,
-    "e": "In Snowflake, the 'NOT NULL' constraint is enforced as per the ANSI SQL standard. This constraint ensures that a column cannot contain null values. Other constraints like UNIQUE, PRIMARY KEY, and FOREIGN KEY are recognized but not enforced in Snowflake.",
-    "r": "https://docs.snowflake.com/en/sql-reference/constraints-properties#ansi-sql-constraint-properties",
+    "e": "Snowflake accepts UNIQUE, PRIMARY KEY and FOREIGN KEY as metadata that documents the model and helps tools and the optimizer, but it does not enforce them during DML. NOT NULL is the only constraint actually enforced, so an insert with a null value in that column fails.",
+    "r": "https://docs.snowflake.com/en/sql-reference/constraints-properties",
     "d": "Rendimiento, Consultas y Transformacion",
     "p": false,
     "review": {
-      "status": "quarantine",
-      "candidateObjective": "4.4",
-      "reason": "Apartada tras cribado: posible clave o generalización incorrecta, dependencia de interfaz/versión, o condiciones insuficientes. Requiere validación individual.",
-      "screenedAt": "2026-09-21"
-    }
+      "status": "verified",
+      "reviewedAt": "2026-09-23",
+      "method": "editorial-documentation",
+      "reason": "La propiedad de no forzadas salvo NOT NULL figura en la documentación de constraints."
+    },
+    "objective": "4.4",
+    "topic": "Data transformation"
   },
   {
     "i": 450,
@@ -11887,27 +12040,30 @@
   },
   {
     "i": 456,
-    "q": "What is the default value in the Snowflake Web Interface (UI) for auto suspending a Virtual Warehouse?",
+    "q": "What is the default AUTO_SUSPEND value for a warehouse created with CREATE WAREHOUSE?",
     "o": [
-      "1 minute",
-      "5 minutes",
-      "10 minutes",
-      "15 minutes"
+      "60 seconds",
+      "300 seconds",
+      "600 seconds",
+      "The warehouse never suspends unless a value is set"
     ],
     "c": [
       2
     ],
     "n": 1,
-    "e": "The default value for auto suspending a Virtual Warehouse in the Snowflake Web Interface (UI) is '10 minutes'. This setting determines how long a warehouse remains idle before it is automatically suspended to save on compute resources.",
-    "r": "https://docs.snowflake.com/en/user-guide/warehouses-tasks.html#suspending-and-resuming-warehouses",
+    "e": "AUTO_SUSPEND defaults to 600 seconds, that is ten minutes of inactivity. Setting it to 0 or NULL means the warehouse never suspends, which Snowflake does not recommend unless the workload needs a continuously running warehouse.",
+    "r": "https://docs.snowflake.com/en/sql-reference/sql/create-warehouse",
     "d": "Arquitectura y Data Cloud",
     "p": false,
     "review": {
-      "status": "quarantine",
-      "candidateObjective": "1.2",
-      "reason": "Apartada tras cribado: posible clave o generalización incorrecta, dependencia de interfaz/versión, o condiciones insuficientes. Requiere validación individual.",
-      "screenedAt": "2026-09-21"
-    }
+      "status": "verified",
+      "reviewedAt": "2026-09-23",
+      "method": "editorial-documentation",
+      "reason": "El enunciado preguntaba por un valor de la interfaz web, que depende de la UI; se reformula sobre el valor por defecto documentado de AUTO_SUSPEND."
+    },
+    "objective": "1.4",
+    "topic": "Virtual warehouses",
+    "contentRevision": "cof-c03-2026-09-23-q1000"
   },
   {
     "i": 457,
@@ -12057,16 +12213,18 @@
       0
     ],
     "n": 1,
-    "e": "In Snowflake, a User-Defined Table Function (UDTF) can be accessed in the FROM clause of a query. UDTFs return a set of rows with one or more columns, making them suitable for use in such queries.",
-    "r": "https://docs.snowflake.com/en/sql-reference/functions-table.html",
+    "e": "A table function returns a set of rows, with one or more columns, for each input row, so it is used in the FROM clause, usually wrapped in TABLE(). A scalar UDF returns one value per row and belongs in the SELECT list or in a predicate, a stored procedure is invoked with CALL, and a task is a scheduling object.",
+    "r": "https://docs.snowflake.com/en/sql-reference/functions-table",
     "d": "Rendimiento, Consultas y Transformacion",
     "p": false,
     "review": {
-      "status": "quarantine",
-      "candidateObjective": "4.4",
-      "reason": "Apartada tras cribado: posible clave o generalización incorrecta, dependencia de interfaz/versión, o condiciones insuficientes. Requiere validación individual.",
-      "screenedAt": "2026-09-21"
-    }
+      "status": "verified",
+      "reviewedAt": "2026-09-23",
+      "method": "editorial-documentation",
+      "reason": "La definición de table function y su uso en la cláusula FROM se comprueban en la referencia de funciones de tabla."
+    },
+    "objective": "4.4",
+    "topic": "Data transformation"
   },
   {
     "i": 463,
@@ -12721,10 +12879,10 @@
     "d": "Colaboracion y Proteccion de datos",
     "p": false,
     "review": {
-      "status": "verified",
-      "reviewedAt": "2026-09-21",
+      "status": "archived",
+      "reviewedAt": "2026-09-23",
       "method": "editorial-documentation",
-      "reason": "Reformulado para corregir alcance, ambigüedad o datos desactualizados; respuesta contrastada."
+      "reason": "Contrastada en la tanda 300, pero su distractor \"vista estándar no segura\" dejó de ser falso: con SECURE_OBJECTS_ONLY = FALSE se puede conceder SELECT sobre vistas no seguras a un share, condición que ya evalúa el ID 781. El resto de la pregunta duplica el ID 373, que enumera tablas, vistas seguras y UDFs seguras. Se archiva en lugar de reformularla para no repetir un hecho ya cubierto por dos preguntas mejores."
     },
     "objective": "5.2",
     "topic": "Data sharing",

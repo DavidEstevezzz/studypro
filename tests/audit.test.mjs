@@ -14,6 +14,8 @@ import { batch600 } from '../scripts/review-batch-600.mjs';
 import { batch700 } from '../scripts/review-batch-700.mjs';
 import { batch800 } from '../scripts/review-batch-800.mjs';
 import { quarantine900 } from '../scripts/review-quarantine-900.mjs';
+import { quarantine1000 } from '../scripts/review-quarantine-1000.mjs';
+import { errata } from '../scripts/review-errata.mjs';
 
 const read = (path) => JSON.parse(readFileSync(new URL(path, import.meta.url), 'utf8'));
 const questions = read('../public/data/snowpro-core.json');
@@ -38,9 +40,14 @@ const batches = [
   [batch700, '../audit/batch-700-ids.json', 'cof-c03-2026-09-23-batch700'],
   [batch800, '../audit/batch-800-ids.json', 'cof-c03-2026-09-23-batch800'],
 ];
-const quarantineBatches = [[quarantine900, '../audit/quarantine-900-ids.json', 'cof-c03-2026-09-23-q900']];
-// A later batch can re-decide a question it had left quarantined, so its final status belongs to that batch.
-const rescued = new Set(quarantineBatches.flatMap(([batch]) => batch.map(q => q.i)));
+const quarantineBatches = [
+  [quarantine900, '../audit/quarantine-900-ids.json', 'cof-c03-2026-09-23-q900'],
+  [quarantine1000, '../audit/quarantine-1000-ids.json', BANK_VERSION],
+];
+// Orden de aplicación en el generador: tandas de pendientes, tandas de apartadas y por último las erratas.
+// Una tanda posterior puede volver a decidir una pregunta, así que el estado final es el de la última decisión.
+const applied = new Map();
+for (const [batch] of [...batches, ...quarantineBatches, [errata]]) for (const item of batch) applied.set(item.i, item.decision);
 const statusByDecision = { conservar_revisada: 'verified', corregir: 'verified', archivar: 'archived',
   mantener_pendiente: 'pending', apartar: 'quarantine' };
 
@@ -51,7 +58,7 @@ for (const [batch, idsFile, revision] of batches) test(`every selected pending q
   for (const item of batch) {
     const q = questions.find(q => q.i === item.i);
     assert.ok(statusByDecision[item.decision], `Decision #${item.i}`);
-    if (!rescued.has(item.i)) assert.equal(q.review.status, statusByDecision[item.decision], `Status #${item.i}`);
+    assert.equal(q.review.status, statusByDecision[applied.get(item.i)], `Status #${item.i}`);
     assert.ok(item.reason, `Reason #${item.i}`);
     if (item.decision === 'corregir') assert.equal(q.contentRevision, revision);
     else assert.notEqual(q.contentRevision, revision, `Revision #${item.i}`);
@@ -78,7 +85,7 @@ test('batches 400 through 800 keep the original content in the ledger and apply 
   for (const item of [...batch400, ...batch500, ...batch600, ...batch700, ...batch800]) {
     const record = ledger.get(item.i);
     assert.deepEqual(record.before, original.get(item.i), `Original #${item.i}`);
-    if (!rescued.has(item.i)) assert.equal(record.decision, item.decision);
+    assert.equal(record.decision, applied.get(item.i), `Decision #${item.i}`);
     const q = questions.find(q => q.i === item.i);
     if (item.decision === 'archivar') assert.deepEqual([q.q, q.o, q.c], [original.get(item.i).q, original.get(item.i).o, original.get(item.i).c]);
     if (item.decision === 'corregir') assert.deepEqual([q.q, q.o, q.c, q.n], [item.q, item.o, item.c, item.c.length]);
@@ -94,13 +101,32 @@ for (const [batch, idsFile, revision] of quarantineBatches) test(`every rescued 
   for (const item of batch) {
     const q = questions.find(q => q.i === item.i);
     assert.ok(statusByDecision[item.decision], `Decision #${item.i}`);
-    assert.equal(q.review.status, statusByDecision[item.decision], `Status #${item.i}`);
+    assert.equal(q.review.status, statusByDecision[applied.get(item.i)], `Status #${item.i}`);
     assert.ok(item.reason, `Reason #${item.i}`);
     assert.deepEqual(ledger.get(item.i).before, original.get(item.i), `Original #${item.i}`);
     if (item.decision === 'corregir') assert.equal(q.contentRevision, revision);
     else assert.notEqual(q.contentRevision, revision, `Revision #${item.i}`);
     // Una apartada rescatada no puede salir como pendiente: la cola de pendientes está cerrada.
     assert.notEqual(q.review.status, 'pending', `Pending #${item.i}`);
+  }
+});
+
+test('las erratas revisan preguntas que ya estaban contrastadas', () => {
+  const ids = read('../audit/errata-ids.json');
+  assert.equal(errata.length, ids.length);
+  assert.deepEqual(errata.map(q => q.i).sort((a,b) => a-b), ids);
+  const wasVerified = new Set([...batches, ...quarantineBatches].flatMap(([batch]) => batch)
+    .filter(item => item.decision === 'conservar_revisada' || item.decision === 'corregir').map(item => item.i));
+  const original = new Map(read('../audit/original/snowpro-core.json').map(q => [q.i, q]));
+  const ledger = new Map(read('../audit/review-ledger.json').map(r => [r.id, r]));
+  for (const item of errata) {
+    assert.ok(wasVerified.has(item.i), `Errata sobre una pregunta no contrastada #${item.i}`);
+    assert.ok(item.reason, `Reason #${item.i}`);
+    const q = questions.find(q => q.i === item.i);
+    assert.equal(q.review.status, statusByDecision[item.decision], `Status #${item.i}`);
+    assert.deepEqual(ledger.get(item.i).before, original.get(item.i), `Original #${item.i}`);
+    assert.equal(ledger.get(item.i).decision, item.decision, `Decision #${item.i}`);
+    if (item.decision === 'archivar') assert.ok(!verified.some(v => v.i === item.i), `Sigue en el simulacro #${item.i}`);
   }
 });
 
