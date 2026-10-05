@@ -72,6 +72,8 @@ La generación parte siempre del original conservado. El antiguo script de corre
 
 Temario y glosario por dominio en [`study/`](study/README.md). Disponible: dominio 1 (arquitectura, 31%).
 
+En la app se abre desde **Material de estudio** en la portada: lector por objetivos (índice, marcar como estudiada, definiciones al pulsar los términos, temas claro/sepia/oscuro), glosario con buscador y filtros, y tarjetas de repaso. El progreso se guarda en el navegador. Para añadir otro dominio, crea sus `.md` en `study/` y regístralo en `src/study/registry.js`.
+
 ## Progreso y resultados
 
 - El progreso se guarda en `localStorage` del navegador de cada usuario.

@@ -11,7 +11,7 @@ This syllabus covers the six objectives used by the StudyPro bank:
 | [1.3](#13-object-hierarchy-object-types-and-session-context) | Object hierarchy, object types, session context, UDFs & procedures | 29 |
 | [1.4](#14-virtual-warehouses) | Virtual warehouses | 61 |
 | [1.5](#15-storage-micro-partitions-table-types-and-views) | Micro-partitions, clustering, table types, views | 41 |
-| [1.6](#16-ai-ml-and-application-development) | AI/ML (Cortex, Snowflake ML) and app development (Snowpark, Streamlit, Notebooks) | 27 |
+| [1.6](#16-aiml-and-application-development) | AI/ML (Cortex, Snowflake ML) and app development (Snowpark, Streamlit, Notebooks) | 27 |
 
 How to use it:
 
@@ -749,97 +749,97 @@ Called from SQL (or Python); **task-specific** functions need **no prompt engine
 
 ## Rapid-fire self-test (cover the right column)
 
-| # | Question | Answer |
-|---|---|---|
-| 1 | Three layers of Snowflake? | Database storage, compute (query processing), cloud services |
-| 2 | Architecture name? | Multi-cluster, shared data (hybrid shared-disk + shared-nothing) |
-| 3 | Where is metadata stored? | Cloud services |
-| 4 | Where is the execution plan created? | Cloud services |
-| 5 | Which layer executes joins/scans? | Compute (virtual warehouses) |
-| 6 | Five cloud services listed in the docs? | Authentication, infrastructure mgmt, metadata mgmt, query parsing & optimization, access control |
-| 7 | Cloud services billed when? | Only above 10% of daily warehouse compute |
-| 8 | Supported clouds? | AWS, Azure, GCP |
-| 9 | Minimum edition for data sharing? | Standard |
-| 10 | Minimum for multi-cluster warehouses? | Enterprise |
-| 11 | Minimum for 90-day Time Travel? | Enterprise |
-| 12 | Minimum for materialized views? | Enterprise |
-| 13 | Minimum for Dynamic Data Masking / row access policies? | Enterprise |
-| 14 | Minimum for PHI/HIPAA, Tri-Secret Secure, PrivateLink? | Business Critical |
-| 15 | Edition with dedicated metadata store? | Virtual Private Snowflake |
-| 16 | Features in all editions (two classics)? | Automatic encryption; object-level access control |
-| 17 | Benefit of organizations? | Consolidated account management and billing |
-| 18 | Snowsight Query History window? | 14 days |
-| 19 | CLI built on the Python connector? | SnowSQL |
-| 20 | Newer CLI to deploy apps from scripts? | Snowflake CLI |
-| 21 | Hierarchy for a table? | Account → Database → Schema → Table |
-| 22 | Namespace = ? | Database + schema |
-| 23 | Two schema objects among pipe/warehouse/file format/resource monitor? | Pipe, file format |
-| 24 | UDF languages? | SQL, JavaScript, Python, Java, Scala |
-| 25 | Keyword for a tabular UDF? | RETURNS TABLE |
-| 26 | Overloading? | Same name, different number/types of arguments |
-| 27 | Object that runs DDL + DML? | Stored procedure |
-| 28 | Owner's-rights procedure inherits what from caller? | The current warehouse |
-| 29 | Needed to read session variables in a procedure? | Caller's rights |
-| 30 | Statements per CALL? | One procedure per SQL statement |
-| 31 | External function runs where? | Outside Snowflake (via proxy + API integration) |
-| 32 | INFORMATION_SCHEMA vs ACCOUNT_USAGE retention? | 7 days–6 months, no latency vs 365 days, 45 min–3 h latency |
-| 33 | Parameter precedence? | Most specific wins (session > user > account) |
-| 34 | Scale up solves? | Performance of complex queries |
-| 35 | Scale out solves? | Concurrency / queuing |
-| 36 | Auto-scale mode config? | MIN < MAX clusters |
-| 37 | Maximized mode config? | MIN = MAX (> 1) |
-| 38 | Policy minimizing queuing? | Standard |
-| 39 | Policy conserving credits? | Economy (6-minute rule) |
-| 40 | Why scaling policies exist? | To control credits of auto-scale multi-cluster warehouses |
-| 41 | Default AUTO_SUSPEND? | 600 s |
-| 42 | AUTO_SUSPEND = 0? | Never suspends |
-| 43 | Start suspended after CREATE? | INITIALLY_SUSPENDED = TRUE |
-| 44 | Wait until resize finishes? | WAIT_FOR_COMPLETION = TRUE |
-| 45 | Effect of resize on running queries? | None; new size for queued/new queries |
-| 46 | Resize a suspended warehouse? | Allowed; provisioned at next resume |
-| 47 | Privilege to resize? | MODIFY |
-| 48 | Privilege to suspend/resume? | OPERATE |
-| 49 | Billing granularity? | Per second, 60-second minimum per start/resume |
-| 50 | X-Large credits/hour? | 16 |
-| 51 | Snowpark-optimized warehouse for? | Large memory requirements (ML, big UDFs) |
-| 52 | Loading interferes with BI? | Separate warehouses |
-| 53 | How to choose a size? | Experiment with representative queries |
-| 54 | Micro-partition size? | 50–500 MB uncompressed |
-| 55 | Micro-partition mutability? | Immutable |
-| 56 | Micro-partition metadata? | Value range per column, distinct values, etc. |
-| 57 | Clustering is…? | How data is grouped/stored within micro-partitions |
-| 58 | Remove a clustering key? | ALTER TABLE … DROP CLUSTERING KEY |
-| 59 | average_overlaps means? | Avg number of micro-partitions with overlapping value ranges |
-| 60 | Three classic table types? | Permanent, transient, temporary |
-| 61 | Session-scoped table? | Temporary |
-| 62 | Persists, no Fail-safe? | Transient |
-| 63 | Transient Time Travel? | 0 or 1 day |
-| 64 | Fail-safe duration (permanent)? | 7 days |
-| 65 | Reduce storage for short-lived data? | Temporary and transient tables |
-| 66 | Change a view's columns? | Recreate it |
-| 67 | Column that says a view is secure? | IS_SECURE |
-| 68 | Who maintains materialized views? | Background serverless service (Snowflake compute) |
-| 69 | MV queried before maintenance catches up? | Returns current data |
-| 70 | MV maintenance suspended? | Cannot query it until resumed |
-| 71 | Objects using storage: table, MV, view, external table? | Table, materialized view |
-| 72 | Open table format? | Apache Iceberg |
-| 73 | Snowflake as Iceberg catalog value? | CATALOG = 'SNOWFLAKE' |
-| 74 | Tables per external volume? | One or more |
-| 75 | Object that stores and refreshes a query result to a lag? | Dynamic table |
-| 76 | Snowpark languages? | Python, Java, Scala |
-| 77 | Generic LLM function? | AI_COMPLETE |
-| 78 | Classify into custom categories? | AI_CLASSIFY |
-| 79 | Remove PII? | AI_REDACT |
-| 80 | Audio/video to text? | AI_TRANSCRIBE |
-| 81 | OCR/LAYOUT documents? | AI_PARSE_DOCUMENT |
-| 82 | Embeddings? | AI_EMBED (+ VECTOR_COSINE_SIMILARITY) |
-| 83 | Summarize many rows? | AI_SUMMARIZE_AGG |
-| 84 | Count tokens? | AI_COUNT_TOKENS |
-| 85 | Reference a staged file for AI? | TO_FILE |
-| 86 | Low-latency interactive AI? | Cortex REST API |
-| 87 | RAG retrieval over manuals? | Cortex Search |
-| 88 | Natural-language questions on metrics? | Cortex Analyst |
-| 89 | Interactive Python data app in Snowflake? | Streamlit in Snowflake |
-| 90 | SQL + Python + Markdown cells? | Snowflake Notebooks |
+| # | Obj. | Question | Answer |
+|---|---|---|---|
+| 1 | 1.1 | Three layers of Snowflake? | Database storage, compute (query processing), cloud services |
+| 2 | 1.1 | Architecture name? | Multi-cluster, shared data (hybrid shared-disk + shared-nothing) |
+| 3 | 1.1 | Where is metadata stored? | Cloud services |
+| 4 | 1.1 | Where is the execution plan created? | Cloud services |
+| 5 | 1.1 | Which layer executes joins/scans? | Compute (virtual warehouses) |
+| 6 | 1.1 | Five cloud services listed in the docs? | Authentication, infrastructure mgmt, metadata mgmt, query parsing & optimization, access control |
+| 7 | 1.1 | Cloud services billed when? | Only above 10% of daily warehouse compute |
+| 8 | 1.1 | Supported clouds? | AWS, Azure, GCP |
+| 9 | 1.1 | Minimum edition for data sharing? | Standard |
+| 10 | 1.1 | Minimum for multi-cluster warehouses? | Enterprise |
+| 11 | 1.1 | Minimum for 90-day Time Travel? | Enterprise |
+| 12 | 1.1 | Minimum for materialized views? | Enterprise |
+| 13 | 1.1 | Minimum for Dynamic Data Masking / row access policies? | Enterprise |
+| 14 | 1.1 | Minimum for PHI/HIPAA, Tri-Secret Secure, PrivateLink? | Business Critical |
+| 15 | 1.1 | Edition with dedicated metadata store? | Virtual Private Snowflake |
+| 16 | 1.1 | Features in all editions (two classics)? | Automatic encryption; object-level access control |
+| 17 | 1.1 | Benefit of organizations? | Consolidated account management and billing |
+| 18 | 1.2 | Snowsight Query History window? | 14 days |
+| 19 | 1.2 | CLI built on the Python connector? | SnowSQL |
+| 20 | 1.2 | Newer CLI to deploy apps from scripts? | Snowflake CLI |
+| 21 | 1.3 | Hierarchy for a table? | Account → Database → Schema → Table |
+| 22 | 1.3 | Namespace = ? | Database + schema |
+| 23 | 1.3 | Two schema objects among pipe/warehouse/file format/resource monitor? | Pipe, file format |
+| 24 | 1.3 | UDF languages? | SQL, JavaScript, Python, Java, Scala |
+| 25 | 1.3 | Keyword for a tabular UDF? | RETURNS TABLE |
+| 26 | 1.3 | Overloading? | Same name, different number/types of arguments |
+| 27 | 1.3 | Object that runs DDL + DML? | Stored procedure |
+| 28 | 1.3 | Owner's-rights procedure inherits what from caller? | The current warehouse |
+| 29 | 1.3 | Needed to read session variables in a procedure? | Caller's rights |
+| 30 | 1.3 | Statements per CALL? | One procedure per SQL statement |
+| 31 | 1.3 | External function runs where? | Outside Snowflake (via proxy + API integration) |
+| 32 | 1.3 | INFORMATION_SCHEMA vs ACCOUNT_USAGE retention? | 7 days–6 months, no latency vs 365 days, 45 min–3 h latency |
+| 33 | 1.3 | Parameter precedence? | Most specific wins (session > user > account) |
+| 34 | 1.4 | Scale up solves? | Performance of complex queries |
+| 35 | 1.4 | Scale out solves? | Concurrency / queuing |
+| 36 | 1.4 | Auto-scale mode config? | MIN < MAX clusters |
+| 37 | 1.4 | Maximized mode config? | MIN = MAX (> 1) |
+| 38 | 1.4 | Policy minimizing queuing? | Standard |
+| 39 | 1.4 | Policy conserving credits? | Economy (6-minute rule) |
+| 40 | 1.4 | Why scaling policies exist? | To control credits of auto-scale multi-cluster warehouses |
+| 41 | 1.4 | Default AUTO_SUSPEND? | 600 s |
+| 42 | 1.4 | AUTO_SUSPEND = 0? | Never suspends |
+| 43 | 1.4 | Start suspended after CREATE? | INITIALLY_SUSPENDED = TRUE |
+| 44 | 1.4 | Wait until resize finishes? | WAIT_FOR_COMPLETION = TRUE |
+| 45 | 1.4 | Effect of resize on running queries? | None; new size for queued/new queries |
+| 46 | 1.4 | Resize a suspended warehouse? | Allowed; provisioned at next resume |
+| 47 | 1.4 | Privilege to resize? | MODIFY |
+| 48 | 1.4 | Privilege to suspend/resume? | OPERATE |
+| 49 | 1.4 | Billing granularity? | Per second, 60-second minimum per start/resume |
+| 50 | 1.4 | X-Large credits/hour? | 16 |
+| 51 | 1.4 | Snowpark-optimized warehouse for? | Large memory requirements (ML, big UDFs) |
+| 52 | 1.4 | Loading interferes with BI? | Separate warehouses |
+| 53 | 1.4 | How to choose a size? | Experiment with representative queries |
+| 54 | 1.5 | Micro-partition size? | 50–500 MB uncompressed |
+| 55 | 1.5 | Micro-partition mutability? | Immutable |
+| 56 | 1.5 | Micro-partition metadata? | Value range per column, distinct values, etc. |
+| 57 | 1.5 | Clustering is…? | How data is grouped/stored within micro-partitions |
+| 58 | 1.5 | Remove a clustering key? | ALTER TABLE … DROP CLUSTERING KEY |
+| 59 | 1.5 | average_overlaps means? | Avg number of micro-partitions with overlapping value ranges |
+| 60 | 1.5 | Three classic table types? | Permanent, transient, temporary |
+| 61 | 1.5 | Session-scoped table? | Temporary |
+| 62 | 1.5 | Persists, no Fail-safe? | Transient |
+| 63 | 1.5 | Transient Time Travel? | 0 or 1 day |
+| 64 | 1.5 | Fail-safe duration (permanent)? | 7 days |
+| 65 | 1.5 | Reduce storage for short-lived data? | Temporary and transient tables |
+| 66 | 1.5 | Change a view's columns? | Recreate it |
+| 67 | 1.5 | Column that says a view is secure? | IS_SECURE |
+| 68 | 1.5 | Who maintains materialized views? | Background serverless service (Snowflake compute) |
+| 69 | 1.5 | MV queried before maintenance catches up? | Returns current data |
+| 70 | 1.5 | MV maintenance suspended? | Cannot query it until resumed |
+| 71 | 1.5 | Objects using storage: table, MV, view, external table? | Table, materialized view |
+| 72 | 1.5 | Open table format? | Apache Iceberg |
+| 73 | 1.5 | Snowflake as Iceberg catalog value? | CATALOG = 'SNOWFLAKE' |
+| 74 | 1.5 | Tables per external volume? | One or more |
+| 75 | 1.5 | Object that stores and refreshes a query result to a lag? | Dynamic table |
+| 76 | 1.6 | Snowpark languages? | Python, Java, Scala |
+| 77 | 1.6 | Generic LLM function? | AI_COMPLETE |
+| 78 | 1.6 | Classify into custom categories? | AI_CLASSIFY |
+| 79 | 1.6 | Remove PII? | AI_REDACT |
+| 80 | 1.6 | Audio/video to text? | AI_TRANSCRIBE |
+| 81 | 1.6 | OCR/LAYOUT documents? | AI_PARSE_DOCUMENT |
+| 82 | 1.6 | Embeddings? | AI_EMBED (+ VECTOR_COSINE_SIMILARITY) |
+| 83 | 1.6 | Summarize many rows? | AI_SUMMARIZE_AGG |
+| 84 | 1.6 | Count tokens? | AI_COUNT_TOKENS |
+| 85 | 1.6 | Reference a staged file for AI? | TO_FILE |
+| 86 | 1.6 | Low-latency interactive AI? | Cortex REST API |
+| 87 | 1.6 | RAG retrieval over manuals? | Cortex Search |
+| 88 | 1.6 | Natural-language questions on metrics? | Cortex Analyst |
+| 89 | 1.6 | Interactive Python data app in Snowflake? | Streamlit in Snowflake |
+| 90 | 1.6 | SQL + Python + Markdown cells? | Snowflake Notebooks |
 
 If you can answer all 90 without looking, and you can explain *why* the traps in each section are wrong, you are well prepared for Domain 1.

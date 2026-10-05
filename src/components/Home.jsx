@@ -4,6 +4,8 @@ import Trend from './Trend';
 import Icon from './Icon';
 import BankAudit from './BankAudit';
 import { REVIEW_PASSES_REQUIRED, examReadiness, overall } from '../lib/quiz';
+import { guideSummary } from '../study/storage';
+import { guideKey } from '../study/registry';
 
 const RING_CIRC = 2 * Math.PI * 52;
 
@@ -22,6 +24,9 @@ export default function Home({
   onReset,
   onExport,
   onImport,
+  studyGuides = [],
+  study,
+  onOpenStudy,
 }) {
   const [domain, setDomain] = useState(domains[0] ?? '');
   const [domCount, setDomCount] = useState(20);
@@ -114,6 +119,63 @@ export default function Home({
 
       <BankAudit questions={allQuestions ?? questions} cert={cert} includePending={includePending} onIncludePending={onIncludePending} />
       {sessionError && <p className="note" role="alert">{sessionError}</p>}
+
+      {studyGuides.length > 0 && (
+        <section className="study-entry" aria-label="Material de estudio">
+          <div className="study-entry-copy">
+            <span className="study-entry-icon">
+              <Icon name="book" size={22} />
+            </span>
+            <div>
+              <div className="eyebrow mb">Material de estudio</div>
+              <h2>Temario, glosario y tarjetas</h2>
+              <p>
+                Estudia la teoría por objetivos, consulta las palabras clave en inglés y repasa con
+                tarjetas antes de pasar a las preguntas.
+              </p>
+            </div>
+          </div>
+          <div className="study-entry-guides">
+            {studyGuides.map((g) => {
+              const sum = guideSummary(study, guideKey(cert.id, g.id), g.sectionCount, g.cardCount);
+              const started = sum.read > 0 || sum.known > 0 || sum.last;
+              return (
+                <button key={g.id} className="study-guide-card" onClick={onOpenStudy}>
+                  <span className="sg-top">
+                    <b>{g.label}</b>
+                    <span className="threshold">{g.weight}% del examen</span>
+                  </span>
+                  <span className="sg-title">{g.title}</span>
+                  <span className="sg-meters">
+                    <span className="sg-meter">
+                      <small>Temario</small>
+                      <span className="bar">
+                        <span style={{ width: `${(sum.read / sum.sectionCount) * 100}%` }} />
+                      </span>
+                      <small>
+                        {sum.read}/{sum.sectionCount}
+                      </small>
+                    </span>
+                    <span className="sg-meter">
+                      <small>Tarjetas</small>
+                      <span className="bar mint">
+                        <span style={{ width: `${(sum.known / sum.cardCount) * 100}%` }} />
+                      </span>
+                      <small>
+                        {sum.known}/{sum.cardCount}
+                      </small>
+                    </span>
+                  </span>
+                  <span className="sg-cta">
+                    {started ? 'Continuar donde lo dejaste' : 'Empezar a estudiar'}
+                    <Icon name="right" size={16} />
+                  </span>
+                </button>
+              );
+            })}
+          </div>
+        </section>
+      )}
 
       <section className="metric-grid" aria-label="Resumen de progreso">
         <div className="metric-card">
