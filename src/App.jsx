@@ -15,6 +15,9 @@ import Home from './components/Home';
 import Session from './components/Session';
 import Results from './components/Results';
 import Icon from './components/Icon';
+import StudyGuide from './components/study/StudyGuide';
+import { guidesFor } from './study/registry';
+import { loadStudy, saveStudy } from './study/storage';
 
 export default function App() {
   const { catalog, error: catErr } = useCatalog();
@@ -27,6 +30,18 @@ export default function App() {
   const [result, setResult] = useState(null);
   const [includePending, setIncludePending] = useState(false);
   const [sessionError, setSessionError] = useState(null);
+  const [study, setStudy] = useState(loadStudy);
+  const studyGuides = useMemo(() => (cert ? guidesFor(cert.id) : []), [cert]);
+
+  function persistStudy(next) {
+    setStudy(next);
+    saveStudy(next);
+  }
+
+  function openStudy() {
+    setView('study');
+    window.scrollTo({ top: 0 });
+  }
 
   const studyQuestions = useMemo(() => questions?.filter((q) => !q.review ||
     q.review.status === 'verified' || (includePending && q.review.status === 'pending')) ?? [],
@@ -192,6 +207,23 @@ export default function App() {
           onReset={doReset}
           onExport={doExport}
           onImport={doImport}
+          studyGuides={studyGuides}
+          study={study}
+          onOpenStudy={openStudy}
+        />
+      )}
+      {view === 'study' && studyGuides.length > 0 && (
+        <StudyGuide
+          key={cert.id}
+          cert={cert}
+          guides={studyGuides}
+          study={study}
+          onStudy={persistStudy}
+          onBack={() => {
+            setView('home');
+            window.scrollTo({ top: 0 });
+          }}
+          onPractice={(domain) => start('domain', { domain, count: 20 })}
         />
       )}
       {view === 'session' && (
