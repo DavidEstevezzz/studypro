@@ -52,6 +52,28 @@ export const STUDY_GUIDES = {
           glossary: glossary.default,
         })),
     },
+    {
+      id: 'domain-3',
+      label: 'Dominio 3',
+      title: 'Data Loading, Unloading & Connectivity',
+      weight: 18,
+      domain: 'Carga, Descarga y Conectividad',
+      objectives: {
+        '3.1': 'Carga y descarga de datos',
+        '3.2': 'Ingesta automatizada y pipelines',
+        '3.3': 'Conectores e integraciones',
+      },
+      sectionCount: 5,
+      cardCount: 112,
+      load: () =>
+        Promise.all([
+          import('../../study/domain-3/syllabus.md?raw'),
+          import('../../study/domain-3/glossary.md?raw'),
+        ]).then(([syllabus, glossary]) => ({
+          syllabus: syllabus.default,
+          glossary: glossary.default,
+        })),
+    },
   ],
 };
 
