@@ -5,14 +5,15 @@ Temarios y glosarios por dominio. El contenido está en **inglés**, igual que e
 | Dominio | Peso | Temario | Glosario |
 |---|---|---|---|
 | 1. Snowflake AI Data Cloud Features & Architecture | 31% | [syllabus](domain-1/syllabus.md) | [glossary](domain-1/glossary.md) |
+| 2. Account Management & Data Governance | 20% | [syllabus](domain-2/syllabus.md) | [glossary](domain-2/glossary.md) |
 
 En la web de StudyPro se abre desde la portada, en **Material de estudio**: temario por objetivos con índice, glosario con buscador y tarjetas de repaso. Estos `.md` son la fuente única: si los editas, la app muestra el cambio en la siguiente compilación.
 
 Cómo usarlo:
 
-1. Lee el temario por objetivos (1.1 a 1.6). Las palabras en **negrita** son las que usa el examen.
+1. Lee el temario por objetivos (1.1 a 1.6 en el dominio 1; 2.1 a 2.3 en el dominio 2). Las palabras en **negrita** son las que usa el examen.
 2. Repasa la sección **Exam traps** de cada objetivo: recoge los distractores que más se confunden.
 3. Haz el **rapid-fire self-test** del final tapando la columna de respuestas.
-4. Practica en StudyPro filtrando por el dominio «Arquitectura y Data Cloud».
+4. Practica en StudyPro filtrando por el dominio correspondiente («Arquitectura y Data Cloud», «Gestion de cuenta y Gobernanza»).
 
-El temario se ha contrastado con las 211 preguntas verificadas del dominio 1 en el banco (`public/data/snowpro-core.json`) y con los criterios de auditoría de `audit/`. Los datos marcados con ⚠️ (nombres de producto, menús de Snowsight, límites) cambian a menudo: compruébalos en la documentación de Snowflake antes del examen.
+Cada temario se ha contrastado con las preguntas verificadas de su dominio (211 del dominio 1 y 204 del dominio 2) en el banco (`public/data/snowpro-core.json`) y con los criterios de auditoría de `audit/`. Los datos marcados con ⚠️ (nombres de producto, menús de Snowsight, límites) cambian a menudo: compruébalos en la documentación de Snowflake antes del examen.

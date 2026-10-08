@@ -13,12 +13,9 @@ const TABS = [
   { id: 'cards', label: 'Repaso', icon: 'cards' },
 ];
 
-export default function StudyGuide({ cert, guides, study, onStudy, onBack, onPractice }) {
-  const [guideId, setGuideId] = useState(() => {
-    const withLast = guides.find((g) => study.guides[guideKey(cert.id, g.id)]?.last);
-    return (withLast ?? guides[0]).id;
-  });
-  const guide = guides.find((g) => g.id === guideId) ?? guides[0];
+// Se monta una vez por guía (key en App): el estado inicial sale de lo que
+// el usuario dejó en esa guía.
+export default function StudyGuide({ cert, guide, guides, study, onStudy, onSwitchGuide, onBack, onPractice }) {
   const key = guideKey(cert.id, guide.id);
   const gState = guideState(study, key);
 
@@ -226,10 +223,7 @@ export default function StudyGuide({ cert, guides, study, onStudy, onBack, onPra
             <button
               key={g.id}
               className={`chip ${g.id === guide.id ? 'on' : ''}`}
-              onClick={() => {
-                setGuideId(g.id);
-                setNav({ section: null, anchor: null });
-              }}
+              onClick={() => g.id !== guide.id && onSwitchGuide(g.id)}
             >
               {g.label} · {g.weight}%
             </button>

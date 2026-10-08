@@ -32,13 +32,16 @@ export default function App() {
   const [sessionError, setSessionError] = useState(null);
   const [study, setStudy] = useState(loadStudy);
   const studyGuides = useMemo(() => (cert ? guidesFor(cert.id) : []), [cert]);
+  const [studyGuideId, setStudyGuideId] = useState(null);
+  const studyGuide = studyGuides.find((g) => g.id === studyGuideId) ?? studyGuides[0];
 
   function persistStudy(next) {
     setStudy(next);
     saveStudy(next);
   }
 
-  function openStudy() {
+  function openStudy(guideId) {
+    setStudyGuideId(guideId);
     setView('study');
     window.scrollTo({ top: 0 });
   }
@@ -212,11 +215,13 @@ export default function App() {
           onOpenStudy={openStudy}
         />
       )}
-      {view === 'study' && studyGuides.length > 0 && (
+      {view === 'study' && studyGuide && (
         <StudyGuide
-          key={cert.id}
+          key={`${cert.id}/${studyGuide.id}`}
           cert={cert}
+          guide={studyGuide}
           guides={studyGuides}
+          onSwitchGuide={openStudy}
           study={study}
           onStudy={persistStudy}
           onBack={() => {

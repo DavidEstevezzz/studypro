@@ -30,6 +30,28 @@ export const STUDY_GUIDES = {
           glossary: glossary.default,
         })),
     },
+    {
+      id: 'domain-2',
+      label: 'Dominio 2',
+      title: 'Account Management & Data Governance',
+      weight: 20,
+      domain: 'Gestion de cuenta y Gobernanza',
+      objectives: {
+        '2.1': 'Seguridad y control de acceso',
+        '2.2': 'Gobernanza de datos',
+        '2.3': 'Monitorización y costes',
+      },
+      sectionCount: 5,
+      cardCount: 105,
+      load: () =>
+        Promise.all([
+          import('../../study/domain-2/syllabus.md?raw'),
+          import('../../study/domain-2/glossary.md?raw'),
+        ]).then(([syllabus, glossary]) => ({
+          syllabus: syllabus.default,
+          glossary: glossary.default,
+        })),
+    },
   ],
 };
 
