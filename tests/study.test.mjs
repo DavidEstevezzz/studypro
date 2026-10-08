@@ -62,6 +62,18 @@ for (const { guide, syllabus: md, glossary: gl } of guides) {
     assert.equal(new Set(entries.map((e) => e.id)).size, entries.length, 'ids are unique');
   });
 
+  test(`${guide.id}: no raw HTML tags outside code (they would vanish when rendered)`, () => {
+    for (const [name, text] of [['syllabus', md], ['glossary', gl]]) {
+      let inFence = false;
+      text.split('\n').forEach((line, i) => {
+        if (line.startsWith('```')) inFence = !inFence;
+        if (inFence) return;
+        const tag = /<\/?[A-Za-z][\w-]*[^>]*>/.exec(line.replace(/`[^`]*`/g, ''));
+        assert.equal(tag, null, `${name}:${i + 1} ${tag?.[0]}`);
+      });
+    }
+  });
+
   test(`${guide.id}: self-test becomes numbered cards tagged with objectives`, () => {
     const cards = parseSelfTest(md);
     assert.equal(cards.length, guide.cardCount);

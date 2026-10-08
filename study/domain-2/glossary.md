@@ -182,7 +182,7 @@ Alphabetical list of the keywords used in Domain 2 questions. Each entry has the
 - **SERVICE (user type)** · 2.1 — User for unattended applications; cannot use passwords; uses key pair, OAuth or workload identity.
 - **Session policy** · 2.1 — Policy that sets idle session timeouts.
 - **SHOW GRANTS OF ROLE** · 2.1 — Lists users and roles that have been granted a role.
-- **SHOW GRANTS ON <object>** · 2.1 — Lists privileges granted on a specific object.
+- **SHOW GRANTS ON object** · 2.1 — Lists privileges granted on a specific object.
 - **SHOW GRANTS TO ROLE** · 2.1 — Lists privileges and roles granted to a role.
 - **SHOW GRANTS TO USER** · 2.1 — Lists roles granted to a user.
 - **SHOW NETWORK POLICIES** · 2.1 — Lists the network policies in the account.
