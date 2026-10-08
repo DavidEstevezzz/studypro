@@ -70,7 +70,7 @@ La generación parte siempre del original conservado. El antiguo script de corre
 
 ## Material de estudio
 
-Temario y glosario por dominio en [`study/`](study/README.md). Disponibles: dominio 1 (arquitectura, 31%), dominio 2 (gestión de cuenta y gobernanza, 20%) y dominio 3 (carga, descarga y conectividad, 18%).
+Temario y glosario por dominio en [`study/`](study/README.md). Disponibles: dominio 1 (arquitectura, 31%), dominio 2 (gestión de cuenta y gobernanza, 20%), dominio 3 (carga, descarga y conectividad, 18%) y dominio 4 (rendimiento, consultas y transformación, 21%).
 
 En la app se abre desde **Material de estudio** en la portada: lector por objetivos (índice, marcar como estudiada, definiciones al pulsar los términos, temas claro/sepia/oscuro), glosario con buscador y filtros, y tarjetas de repaso. El progreso se guarda en el navegador. Para añadir otro dominio, crea sus `.md` en `study/` y regístralo en `src/study/registry.js`.
 

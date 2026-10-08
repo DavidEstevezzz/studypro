@@ -74,6 +74,29 @@ export const STUDY_GUIDES = {
           glossary: glossary.default,
         })),
     },
+    {
+      id: 'domain-4',
+      label: 'Dominio 4',
+      title: 'Performance Optimization, Querying & Transformation',
+      weight: 21,
+      domain: 'Rendimiento, Consultas y Transformacion',
+      objectives: {
+        '4.1': 'Evaluación del rendimiento',
+        '4.2': 'Optimización de consultas',
+        '4.3': 'Caché',
+        '4.4': 'Transformación de datos',
+      },
+      sectionCount: 6,
+      cardCount: 162,
+      load: () =>
+        Promise.all([
+          import('../../study/domain-4/syllabus.md?raw'),
+          import('../../study/domain-4/glossary.md?raw'),
+        ]).then(([syllabus, glossary]) => ({
+          syllabus: syllabus.default,
+          glossary: glossary.default,
+        })),
+    },
   ],
 };
 

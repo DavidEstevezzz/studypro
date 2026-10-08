@@ -1391,6 +1391,7 @@ button.obj-tag:hover {
   font-family: var(--read-font);
   font-size: calc(var(--study-size) * 0.94);
   line-height: 1.65;
+  overflow-wrap: break-word;
 }
 
 .term-objs {
